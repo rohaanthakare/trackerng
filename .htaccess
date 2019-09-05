@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule Operations.php Module/Bootstrap.php [L,QSA]
