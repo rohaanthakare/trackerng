@@ -1,1 +1,23 @@
-<p>login works!</p>
+<form class="login_form">
+    <div class="app_logo">
+        Tracker
+    </div>
+    <div>
+        <mat-form-field>
+            <input matInput placeholder="Username" [(ngModel)]="username" name="username">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <input matInput placeholder="Password">
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-raised-button color="primary">
+            <mat-icon>lock_open</mat-icon>
+            Login
+        </button>
+    </div>
+</form>
+
+

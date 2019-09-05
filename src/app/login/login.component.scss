@@ -1,0 +1,27 @@
+.login_form{
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+}
+
+.login_form div{
+    width: 100%;
+}
+
+.login_form mat-form-field{
+    width: 100%;
+}
+
+.login_form button{
+    width: 100%;
+}
+
+.app_logo{
+    text-align: center;
+    font-family: Trebuchet MS;
+    font-weight: bold;
+    font-size: 35pt;
+    color: #673ab7;
+}
