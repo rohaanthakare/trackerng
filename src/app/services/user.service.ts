@@ -7,17 +7,7 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
-
+  module = 'User';
   constructor(private http: HttpClient) { }
 
-  authenticateUser(username: string, password: string) {
-    const userObj = new User();
-    userObj.username = username;
-    userObj.password = password;
-    return this.http.post(environment.baseUrl, {
-      Module: 'User',
-      action: 'authenticateUser',
-      user: userObj
-    });
-  }
 }
