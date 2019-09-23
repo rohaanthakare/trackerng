@@ -7,17 +7,16 @@ Class UserController{
             }
             $responseArr = array();
             $responseArr['success'] = true;
-            $responseArr['message'] = 'User authenticated successfully';
+            $responseArr['user']['username'] = $request['username'];
+            $responseArr['user']['first_name'] = 'demo';
+            $responseArr['user']['last_name'] = 'demo';
+            $responseArr['token'] = 'demo_token';
             $response = json_encode($responseArr);
             echo $response;
         } catch (Exception $e) {
             Logger::writeLog('ERROR','User - authenticateUser',$e->getMessage());
-            $responseArr = array();
-            $responseArr['success'] = false;
-            $responseArr['message'] = $e->getMessage();
-            $response = json_encode($responseArr);
             http_response_code(500);
-            echo $response;
+            die($e->getMessage());
         }
     }
 

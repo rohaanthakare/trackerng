@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Application Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -32,7 +33,7 @@ import { UserService } from './services/user.service';
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, 
-    MatInputModule, MatButtonModule, MatIconModule,
+    MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule,
     AppRoutingModule
   ],
   providers: [ AuthService, UserService],
