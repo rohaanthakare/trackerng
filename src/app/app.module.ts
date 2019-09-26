@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 // Angular Material Imports 
@@ -21,6 +21,8 @@ import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
+import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +31,12 @@ import { UserService } from './services/user.service';
     LoginComponent,
     ProfileComponent,
     MenuComponent,
-    DashboardComponent
+    DashboardComponent,
+    RegisterComponent,
+    ForgotPasswordComponent
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, 
+    BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
     MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule,
     AppRoutingModule
   ],

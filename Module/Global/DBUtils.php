@@ -1,6 +1,6 @@
 <?php
-require_once(ROOT_DIR.'Module/Global/ExceptionHandler.php');
-require_once(ROOT_DIR.'Module/Global/Logger.php');
+require_once(ROOT_DIR.'/Module/Global/ExceptionHandler.php');
+require_once(ROOT_DIR.'/Module/Global/Logger.php');
 
 Class DBUtils{
 	public $stmt;

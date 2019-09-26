@@ -1,4 +1,6 @@
 <?php
+require_once(ROOT_DIR.'/Module/Global/DAOUtils.php');
+
 Class User extends DAOUtils{
     protected $model = 'USER';
     protected $fieldList = array('SYS_USER_ID', 'SYS_CREATION_DATE', 'SYS_UPDATE_DATE', 'SYS_CREATION_USER', 'SYS_UPDATE_USER',
@@ -279,6 +281,8 @@ Class User extends DAOUtils{
             $dataRow[17] = $this->getCountry();
             $dataRow[18] = $this->getUserStatus();
             $dataRow[19] = $this->getLastLogin();
+
+            return $dataRow;
         } catch (Exception $e) {
             Logger::writeLog('ERROR', get_called_class().' - allFieldsGetter', $e->getMessage());
             throw new Exception($e->getMessage());

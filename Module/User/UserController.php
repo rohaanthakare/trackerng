@@ -1,4 +1,8 @@
 <?php
+require_once(ROOT_DIR.'/Module/Global/PasswordUtils.php');
+require_once(ROOT_DIR.'/Module/User/Models/User.php');
+require_once(ROOT_DIR.'/Module/User/UserModuleWorkflow.php');
+
 Class UserController{
     public function authenticateUser($request) {
         try {
@@ -21,7 +25,22 @@ Class UserController{
     }
 
     public function registerUser($request) {
-        echo "Inside Register User";
+        try {
+            $user = new User();
+            $user->setUsername($request['username']);
+            $securePassword = PasswordUtils::encryptDecrypt('encrypt',$request['password']);
+            $user->setPassword($securePassword);
+            $user->setEmailId($request['emailId']);
+            $user->setContactNo($request['contactNo']);
+
+            $userWf = new UserModuleWorkflow();
+            $result = $userWf->registerWorkflow($user);
+            echo $result;
+        } catch (Exception $e) {
+            Logger::writeLog('ERROR',get_called_class().' - registerUser',$e->getMessage());
+            http_response_code(500);
+            die('Error while registering user, please try again.');
+        }
     }
 
     public function activateUser($request) {

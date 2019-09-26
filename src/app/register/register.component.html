@@ -1,0 +1,36 @@
+<form class="login_form" [formGroup]="registrationForm" (ngSubmit)="registerUser()">
+    <div class="app_logo">
+        Tracker
+    </div>
+    <div>
+        <mat-form-field>
+            <input matInput placeholder="Username" formControlName="username" name="username">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <input matInput placeholder="Password" type="password" formControlName="password">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <input matInput placeholder="Confirm Password" type="password" formControlName="confirmPassword">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <input matInput placeholder="Email" formControlName="emailId">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <input matInput placeholder="Phone No." formControlName="contactNo">
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-raised-button type="submit" color="primary">
+            <mat-icon>lock_open</mat-icon>
+            Register
+        </button>
+    </div>
+</form>
