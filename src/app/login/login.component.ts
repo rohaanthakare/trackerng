@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MessageService } from '../shared/services/message.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   password: string;
   constructor(private authService: AuthService,
               private router: Router,
-              private snackBar: MatSnackBar) { }
+              private messageService: MessageService) { }
 
   ngOnInit() {
   }
@@ -25,9 +26,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         const errorMsg = (error.error) ? error.error : error.statusText;
-        this.snackBar.open(errorMsg, 'Dismiss', {
-          duration: 5000
-        });
+        this.messageService.showErrorMessage(errorMsg, 'default');
       }
     );
   }
