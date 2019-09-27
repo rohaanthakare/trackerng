@@ -28,9 +28,14 @@
         </mat-form-field>
     </div>
     <div>
-        <button mat-raised-button type="submit" color="primary">
-            <mat-icon>lock_open</mat-icon>
-            Register
+        <button mat-raised-button style="margin-bottom: 10px" type="submit" color="primary">
+            <i class="material-icons">person_add</i>
+            Create User
+        </button>
+        <p>Already a member?</p>
+        <button mat-raised-button type="button" color="primary" (click)="loginUser()">
+            <i class="material-icons">lock_open</i>
+            Login
         </button>
     </div>
 </form>

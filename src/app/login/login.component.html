@@ -13,9 +13,14 @@
         </mat-form-field>
     </div>
     <div>
-        <button mat-raised-button color="primary" (click)="authenticateUser()">
+        <button mat-raised-button style="margin-bottom: 10px;" color="primary" (click)="authenticateUser()">
             <i class="material-icons">lock_open</i>
             Login
+        </button>
+        <p>Not a member?</p>
+        <button mat-raised-button color="primary" (click)="registerUser()">
+            <i class="material-icons">person_add</i>
+            New User
         </button>
     </div>
 </form>
