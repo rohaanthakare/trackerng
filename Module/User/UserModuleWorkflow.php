@@ -4,7 +4,8 @@ Class UserModuleWorkflow {
         // Validate if username exist
         // Validate if email already registered
         // Insert User
-        $userObj->save();
+        $userId = $userObj->save();
+        return $userId;
     }
 }
 ?>
