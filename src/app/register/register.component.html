@@ -4,27 +4,51 @@
     </div>
     <div>
         <mat-form-field>
-            <input matInput placeholder="Username" formControlName="username" name="username">
+            <input matInput placeholder="Username" formControlName="username" name="username"
+            autocomplete="off">
+            <mat-error *ngIf="usernameCtrl.invalid">
+                Username is required
+            </mat-error>
         </mat-form-field>
     </div>
     <div>
         <mat-form-field>
             <input matInput placeholder="Password" type="password" formControlName="password">
+            <mat-error *ngIf="passwordCtrl.hasError('required')">
+                Password is required
+            </mat-error>
+            <mat-error *ngIf="passwordCtrl.errors?.minLength && !passwordCtrl.hasError('required')">
+                Password must be more than 6 charectars.
+            </mat-error>
         </mat-form-field>
     </div>
     <div>
         <mat-form-field>
-            <input matInput placeholder="Confirm Password" type="password" formControlName="confirmPassword">
+            <input matInput placeholder="Confirm Password" type="password" formControlName="confirmPassword"
+            autocomplete="off">
+            <mat-error *ngIf="confirmPassCtrl.invalid">
+                Confirm Password is required
+            </mat-error>
         </mat-form-field>
     </div>
     <div>
         <mat-form-field>
-            <input matInput placeholder="Email" formControlName="emailId">
+            <input matInput placeholder="Email" formControlName="emailId" autocomplete="off">
+            <mat-error *ngIf="emailCtrl.hasError('required')">
+                Email is required
+            </mat-error>
+            <mat-error *ngIf="emailCtrl.hasError('email') && !emailCtrl.hasError('required')">
+                Please enter valid email address
+            </mat-error>
         </mat-form-field>
     </div>
     <div>
         <mat-form-field>
-            <input matInput placeholder="Phone No." formControlName="contactNo">
+            <span matPrefix>+91 &nbsp;</span>
+            <input matInput type="tel" placeholder="Phone No." formControlName="contactNo" autocomplete="off">
+            <mat-error *ngIf="contactNoCtrl.invalid">
+                Contact Number is required
+            </mat-error>
         </mat-form-field>
     </div>
     <div>

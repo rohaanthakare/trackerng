@@ -16,11 +16,11 @@ export class RegisterComponent implements OnInit {
   emailCtrl = new FormControl('',[Validators.required, Validators.email]);
   contactNoCtrl = new FormControl('', [Validators.required]);
   registrationForm = new FormGroup({
-    username: new FormControl(),
-    password: new FormControl(),
-    confirmPassword: new FormControl(),
-    emailId: new FormControl(),
-    contactNo: new FormControl()
+    username: this.usernameCtrl,
+    password: this.passwordCtrl,
+    confirmPassword: this.confirmPassCtrl,
+    emailId: this.emailCtrl,
+    contactNo: this.contactNoCtrl
   });
   constructor(private userService: UserService,
               private router: Router,
@@ -30,15 +30,17 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser() {
-    this.userService.registerUser(this.registrationForm.value).subscribe(
-      response => {
-        this.msgService.showSuccessMessage(response.message, 'center', 'top')
-      },
-      error => {
-        console.log('Inside error');
-        console.log(error);
-      }
-    );
+    if(this.registrationForm.valid){
+      this.userService.registerUser(this.registrationForm.value).subscribe(
+        response => {
+          this.msgService.showSuccessMessage(response.message, 'center', 'top')
+        },
+        error => {
+          const errorMsg = error.error ? error.error : error.statusText;
+          this.msgService.showErrorMessage(errorMsg, 'center', 'top');
+        }
+      );
+    }
   }
 
   loginUser() {
