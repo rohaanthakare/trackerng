@@ -39,7 +39,7 @@ Class UserController{
         } catch (Exception $e) {
             Logger::writeLog('ERROR',get_called_class().' - registerUser',$e->getMessage());
             http_response_code(500);
-            die('Error while registering user, please try again.');
+            die($e->getMessage());
         }
     }
 

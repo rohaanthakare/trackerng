@@ -1,10 +1,18 @@
 <?php
+require_once(ROOT_DIR.'/Module/User/UserDataAccessor.php');
 Class UserModuleWorkflow {
     public function registerWorkflow($userObj) {
-        // Validate if username exist
-        // Validate if email already registered
-        // Insert User
-        $userObj->save();
+        try {
+            // Validate if username exist
+            $userDao = new UserDataAccessor();
+            $userDao->getUserByUserName($userObj->getUsername());
+            // Validate if email already registered
+            // Insert User
+            $userObj->save();
+        } catch (Exception $e) {
+            Logger::writeLog('ERROR',get_called_class().' - registerWorkflow',$e->getMessage());
+            throw new Exception($e->getMessage());
+        }
     }
 }
 ?>
