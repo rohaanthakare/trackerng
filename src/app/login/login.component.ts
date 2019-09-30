@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
   }
 
   authenticateUser() {
-    if(this.loginForm.valid) {
-      this.authService.authenticateUser(this.username, this.password).subscribe(
+    if (this.loginForm.valid) {
+      this.authService.authenticateUser(this.loginForm.value).subscribe(
         data => {
           this.router.navigate(['home']);
         },
@@ -46,15 +46,15 @@ export class LoginComponent implements OnInit {
 
   getVaidationMessage(field) {
     let returnMsg;
-    switch(field) {
+    switch (field) {
       case 'username':
-        if(this.usernameCtrl.hasError('required')) {
-          returnMsg = 'Username is required'
+        if (this.usernameCtrl.hasError('required')) {
+          returnMsg = 'Username is required';
         }
         break;
       case 'password':
-        if(this.passwordCtrl.hasError('required')) {
-          returnMsg = 'Password is required'
+        if (this.passwordCtrl.hasError('required')) {
+          returnMsg = 'Password is required';
         }
         break;
     }

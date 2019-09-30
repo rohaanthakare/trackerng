@@ -12,8 +12,8 @@ import { MessageService } from '../shared/services/message.service';
 export class RegisterComponent implements OnInit {
   usernameCtrl = new FormControl('', [Validators.required]);
   passwordCtrl = new FormControl('', [Validators.required, Validators.minLength(6)]);
-  confirmPassCtrl = new FormControl('',[Validators.required]);
-  emailCtrl = new FormControl('',[Validators.required, Validators.email]);
+  confirmPassCtrl = new FormControl('', [Validators.required]);
+  emailCtrl = new FormControl('', [Validators.required, Validators.email]);
   contactNoCtrl = new FormControl('', [Validators.required]);
   registrationForm = new FormGroup({
     username: this.usernameCtrl,
@@ -30,10 +30,10 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser() {
-    if(this.registrationForm.valid){
+    if (this.registrationForm.valid) {
       this.userService.registerUser(this.registrationForm.value).subscribe(
         response => {
-          this.msgService.showSuccessMessage(response.message, 'center', 'top')
+          this.msgService.showSuccessMessage(response.message, 'center', 'top');
         },
         error => {
           const errorMsg = error.error ? error.error : error.statusText;
