@@ -5,11 +5,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-// Angular Material Imports 
+// Angular Material Imports
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 // Application Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -39,7 +40,7 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
-    MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule,
+    MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatToolbarModule,
     AppRoutingModule
   ],
   providers: [ AuthService, UserService],

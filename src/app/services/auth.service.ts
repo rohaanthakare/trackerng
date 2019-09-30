@@ -28,8 +28,11 @@ export class AuthService {
       formData.append('Module', 'User');
       formData.append('action', 'authenticateUser');
       formData = FormUtils.getFormParams(userInfo, formData);
-      return this.http.post(environment.baseUrl, formData).pipe(map(res => {
-        console.log(res);
+      return this.http.post<any>(environment.baseUrl, formData).pipe(map(res => {
+        if (res.user) {
+          this.setUserDetails(res.user);
+          this.setUserToken(res.token);
+        }
       }));
   }
 }
