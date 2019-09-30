@@ -35,7 +35,14 @@ Class UserController{
 
             $userWf = new UserModuleWorkflow();
             $result = $userWf->registerWorkflow($user);
-            echo $result;
+            if($result) {
+                http_response_code(200);
+                $responseArr = array();
+                $responseArr['success'] = true;
+                $responseArr['message'] = 'Your user is created, activation link sent to registered Email-Id';                
+                $response = json_encode($responseArr);
+                echo $response;
+            }
         } catch (Exception $e) {
             Logger::writeLog('ERROR',get_called_class().' - registerUser',$e->getMessage());
             http_response_code(500);

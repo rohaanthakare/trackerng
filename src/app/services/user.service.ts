@@ -16,6 +16,6 @@ export class UserService {
     formData.append('Module', this.module);
     formData.append('action', 'registerUser');
     formData = FormUtils.getFormParams(userInfo, formData);
-    return this.http.post(environment.baseUrl, formData);
+    return this.http.post<any>(environment.baseUrl, formData);
   }
 }

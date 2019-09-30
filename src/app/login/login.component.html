@@ -1,21 +1,28 @@
-<form class="login_form">
+<form class="login_form" (ngSubmit)="authenticateUser()" [formGroup]="loginForm">
     <div class="app_logo">
         Tracker
     </div>
     <div>
         <mat-form-field>
-            <input matInput placeholder="Username" [(ngModel)]="username" name="username">
+            <input matInput placeholder="Username" formControlName="username" name="username" autocomplete="off">
+            <mat-error *ngIf="usernameCtrl.invalid">{{getVaidationMessage('username')}}</mat-error>
         </mat-form-field>
     </div>
     <div>
         <mat-form-field>
-            <input matInput placeholder="Password">
+            <input matInput placeholder="Password" formControlName="password" type="password" autocomplete="off">
+            <mat-error *ngIf="passwordCtrl.invalid">{{getVaidationMessage('password')}}</mat-error>
         </mat-form-field>
     </div>
     <div>
-        <button mat-raised-button color="primary" (click)="authenticateUser()">
+        <button mat-raised-button style="margin-bottom: 10px;" color="primary" (click)="authenticateUser()">
             <i class="material-icons">lock_open</i>
             Login
+        </button>
+        <p>Not a member?</p>
+        <button mat-raised-button color="primary" (click)="registerUser()">
+            <i class="material-icons">person_add</i>
+            New User
         </button>
     </div>
 </form>
