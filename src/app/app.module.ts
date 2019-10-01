@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 
 // Application Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +27,7 @@ import { UserService } from './services/user.service';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HeaderComponent } from './header/header.component';
+import { DataLoaderComponent } from './data-loader/data-loader.component';
 
 @NgModule({
   declarations: [
@@ -36,11 +39,13 @@ import { HeaderComponent } from './header/header.component';
     DashboardComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    HeaderComponent
+    HeaderComponent,
+    DataLoaderComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
     MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatToolbarModule,
+    MatCardModule, MatMenuModule,
     AppRoutingModule
   ],
   providers: [ AuthService, UserService],

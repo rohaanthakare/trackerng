@@ -20,7 +20,11 @@ export class AuthService {
   }
 
   setUserDetails(userDetails: any) {
-    localStorage.setItem('currentUser', userDetails);
+    localStorage.setItem('currentUser', JSON.stringify(userDetails));
+  }
+
+  getCurrentUser() {
+    return localStorage.getItem('currentUser');
   }
 
   authenticateUser(userInfo) {
@@ -34,5 +38,10 @@ export class AuthService {
           this.setUserToken(res.token);
         }
       }));
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('Token');
   }
 }

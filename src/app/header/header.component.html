@@ -1,5 +1,25 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="header-elevation" color="primary">
     <mat-toolbar-row>
         <span>Tracker</span>
+        <span class="example-spacer"></span>
+        <span class="user-details">
+            <button mat-button color="basic" [matMenuTriggerFor]="menu">
+                {{displayName}} <img src="../../assets/Profiles/{{userId}}/profile.png">
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <i class="material-icons">account_circle</i>
+                    <span>Profile</span>
+                </button>
+                <button mat-menu-item>
+                    <i class="material-icons">settings_applications</i>
+                    <span>Settings</span>
+                </button>
+                <button mat-menu-item (click)="logout()">
+                    <i class="material-icons">power_settings_new</i>
+                    <span>Logout</span>
+                </button>
+            </mat-menu>
+        </span>
     </mat-toolbar-row>
 </mat-toolbar>

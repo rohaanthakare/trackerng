@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { DataLoaderComponent } from './data-loader/data-loader.component';
 
 
 const routes: Routes = [{
@@ -21,9 +22,12 @@ const routes: Routes = [{
   path: 'forgot-pass',
   component: ForgotPasswordComponent
 }, {
+  path: 'load-data',
+  component: DataLoaderComponent
+}, {
   path: 'home',
   component: HomeComponent,
-  children:[{
+  children: [{
     path: '',
     component: DashboardComponent
   }, {
