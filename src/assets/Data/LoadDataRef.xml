@@ -1,0 +1,7 @@
+<LoadDataFiles>
+	<LoadDataModule>
+		<ModuleName>User</ModuleName>
+		<DataFileName>Users.csv</DataFileName>
+		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+	</LoadDataModule>
+</LoadDataFiles>
