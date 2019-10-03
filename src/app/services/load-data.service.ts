@@ -16,4 +16,10 @@ export class LoadDataService {
       responseType: 'text'
     });
   }
+
+  getModuleData() {
+    return this.http.get('assets/Data/BaseData/Users.csv', {
+      responseType: 'text'
+    });
+  }
 }

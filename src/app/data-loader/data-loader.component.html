@@ -1,1 +1,9 @@
-<p>data-loader works!</p>
+Total Module to Load - {{totalModules}}
+<br>
+<div *ngFor="let module of moduleForLoading">
+    Module Name - {{module.moduleName}}
+    <br>
+    File Name - {{module.dataFileName}}
+    <br>
+    File Path - {{module.dataFilePath}}
+</div>
