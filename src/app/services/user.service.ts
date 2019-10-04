@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
 import { FormUtils } from '../utils/form-utils';
+import { DataLoadModule } from '../models/data-load-module.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,23 @@ export class UserService {
     formData.append('action', 'registerUser');
     formData = FormUtils.getFormParams(userInfo, formData);
     return this.http.post<any>(environment.baseUrl, formData);
+  }
+
+  initModelForDataLoad(rows, moduleDetails: DataLoadModule) {
+    rows.forEach((currentRow) => {
+        const userObj = new User();
+        userObj.username = currentRow[0];
+        userObj.password = currentRow[1];
+        userObj.emailId = currentRow[2];
+        userObj.contactNo = currentRow[3];
+        this.registerUser(userObj).subscribe(
+          data => {
+            moduleDetails.recordsLoaded = moduleDetails.recordsLoaded + 1;
+          },
+          error => {
+            moduleDetails.recordsFailed = moduleDetails.recordsFailed + 1;
+          }
+        );
+    });
   }
 }

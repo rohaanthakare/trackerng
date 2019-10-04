@@ -1,9 +1,43 @@
-Total Module to Load - {{totalModules}}
-<br>
+<!-- Total Module to Load - {{totalModules}} -->
+<!-- <br>
 <div *ngFor="let module of moduleForLoading">
     Module Name - {{module.moduleName}}
     <br>
     File Name - {{module.dataFileName}}
     <br>
     File Path - {{module.dataFilePath}}
+    <br>
+    Records to Load - {{module.recordsToLoad}}
+    <br>
+    Records Loaded - {{module.recordsLoaded}}
+    <br>
+    Records Failed - {{module.recordsFailed}}
+</div> -->
+
+<div *ngFor="let module of moduleForLoading">
+    <mat-card>
+        <mat-card-content>
+            <h5>Module - {{module.moduleName}}</h5>
+            <section>
+                <p>Remaining</p>
+                    <mat-progress-bar 
+                        [color]="primary" 
+                        [mode]="determinate"
+                        [value]=50>
+                    </mat-progress-bar>
+                <p>Uploaded</p>
+                <mat-progress-bar 
+                        [color]="primary" 
+                        [mode]="determinate"
+                        [value]=50>
+                    </mat-progress-bar>
+                <p>Failed</p>
+                <mat-progress-bar 
+                        [color]="primary" 
+                        [mode]="determinate"
+                        [value]=50>
+                    </mat-progress-bar>
+            </section>
+        </mat-card-content>
+    </mat-card>
 </div>

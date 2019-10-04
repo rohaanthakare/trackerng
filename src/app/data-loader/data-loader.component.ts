@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { LoadDataService } from '../services/load-data.service';
 import { DataLoadModule } from '../models/data-load-module.model';
+import { UserService } from '../services/user.service';
+const loadDataModels = {
+  UserService
+};
 
 @Component({
   selector: 'app-data-loader',
@@ -10,7 +14,7 @@ import { DataLoadModule } from '../models/data-load-module.model';
 export class DataLoaderComponent implements OnInit {
   totalModules: number;
   moduleForLoading: DataLoadModule[] = [];
-  constructor(private loadData: LoadDataService) { }
+  constructor(private loadData: LoadDataService, private injector: Injector) { }
 
   ngOnInit() {
     this.loadData.getLoadDataConfig().subscribe(
@@ -24,7 +28,6 @@ export class DataLoaderComponent implements OnInit {
           newModule.moduleName = currentModule.getElementsByTagName('ModuleName')[0].textContent;
           newModule.dataFileName = currentModule.getElementsByTagName('DataFileName')[0].textContent;
           newModule.dataFilePath = currentModule.getElementsByTagName('DataFilePath')[0].textContent;
-          this.moduleForLoading.push(newModule);
           this.readDataFile(newModule);
         }
       },
@@ -34,11 +37,22 @@ export class DataLoaderComponent implements OnInit {
     );
   }
 
-  readDataFile(moduleDetail) {
+  readDataFile(moduleDetail: DataLoadModule) {
     this.loadData.getModuleData().subscribe(
       data => {
         const allTextLines = data.split(/\r\n|\n/);
-        console.log(allTextLines);
+        const records = [];
+        for (let index = 1; index < allTextLines.length; index++) {
+          records.push(allTextLines[index].split(','));
+        }
+
+        moduleDetail.recordsToLoad = records.length;
+        moduleDetail.recordsLoaded = 0;
+        moduleDetail.recordsFailed = 0;
+        this.moduleForLoading.push(moduleDetail);
+        const moduleName = moduleDetail.moduleName + 'Service';
+        const serviceObj = this.injector.get<any>(loadDataModels[moduleName]);
+        serviceObj.initModelForDataLoad(records, moduleDetail);
       },
       error => {
         console.log('Inside Error');

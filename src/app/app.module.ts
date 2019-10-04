@@ -13,6 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 // Application Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -45,7 +46,7 @@ import { DataLoaderComponent } from './data-loader/data-loader.component';
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
     MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatToolbarModule,
-    MatCardModule, MatMenuModule,
+    MatCardModule, MatMenuModule, MatProgressBarModule,
     AppRoutingModule
   ],
   providers: [ AuthService, UserService],
