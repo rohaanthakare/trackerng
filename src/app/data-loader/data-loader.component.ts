@@ -1,15 +1,18 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, OnInit, Injector, ViewEncapsulation } from '@angular/core';
 import { LoadDataService } from '../services/load-data.service';
 import { DataLoadModule } from '../models/data-load-module.model';
 import { UserService } from '../services/user.service';
+import { RoleService } from '../services/role.service';
 const loadDataModels = {
-  UserService
+  UserService,
+  RoleService
 };
 
 @Component({
   selector: 'app-data-loader',
   templateUrl: './data-loader.component.html',
-  styleUrls: ['./data-loader.component.scss']
+  styleUrls: ['./data-loader.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DataLoaderComponent implements OnInit {
   totalModules: number;
@@ -38,7 +41,7 @@ export class DataLoaderComponent implements OnInit {
   }
 
   readDataFile(moduleDetail: DataLoadModule) {
-    this.loadData.getModuleData().subscribe(
+    this.loadData.getModuleData(moduleDetail.dataFileName, moduleDetail.dataFilePath).subscribe(
       data => {
         const allTextLines = data.split(/\r\n|\n/);
         const records = [];
@@ -47,17 +50,34 @@ export class DataLoaderComponent implements OnInit {
         }
 
         moduleDetail.recordsToLoad = records.length;
+        moduleDetail.remainingRecords = records.length;
         moduleDetail.recordsLoaded = 0;
         moduleDetail.recordsFailed = 0;
+        moduleDetail.uploadedPercentage = 0;
+        moduleDetail.failedPercentage = 0;
+        moduleDetail.remainingPercentage = 100;
         this.moduleForLoading.push(moduleDetail);
         const moduleName = moduleDetail.moduleName + 'Service';
         const serviceObj = this.injector.get<any>(loadDataModels[moduleName]);
-        serviceObj.initModelForDataLoad(records, moduleDetail);
+        serviceObj.initModelForDataLoad(records, moduleDetail, this);
       },
       error => {
         console.log('Inside Error');
       }
     );
+  }
+
+  updateProgress(moduleDetail: DataLoadModule, status) {
+    if (status) {
+      moduleDetail.recordsLoaded = moduleDetail.recordsLoaded + 1;
+      moduleDetail.uploadedPercentage = (moduleDetail.recordsLoaded / moduleDetail.recordsToLoad) * 100;
+    } else {
+      moduleDetail.recordsFailed = moduleDetail.recordsFailed + 1;
+      moduleDetail.failedPercentage = (moduleDetail.recordsFailed / moduleDetail.recordsToLoad) * 100;
+    }
+
+    moduleDetail.remainingRecords = moduleDetail.remainingRecords - 1;
+    moduleDetail.remainingPercentage = (moduleDetail.remainingRecords / moduleDetail.recordsToLoad) * 100;
   }
 
 }

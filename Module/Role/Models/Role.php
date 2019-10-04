@@ -1,5 +1,7 @@
 <?php
-Class Role {
+require_once(ROOT_DIR.'/Module/Global/DAOUtils.php');
+
+Class Role extends DAOUtils{
     protected $model = 'ROLE';
     protected $fieldList = array('SYS_ROLE_ID', 'SYS_CREATION_DATE', 'SYS_UPDATE_DATE', 'SYS_CREATION_USER', 'SYS_UPDATE_USER',
         'ROLE_NAME', 'ROLE_DESC');

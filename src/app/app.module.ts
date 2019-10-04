@@ -14,6 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 // Application Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -46,7 +47,7 @@ import { DataLoaderComponent } from './data-loader/data-loader.component';
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
     MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatToolbarModule,
-    MatCardModule, MatMenuModule, MatProgressBarModule,
+    MatCardModule, MatMenuModule, MatProgressBarModule, MatGridListModule,
     AppRoutingModule
   ],
   providers: [ AuthService, UserService],

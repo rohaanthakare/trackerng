@@ -1,0 +1,4 @@
+Config Code, Config Name, Config Desc, Display Order, Parent
+GENDER, Gender, Gender, 1,
+MALE, Male, Male, 1, GENDER
+FEMALE, Female, Female, 2, GENDER

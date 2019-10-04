@@ -17,8 +17,8 @@ export class LoadDataService {
     });
   }
 
-  getModuleData() {
-    return this.http.get('assets/Data/BaseData/Users.csv', {
+  getModuleData(fileName, filePath) {
+    return this.http.get(filePath + fileName, {
       responseType: 'text'
     });
   }

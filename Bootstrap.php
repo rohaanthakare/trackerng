@@ -4,6 +4,7 @@ define('ROOT_DIR',__DIR__);
 
 require_once(ROOT_DIR.'/Module/Global/ExceptionHandler.php');
 require_once(ROOT_DIR.'/Module/User/UserController.php');
+require_once(ROOT_DIR.'/Module/Role/RoleController.php');
 
 $moduleName = $_REQUEST['Module'];
 $className = $moduleName.'Controller';

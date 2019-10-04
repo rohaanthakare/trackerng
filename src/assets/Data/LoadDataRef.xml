@@ -4,4 +4,14 @@
 		<DataFileName>Users.csv</DataFileName>
 		<DataFilePath>assets/Data/BaseData/</DataFilePath>
 	</LoadDataModule>
+	<LoadDataModule>
+		<ModuleName>Role</ModuleName>
+		<DataFileName>Roles.csv</DataFileName>
+		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+	</LoadDataModule>
+	<LoadDataModule>
+		<ModuleName>MasterData</ModuleName>
+		<DataFileName>MasterData.csv</DataFileName>
+		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+	</LoadDataModule>
 </LoadDataFiles>

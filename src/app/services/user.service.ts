@@ -20,7 +20,7 @@ export class UserService {
     return this.http.post<any>(environment.baseUrl, formData);
   }
 
-  initModelForDataLoad(rows, moduleDetails: DataLoadModule) {
+  initModelForDataLoad(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
     rows.forEach((currentRow) => {
         const userObj = new User();
         userObj.username = currentRow[0];
@@ -29,10 +29,10 @@ export class UserService {
         userObj.contactNo = currentRow[3];
         this.registerUser(userObj).subscribe(
           data => {
-            moduleDetails.recordsLoaded = moduleDetails.recordsLoaded + 1;
+            dataLoaderCmp.updateProgress(moduleDetails, true);
           },
           error => {
-            moduleDetails.recordsFailed = moduleDetails.recordsFailed + 1;
+            dataLoaderCmp.updateProgress(moduleDetails, false);
           }
         );
     });

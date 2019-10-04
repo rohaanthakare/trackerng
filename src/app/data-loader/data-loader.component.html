@@ -1,43 +1,29 @@
-<!-- Total Module to Load - {{totalModules}} -->
-<!-- <br>
-<div *ngFor="let module of moduleForLoading">
-    Module Name - {{module.moduleName}}
-    <br>
-    File Name - {{module.dataFileName}}
-    <br>
-    File Path - {{module.dataFilePath}}
-    <br>
-    Records to Load - {{module.recordsToLoad}}
-    <br>
-    Records Loaded - {{module.recordsLoaded}}
-    <br>
-    Records Failed - {{module.recordsFailed}}
-</div> -->
-
-<div *ngFor="let module of moduleForLoading">
-    <mat-card>
-        <mat-card-content>
-            <h5>Module - {{module.moduleName}}</h5>
-            <section>
-                <p>Remaining</p>
+<mat-grid-list cols="2" rowHeaight="300px" class="load-result">
+    <mat-grid-tile *ngFor="let module of moduleForLoading">
+        <mat-card style="width:80%">
+            <mat-card-content>
+                <h4>Module - {{module.moduleName}}</h4>
+                <section>
+                    <p>Remaining - {{module.remainingRecords}} of {{module.recordsToLoad}}</p>
+                        <mat-progress-bar 
+                            [color]="primary" 
+                            [mode]="determinate"
+                            [value]="module.remainingPercentage">
+                        </mat-progress-bar>
+                    <p>Uploaded - {{module.recordsLoaded}} of {{module.recordsToLoad}}</p>
                     <mat-progress-bar 
                         [color]="primary" 
                         [mode]="determinate"
-                        [value]=50>
+                        [value]="module.uploadedPercentage">
                     </mat-progress-bar>
-                <p>Uploaded</p>
-                <mat-progress-bar 
-                        [color]="primary" 
-                        [mode]="determinate"
-                        [value]=50>
-                    </mat-progress-bar>
-                <p>Failed</p>
-                <mat-progress-bar 
-                        [color]="primary" 
-                        [mode]="determinate"
-                        [value]=50>
-                    </mat-progress-bar>
-            </section>
-        </mat-card-content>
-    </mat-card>
-</div>
+                    <p>Failed - {{module.recordsFailed}} of {{module.recordsToLoad}}</p>
+                    <mat-progress-bar 
+                            color="warn" 
+                            [mode]="determinate"
+                            [value]="module.failedPercentage">
+                        </mat-progress-bar>
+                </section>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

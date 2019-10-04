@@ -5,4 +5,8 @@ export class DataLoadModule {
     recordsToLoad: number;
     recordsLoaded: number;
     recordsFailed: number;
+    remainingRecords: number;
+    uploadedPercentage: number;
+    failedPercentage: number;
+    remainingPercentage: number;
 }
