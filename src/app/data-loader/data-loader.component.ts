@@ -3,9 +3,11 @@ import { LoadDataService } from '../services/load-data.service';
 import { DataLoadModule } from '../models/data-load-module.model';
 import { UserService } from '../services/user.service';
 import { RoleService } from '../services/role.service';
+import { MasterDataService } from '../services/master-data.service';
 const loadDataModels = {
   UserService,
-  RoleService
+  RoleService,
+  MasterDataService
 };
 
 @Component({

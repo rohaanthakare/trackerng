@@ -1,4 +1,7 @@
 Config Code, Config Name, Config Desc, Display Order, Parent
-GENDER, Gender, Gender, 1,
-MALE, Male, Male, 1, GENDER
-FEMALE, Female, Female, 2, GENDER
+GENDER,Gender,Gender,1,
+MALE,Male,Male,1,GENDER
+FEMALE,Female,Female,2,GENDER
+TRANS_TYPE,Transaction Type,Transaction Type,1,
+CREDIT,Credit,Credit,1,TRANS_TYPE
+DEBIT,Debit,Debit,2,TRANS_TYPE

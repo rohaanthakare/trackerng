@@ -1,5 +1,7 @@
 <?php
-Class MasterData {
+require_once(ROOT_DIR.'/Module/Global/DAOUtils.php');
+
+Class MasterData extends DAOUtils {
     protected $model = 'MASTER_CONFIG_DATA';
     protected $fieldList = array('SYS_CONFIG_DATA_ID', 'SYS_CREATION_DATE', 'SYS_UPDATE_DATE', 'SYS_CREATION_USER', 'SYS_UPDATE_USER',
         'CONFIG_CODE', 'CONFIG_NAME', 'CONFIG_DESC', 'DISPLAY_ORDER','PARENT_CONFIG');
@@ -16,241 +18,110 @@ Class MasterData {
     protected $displayOrder;
     protected $parentConfig;
 
-    /**
-     * Get the value of keyField
-     */ 
-    public function getKeyField()
-    {
+    public function getKeyField() {
         return $this->keyField;
     }
 
-    /**
-     * Set the value of keyField
-     *
-     * @return  self
-     */ 
-    public function setKeyField($keyField)
-    {
+    public function setKeyField($keyField) {
         $this->keyField = $keyField;
-
         return $this;
     }
 
-    /**
-     * Get the value of keyFieldValue
-     */ 
-    public function getKeyFieldValue()
-    {
+    public function getKeyFieldValue() {
         return $this->keyFieldValue;
     }
 
-    /**
-     * Set the value of keyFieldValue
-     *
-     * @return  self
-     */ 
-    public function setKeyFieldValue($keyFieldValue)
-    {
+    public function setKeyFieldValue($keyFieldValue) {
         $this->keyFieldValue = $keyFieldValue;
-
         return $this;
     }
 
-    /**
-     * Get the value of sysConfigDataId
-     */ 
-    public function getSysConfigDataId()
-    {
+    public function getSysConfigDataId() {
         return $this->sysConfigDataId;
     }
 
-    /**
-     * Set the value of sysConfigDataId
-     *
-     * @return  self
-     */ 
-    public function setSysConfigDataId($sysConfigDataId)
-    {
+    public function setSysConfigDataId($sysConfigDataId) {
         $this->sysConfigDataId = $sysConfigDataId;
-
         return $this;
     }
-
-    /**
-     * Get the value of sysCreationDate
-     */ 
-    public function getSysCreationDate()
-    {
+ 
+    public function getSysCreationDate() {
         return $this->sysCreationDate;
     }
 
-    /**
-     * Set the value of sysCreationDate
-     *
-     * @return  self
-     */ 
-    public function setSysCreationDate($sysCreationDate)
-    {
+    public function setSysCreationDate($sysCreationDate) {
         $this->sysCreationDate = $sysCreationDate;
-
         return $this;
     }
 
-    /**
-     * Get the value of sysUpdateDate
-     */ 
-    public function getSysUpdateDate()
-    {
+    public function getSysUpdateDate() {
         return $this->sysUpdateDate;
     }
 
-    /**
-     * Set the value of sysUpdateDate
-     *
-     * @return  self
-     */ 
-    public function setSysUpdateDate($sysUpdateDate)
-    {
+    public function setSysUpdateDate($sysUpdateDate) {
         $this->sysUpdateDate = $sysUpdateDate;
-
         return $this;
     }
 
-    /**
-     * Get the value of sysCreationUser
-     */ 
-    public function getSysCreationUser()
-    {
+    public function getSysCreationUser() {
         return $this->sysCreationUser;
     }
 
-    /**
-     * Set the value of sysCreationUser
-     *
-     * @return  self
-     */ 
-    public function setSysCreationUser($sysCreationUser)
-    {
+    public function setSysCreationUser($sysCreationUser) {
         $this->sysCreationUser = $sysCreationUser;
-
         return $this;
     }
 
-    /**
-     * Get the value of sysUpdateUser
-     */ 
-    public function getSysUpdateUser()
-    {
+    public function getSysUpdateUser() {
         return $this->sysUpdateUser;
     }
 
-    /**
-     * Set the value of sysUpdateUser
-     *
-     * @return  self
-     */ 
-    public function setSysUpdateUser($sysUpdateUser)
-    {
+    public function setSysUpdateUser($sysUpdateUser) {
         $this->sysUpdateUser = $sysUpdateUser;
-
         return $this;
     }
 
-    /**
-     * Get the value of configCode
-     */ 
-    public function getConfigCode()
-    {
+    public function getConfigCode() {
         return $this->configCode;
     }
 
-    /**
-     * Set the value of configCode
-     *
-     * @return  self
-     */ 
-    public function setConfigCode($configCode)
-    {
+    public function setConfigCode($configCode) {
         $this->configCode = $configCode;
-
         return $this;
     }
 
-    /**
-     * Get the value of configName
-     */ 
-    public function getConfigName()
-    {
+    public function getConfigName() {
         return $this->configName;
     }
 
-    /**
-     * Set the value of configName
-     *
-     * @return  self
-     */ 
-    public function setConfigName($configName)
-    {
+    public function setConfigName($configName) {
         $this->configName = $configName;
-
         return $this;
     }
 
-    /**
-     * Get the value of configDesc
-     */ 
-    public function getConfigDesc()
-    {
+    public function getConfigDesc() {
         return $this->configDesc;
     }
 
-    /**
-     * Set the value of configDesc
-     *
-     * @return  self
-     */ 
-    public function setConfigDesc($configDesc)
-    {
+    public function setConfigDesc($configDesc) {
         $this->configDesc = $configDesc;
-
         return $this;
     }
 
-    /**
-     * Get the value of displayOrder
-     */ 
-    public function getDisplayOrder()
-    {
+    public function getDisplayOrder() {
         return $this->displayOrder;
     }
 
-    /**
-     * Set the value of displayOrder
-     *
-     * @return  self
-     */ 
-    public function setDisplayOrder($displayOrder)
-    {
+    public function setDisplayOrder($displayOrder) {
         $this->displayOrder = $displayOrder;
-
         return $this;
     }
 
-    /**
-     * Get the value of parentConfig
-     */ 
-    public function getParentConfig()
-    {
+    public function getParentConfig() {
         return $this->parentConfig;
     }
 
-    /**
-     * Set the value of parentConfig
-     *
-     * @return  self
-     */ 
-    public function setParentConfig($parentConfig)
-    {
+    public function setParentConfig($parentConfig) {
         $this->parentConfig = $parentConfig;
 
         return $this;
