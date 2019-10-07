@@ -1,6 +1,7 @@
 <?php
-Class MasterConfigView {
-    protected $model = 'USER';
+require_once(ROOT_DIR.'/Module/Global/DAOUtils.php');
+Class MasterConfigView extends DAOUtils{
+    protected $model = 'MASTER_CONFIG_VIEW';
     protected $fieldList = array('SYS_CONFIG_VIEW_ID', 'SYS_CREATION_DATE', 'SYS_UPDATE_DATE', 'SYS_CREATION_USER', 'SYS_UPDATE_USER',
         'VIEW_CODE', 'VIEW_TITLE', 'VIEW_NAME', 'ICON_CLASS','VIEW_ROUTE', 'VIEW_TYPE', 'PARENT_VIEW', 'DISPLAY_ORDER');
     protected $keyField;

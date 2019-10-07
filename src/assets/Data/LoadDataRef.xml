@@ -14,4 +14,9 @@
 		<DataFileName>MasterData.csv</DataFileName>
 		<DataFilePath>assets/Data/BaseData/</DataFilePath>
 	</LoadDataModule>
+	<LoadDataModule>
+		<ModuleName>MasterView</ModuleName>
+		<DataFileName>MasterView.csv</DataFileName>
+		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+	</LoadDataModule>
 </LoadDataFiles>

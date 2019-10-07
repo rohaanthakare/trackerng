@@ -4,10 +4,12 @@ import { DataLoadModule } from '../models/data-load-module.model';
 import { UserService } from '../services/user.service';
 import { RoleService } from '../services/role.service';
 import { MasterDataService } from '../services/master-data.service';
+import { MasterViewService } from '../services/master-view.service';
 const loadDataModels = {
   UserService,
   RoleService,
-  MasterDataService
+  MasterDataService,
+  MasterViewService
 };
 
 @Component({
