@@ -20,7 +20,7 @@ export class MasterViewService {
     return this.http.post(environment.baseUrl, formData);
   }
 
-  initModelForDataLoad(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
+  uploadViewConfig(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
     rows.forEach((currentRow) => {
         const masterViewObj = new MasterView();
         masterViewObj.viewCode = currentRow[0];

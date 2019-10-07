@@ -20,12 +20,13 @@ export class RoleService {
     return this.http.post(environment.baseUrl, formData);
   }
 
-  initModelForDataLoad(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
+  uploadRoles(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
     console.log('Inside Role Load Data');
     rows.forEach((currentRow) => {
       const roleObj = new Role();
-      roleObj.roleName = currentRow[0];
-      roleObj.roleDesc = currentRow[1];
+      roleObj.roleCode = currentRow[0];
+      roleObj.roleName = currentRow[1];
+      roleObj.roleDesc = currentRow[2];
       this.createRole(roleObj).subscribe(
         data => {
           dataLoaderCmp.updateProgress(moduleDetails, true);

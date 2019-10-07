@@ -1,5 +1,7 @@
 <?php
-Class RolePermission {
+require_once(ROOT_DIR.'/Module/Global/DAOUtils.php');
+
+Class RolePermission extends DAOUtils {
     protected $model = 'ROLE_PREMISSION';
     protected $fieldList = array('SYS_PERM_ID', 'SYS_CREATION_DATE', 'SYS_UPDATE_DATE', 'SYS_CREATION_USER', 'SYS_UPDATE_USER',
         'SYS_ROLE_ID', 'SYS_CONFIG_VIEW_ID');

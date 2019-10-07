@@ -20,7 +20,7 @@ export class MasterDataService {
     return this.http.post(environment.baseUrl, formData);
   }
 
-  initModelForDataLoad(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
+  uploadMasterData(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
     rows.forEach((currentRow) => {
         const masterDataObj = new MasterData();
         masterDataObj.configCode = currentRow[0];

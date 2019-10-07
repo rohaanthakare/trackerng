@@ -35,6 +35,7 @@ export class DataLoaderComponent implements OnInit {
           newModule.moduleName = currentModule.getElementsByTagName('ModuleName')[0].textContent;
           newModule.dataFileName = currentModule.getElementsByTagName('DataFileName')[0].textContent;
           newModule.dataFilePath = currentModule.getElementsByTagName('DataFilePath')[0].textContent;
+          newModule.action = currentModule.getElementsByTagName('Action')[0].textContent;
           this.readDataFile(newModule);
         }
       },
@@ -63,7 +64,7 @@ export class DataLoaderComponent implements OnInit {
         this.moduleForLoading.push(moduleDetail);
         const moduleName = moduleDetail.moduleName + 'Service';
         const serviceObj = this.injector.get<any>(loadDataModels[moduleName]);
-        serviceObj.initModelForDataLoad(records, moduleDetail, this);
+        serviceObj[moduleDetail.action](records, moduleDetail, this);
       },
       error => {
         console.log('Inside Error');

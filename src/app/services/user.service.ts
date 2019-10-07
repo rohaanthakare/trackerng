@@ -20,7 +20,7 @@ export class UserService {
     return this.http.post<any>(environment.baseUrl, formData);
   }
 
-  initModelForDataLoad(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
+  uploadUsers(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
     rows.forEach((currentRow) => {
         const userObj = new User();
         userObj.username = currentRow[0];

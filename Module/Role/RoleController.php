@@ -9,6 +9,7 @@ Class RoleController {
     public function createRole($request) {
         try {
             $roleObj = new Role();
+            $roleObj->setRoleCode($request['roleCode']);
             $roleObj->setRoleName($request['roleName']);
             $roleObj->setRoleDesc($request['roleDesc']);
             $roleId = $roleObj->save();

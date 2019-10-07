@@ -4,7 +4,7 @@ require_once(ROOT_DIR.'/Module/Global/DAOUtils.php');
 Class Role extends DAOUtils{
     protected $model = 'ROLE';
     protected $fieldList = array('SYS_ROLE_ID', 'SYS_CREATION_DATE', 'SYS_UPDATE_DATE', 'SYS_CREATION_USER', 'SYS_UPDATE_USER',
-        'ROLE_NAME', 'ROLE_DESC');
+        'ROLE_CODE', 'ROLE_NAME', 'ROLE_DESC');
     protected $keyField;
     protected $keyFieldValue;
     protected $sysRoleId;
@@ -12,6 +12,7 @@ Class Role extends DAOUtils{
     protected $sysUpdateDate;
     protected $sysCreationUser;
     protected $sysUpdateUser;
+    protected $roleCode;
     protected $roleName;
     protected $roleDesc;
 
@@ -78,6 +79,15 @@ Class Role extends DAOUtils{
         return $this;
     }
 
+    public function getRoleCode() {
+        return $this->roleCode;
+    }
+
+    public function setRoleCode($roleCode) {
+        $this->roleCode = $roleCode;
+        return $this;
+    }
+
     public function getRoleName() {
         return $this->roleName;
     }
@@ -103,6 +113,7 @@ Class Role extends DAOUtils{
             $this->setSysUpdateDate($fetchedRow['SYS_UPDATE_DATE']);
             $this->setSysCreationUser($fetchedRow['SYS_CREATION_USER']);
             $this->setSysUpdateUser($fetchedRow['SYS_UPDATE_USER']);
+            $this->setRoleCode($fetchedRow['ROLE_CODE']);
             $this->setRoleName($fetchedRow['ROLE_NAME']);
             $this->setRoleDesc($fetchedRow['ROLE_DESC']);
             
@@ -121,8 +132,9 @@ Class Role extends DAOUtils{
             $dataRow[2] = $this->getSysUpdateDate();
             $dataRow[3] = $this->getSysCreationUser();
             $dataRow[4] = $this->getSysUpdateUser();
-            $dataRow[5] = $this->getRoleName();
-            $dataRow[6] = $this->getRoleDesc();
+            $dataRow[5] = $this->getRoleCode();
+            $dataRow[6] = $this->getRoleName();
+            $dataRow[7] = $this->getRoleDesc();
             
             return $dataRow;
         } catch (Exception $e) {
