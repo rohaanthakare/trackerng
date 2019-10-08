@@ -1,2 +1,3 @@
 View Code, View Title, View Name, Icon, Route, View Type, Parent View, Dsiplay Order
-DASHBOARD,Dashboard,Dashboard,,home/dashboard,view,,1
+ADMIN_DASHBOARD,Dashboard,Dashboard,,home/admin/dashboard,view,,1
+TRACKER_DASHBOARD,Dashboard,Dashboard,,home/dashboard,view,,1

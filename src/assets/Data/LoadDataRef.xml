@@ -3,20 +3,30 @@
 		<ModuleName>User</ModuleName>
 		<DataFileName>Users.csv</DataFileName>
 		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+		<Action>uploadUsers</Action>
 	</LoadDataModule>
 	<LoadDataModule>
 		<ModuleName>Role</ModuleName>
 		<DataFileName>Roles.csv</DataFileName>
 		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+		<Action>uploadRoles</Action>
 	</LoadDataModule>
 	<LoadDataModule>
 		<ModuleName>MasterData</ModuleName>
 		<DataFileName>MasterData.csv</DataFileName>
 		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+		<Action>uploadMasterData</Action>
 	</LoadDataModule>
 	<LoadDataModule>
 		<ModuleName>MasterView</ModuleName>
 		<DataFileName>MasterView.csv</DataFileName>
 		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+		<Action>uploadViewConfig</Action>
+	</LoadDataModule>
+	<LoadDataModule>
+		<ModuleName>Role</ModuleName>
+		<DataFileName>RolePermissions.csv</DataFileName>
+		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+		<Action>uploadRolePermissions</Action>
 	</LoadDataModule>
 </LoadDataFiles>

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormUtils } from '../utils/form-utils';
 import { environment } from 'src/environments/environment';
 import { DataLoadModule } from '../models/data-load-module.model';
-import { Role } from '../models/role.model';
+import { Role, RolePermissions } from '../models/role.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,15 @@ export class RoleService {
     return this.http.post(environment.baseUrl, formData);
   }
 
+  createRolePermissions(rolePerm) {
+    let formData = new FormData();
+    formData.append('Module', this.module);
+    formData.append('action', 'createRolePermissions');
+    formData = FormUtils.getFormParams(rolePerm, formData);
+    return this.http.post(environment.baseUrl, formData);
+  }
+
   uploadRoles(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
-    console.log('Inside Role Load Data');
     rows.forEach((currentRow) => {
       const roleObj = new Role();
       roleObj.roleCode = currentRow[0];
@@ -35,6 +42,22 @@ export class RoleService {
           dataLoaderCmp.updateProgress(moduleDetails, false);
         }
       );
-  });
+    });
+  }
+
+  uploadRolePermissions(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
+    rows.forEach((currentRow) => {
+      const roleObj = new RolePermissions();
+      roleObj.roleCode = currentRow[0];
+      roleObj.viewCode = currentRow[1];
+      this.createRolePermissions(roleObj).subscribe(
+        data => {
+          dataLoaderCmp.updateProgress(moduleDetails, true);
+        },
+        error => {
+          dataLoaderCmp.updateProgress(moduleDetails, false);
+        }
+      );
+    });
   }
 }

@@ -6,7 +6,7 @@ Class MasterViewDataAccessor {
             $fieldName = array('VIEW_CODE');
             $fieldValue = array($viewCode);
             $result = $masterView->readOneByCustomField($fieldName, $fieldValue);
-            if (!$result['SYS_CONFIG_DATA_ID']) {
+            if (!$result['SYS_CONFIG_VIEW_ID']) {
                 throw new Exception('No Matching Master data found for config code - '.$viewCode);
             }
             return $result;

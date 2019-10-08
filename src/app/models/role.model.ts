@@ -3,3 +3,8 @@ export class Role {
     roleName: string;
     roleDesc: string;
 }
+
+export class RolePermissions {
+    roleCode: string;
+    viewCode: string;
+}
