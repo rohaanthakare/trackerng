@@ -35,6 +35,7 @@ export class DataLoaderComponent implements OnInit {
           newModule.moduleName = currentModule.getElementsByTagName('ModuleName')[0].textContent;
           newModule.dataFileName = currentModule.getElementsByTagName('DataFileName')[0].textContent;
           newModule.dataFilePath = currentModule.getElementsByTagName('DataFilePath')[0].textContent;
+          newModule.actionName = currentModule.getElementsByTagName('ActionName')[0].textContent;
           newModule.action = currentModule.getElementsByTagName('Action')[0].textContent;
           this.readDataFile(newModule);
         }

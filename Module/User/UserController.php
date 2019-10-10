@@ -59,5 +59,26 @@ Class UserController{
     public function getUserProfile($request) {
         echo "Inside Get User Profile";
     }
+
+    public function attachRoleToUser($request) {
+        try {
+            $userName = $request['username'];
+            $roleCode = $request['roleCode'];
+            $userWf = new UserModuleWorkflow();
+            $userRoleId = $userWf->attachRoleToUser($userName, $roleCode);
+            if($userRoleId) {
+                http_response_code(200);
+                $responseArr = array();
+                $responseArr['success'] = true;
+                $responseArr['message'] = 'Role '.$roleCode.' is attached to User - '.$userName;                
+                $response = json_encode($responseArr);
+                echo $response;
+            }
+        } catch (Exception $e) {
+            Logger::writeLog('ERROR',get_called_class().' - attachRoleToUser',$e->getMessage());
+            http_response_code(500);
+            die($e->getMessage());
+        }
+    }
 }
 ?>

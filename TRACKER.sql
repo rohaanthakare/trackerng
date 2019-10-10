@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 01, 2019 at 12:33 PM
+-- Generation Time: Oct 10, 2019 at 11:03 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -80,9 +80,11 @@ CREATE TABLE IF NOT EXISTS `ROLE` (
   `SYS_UPDATE_DATE` timestamp NULL DEFAULT NULL,
   `SYS_CREATION_USER` int(10) NOT NULL,
   `SYS_UPDATE_USER` int(10) DEFAULT NULL,
+  `ROLE_CODE` varchar(30) NOT NULL,
   `ROLE_NAME` varchar(30) NOT NULL,
   `ROLE_DESC` varchar(100) NOT NULL,
-  PRIMARY KEY (`SYS_ROLE_ID`)
+  PRIMARY KEY (`SYS_ROLE_ID`),
+  UNIQUE KEY `ROLE_CODE` (`ROLE_CODE`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

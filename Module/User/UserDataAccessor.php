@@ -5,9 +5,7 @@ Class UserDataAccessor {
         $fieldName = array('USERNAME');
         $fieldValue = array($username);
         $result = $userObj->readOneByCustomField($fieldName, $fieldValue);
-        if($result) {
-            throw new Exception('Username already exist, please select other username');
-        }
+        return $result;
     }
 
     public function getUserByEmailId($emailId) {

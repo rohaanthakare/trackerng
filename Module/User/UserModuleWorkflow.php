@@ -1,11 +1,16 @@
 <?php
 require_once(ROOT_DIR.'/Module/User/UserDataAccessor.php');
+require_once(ROOT_DIR.'/Module/User/Models/UserRoles.php');
+
 Class UserModuleWorkflow {
     public function registerWorkflow($userObj) {
         try{
             // Validate if username exist
             $userDao = new UserDataAccessor();
-            $userDao->getUserByUserName($userObj->getUsername());
+            $user = $userDao->getUserByUserName($userObj->getUsername());
+            if($user['SYS_USER_ID']) {
+                throw new Exception('Username already exist please choose other.');
+            }
             // Validate if email already registered
             $userDao = new UserDataAccessor();
             $userDao->getUserByEmailId($userObj->getEmailId());
@@ -37,6 +42,23 @@ Class UserModuleWorkflow {
             return $result;
         } catch (Exception $e) {
             Logger::writeLog('ERROR',get_called_class().' - registerWorkflow',$e->getMessage());
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function attachRoleToUser($userName, $roleCode) {
+        try {
+            $userRole = new UserRoles();
+            $roleDao = new RoleDataAccessor();
+            $role = $roleDao->getRoleByRoleCode($roleCode);
+            $userRole->setSysRoleId($role['SYS_ROLE_ID']);
+            $userDao = new UserDataAccessor();
+            $user = $userDao->getUserByUserName($userName);
+            $userRole->setSysUserId($user['SYS_USER_ID']);
+            $userRoleId = $userRole->save();
+            return $userRoleId;
+        } catch (Exception $e) {
+            Logger::writeLog('ERROR',get_called_class().' - attachRoleToUser',$e->getMessage());
             throw new Exception($e->getMessage());
         }
     }

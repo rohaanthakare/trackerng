@@ -3,6 +3,7 @@
         <mat-card style="width:80%">
             <mat-card-content>
                 <h4>Module - {{module.moduleName}}</h4>
+                <h4>Operation - {{module.actionName}}</h4>
                 <section>
                     <p>Remaining - {{module.remainingRecords}} of {{module.recordsToLoad}}</p>
                         <mat-progress-bar 
@@ -18,10 +19,10 @@
                     </mat-progress-bar>
                     <p>Failed - {{module.recordsFailed}} of {{module.recordsToLoad}}</p>
                     <mat-progress-bar 
-                            color="warn" 
-                            [mode]="determinate"
-                            [value]="module.failedPercentage">
-                        </mat-progress-bar>
+                        color="warn" 
+                        [mode]="determinate"
+                        [value]="module.failedPercentage">
+                    </mat-progress-bar>
                 </section>
             </mat-card-content>
         </mat-card>

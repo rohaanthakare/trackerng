@@ -4,3 +4,8 @@ export class User {
     emailId: string;
     contactNo: string;
 }
+
+export class UserRoles {
+    username: string;
+    roleCode: string;
+}
