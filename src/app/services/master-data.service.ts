@@ -4,6 +4,8 @@ import { FormUtils } from '../utils/form-utils';
 import { environment } from 'src/environments/environment';
 import { DataLoadModule } from '../models/data-load-module.model';
 import { MasterData } from '../models/master-data.model';
+import { Observable, from } from 'rxjs';
+import { concatMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +30,9 @@ export class MasterDataService {
         masterDataObj.configDesc = currentRow[2];
         masterDataObj.displayOrder = currentRow[3];
         masterDataObj.parentConfig = currentRow[4];
-        this.createMasterData(masterDataObj).subscribe(
+        from([masterDataObj]).pipe(
+          concatMap(param => this.createMasterData(masterDataObj))
+        ).subscribe(
           data => {
             dataLoaderCmp.updateProgress(moduleDetails, true);
           },
