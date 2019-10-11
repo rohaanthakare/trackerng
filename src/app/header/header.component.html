@@ -4,7 +4,7 @@
         <span class="example-spacer"></span>
         <span class="user-details">
             <button mat-button color="basic" [matMenuTriggerFor]="menu">
-                {{displayName}} <img src="../../assets/Profiles/{{userId}}/profile.png">
+                {{displayName}} <img alt="Not Found" onerror="this.src='../../assets/Profiles/profile.png'" src="../../assets/Profiles/{{userId}}/profile.png">
             </button>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item>
