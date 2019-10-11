@@ -58,33 +58,27 @@ export class DataLoaderComponent implements OnInit {
 
   readDataFile() {
     from(this.filesToLoad).pipe(
-      concatMap(param => {
-        console.log('Inside concat map');
-        console.log('Reading data for ' + param.dataFileName);
-        return this.loadData.getModuleData(param.dataFileName, param.dataFilePath);
-      })
+      concatMap(param => this.loadData.getModuleData(param))
     ).subscribe(
       data => {
-        console.log('Inside data loaded');
-        console.log(this);
-        // console.log('Inside getModuleData - ' + moduleDetail.dataFileName);
-        // const allTextLines = data.split(/\r\n|\n/);
-        // const records = [];
-        // for (let index = 1; index < allTextLines.length; index++) {
-        //   records.push(allTextLines[index].split(','));
-        // }
+        const moduleDetail = data.moduleDetail;
+        const allTextLines = data.content.split(/\r\n|\n/);
+        const records = [];
+        for (let index = 1; index < allTextLines.length; index++) {
+          records.push(allTextLines[index].split(','));
+        }
 
-        // moduleDetail.recordsToLoad = records.length;
-        // moduleDetail.remainingRecords = records.length;
-        // moduleDetail.recordsLoaded = 0;
-        // moduleDetail.recordsFailed = 0;
-        // moduleDetail.uploadedPercentage = 0;
-        // moduleDetail.failedPercentage = 0;
-        // moduleDetail.remainingPercentage = 100;
-        // this.moduleForLoading.push(moduleDetail);
-        // const moduleName = moduleDetail.moduleName + 'Service';
-        // const serviceObj = this.injector.get<any>(loadDataModels[moduleName]);
-        // serviceObj[moduleDetail.action](records, moduleDetail, this);
+        moduleDetail.recordsToLoad = records.length;
+        moduleDetail.remainingRecords = records.length;
+        moduleDetail.recordsLoaded = 0;
+        moduleDetail.recordsFailed = 0;
+        moduleDetail.uploadedPercentage = 0;
+        moduleDetail.failedPercentage = 0;
+        moduleDetail.remainingPercentage = 100;
+        this.moduleForLoading.push(moduleDetail);
+        const moduleName = moduleDetail.moduleName + 'Service';
+        const serviceObj = this.injector.get<any>(loadDataModels[moduleName]);
+        serviceObj[moduleDetail.action](records, moduleDetail, this);
       },
       error => {
         console.log('Inside Error');

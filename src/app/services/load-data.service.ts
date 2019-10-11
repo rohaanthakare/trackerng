@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DataLoadModule } from '../models/data-load-module.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +19,15 @@ export class LoadDataService {
     });
   }
 
-  getModuleData(fileName, filePath) {
-    return this.http.get(filePath + fileName, {
+  getModuleData(moduleData: DataLoadModule) {
+    const fileUrl = moduleData.dataFilePath + moduleData.dataFileName;
+    return this.http.get(fileUrl, {
       responseType: 'text'
-    });
+    }).pipe(map(data => {
+      return {
+        content: data,
+        moduleDetail: moduleData
+      };
+    }));
   }
 }
