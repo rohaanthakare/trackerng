@@ -6,7 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-
+  menuItems = [{
+    title: 'Dashboard'
+  }, {
+    title: 'Money Tracker',
+    items: [{
+      title: 'Accounts'
+    }, {
+      title: 'Deposit'
+    }, {
+      title: 'Withdraw'
+    }]
+  }];
   constructor() { }
 
   ngOnInit() {

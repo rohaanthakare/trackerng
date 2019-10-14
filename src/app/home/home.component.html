@@ -1,3 +1,9 @@
-<app-header></app-header>
-<app-menu></app-menu>
-<router-outlet></router-outlet>
+<app-header (toggleNavEvent)="sidenav.toggle()"></app-header>
+<mat-sidenav-container class="app-main">
+    <mat-sidenav #sidenav>
+        <app-menu></app-menu>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @Output() toggleNavEvent = new EventEmitter();
   displayName: string;
   userId;
   constructor(private authService: AuthService, private router: Router) { }
@@ -27,4 +28,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+  toggleSideNav() {
+    this.toggleNavEvent.emit(null);
+  }
 }
