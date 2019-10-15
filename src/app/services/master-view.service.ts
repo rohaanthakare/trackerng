@@ -20,6 +20,15 @@ export class MasterViewService {
     return this.http.post(environment.baseUrl, formData);
   }
 
+  getNavigationMenu() {
+    return this.http.get(environment.baseUrl, {
+      params: {
+        Module: this.module,
+        action: 'getNavigationMenu'
+      }
+    });
+  }
+
   uploadViewConfig(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
     rows.forEach((currentRow) => {
         const masterViewObj = new MasterView();

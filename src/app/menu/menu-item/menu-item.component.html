@@ -1,0 +1,7 @@
+<a mat-list-item [ngStyle]="{'padding-left': (depth * 20) + 'px'}" 
+    routerLink="/{{menuItem.routerLink}}" (click)="onMenuClicked(menuItem)">
+    {{menuItem.title}}
+</a>
+<div *ngIf="expanded">
+    <app-menu-item [depth]="depth+1" [menuItem]="item" *ngFor="let item of menuItem.items"></app-menu-item>
+</div>

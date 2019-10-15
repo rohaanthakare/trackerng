@@ -33,6 +33,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HeaderComponent } from './header/header.component';
 import { DataLoaderComponent } from './data-loader/data-loader.component';
+import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { DataLoaderComponent } from './data-loader/data-loader.component';
     RegisterComponent,
     ForgotPasswordComponent,
     HeaderComponent,
-    DataLoaderComponent
+    DataLoaderComponent,
+    MenuItemComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,

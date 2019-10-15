@@ -7,15 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   menuItems = [{
-    title: 'Dashboard'
+    title: 'Dashboard',
+    isLeaf: true,
+    routerLink: 'home'
   }, {
     title: 'Money Tracker',
+    routerLink: 'home',
     items: [{
-      title: 'Accounts'
+      title: 'Accounts',
+      isLeaf: true
     }, {
-      title: 'Deposit'
+      title: 'Deposit',
+      isLeaf: true
     }, {
-      title: 'Withdraw'
+      title: 'Withdraw',
+      isLeaf: true
     }]
   }];
   constructor() { }
