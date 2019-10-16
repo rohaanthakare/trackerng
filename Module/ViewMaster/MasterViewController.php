@@ -32,7 +32,7 @@ Class MasterViewController {
             $masterView->setViewType($request['viewType']);
             if ($request['parentView']) {
                 $masterDao = new MasterViewDataAccessor();
-                $parentConfig = $masterDao->getDataConfigByCode($request['parentView']);
+                $parentConfig = $masterDao->getViewConfigByViewCode($request['parentView']);
                 $masterView->setParentView($parentConfig['SYS_CONFIG_VIEW_ID']);
             }
             $masterView->setDisplayOrder($request['displayOrder']);
