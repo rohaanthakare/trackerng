@@ -23,23 +23,23 @@ export class MasterDataService {
   }
 
   uploadMasterData(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
-    rows.forEach((currentRow) => {
+    from(rows).pipe(
+      concatMap(currentRow => {
         const masterDataObj = new MasterData();
         masterDataObj.configCode = currentRow[0];
         masterDataObj.configName = currentRow[1];
         masterDataObj.configDesc = currentRow[2];
         masterDataObj.displayOrder = currentRow[3];
         masterDataObj.parentConfig = currentRow[4];
-        from([masterDataObj]).pipe(
-          concatMap(param => this.createMasterData(masterDataObj))
-        ).subscribe(
-          data => {
-            dataLoaderCmp.updateProgress(moduleDetails, true);
-          },
-          error => {
-            dataLoaderCmp.updateProgress(moduleDetails, false);
-          }
-        );
-    });
+        return this.createMasterData(masterDataObj);
+      })
+    ).subscribe(
+      data => {
+        dataLoaderCmp.updateProgress(moduleDetails, true);
+      },
+      error => {
+        dataLoaderCmp.updateProgress(moduleDetails, false);
+      }
+    );
   }
 }

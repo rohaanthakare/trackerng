@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { FormUtils } from '../utils/form-utils';
 import { DataLoadModule } from '../models/data-load-module.model';
 import { MasterView } from '../models/master-view.model';
+import { from } from 'rxjs';
+import { concatMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +32,8 @@ export class MasterViewService {
   }
 
   uploadViewConfig(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
-    rows.forEach((currentRow) => {
+    from(rows).pipe(
+      concatMap(currentRow => {
         const masterViewObj = new MasterView();
         masterViewObj.viewCode = currentRow[0];
         masterViewObj.viewTitle = currentRow[1];
@@ -40,14 +43,15 @@ export class MasterViewService {
         masterViewObj.viewType = currentRow[5];
         masterViewObj.parentView = currentRow[6];
         masterViewObj.displayOrder = currentRow[7];
-        this.createMasterView(masterViewObj).subscribe(
-          data => {
-            dataLoaderCmp.updateProgress(moduleDetails, true);
-          },
-          error => {
-            dataLoaderCmp.updateProgress(moduleDetails, false);
-          }
-        );
-    });
+        return this.createMasterView(masterViewObj);
+      })
+    ).subscribe(
+      data => {
+        dataLoaderCmp.updateProgress(moduleDetails, true);
+      },
+      error => {
+        dataLoaderCmp.updateProgress(moduleDetails, false);
+      }
+    );
   }
 }

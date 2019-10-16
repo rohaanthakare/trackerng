@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { User, UserRoles } from '../models/user.model';
 import { FormUtils } from '../utils/form-utils';
 import { DataLoadModule } from '../models/data-load-module.model';
+import { from } from 'rxjs';
+import { concatMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -29,36 +31,40 @@ export class UserService {
   }
 
   uploadUsers(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
-    rows.forEach((currentRow) => {
+    from(rows).pipe(
+      concatMap(currentRow => {
         const userObj = new User();
         userObj.username = currentRow[0];
         userObj.password = currentRow[1];
         userObj.emailId = currentRow[2];
         userObj.contactNo = currentRow[3];
-        this.registerUser(userObj).subscribe(
-          data => {
-            dataLoaderCmp.updateProgress(moduleDetails, true);
-          },
-          error => {
-            dataLoaderCmp.updateProgress(moduleDetails, false);
-          }
-        );
-    });
+        return this.registerUser(userObj);
+      })
+    ).subscribe(
+      data => {
+        dataLoaderCmp.updateProgress(moduleDetails, true);
+      },
+      error => {
+        dataLoaderCmp.updateProgress(moduleDetails, false);
+      }
+    );
   }
 
   uploadUserRoles(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
-    rows.forEach((currentRow) => {
+    from(rows).pipe(
+      concatMap(currentRow => {
         const userRoleObj = new UserRoles();
         userRoleObj.username = currentRow[0];
         userRoleObj.roleCode = currentRow[1];
-        this.attachRoleToUser(userRoleObj).subscribe(
-          data => {
-            dataLoaderCmp.updateProgress(moduleDetails, true);
-          },
-          error => {
-            dataLoaderCmp.updateProgress(moduleDetails, false);
-          }
-        );
-    });
+        return this.attachRoleToUser(userRoleObj);
+      })
+    ).subscribe(
+      data => {
+        dataLoaderCmp.updateProgress(moduleDetails, true);
+      },
+      error => {
+        dataLoaderCmp.updateProgress(moduleDetails, false);
+      }
+    );
   }
 }
