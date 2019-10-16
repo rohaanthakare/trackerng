@@ -2,8 +2,23 @@
 require_once(ROOT_DIR.'/Module/ViewMaster/Models/MasterConfigView.php');
 
 Class MasterViewController {
-    public function getUserViews() {
-
+    public function getNavigationMenu() {
+        try {
+            session_start();
+            $userId = $_SESSION['user_id'];
+            $masterViewDao = new MasterViewDataAccessor();
+            $result = $masterViewDao->getNavigationMenu($userId);
+            http_response_code(200);
+            $responseArr = array();
+            $responseArr['success'] = true;
+            $responseArr['data'] = $result;
+            $response = json_encode($responseArr);
+            echo $response;
+        } catch (Exception $e) {
+            Logger::writeLog('ERROR',get_called_class().' - createMasterData',$e->getMessage());
+            http_response_code(500);
+            die($e->getMessage());
+        }
     }
 
     public function createMasterViewConfig($request) {

@@ -21,7 +21,7 @@ export class MasterViewService {
   }
 
   getNavigationMenu() {
-    return this.http.get(environment.baseUrl, {
+    return this.http.get<any>(environment.baseUrl, {
       params: {
         Module: this.module,
         action: 'getNavigationMenu'
