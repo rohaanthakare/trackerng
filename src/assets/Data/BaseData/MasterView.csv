@@ -1,8 +1,8 @@
 View Code, View Title, View Name, Icon, Route, View Type, Parent View, Dsiplay Order
 ADMIN_DASHBOARD,Dashboard,Dashboard,,home/admin/dashboard,view,,1
 TRACKER_DASHBOARD,Dashboard,Dashboard,dashboard,home/dashboard,view,,1
-PASSWORD_TRACKER,Password Tracker,Password Tracker,Password Tracker,home/dashboard,view,,1
-PASSWORD_LIST,Passwords,Passwords,Passwords,home/dashboard,view,PASSWORD_TRACKER,1
-MONEY_TRACKER,Money Tracker,Money Tracker,Money Tracker,home/dashboard,view,,1
-BANK_ACCOUNTS,Accounts,Accounts,Accounts,home/dashboard,view,MONEY_TRACKER,1
-TRANSACTIONS,Transactions,Transactions,Transactions,home/dashboard,view,MONEY_TRACKER,2
+PASSWORD_TRACKER,Password Tracker,Password Tracker,lock,home/dashboard,view,,1
+PASSWORD_LIST,Passwords,Passwords,list,home/dashboard,view,PASSWORD_TRACKER,1
+MONEY_TRACKER,Money Tracker,Money Tracker,monetization_on,home/dashboard,view,,1
+BANK_ACCOUNTS,Accounts,Accounts,account_balance,home/dashboard,view,MONEY_TRACKER,1
+TRANSACTIONS,Transactions,Transactions,view_list,home/dashboard,view,MONEY_TRACKER,2
