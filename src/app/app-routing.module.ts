@@ -33,6 +33,9 @@ const routes: Routes = [{
   }, {
     path: 'profile',
     component: ProfileComponent
+  }, {
+    path: 'passwords',
+    loadChildren: './password/password.module#PasswordModule'
   }]
 }];
 
