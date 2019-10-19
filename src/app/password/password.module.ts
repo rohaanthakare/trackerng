@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 import { PasswordListComponent } from './password-list/password-list.component';
 import { PasswordFormComponent } from './password-form/password-form.component';
@@ -23,8 +26,8 @@ const routes: Routes = [{
 @NgModule({
   declarations: [PasswordListComponent, PasswordFormComponent],
   imports: [
-    CommonModule,
-    RouterModule.forChild(routes), MatButtonModule,
+    CommonModule, FormsModule, ReactiveFormsModule,
+    RouterModule.forChild(routes), MatButtonModule, MatInputModule,
     MatTableModule, MatGridListModule, MatPaginatorModule
   ]
 })

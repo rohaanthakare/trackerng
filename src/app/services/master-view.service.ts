@@ -31,6 +31,16 @@ export class MasterViewService {
     });
   }
 
+  getToolbarActions(viewCode) {
+    return this.http.get<any>(environment.baseUrl, {
+      params: {
+        Module: this.module,
+        action: 'getToolbarActions',
+        parentView: viewCode
+      }
+    });
+  }
+
   uploadViewConfig(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
     from(rows).pipe(
       concatMap(currentRow => {

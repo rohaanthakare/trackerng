@@ -16,6 +16,23 @@ Class MasterViewDataAccessor {
         }
     }
 
+    public function getViewConfigsByParentView($parentViewCode) {
+        try{
+            $parentView = $this->getViewConfigByViewCode($parentViewCode);
+            $masterView = new MasterConfigView();
+            $fieldName = array('PARENT_VIEW');
+            $fieldValue = array($parentView['SYS_CONFIG_VIEW_ID']);
+            $result = $masterView->readMultipleByCustomFields($fieldName, $fieldValue);
+            if (count($result) == 0) {
+                throw new Exception('No View configs found for Parent View - '.$parentViewCode);
+            }
+            return $result;
+        } catch (Exception $e) {
+            Logger::writeLog('ERROR',get_called_class().' - getViewConfigsByParentView',$e->getMessage());
+            throw new Exception($e->getMessage());
+        }
+    }
+
     public function getNavigationMenu($userId) {
         try{
             Logger::writeLog('DEBUG',get_called_class().' - getNavigationMenu','User Id - '.$userId);
