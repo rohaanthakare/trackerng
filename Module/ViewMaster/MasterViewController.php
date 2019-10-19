@@ -36,6 +36,8 @@ Class MasterViewController {
                 $masterView->setParentView($parentConfig['SYS_CONFIG_VIEW_ID']);
             }
             $masterView->setDisplayOrder($request['displayOrder']);
+            $masterView->setIsMenuAction($request['isMenuAction']);
+            $masterView->setIsToolbarAction($request['isToolbarAction']);
             $masterViewId = $masterView->save();
             if($masterViewId) {
                 http_response_code(200);

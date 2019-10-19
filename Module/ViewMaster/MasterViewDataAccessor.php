@@ -31,19 +31,21 @@ Class MasterViewDataAccessor {
             }
             $finalResult = array();
             for($i = 0; $i < count($result); $i++) {
-                if($result[$i]['PARENT_VIEW'] != null) {
-                    for($j = 0; $j < count($finalResult); $j++) {
-                        if($finalResult[$j]['SYS_CONFIG_VIEW_ID'] == $result[$i]['PARENT_VIEW']) {
-                            if(array_key_exists('items', $finalResult[$j])) {
-                                array_push($finalResult[$j]['items'], $result[$i]);
-                            } else {
-                                $finalResult[$j]['items'] = array();
-                                array_push($finalResult[$j]['items'], $result[$i]);
+                if($result[$i]['IS_MENU_ACTION'] == 1) {
+                    if($result[$i]['PARENT_VIEW'] != null) {
+                        for($j = 0; $j < count($finalResult); $j++) {
+                            if($finalResult[$j]['SYS_CONFIG_VIEW_ID'] == $result[$i]['PARENT_VIEW']) {
+                                if(array_key_exists('items', $finalResult[$j])) {
+                                    array_push($finalResult[$j]['items'], $result[$i]);
+                                } else {
+                                    $finalResult[$j]['items'] = array();
+                                    array_push($finalResult[$j]['items'], $result[$i]);
+                                }
                             }
                         }
+                    } else {
+                        array_push($finalResult, $result[$i]);
                     }
-                } else {
-                    array_push($finalResult, $result[$i]);
                 }
             }
             return $finalResult;

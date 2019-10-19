@@ -3,7 +3,8 @@ require_once(ROOT_DIR.'/Module/Global/DAOUtils.php');
 Class MasterConfigView extends DAOUtils{
     protected $model = 'MASTER_CONFIG_VIEW';
     protected $fieldList = array('SYS_CONFIG_VIEW_ID', 'SYS_CREATION_DATE', 'SYS_UPDATE_DATE', 'SYS_CREATION_USER', 'SYS_UPDATE_USER',
-        'VIEW_CODE', 'VIEW_TITLE', 'VIEW_NAME', 'ICON_CLASS','VIEW_ROUTE', 'VIEW_TYPE', 'PARENT_VIEW', 'DISPLAY_ORDER');
+        'VIEW_CODE', 'VIEW_TITLE', 'VIEW_NAME', 'ICON_CLASS','VIEW_ROUTE', 'VIEW_TYPE', 'PARENT_VIEW', 'DISPLAY_ORDER',
+        'IS_MENU_ACTION', 'IS_TOOLBAR_ACTION');
     protected $keyField = 'SYS_CONFIG_VIEW_ID';
     protected $keyFieldValue;
     protected $sysConfigViewId;
@@ -19,6 +20,8 @@ Class MasterConfigView extends DAOUtils{
     protected $viewType;
     protected $parentView;
     protected $displayOrder;
+    protected $isMenuAction;
+    protected $isToolbarAction;
 
     public function getKeyField() {
         return $this->keyField;
@@ -156,6 +159,24 @@ Class MasterConfigView extends DAOUtils{
         return $this;
     }
 
+    public function getIsMenuAction() {
+        return $this->isMenuAction;
+    }
+
+    public function setIsMenuAction($isMenuAction) {
+        $this->isMenuAction = $isMenuAction;
+        return $this;
+    }
+
+    public function getIsToolbarAction() {
+        return $this->isToolbarAction;
+    }
+
+    public function setIsToolbarAction($isToolbarAction) {
+        $this->isToolbarAction = $isToolbarAction;
+        return $this;
+    }
+
     public function allFieldsSetter($fetchedRow) {
         try{
             $this->setSysConfigViewId($fetchedRow['SYS_CONFIG_VIEW_ID']);
@@ -171,6 +192,8 @@ Class MasterConfigView extends DAOUtils{
             $this->setViewType($fetchedRow['VIEW_TYPE']);
             $this->setParentView($fetchedRow['PARENT_VIEW']);
             $this->setDisplayOrder($fetchedRow['DISPLAY_ORDER']);
+            $this->setIsMenuAction($fetchedRow['IS_MENU_ACTION']);
+            $this->setIsToolbarAction($fetchedRow['IS_TOOLBAR_ACTION']);
 
             $this->setKeyFieldValue($fetchedRow['SYS_CONFIG_VIEW_ID']);
         } catch (Exception $e) {
@@ -195,6 +218,8 @@ Class MasterConfigView extends DAOUtils{
             $dataRow[10] = $this->getViewType();
             $dataRow[11] = $this->getParentView();
             $dataRow[12] = $this->getDisplayOrder();
+            $dataRow[13] = $this->getIsMenuAction();
+            $dataRow[14] = $this->getIsToolbarAction();
 
             return $dataRow;
         } catch (Exception $e) {

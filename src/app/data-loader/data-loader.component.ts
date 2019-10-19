@@ -84,35 +84,6 @@ export class DataLoaderComponent implements OnInit {
         console.log('Inside Error');
       }
     );
-  // });
-    // this.filesToLoad.forEach((moduleDetail) => {
-    //   console.log('Inside readDataFile for - ' + moduleDetail.dataFileName);
-    //   this.loadData.getModuleData(moduleDetail.dataFileName, moduleDetail.dataFilePath).subscribe(
-    //     data => {
-    //       console.log('Inside getModuleData - ' + moduleDetail.dataFileName);
-    //       const allTextLines = data.split(/\r\n|\n/);
-    //       const records = [];
-    //       for (let index = 1; index < allTextLines.length; index++) {
-    //         records.push(allTextLines[index].split(','));
-    //       }
-
-    //       moduleDetail.recordsToLoad = records.length;
-    //       moduleDetail.remainingRecords = records.length;
-    //       moduleDetail.recordsLoaded = 0;
-    //       moduleDetail.recordsFailed = 0;
-    //       moduleDetail.uploadedPercentage = 0;
-    //       moduleDetail.failedPercentage = 0;
-    //       moduleDetail.remainingPercentage = 100;
-    //       this.moduleForLoading.push(moduleDetail);
-    //       const moduleName = moduleDetail.moduleName + 'Service';
-    //       const serviceObj = this.injector.get<any>(loadDataModels[moduleName]);
-    //       serviceObj[moduleDetail.action](records, moduleDetail, this);
-    //     },
-    //     error => {
-    //       console.log('Inside Error');
-    //     }
-    //   );
-    // });
   }
 
   updateProgress(moduleDetail: DataLoadModule, status) {

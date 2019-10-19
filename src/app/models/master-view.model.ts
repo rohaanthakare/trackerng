@@ -8,4 +8,6 @@ export class MasterView {
     viewType: string;
     parentView: string;
     displayOrder: number;
+    isMenuAction: boolean;
+    isToolbarAction: boolean;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MasterViewService } from '../services/master-view.service';
 
 @Component({
@@ -8,24 +8,7 @@ import { MasterViewService } from '../services/master-view.service';
 })
 export class MenuComponent implements OnInit {
   menuItems: any;
-  // menuItems = [{
-  //   title: 'Dashboard',
-  //   isLeaf: true,
-  //   routerLink: 'home'
-  // }, {
-  //   title: 'Money Tracker',
-  //   routerLink: 'home',
-  //   items: [{
-  //     title: 'Accounts',
-  //     isLeaf: true
-  //   }, {
-  //     title: 'Deposit',
-  //     isLeaf: true
-  //   }, {
-  //     title: 'Withdraw',
-  //     isLeaf: true
-  //   }]
-  // }];
+  @Output() toggleNavEvent = new EventEmitter();
   constructor(private masterViewService: MasterViewService) { }
 
   ngOnInit() {
@@ -39,4 +22,7 @@ export class MenuComponent implements OnInit {
     );
   }
 
+  navItemClicked() {
+    this.toggleNavEvent.emit(null);
+  }
 }

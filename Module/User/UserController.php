@@ -16,7 +16,7 @@ Class UserController{
             $responseArr = array();
             $responseArr['success'] = true;
             $responseArr['user'] = $result;
-            $responseArr['token'] = 'demo_token';
+            $responseArr['token'] = PasswordUtils::encryptDecrypt('encrypt', $result['SYS_USER_ID']);
             $response = json_encode($responseArr);
             echo $response;
         } catch (Exception $e) {
