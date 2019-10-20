@@ -8,19 +8,19 @@ export class MessageService {
 
   constructor(private snackBar: MatSnackBar) { }
 
-  public showErrorMessage(message: string, horizontalPosition: any, verticalPosition: any) {
-    this.snackBar.open(message, '',{
-      horizontalPosition: horizontalPosition,
-      verticalPosition: verticalPosition,
+  public showErrorMessage(message: string, horizontal: any, vertical: any) {
+    this.snackBar.open(message, '', {
+      horizontalPosition: horizontal,
+      verticalPosition: vertical,
       panelClass: 'error-message',
       duration: 5000
     });
   }
 
-  public showSuccessMessage(message: string, horizontalPosition: any, verticalPosition: any) {
-    this.snackBar.open(message, '',{
-      horizontalPosition: horizontalPosition,
-      verticalPosition: verticalPosition,
+  public showSuccessMessage(message: string, horizontal: any, vertical: any) {
+    this.snackBar.open(message, '', {
+      horizontalPosition: horizontal,
+      verticalPosition: vertical,
       panelClass: 'success-message',
       duration: 5000
     });

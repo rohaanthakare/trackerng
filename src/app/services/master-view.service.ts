@@ -12,6 +12,7 @@ import { concatMap } from 'rxjs/operators';
 })
 export class MasterViewService {
   module = 'MasterView';
+  currentView: MasterView;
   constructor(private http: HttpClient) { }
 
   createMasterView(masterview) {
@@ -65,5 +66,13 @@ export class MasterViewService {
         dataLoaderCmp.updateProgress(moduleDetails, false);
       }
     );
+  }
+
+  getCurrentView() {
+    return this.currentView;
+  }
+
+  setCurrentView(viewConfig) {
+    this.currentView = viewConfig;
   }
 }

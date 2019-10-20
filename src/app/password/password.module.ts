@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { PasswordListComponent } from './password-list/password-list.component';
 import { PasswordFormComponent } from './password-form/password-form.component';
 import { Routes, RouterModule } from '@angular/router';
+import { CoreModule } from '../core/core.module';
 
 const routes: Routes = [{
   path: '',
@@ -28,7 +29,8 @@ const routes: Routes = [{
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
     RouterModule.forChild(routes), MatButtonModule, MatInputModule,
-    MatTableModule, MatGridListModule, MatPaginatorModule
+    MatTableModule, MatGridListModule, MatPaginatorModule,
+    CoreModule
   ]
 })
 export class PasswordModule { }

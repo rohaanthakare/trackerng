@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuService } from 'src/app/services/menu.service';
+import { MasterViewService } from 'src/app/services/master-view.service';
 
 @Component({
   selector: 'app-menu-item',
@@ -11,7 +12,8 @@ export class MenuItemComponent implements OnInit {
   @Input() menuItem: any;
   @Input() depth: number;
   expanded: boolean;
-  constructor(private router: Router, private menuService: MenuService) { }
+  constructor(private router: Router,
+              private menuService: MenuService) { }
 
   ngOnInit() {
     if (!this.depth) {
