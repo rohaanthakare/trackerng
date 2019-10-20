@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { PasswordService } from '../services/password.service';
+import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
   selector: 'app-password-form',
@@ -13,9 +15,22 @@ export class PasswordFormComponent implements OnInit {
     siteLink: new FormControl(),
     password: new FormControl()
   });
-  constructor() { }
+  constructor(private passwordService: PasswordService,
+              private msgService: MessageService) { }
 
   ngOnInit() {
   }
 
+  createPassword() {
+    this.passwordService.createPassword(this.passwordForm.value).subscribe(
+      (response: any) => {
+        this.msgService.showSuccessMessage(response.message, 'center', 'top');
+        this.passwordForm.reset();
+      },
+      error => {
+        console.log('Create Password Error');
+        console.log(error);
+      }
+    );
+  }
 }

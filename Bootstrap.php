@@ -7,6 +7,7 @@ require_once(ROOT_DIR.'/Module/User/UserController.php');
 require_once(ROOT_DIR.'/Module/Role/RoleController.php');
 require_once(ROOT_DIR.'/Module/DataMaster/MasterDataController.php');
 require_once(ROOT_DIR.'/Module/ViewMaster/MasterViewController.php');
+require_once(ROOT_DIR.'/Module/Password/PasswordController.php');
 
 $moduleName = $_REQUEST['Module'];
 $className = $moduleName.'Controller';

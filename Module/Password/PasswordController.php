@@ -1,4 +1,6 @@
 <?php
+require_once(ROOT_DIR.'/Module/Password/Models/Password.php');
+
 Class PasswordController {
     public function getAllPasswords() {
         try {

@@ -126,5 +126,46 @@ Class Password extends DAOUtils {
         $this->sysUserId = $sysUserId;
         return $this;
     }
+
+    public function allFieldsSetter($fetchedRow) {
+        try{
+            $this->setSysPasswordId($fetchedRow['SYS_PASSWORD_ID']);
+            $this->setSysCreationDate($fetchedRow['SYS_CREATION_DATE']);
+            $this->setSysUpdateDate($fetchedRow['SYS_UPDATE_DATE']);
+            $this->setSysCreationUser($fetchedRow['SYS_CREATION_USER']);
+            $this->setSysUpdateUser($fetchedRow['SYS_UPDATE_USER']);
+            $this->setName($fetchedRow['NAME']);
+            $this->setUsername($fetchedRow['USERNAME']);
+            $this->setSiteLink($fetchedRow['SITE_LINK']);
+            $this->setPassword($fetchedRow['PASSWORD']);
+            $this->setSysUserId($fetchedRow['SYS_USER_ID']);
+
+            $this->setKeyFieldValue($fetchedRow['SYS_PASSWORD_ID']);
+        } catch (Exception $e) {
+            Logger::writeLog('ERROR', get_called_class().' - allFieldsSetter', $e->getMessage());
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function allFieldsGetter() {
+        try {
+            $dataRow = array();
+            $dataRow[0] = $this->getSysPasswordId();
+            $dataRow[1] = $this->getSysCreationDate();
+            $dataRow[2] = $this->getSysUpdateDate();
+            $dataRow[3] = $this->getSysCreationUser();
+            $dataRow[4] = $this->getSysUpdateUser();
+            $dataRow[5] = $this->getName();
+            $dataRow[6] = $this->getUsername();
+            $dataRow[7] = $this->getSiteLink();
+            $dataRow[8] = $this->getPassword();
+            $dataRow[9] = $this->getSysUserId();
+            
+            return $dataRow;
+        } catch (Exception $e) {
+            Logger::writeLog('ERROR', get_called_class().' - allFieldsGetter', $e->getMessage());
+            throw new Exception($e->getMessage());
+        }
+    }
 }
 ?>
