@@ -18,4 +18,8 @@ export class ModelFormComponent implements OnInit {
   onFormSubmit() {
     this.formSubmit.emit(this.formGroup);
   }
+
+  resetForm() {
+    console.log('Reset form clicked');
+  }
 }

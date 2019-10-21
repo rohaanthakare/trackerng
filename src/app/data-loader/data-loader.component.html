@@ -7,20 +7,20 @@
                 <section>
                     <p>Remaining - {{module.remainingRecords}} of {{module.recordsToLoad}}</p>
                         <mat-progress-bar 
-                            [color]="primary" 
-                            [mode]="determinate"
+                            color="primary" 
+                            mode="determinate"
                             [value]="module.remainingPercentage">
                         </mat-progress-bar>
                     <p>Uploaded - {{module.recordsLoaded}} of {{module.recordsToLoad}}</p>
                     <mat-progress-bar 
-                        [color]="primary" 
-                        [mode]="determinate"
+                        color="primary" 
+                        mode="determinate"
                         [value]="module.uploadedPercentage">
                     </mat-progress-bar>
                     <p>Failed - {{module.recordsFailed}} of {{module.recordsToLoad}}</p>
                     <mat-progress-bar 
                         color="warn" 
-                        [mode]="determinate"
+                        mode="determinate"
                         [value]="module.failedPercentage">
                     </mat-progress-bar>
                 </section>
