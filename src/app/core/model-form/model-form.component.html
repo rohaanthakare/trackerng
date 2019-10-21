@@ -1,1 +1,27 @@
-<p>model-form works!</p>
+<div class="form-title">
+    New Password
+</div>
+<form class="form-body" (ngSubmit)="onFormSubmit()" [formGroup]="formGroup">
+    <div *ngFor="let fieldConfig of fieldConfigs" [ngSwitch]="fieldConfig.type">
+        <!-- Password Field -->
+        <mat-form-field *ngSwitchCase="'password'">
+            <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.control" 
+                [name]="fieldConfig.name" type="password" autocomplete="off">
+        </mat-form-field>
+        <!-- Default Text Field -->
+        <mat-form-field *ngSwitchDefault>
+            <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.control" 
+                [name]="fieldConfig.name" autocomplete="off">
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-raised-button style="margin-bottom: 10px;" type="submit" color="primary">
+            <i class="material-icons">lock_open</i>
+            Create
+        </button>
+        <button mat-raised-button color="primary" (click)="resetForm()">
+            <i class="material-icons">person_add</i>
+            Reset
+        </button>
+    </div>
+</form>

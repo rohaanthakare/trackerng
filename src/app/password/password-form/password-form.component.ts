@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PasswordService } from '../services/password.service';
 import { MessageService } from 'src/app/shared/services/message.service';
 
@@ -10,11 +10,33 @@ import { MessageService } from 'src/app/shared/services/message.service';
 })
 export class PasswordFormComponent implements OnInit {
   passwordForm = new FormGroup({
-    name: new FormControl(),
+    name: new FormControl('', Validators.required),
     username: new FormControl(),
     siteLink: new FormControl(),
     password: new FormControl()
   });
+  viewTitle = 'New Password';
+  fieldConfigs = [{
+    label: 'Name',
+    name: 'name',
+    type: 'text',
+    control: 'name'
+  }, {
+    label: 'Username',
+    name: 'username',
+    type: 'text',
+    control: 'username'
+  }, {
+    label: 'Site Link',
+    name: 'siteLink',
+    type: 'text',
+    control: 'siteLink'
+  }, {
+    label: 'Password',
+    name: 'password',
+    type: 'password',
+    control: 'password'
+  }];
   constructor(private passwordService: PasswordService,
               private msgService: MessageService) { }
 
@@ -22,15 +44,19 @@ export class PasswordFormComponent implements OnInit {
   }
 
   createPassword() {
-    this.passwordService.createPassword(this.passwordForm.value).subscribe(
-      (response: any) => {
-        this.msgService.showSuccessMessage(response.message, 'center', 'top');
-        this.passwordForm.reset();
-      },
-      error => {
-        console.log('Create Password Error');
-        console.log(error);
-      }
-    );
+    if (this.passwordForm.valid) {
+      this.passwordService.createPassword(this.passwordForm.value).subscribe(
+        (response: any) => {
+          this.msgService.showSuccessMessage(response.message, 'center', 'top');
+          this.passwordForm.reset();
+        },
+        error => {
+          console.log('Create Password Error');
+          console.log(error);
+        }
+      );
+    } else {
+      this.msgService.showErrorMessage('Form contains error please correct.', 'center', 'top');
+    }
   }
 }

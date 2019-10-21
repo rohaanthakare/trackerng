@@ -16,7 +16,6 @@ import { ModelListComponent } from 'src/app/core/model-list/model-list.component
 export class PasswordListComponent implements OnInit {
   viewCode = 'PASSWORD_LIST';
   viewTitle = 'Passwords';
-  // @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(ModelListComponent, {static: false}) modelList: ModelListComponent;
   displayedColumns: string[] = ['name', 'username'];
   columnDefs = [{
@@ -30,29 +29,15 @@ export class PasswordListComponent implements OnInit {
   }];
   data = [];
   constructor(private router: Router,
-              private masterViewService: MasterViewService,
               private passwordService: PasswordService) { }
 
   ngOnInit() {
     this.getPasswords();
-    // this.masterViewService.getToolbarActions(this.viewCode).subscribe(
-    //   response => {
-    //     this.toolbarActions = response.data;
-    //     this.getPasswords();
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   }
-    // );
-    // this.passwords.paginator = this.paginator;
   }
 
   getPasswords() {
     this.passwordService.getAllPasswords().subscribe(
       (response: any) => {
-        console.log('All Passwords');
-        console.log(response);
-        // this.length = response.data.length;
         this.data = response.data;
         this.modelList.loadTableData(this.data, this.data.length);
       },
