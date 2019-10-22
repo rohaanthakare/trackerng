@@ -10,6 +10,7 @@ export class ModelFormComponent implements OnInit {
   @Input() fieldConfigs: any;
   @Input() formGroup: FormGroup;
   @Output() formSubmit = new EventEmitter();
+  @Output() hasError = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
@@ -17,6 +18,11 @@ export class ModelFormComponent implements OnInit {
 
   onFormSubmit() {
     this.formSubmit.emit(this.formGroup);
+  }
+
+  getVaidationMessage(name) {
+    console.log('Inside Model Form - ' + name);
+    this.hasError.emit(name);
   }
 
   resetForm() {

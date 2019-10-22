@@ -9,8 +9,9 @@ import { MessageService } from 'src/app/shared/services/message.service';
   styleUrls: ['./password-form.component.scss']
 })
 export class PasswordFormComponent implements OnInit {
+  nameCtrl = new FormControl('', Validators.required);
   passwordForm = new FormGroup({
-    name: new FormControl('', Validators.required),
+    name: this.nameCtrl,
     username: new FormControl(),
     siteLink: new FormControl(),
     password: new FormControl()
@@ -20,22 +21,26 @@ export class PasswordFormComponent implements OnInit {
     label: 'Name',
     name: 'name',
     type: 'text',
-    control: 'name'
+    control: this.nameCtrl,
+    controlName: 'name'
   }, {
     label: 'Username',
     name: 'username',
     type: 'text',
-    control: 'username'
+    control: this.nameCtrl,
+    controlName: 'name'
   }, {
     label: 'Site Link',
     name: 'siteLink',
     type: 'text',
-    control: 'siteLink'
+    control: this.nameCtrl,
+    controlName: 'name'
   }, {
     label: 'Password',
     name: 'password',
     type: 'password',
-    control: 'password'
+    control: this.nameCtrl,
+    controlName: 'name'
   }];
   constructor(private passwordService: PasswordService,
               private msgService: MessageService) { }
@@ -57,5 +62,22 @@ export class PasswordFormComponent implements OnInit {
     } else {
       this.msgService.showErrorMessage('Form contains error please correct.', 'center', 'top');
     }
+  }
+
+  getValidationMessage(field) {
+    let returnMsg;
+    switch (field) {
+      case 'username':
+        if (this.nameCtrl.hasError('required')) {
+          returnMsg = 'Username is required';
+        }
+        break;
+      case 'password':
+        if (this.nameCtrl.hasError('required')) {
+          returnMsg = 'Password is required';
+        }
+        break;
+    }
+    return returnMsg;
   }
 }
