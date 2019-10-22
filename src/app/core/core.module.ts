@@ -12,11 +12,12 @@ import { MessageSnackBarComponent } from './message-snack-bar/message-snack-bar.
 import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
+  entryComponents: [MessageSnackBarComponent],
   declarations: [ModelListComponent, ModelFormComponent, MessageSnackBarComponent],
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
     MatButtonModule, MatTableModule, MatPaginatorModule, MatInputModule
   ],
-  exports: [ModelListComponent, ModelFormComponent]
+  exports: [ModelListComponent, ModelFormComponent, MessageSnackBarComponent]
 })
 export class CoreModule { }

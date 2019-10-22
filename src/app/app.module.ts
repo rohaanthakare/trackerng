@@ -34,6 +34,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { HeaderComponent } from './header/header.component';
 import { DataLoaderComponent } from './data-loader/data-loader.component';
 import { MenuItemComponent } from './menu/menu-item/menu-item.component';
+import { MessageSnackBarComponent } from './core/message-snack-bar/message-snack-bar.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -54,8 +56,9 @@ import { MenuItemComponent } from './menu/menu-item/menu-item.component';
     MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatToolbarModule,
     MatCardModule, MatMenuModule, MatProgressBarModule, MatGridListModule, MatExpansionModule,
     MatSidenavModule, MatListModule,
-    AppRoutingModule
+    CoreModule, AppRoutingModule
   ],
+  entryComponents: [ MessageSnackBarComponent],
   providers: [ AuthService, UserService],
   bootstrap: [AppComponent]
 })

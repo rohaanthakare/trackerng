@@ -51,8 +51,7 @@ export class PasswordFormComponent implements OnInit {
           this.passwordForm.reset();
         },
         error => {
-          console.log('Create Password Error');
-          console.log(error);
+          this.msgService.showSuccessMessage('Error while creation password, please try again', 'center', 'top');
         }
       );
     } else {
