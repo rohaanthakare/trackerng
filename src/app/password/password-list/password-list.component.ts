@@ -16,6 +16,7 @@ import { ModelListComponent } from 'src/app/core/model-list/model-list.component
 export class PasswordListComponent implements OnInit {
   viewCode = 'PASSWORD_LIST';
   viewTitle = 'Passwords';
+  idColumn = 'SYS_PASSWORD_ID';
   @ViewChild(ModelListComponent, {static: false}) modelList: ModelListComponent;
   displayedColumns: string[] = ['name', 'username'];
   columnDefs = [{

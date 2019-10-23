@@ -16,6 +16,8 @@
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowSelected(row)">
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+        [ngClass]="{'selected-row': selectedRowIndex == row[idColumn]}"
+        (click)="rowSelected(row)">
 </table>
 <mat-paginator  [pageSizeOptions]="[5, 10, 20]" [length]="totalRecords" showFirstLastButtons></mat-paginator>

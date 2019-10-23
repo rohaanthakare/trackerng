@@ -10,11 +10,14 @@ import { MessageService } from 'src/app/shared/services/message.service';
 })
 export class PasswordFormComponent implements OnInit {
   nameCtrl = new FormControl('', Validators.required);
+  usernameCtrl = new FormControl();
+  siteLinkCtrl = new FormControl();
+  passwordCtrl = new FormControl('', [Validators.required]);
   passwordForm = new FormGroup({
     name: this.nameCtrl,
-    username: new FormControl(),
-    siteLink: new FormControl(),
-    password: new FormControl()
+    username: this.usernameCtrl,
+    siteLink: this.siteLinkCtrl,
+    password: this.passwordCtrl
   });
   viewTitle = 'New Password';
   fieldConfigs = [{
@@ -24,34 +27,30 @@ export class PasswordFormComponent implements OnInit {
     control: this.nameCtrl,
     controlName: 'name',
     errors: {
-      required: 'Name is required field'
+      name: 'required',
+      message: 'Name is required field'
     }
   }, {
     label: 'Username',
     name: 'username',
     type: 'text',
-    control: this.nameCtrl,
-    controlName: 'name',
-    errors: {
-      required: 'Name is required field'
-    }
+    control: this.usernameCtrl,
+    controlName: 'username'
   }, {
     label: 'Site Link',
     name: 'siteLink',
     type: 'text',
-    control: this.nameCtrl,
-    controlName: 'name',
-    errors: {
-      required: 'Name is required field'
-    }
+    control: this.siteLinkCtrl,
+    controlName: 'siteLink'
   }, {
     label: 'Password',
     name: 'password',
     type: 'password',
-    control: this.nameCtrl,
-    controlName: 'name',
+    control: this.passwordCtrl,
+    controlName: 'password',
     errors: {
-      required: 'Name is required field'
+      name: 'required',
+      message: 'Password is required field'
     }
   }];
   constructor(private passwordService: PasswordService,

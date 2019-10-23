@@ -21,6 +21,9 @@ const routes: Routes = [{
   }, {
     path: 'create',
     component: PasswordFormComponent
+  }, {
+    path: 'edit/:id',
+    component: PasswordFormComponent
   }]
 }];
 

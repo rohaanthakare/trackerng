@@ -7,13 +7,13 @@
         <mat-form-field *ngSwitchCase="'password'">
             <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
                 [name]="fieldConfig.name" type="password" autocomplete="off">
-            <mat-error *ngIf="fieldConfig.control.invalid">{{fieldConfig.errors.required}}</mat-error>
+            <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
         </mat-form-field>
         <!-- Default Text Field -->
         <mat-form-field *ngSwitchDefault>
             <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
                 [name]="fieldConfig.name" autocomplete="off">
-            <mat-error *ngIf="fieldConfig.control.invalid">{{fieldConfig.errors.required}}</mat-error>
+            <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
         </mat-form-field>
     </div>
     <div>

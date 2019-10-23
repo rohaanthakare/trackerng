@@ -16,8 +16,11 @@ export class ModelListComponent implements OnInit {
   @Input() columnDefs = [];
   @Input() viewTitle: string;
   @Input() displayedColumns = [];
+  @Input() idColumn: string;
   totalRecords: number;
   dataSource = new MatTableDataSource(this.data);
+  selectedRowIndex = -1;
+  selectedRow: any;
   constructor(private masterViewService: MasterViewService,
               private router: Router) { }
 
@@ -35,7 +38,11 @@ export class ModelListComponent implements OnInit {
   }
 
   toolbarButtonClicked(action) {
-    this.router.navigate([action.VIEW_ROUTE]);
+    if (action.VIEW_TYPE === 'edit') {
+      this.router.navigate([action.VIEW_ROUTE + '/' + this.selectedRow[this.idColumn]]);
+    } else {
+      this.router.navigate([action.VIEW_ROUTE]);
+    }
   }
 
   loadTableData(data, totalRecords) {
@@ -45,6 +52,8 @@ export class ModelListComponent implements OnInit {
 
   rowSelected(row) {
     if (row) {
+      this.selectedRowIndex = row[this.idColumn];
+      this.selectedRow = row;
       this.toolbarActions.forEach((action: any) => {
         if (action.VIEW_TYPE === 'edit') {
           action.isDisabled = false;
