@@ -2,7 +2,8 @@
     {{viewTitle}}
 </div>
 <div class="action-panel">
-    <button mat-raised-button color="primary" (click)="toolbarButtonClicked(action)" *ngFor="let action of toolbarActions;">
+    <button mat-raised-button color="primary" (click)="toolbarButtonClicked(action)" [disabled]="action.isDisabled"
+        *ngFor="let action of toolbarActions;">
         <i class="material-icons">{{action.ICON_CLASS}}</i>
         {{action.VIEW_NAME}}
     </button>
@@ -15,6 +16,6 @@
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowSelected(row)">
 </table>
 <mat-paginator  [pageSizeOptions]="[5, 10, 20]" [length]="totalRecords" showFirstLastButtons></mat-paginator>

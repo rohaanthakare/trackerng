@@ -25,6 +25,11 @@ export class ModelListComponent implements OnInit {
     this.masterViewService.getToolbarActions(this.viewCode).subscribe(
       (response: any) => {
         this.toolbarActions = response.data;
+        this.toolbarActions.forEach((action: any) => {
+          if (action.VIEW_TYPE === 'edit') {
+            action.isDisabled = true;
+          }
+        });
       }
     );
   }
@@ -36,5 +41,15 @@ export class ModelListComponent implements OnInit {
   loadTableData(data, totalRecords) {
     this.dataSource.data = data;
     this.totalRecords = totalRecords;
+  }
+
+  rowSelected(row) {
+    if (row) {
+      this.toolbarActions.forEach((action: any) => {
+        if (action.VIEW_TYPE === 'edit') {
+          action.isDisabled = false;
+        }
+      });
+    }
   }
 }

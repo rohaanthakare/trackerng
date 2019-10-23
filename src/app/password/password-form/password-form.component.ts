@@ -22,25 +22,37 @@ export class PasswordFormComponent implements OnInit {
     name: 'name',
     type: 'text',
     control: this.nameCtrl,
-    controlName: 'name'
+    controlName: 'name',
+    errors: {
+      required: 'Name is required field'
+    }
   }, {
     label: 'Username',
     name: 'username',
     type: 'text',
     control: this.nameCtrl,
-    controlName: 'name'
+    controlName: 'name',
+    errors: {
+      required: 'Name is required field'
+    }
   }, {
     label: 'Site Link',
     name: 'siteLink',
     type: 'text',
     control: this.nameCtrl,
-    controlName: 'name'
+    controlName: 'name',
+    errors: {
+      required: 'Name is required field'
+    }
   }, {
     label: 'Password',
     name: 'password',
     type: 'password',
     control: this.nameCtrl,
-    controlName: 'name'
+    controlName: 'name',
+    errors: {
+      required: 'Name is required field'
+    }
   }];
   constructor(private passwordService: PasswordService,
               private msgService: MessageService) { }
