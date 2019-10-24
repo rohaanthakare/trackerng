@@ -108,5 +108,15 @@ Class PasswordController {
             die($e->getMessage());
         }
     }
+
+    public function updatePassword() {
+        try {
+
+        } catch (Exception $e) {
+            Logger::writeLog('ERROR',get_called_class().' - updatePassword',$e->getMessage());
+            http_response_code(500);
+            die($e->getMessage());
+        }
+    }
 }
 ?>

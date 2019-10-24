@@ -90,15 +90,27 @@ export class PasswordFormComponent implements OnInit {
 
   createPassword() {
     if (this.passwordForm.valid) {
-      this.passwordService.createPassword(this.passwordForm.value).subscribe(
-        (response: any) => {
-          this.msgService.showSuccessMessage(response.message, 'center', 'top');
-          this.passwordForm.reset();
-        },
-        error => {
-          this.msgService.showSuccessMessage('Error while creation password, please try again', 'center', 'top');
-        }
-      );
+      if (this.passwordId) {
+        this.passwordService.updatePassword(this.passwordId, this.passwordForm.value).subscribe(
+          (response: any) => {
+            this.msgService.showSuccessMessage(response.message, 'center', 'top');
+            this.passwordForm.reset();
+          },
+          error => {
+            this.msgService.showErrorMessage('Error while updating password, please try again', 'center', 'top');
+          }
+        );
+      } else {
+        this.passwordService.createPassword(this.passwordForm.value).subscribe(
+          (response: any) => {
+            this.msgService.showSuccessMessage(response.message, 'center', 'top');
+            this.passwordForm.reset();
+          },
+          error => {
+            this.msgService.showErrorMessage('Error while creation password, please try again', 'center', 'top');
+          }
+        );
+      }
     } else {
       this.msgService.showErrorMessage('Form contains error please correct.', 'center', 'top');
     }

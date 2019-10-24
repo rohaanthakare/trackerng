@@ -48,6 +48,16 @@ export class PasswordService {
     });
   }
 
+  updatePassword(id, password) {
+    let formData = new FormData();
+    formData.append('Module', this.module);
+    formData.append('action', 'updatePassword');
+    formData.append('id', id);
+    formData = FormUtils.getFormParams(password, formData);
+
+    return this.http.post(environment.baseUrl, formData);
+  }
+
   deletePassword() {
 
   }
