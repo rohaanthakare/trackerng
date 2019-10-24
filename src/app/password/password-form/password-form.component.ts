@@ -13,6 +13,7 @@ import { ModelFormComponent } from 'src/app/core/model-form/model-form.component
 export class PasswordFormComponent implements OnInit {
   @ViewChild(ModelFormComponent, {static: false}) modelForm: ModelFormComponent;
   passwordId: number;
+  name: string;
   actionType: string;
   passwordDetail: any;
   nameCtrl = new FormControl('', Validators.required);
@@ -81,6 +82,7 @@ export class PasswordFormComponent implements OnInit {
         console.log('Get Password Details success');
         console.log(response);
         this.passwordDetail = response.data;
+        this.name = response.data.name;
         this.modelForm.setValues(this.passwordDetail);
       }
     );
@@ -100,22 +102,5 @@ export class PasswordFormComponent implements OnInit {
     } else {
       this.msgService.showErrorMessage('Form contains error please correct.', 'center', 'top');
     }
-  }
-
-  getValidationMessage(field) {
-    let returnMsg;
-    switch (field) {
-      case 'username':
-        if (this.nameCtrl.hasError('required')) {
-          returnMsg = 'Username is required';
-        }
-        break;
-      case 'password':
-        if (this.nameCtrl.hasError('required')) {
-          returnMsg = 'Password is required';
-        }
-        break;
-    }
-    return returnMsg;
   }
 }

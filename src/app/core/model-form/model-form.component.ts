@@ -11,8 +11,11 @@ export class ModelFormComponent implements OnInit {
   @Input() formGroup: FormGroup;
   @Output() formSubmit = new EventEmitter();
   @Output() hasError = new EventEmitter();
-  @Input() id: number;
+  @Input() idField: number;
+  @Input() formTitle: string;
   @Input() actionType: string;
+
+  showPassword = false;
   constructor() { }
 
   ngOnInit() {
@@ -38,5 +41,9 @@ export class ModelFormComponent implements OnInit {
         }
       });
     }
+  }
+
+  showPasswordClicked() {
+    this.showPassword = true;
   }
 }
