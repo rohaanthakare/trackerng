@@ -72,6 +72,33 @@ Class PasswordController {
         }
     }
 
+    public function getPasswordDetail($request) {
+        try {
+            $sysPasswordId = $request['id'];
+            $passwordObj = new Password();
+            $passwordObj->setSysPasswordId($sysPasswordId);
+            $passwordObj->readOneBySysId();
+            if($passwordObj->getPassword()) {
+                http_response_code(200);
+                $responseArr = array();
+                $responseArr['success'] = true;
+                $dataArray = array();
+                $dataArray['id'] = $passwordObj->getSysPasswordId();
+                $dataArray['name'] = $passwordObj->getName();
+                $dataArray['username'] = $passwordObj->getUsername();
+                $dataArray['password'] = PasswordUtils::encryptDecrypt('decrypt', $passwordObj->getPassword());
+                $dataArray['siteLink'] = $passwordObj->getSiteLink();
+                $responseArr['data'] = $dataArray;
+                $response = json_encode($responseArr);
+                echo $response;
+            }
+        } catch (Exception $e) {
+            Logger::writeLog('ERROR',get_called_class().' - showPassword',$e->getMessage());
+            http_response_code(500);
+            die($e->getMessage());
+        }
+    }
+
     public function deletePassword() {
         try {
 

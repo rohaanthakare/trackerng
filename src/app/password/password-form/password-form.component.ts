@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PasswordService } from '../services/password.service';
 import { MessageService } from 'src/app/shared/services/message.service';
+import { ActivatedRoute } from '@angular/router';
+import { ModelFormComponent } from 'src/app/core/model-form/model-form.component';
 
 @Component({
   selector: 'app-password-form',
@@ -9,6 +11,10 @@ import { MessageService } from 'src/app/shared/services/message.service';
   styleUrls: ['./password-form.component.scss']
 })
 export class PasswordFormComponent implements OnInit {
+  @ViewChild(ModelFormComponent, {static: false}) modelForm: ModelFormComponent;
+  passwordId: number;
+  actionType: string;
+  passwordDetail: any;
   nameCtrl = new FormControl('', Validators.required);
   usernameCtrl = new FormControl();
   siteLinkCtrl = new FormControl();
@@ -54,9 +60,30 @@ export class PasswordFormComponent implements OnInit {
     }
   }];
   constructor(private passwordService: PasswordService,
-              private msgService: MessageService) { }
+              private msgService: MessageService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(
+      params => {
+        this.passwordId = parseInt(params.get('id'), 10);
+        if (this.passwordId && !isNaN(this.passwordId)) {
+          this.actionType = 'edit';
+          this.getPasswordDetails();
+        }
+      }
+    );
+  }
+
+  getPasswordDetails() {
+    this.passwordService.getPasswordDetail(this.passwordId).subscribe(
+      (response: any) => {
+        console.log('Get Password Details success');
+        console.log(response);
+        this.passwordDetail = response.data;
+        this.modelForm.setValues(this.passwordDetail);
+      }
+    );
   }
 
   createPassword() {

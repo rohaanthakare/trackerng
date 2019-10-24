@@ -2,10 +2,10 @@ View Code, View Title, View Name, Icon, Route, View Type, Parent View, Dsiplay O
 ADMIN_DASHBOARD,Dashboard,Dashboard,,home/admin/dashboard,view,,1,1,0
 TRACKER_DASHBOARD,Dashboard,Dashboard,dashboard,home/dashboard,view,,1,1,0
 PASSWORD_TRACKER,Password Tracker,Password Tracker,lock,home/dashboard,view,,1,1,0
-PASSWORD_LIST,Passwords,Passwords,list,home/passwords,view,PASSWORD_TRACKER,1,1,0
-PASSWORD_CREATE,New Password,Create Password,add,home/passwords/create,create,PASSWORD_LIST,1,0,1
+PASSWORD_LIST,Passwords,Passwords,list,home/password,view,PASSWORD_TRACKER,1,1,0
+PASSWORD_CREATE,New Password,Create Password,add,home/password/create,create,PASSWORD_LIST,1,0,1
 PASSWORD_EDIT,Edit Password,Edit Password,edit,home/password/edit,edit,PASSWORD_LIST,1,0,1
-PASSWORD_SHOW,View Password,View Password,remove_red_eye,home/passwords/create,edit,PASSWORD_LIST,1,0,1
+PASSWORD_SHOW,View Password,View Password,remove_red_eye,home/password/create,edit,PASSWORD_LIST,1,0,1
 MONEY_TRACKER,Money Tracker,Money Tracker,monetization_on,home/dashboard,view,,1,1,0
 BANK_ACCOUNTS,Accounts,Accounts,account_balance,home/accounts,view,MONEY_TRACKER,1,1,0
 TRANSACTIONS,Transactions,Transactions,view_list,home/transactions,view,MONEY_TRACKER,2,1,0

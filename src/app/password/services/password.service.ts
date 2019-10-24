@@ -28,8 +28,24 @@ export class PasswordService {
     });
   }
 
-  showPassword() {
+  showPassword(passwordId) {
+    return this.http.get(environment.baseUrl, {
+      params: {
+        Module: this.module,
+        action: 'showPassword',
+        id: passwordId
+      }
+    });
+  }
 
+  getPasswordDetail(passwordId) {
+    return this.http.get(environment.baseUrl, {
+      params: {
+        Module: this.module,
+        action: 'getPasswordDetail',
+        id: passwordId
+      }
+    });
   }
 
   deletePassword() {

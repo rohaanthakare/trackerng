@@ -18,11 +18,17 @@
     </div>
     <div>
         <button mat-raised-button style="margin-bottom: 10px;" type="submit" color="primary">
-            <i class="material-icons">lock_open</i>
-            Create
+            <ng-container *ngIf="actionType == 'edit'">
+                <i class="material-icons">edit</i>
+                Update
+            </ng-container>
+            <ng-container *ngIf="actionType != 'edit'">
+                <i class="material-icons">add</i>
+                Create
+            </ng-container>
         </button>
-        <button mat-raised-button color="primary" (click)="resetForm()">
-            <i class="material-icons">person_add</i>
+        <button mat-raised-button color="warn" (click)="resetForm()">
+            <i class="material-icons">settings_backup_restore</i>
             Reset
         </button>
     </div>

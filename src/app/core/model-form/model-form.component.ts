@@ -11,6 +11,8 @@ export class ModelFormComponent implements OnInit {
   @Input() formGroup: FormGroup;
   @Output() formSubmit = new EventEmitter();
   @Output() hasError = new EventEmitter();
+  @Input() id: number;
+  @Input() actionType: string;
   constructor() { }
 
   ngOnInit() {
@@ -21,11 +23,20 @@ export class ModelFormComponent implements OnInit {
   }
 
   getVaidationMessage(name) {
-    console.log('Inside Model Form - ' + name);
     this.hasError.emit(name);
   }
 
   resetForm() {
     console.log('Reset form clicked');
+  }
+
+  setValues(modelValue) {
+    for (const key of Object.keys(modelValue)) {
+      this.fieldConfigs.forEach((currentField) => {
+        if (currentField.name === key && modelValue[key] !== 'null') {
+          currentField.control.setValue(modelValue[key]);
+        }
+      });
+    }
   }
 }
