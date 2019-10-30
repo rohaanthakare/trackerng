@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MessageService } from 'src/app/shared/services/message.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-model-form',
@@ -16,7 +18,7 @@ export class ModelFormComponent implements OnInit {
   @Input() actionType: string;
 
   showPassword = false;
-  constructor() { }
+  constructor(private msgService: MessageService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -31,6 +33,11 @@ export class ModelFormComponent implements OnInit {
 
   resetForm() {
     console.log('Reset form clicked');
+  }
+
+  handleSuccess(response, model) {
+    this.msgService.showSuccessMessage(response.message, 'center', 'top');
+    this.router.navigate([model + '/' + response.id]);
   }
 
   setValues(modelValue) {

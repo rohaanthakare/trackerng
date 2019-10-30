@@ -1,15 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, Injector } from '@angular/core';
 import { MasterView } from 'src/app/models/master-view.model';
 import { MasterViewService } from 'src/app/services/master-view.service';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-model-list',
   templateUrl: './model-list.component.html',
   styleUrls: ['./model-list.component.scss']
 })
-export class ModelListComponent implements OnInit {
+export class ModelListComponent implements OnInit, AfterViewInit {
   toolbarActions: MasterView[] = [];
   @Input() viewCode: string;
   @Input() data;
@@ -17,12 +18,13 @@ export class ModelListComponent implements OnInit {
   @Input() viewTitle: string;
   @Input() displayedColumns = [];
   @Input() idColumn: string;
+  @ViewChild(MatPaginator, {static : false}) paginator: MatPaginator;
   totalRecords: number;
   dataSource = new MatTableDataSource(this.data);
   selectedRowIndex = -1;
   selectedRow: any;
   constructor(private masterViewService: MasterViewService,
-              private router: Router) { }
+              private router: Router, private injector: Injector) { }
 
   ngOnInit() {
     this.masterViewService.getToolbarActions(this.viewCode).subscribe(
@@ -36,6 +38,7 @@ export class ModelListComponent implements OnInit {
       }
     );
   }
+  ngAfterViewInit() {}
 
   toolbarButtonClicked(action) {
     if (action.VIEW_TYPE === 'edit') {
@@ -45,9 +48,9 @@ export class ModelListComponent implements OnInit {
     }
   }
 
-  loadTableData(data, totalRecords) {
-    this.dataSource.data = data;
-    this.totalRecords = totalRecords;
+  loadTableData() {
+    // this.dataSource.data = data;
+    // this.totalRecords = totalRecords;
   }
 
   rowSelected(row) {

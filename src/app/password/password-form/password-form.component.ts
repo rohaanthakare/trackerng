@@ -93,8 +93,7 @@ export class PasswordFormComponent implements OnInit {
       if (this.passwordId) {
         this.passwordService.updatePassword(this.passwordId, this.passwordForm.value).subscribe(
           (response: any) => {
-            this.msgService.showSuccessMessage(response.message, 'center', 'top');
-            this.passwordForm.reset();
+            this.modelForm.handleSuccess(response, 'password');
           },
           error => {
             this.msgService.showErrorMessage('Error while updating password, please try again', 'center', 'top');
@@ -103,8 +102,7 @@ export class PasswordFormComponent implements OnInit {
       } else {
         this.passwordService.createPassword(this.passwordForm.value).subscribe(
           (response: any) => {
-            this.msgService.showSuccessMessage(response.message, 'center', 'top');
-            this.passwordForm.reset();
+            this.modelForm.handleSuccess(response, '/home/password/edit');
           },
           error => {
             this.msgService.showErrorMessage('Error while creation password, please try again', 'center', 'top');

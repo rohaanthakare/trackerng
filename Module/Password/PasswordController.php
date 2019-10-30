@@ -40,6 +40,7 @@ Class PasswordController {
                 $responseArr = array();
                 $responseArr['success'] = true;
                 $responseArr['message'] = 'Password saved successfully for - '.$request['name'];
+                $responseArr['id'] = $passwordId;
                 $response = json_encode($responseArr);
                 echo $response;
             }
@@ -109,9 +110,23 @@ Class PasswordController {
         }
     }
 
-    public function updatePassword() {
+    public function updatePassword($request) {
         try {
-
+            $passObj = new Password();
+            $passObj->setSysPasswordId($request['id']);
+            $passObj->readOneBySysId();
+            $passObj->setName($request['name']);
+            $passObj->setUsername($request['username']);
+            $passObj->setSiteLink($request['siteLink']);
+            $passObj->setPassword(PasswordUtils::encryptDecrypt('encrypt', $request['password']));
+            if ($passObj->update()) {
+                http_response_code(200);
+                $responseArr = array();
+                $responseArr['success'] = true;
+                $responseArr['message'] = 'Password updated successfully for - '.$request['name'];
+                $response = json_encode($responseArr);
+                echo $response;
+            }
         } catch (Exception $e) {
             Logger::writeLog('ERROR',get_called_class().' - updatePassword',$e->getMessage());
             http_response_code(500);
