@@ -48,7 +48,7 @@ export class ModelListComponent implements OnInit, AfterViewInit {
     }
   }
 
-  loadTableData() {
+  loadTableData(p1, p2) {
     // this.dataSource.data = data;
     // this.totalRecords = totalRecords;
   }

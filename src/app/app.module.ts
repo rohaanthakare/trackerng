@@ -36,6 +36,7 @@ import { DataLoaderComponent } from './data-loader/data-loader.component';
 import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 import { MessageSnackBarComponent } from './core/message-snack-bar/message-snack-bar.component';
 import { CoreModule } from './core/core.module';
+import { OuterHeaderComponent } from './outer-header/outer-header.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { CoreModule } from './core/core.module';
     ForgotPasswordComponent,
     HeaderComponent,
     DataLoaderComponent,
-    MenuItemComponent
+    MenuItemComponent,
+    OuterHeaderComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
