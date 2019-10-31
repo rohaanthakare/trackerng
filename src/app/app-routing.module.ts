@@ -7,11 +7,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DataLoaderComponent } from './data-loader/data-loader.component';
+import { OuterComponent } from './outer/outer.component';
 
 
 const routes: Routes = [{
   path: '',
-  component: LoginComponent
+  component: OuterComponent
 }, {
   path: 'login',
   component: LoginComponent

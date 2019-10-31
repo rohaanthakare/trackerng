@@ -18,6 +18,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
 
 // Application Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -37,6 +38,14 @@ import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 import { MessageSnackBarComponent } from './core/message-snack-bar/message-snack-bar.component';
 import { CoreModule } from './core/core.module';
 import { OuterHeaderComponent } from './outer-header/outer-header.component';
+import { OuterComponent } from './outer/outer.component';
+import { OuterHomeComponent } from './outer-home/outer-home.component';
+import { AboutComponent } from './about/about.component';
+import { SkillComponent } from './skill/skill.component';
+import { EducationComponent } from './education/education.component';
+import { ExperienceComponent } from './experience/experience.component';
+import { WorkComponent } from './work/work.component';
+import { ContactMeComponent } from './contact-me/contact-me.component';
 
 @NgModule({
   declarations: [
@@ -51,13 +60,21 @@ import { OuterHeaderComponent } from './outer-header/outer-header.component';
     HeaderComponent,
     DataLoaderComponent,
     MenuItemComponent,
-    OuterHeaderComponent
+    OuterHeaderComponent,
+    OuterComponent,
+    OuterHomeComponent,
+    AboutComponent,
+    SkillComponent,
+    EducationComponent,
+    ExperienceComponent,
+    WorkComponent,
+    ContactMeComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
     MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatToolbarModule,
     MatCardModule, MatMenuModule, MatProgressBarModule, MatGridListModule, MatExpansionModule,
-    MatSidenavModule, MatListModule,
+    MatSidenavModule, MatListModule, MatTabsModule,
     CoreModule, AppRoutingModule
   ],
   entryComponents: [ MessageSnackBarComponent],
