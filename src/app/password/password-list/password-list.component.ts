@@ -5,7 +5,6 @@ import { Password } from '../models/password.model';
 import { MasterViewService } from 'src/app/services/master-view.service';
 import { MasterView } from 'src/app/models/master-view.model';
 import { Router } from '@angular/router';
-import { PasswordService } from '../services/password.service';
 import { ModelListComponent } from 'src/app/core/model-list/model-list.component';
 
 @Component({
@@ -29,25 +28,9 @@ export class PasswordListComponent implements OnInit {
     field: 'USERNAME'
   }];
   data = [];
-  constructor(private router: Router,
-              private passwordService: PasswordService) { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {
-    this.getPasswords();
-  }
-
-  getPasswords() {
-    this.passwordService.getAllPasswords().subscribe(
-      (response: any) => {
-        this.data = response.data;
-        this.modelList.loadTableData(this.data, this.data.length);
-      },
-      error => {
-        console.log('All Passwords Error');
-        console.log(error);
-      }
-    );
-  }
+  ngOnInit() { }
 
   toolbarButtonClicked(action) {
     this.router.navigate([action.VIEW_ROUTE]);

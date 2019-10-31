@@ -4,6 +4,11 @@ import { MasterViewService } from 'src/app/services/master-view.service';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { PasswordService } from 'src/app/password/services/password.service';
+import { tap } from 'rxjs/operators';
+const modelServices = {
+  Password: PasswordService
+};
 
 @Component({
   selector: 'app-model-list',
@@ -13,14 +18,16 @@ import { MatPaginator } from '@angular/material/paginator';
 export class ModelListComponent implements OnInit, AfterViewInit {
   toolbarActions: MasterView[] = [];
   @Input() viewCode: string;
-  @Input() data;
   @Input() columnDefs = [];
   @Input() viewTitle: string;
   @Input() displayedColumns = [];
   @Input() idColumn: string;
+  @Input() moduleName: string;
+  @Input() listDataServiceApi: string;
+
   @ViewChild(MatPaginator, {static : false}) paginator: MatPaginator;
   totalRecords: number;
-  dataSource = new MatTableDataSource(this.data);
+  dataSource = new MatTableDataSource([]);
   selectedRowIndex = -1;
   selectedRow: any;
   constructor(private masterViewService: MasterViewService,
@@ -38,7 +45,12 @@ export class ModelListComponent implements OnInit, AfterViewInit {
       }
     );
   }
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    this.loadTableData();
+    this.paginator.page.pipe(
+      tap(() => this.loadTableData())
+    ).subscribe();
+  }
 
   toolbarButtonClicked(action) {
     if (action.VIEW_TYPE === 'edit') {
@@ -48,9 +60,18 @@ export class ModelListComponent implements OnInit, AfterViewInit {
     }
   }
 
-  loadTableData(p1, p2) {
-    // this.dataSource.data = data;
-    // this.totalRecords = totalRecords;
+  loadTableData() {
+    const serviceObj = this.injector.get<any>(modelServices[this.moduleName]);
+    const start = this.paginator.pageIndex * this.paginator.pageSize;
+    serviceObj[this.listDataServiceApi]('', start, this.paginator.pageSize).subscribe(
+      (response: any) => {
+        this.dataSource.data = response.data;
+        this.totalRecords = response.count;
+      },
+      error => {
+
+      }
+    );
   }
 
   rowSelected(row) {

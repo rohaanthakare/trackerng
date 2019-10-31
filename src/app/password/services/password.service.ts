@@ -19,11 +19,13 @@ export class PasswordService {
     return this.http.post(environment.baseUrl, formData);
   }
 
-  public getAllPasswords() {
+  public getAllPasswords(filterParams, startIndex, pageSize) {
     return this.http.get(environment.baseUrl, {
       params: {
         Module: this.module,
-        action: 'getAllPasswords'
+        action: 'getAllPasswords',
+        start: startIndex,
+        limit: pageSize
       }
     });
   }

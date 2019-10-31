@@ -1,20 +1,31 @@
 <?php
 require_once(ROOT_DIR.'/Module/Password/Models/Password.php');
+require_once(ROOT_DIR.'/Module/Global/ReportDataAccessor.php');
 
 Class PasswordController {
-    public function getAllPasswords() {
+    public function getAllPasswords($request) {
         try {
             session_start();
             $userId = $_SESSION['user_id'];
-            $passwordObj = new Password();
-            $fieldName = array('SYS_USER_ID');
-            $fieldValue = array($userId);
-            $result = $passwordObj->readMultipleByCustomFields($fieldName,$fieldValue);
+            $start = $request['start'];
+            $limit = $request['limit'];
+            $siteName = "%%";
+            if(isset($request['filterParams']) && !is_null($request['filterParams'])){
+				$filterParams = json_decode($request['filterParams']);
+				$siteName = "%".$filterParams->ACCOUNT_NAME."%";
+				$start = 0;
+            }
+            
+            $query = "";
+            $query = ReportDataAccessor::getQueryFromReportXML($request['Module'],"getAllUserPasswordsForGrid");
+            
+            $outputArray = array('SYS_PASSWORD_ID','NAME','USERNAME','SITE_LINK');
+
+			$inputFields = array($userId,$siteName);
+			$passwordObj = new Password();			
+			$result = $passwordObj->readDataByQueryForGrid($query,$inputFields,$outputArray,'',$start,$limit);
+            $response = json_encode($result);          
             http_response_code(200);
-            $responseArr = array();
-            $responseArr['success'] = true;
-            $responseArr['data'] = $result;
-            $response = json_encode($responseArr);
             echo $response;
         } catch (Exception $e) {
             Logger::writeLog('ERROR',get_called_class().' - getAllPasswords',$e->getMessage());
