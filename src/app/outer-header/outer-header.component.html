@@ -1,40 +1,72 @@
 <!-- <mat-grid-list cols="6" rowHeight="fit">
     <mat-grid-tile colspan="6"> -->
         <mat-tab-group (selectedTabChange)="tabChanged($event)">
-            <mat-tab label="ROHAN THAKARE">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="example-tab-icon">assignment_ind</mat-icon>
+                    ROHAN THAKARE
+                </ng-template>
                 <app-outer-home></app-outer-home>
             </mat-tab>
-            <mat-tab label="ABOUT">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="example-tab-icon">info</mat-icon>
+                    ABOUT
+                </ng-template>
                 <div class="outer-tab-container mat-elevation-z8">
                     <app-about></app-about>
                 </div>
             </mat-tab>
-            <mat-tab label="SKILL">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="example-tab-icon">pan_tool</mat-icon>
+                    SKILL
+                </ng-template>
                 <div class="outer-tab-container mat-elevation-z8">
                     <app-skill></app-skill>
                 </div>
             </mat-tab>
-            <mat-tab label="EXPERIENCE">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="example-tab-icon">work</mat-icon>
+                    EXPERIENCE
+                </ng-template>
                 <div class="outer-tab-container mat-elevation-z8">
                     <app-experience></app-experience>
                 </div>
             </mat-tab>
-            <mat-tab label="EDUCATION">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="example-tab-icon">library_books</mat-icon>
+                    EDUCATION
+                </ng-template>
                 <div class="outer-tab-container mat-elevation-z8">
                     <app-education></app-education>
                 </div>
             </mat-tab>
-            <mat-tab label="WORK">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="example-tab-icon">computer</mat-icon>
+                    WORK
+                </ng-template>
                 <div class="outer-tab-container mat-elevation-z8">
                     <app-work></app-work>
                 </div>
             </mat-tab>
-            <mat-tab label="CONTACT">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="example-tab-icon">local_phone</mat-icon>
+                    CONTACT
+                </ng-template>
                 <div class="outer-tab-container mat-elevation-z8">
                     <app-contact-me></app-contact-me>
                 </div>
             </mat-tab>
-            <mat-tab label="SIGN-IN">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="example-tab-icon">lock_open</mat-icon>
+                    SIGN-IN
+                </ng-template>
                 <div class="outer-tab-container mat-elevation-z8">
                     <app-login></app-login>
                 </div>
