@@ -35,7 +35,6 @@ Class MasterViewDataAccessor {
 
     public function getNavigationMenu($userId) {
         try{
-            Logger::writeLog('DEBUG',get_called_class().' - getNavigationMenu','User Id - '.$userId);
             $userRoleDao = new UserDataAccessor();
             $role = $userRoleDao->getUserRole($userId);
             $roleDao = new RoleDataAccessor();
@@ -50,16 +49,7 @@ Class MasterViewDataAccessor {
             for($i = 0; $i < count($result); $i++) {
                 if($result[$i]['IS_MENU_ACTION'] == 1) {
                     if($result[$i]['PARENT_VIEW'] != null) {
-                        for($j = 0; $j < count($finalResult); $j++) {
-                            if($finalResult[$j]['SYS_CONFIG_VIEW_ID'] == $result[$i]['PARENT_VIEW']) {
-                                if(array_key_exists('items', $finalResult[$j])) {
-                                    array_push($finalResult[$j]['items'], $result[$i]);
-                                } else {
-                                    $finalResult[$j]['items'] = array();
-                                    array_push($finalResult[$j]['items'], $result[$i]);
-                                }
-                            }
-                        }
+                        $finalResult = $this->findAndUpdateNavigation($finalResult, $result[$i]);
                     } else {
                         array_push($finalResult, $result[$i]);
                     }
@@ -70,6 +60,25 @@ Class MasterViewDataAccessor {
             Logger::writeLog('ERROR',get_called_class().' - getViewConfigByViewCode',$e->getMessage());
             throw new Exception($e->getMessage());
         }
+    }
+
+    public function findAndUpdateNavigation($inputArray, $currentView) {
+        $k = 0;
+        while (count($inputArray) > $k) {
+            if ($inputArray[$k]['SYS_CONFIG_VIEW_ID'] == $currentView['PARENT_VIEW']) {
+                if(array_key_exists('items', $inputArray[$k])) {
+                    array_push($inputArray[$k]['items'], $currentView);                    
+                } else {
+                    $inputArray[$k]['items'] = array();
+                    array_push($inputArray[$k]['items'], $currentView);
+                }
+                break;
+            } else if (array_key_exists('items', $inputArray[$k])){
+                $inputArray[$k]['items'] = $this->findAndUpdateNavigation($inputArray[$k]['items'], $currentView);
+            }
+            $k++;
+        }
+        return $inputArray;
     }
 }
 ?>

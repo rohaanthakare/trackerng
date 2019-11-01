@@ -14,9 +14,7 @@ export class OuterHeaderComponent implements OnInit {
   }
 
   tabChanged(event) {
-    console.log('Tab Changed - ');
-    console.log(event);
-    if (event.tab.textLabel === 'SIGN-IN') {
+    if (event.index === 7) {
       this.router.navigate(['login']);
     }
   }
