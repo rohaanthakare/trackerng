@@ -5,3 +5,8 @@ FEMALE,Female,Female,2,GENDER
 TRANS_TYPE,Transaction Type,Transaction Type,1,
 CREDIT,Credit,Credit,1,TRANS_TYPE
 DEBIT,Debit,Debit,2,TRANS_TYPE
+USER_STATUS,User Status,User Status,1,
+ACTIVE,Active,Active,1,USER_STATUS
+INVITED,Invited,Invited,2,USER_STATUS
+INACTIVE,Inactive,Inactive,3,USER_STATUS
+NEW,New,New,4,USER_STATUS

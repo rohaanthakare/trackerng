@@ -30,6 +30,18 @@ Class UserModuleWorkflow {
             $fieldValue = array($userObj->getUsername(), $userObj->getPassword());
             $result = $userObj->readOneByCustomField($fieldName, $fieldValue);
             if($result) {
+                // Check if user is active or not.
+                $masterDao = new MasterDataAccessor();
+
+                $invitedUserStatus = $masterDao->getConfigByConfigAndParent('ACTIVE', 'USER_STATUS');
+                $newUserStatus = $masterDao->getConfigByConfigAndParent('NEW', 'USER_STATUS');
+                if (isset($result['USER_STATUS']) && $result['USER_STATUS'] == $newUserStatus['SYS_CONFIG_DATA_ID']) {
+                    // Is new User not yet Activated.
+                    throw new Exception('User is not activated, please activate from activation link sent on registered Email.');
+                } else if (isset($result['USER_STATUS']) && $result['USER_STATUS'] == $invitedUserStatus['SYS_CONFIG_DATA_ID']) {
+                    // User is invited but not registered.
+                    
+                }
                 session_start();
                 $_SESSION['username'] = $result['USERNAME'];
                 $_SESSION['user_id'] = $result['SYS_USER_ID'];
