@@ -21,10 +21,10 @@ Class MasterDataAccessor {
     public function getConfigByConfigAndParent($configCode, $parentConfig) {
         try{
             // Get Parent Config Id
-            $parentConfigId = $this->getDataConfigByCode($parentConfig); 
+            $parentConfigObj = $this->getDataConfigByCode($parentConfig); 
             $masterData = new MasterData();
             $fieldName = array('CONFIG_CODE', 'PARENT_CONFIG');
-            $fieldValue = array($configCode, $parentConfigId);
+            $fieldValue = array($configCode, $parentConfigObj['SYS_CONFIG_DATA_ID']);
             $result = $masterData->readOneByCustomField($fieldName, $fieldValue);
             if (!$result['SYS_CONFIG_DATA_ID']) {
                 throw new Exception('No Matching Master data found for Config code - '.$configCode.' and Parent - '.$parentConfig);

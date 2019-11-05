@@ -33,14 +33,14 @@ Class UserModuleWorkflow {
                 // Check if user is active or not.
                 $masterDao = new MasterDataAccessor();
 
-                $invitedUserStatus = $masterDao->getConfigByConfigAndParent('ACTIVE', 'USER_STATUS');
+                $invitedUserStatus = $masterDao->getConfigByConfigAndParent('INVITED', 'USER_STATUS');
                 $newUserStatus = $masterDao->getConfigByConfigAndParent('NEW', 'USER_STATUS');
-                if (isset($result['USER_STATUS']) && $result['USER_STATUS'] == $newUserStatus['SYS_CONFIG_DATA_ID']) {
+                if ((isset($result['USER_STATUS']) && $result['USER_STATUS'] == $newUserStatus['SYS_CONFIG_DATA_ID']) || !isset($result['USER_STATUS'])) {
                     // Is new User not yet Activated.
                     throw new Exception('User is not activated, please activate from activation link sent on registered Email.');
                 } else if (isset($result['USER_STATUS']) && $result['USER_STATUS'] == $invitedUserStatus['SYS_CONFIG_DATA_ID']) {
                     // User is invited but not registered.
-                    
+                    throw new Exception('Looks like you are not on Tracker yet, please register.');
                 }
                 session_start();
                 $_SESSION['username'] = $result['USERNAME'];
@@ -53,7 +53,7 @@ Class UserModuleWorkflow {
             // 
             return $result;
         } catch (Exception $e) {
-            Logger::writeLog('ERROR',get_called_class().' - registerWorkflow',$e->getMessage());
+            Logger::writeLog('ERROR',get_called_class().' - userAuthenticationWorkflow',$e->getMessage());
             throw new Exception($e->getMessage());
         }
     }
