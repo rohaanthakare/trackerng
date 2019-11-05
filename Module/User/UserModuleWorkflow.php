@@ -15,6 +15,10 @@ Class UserModuleWorkflow {
             $userDao = new UserDataAccessor();
             $userDao->getUserByEmailId($userObj->getEmailId());
             // Insert User
+            // Set user status to new
+            $masterDao = new MasterDataAccessor();
+            $newUserStatus = $masterDao->getConfigByConfigAndParent('NEW', 'USER_STATUS');
+            $userObj->setUserStatus($newUserStatus['SYS_CONFIG_DATA_ID']);
             $userId = $userObj->save();
             return $userId;
         } catch (Exception $e) {
