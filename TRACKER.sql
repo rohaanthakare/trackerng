@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 10, 2019 at 11:03 AM
+-- Generation Time: Nov 06, 2019 at 12:34 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -64,7 +64,30 @@ CREATE TABLE IF NOT EXISTS `MASTER_CONFIG_VIEW` (
   `VIEW_TYPE` varchar(20) DEFAULT NULL,
   `PARENT_VIEW` int(10) DEFAULT NULL,
   `DISPLAY_ORDER` int(2) DEFAULT NULL,
+  `IS_MENU_ACTION` tinyint(1) DEFAULT NULL,
+  `IS_TOOLBAR_ACTION` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`SYS_CONFIG_VIEW_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `PASSWORD`
+--
+
+DROP TABLE IF EXISTS `PASSWORD`;
+CREATE TABLE IF NOT EXISTS `PASSWORD` (
+  `SYS_PASSWORD_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `SYS_CREATION_DATE` timestamp NOT NULL,
+  `SYS_UPDATE_DATE` timestamp NULL DEFAULT NULL,
+  `SYS_CREATION_USER` int(10) NOT NULL,
+  `SYS_UPDATE_USER` int(10) DEFAULT NULL,
+  `NAME` varchar(30) NOT NULL,
+  `USERNAME` varchar(50) DEFAULT NULL,
+  `SITE_LINK` varchar(200) DEFAULT NULL,
+  `PASSWORD` varchar(50) NOT NULL,
+  `SYS_USER_ID` int(10) NOT NULL,
+  PRIMARY KEY (`SYS_PASSWORD_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
