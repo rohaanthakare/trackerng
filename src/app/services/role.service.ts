@@ -31,7 +31,7 @@ export class RoleService {
   }
 
   uploadRoles(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
-    from(rows).pipe(
+    return from(rows).pipe(
       concatMap(currentRow => {
         const roleObj = new Role();
         roleObj.roleCode = currentRow[0];
@@ -39,31 +39,17 @@ export class RoleService {
         roleObj.roleDesc = currentRow[2];
         return this.createRole(roleObj);
       })
-    ).subscribe(
-      data => {
-        dataLoaderCmp.updateProgress(moduleDetails, true);
-      },
-      error => {
-        dataLoaderCmp.updateProgress(moduleDetails, false);
-      }
     );
   }
 
   uploadRolePermissions(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
-    from(rows).pipe(
+    return from(rows).pipe(
       concatMap(currentRow => {
         const roleObj = new RolePermissions();
         roleObj.roleCode = currentRow[0];
         roleObj.viewCode = currentRow[1];
         return this.createRolePermissions(roleObj);
       })
-    ).subscribe(
-      data => {
-        dataLoaderCmp.updateProgress(moduleDetails, true);
-      },
-      error => {
-        dataLoaderCmp.updateProgress(moduleDetails, false);
-      }
     );
   }
 }

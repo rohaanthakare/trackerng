@@ -31,7 +31,6 @@ export class UserService {
   }
 
   uploadUsers(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
-    console.log('User Upload Started');
     return from(rows).pipe(
       concatMap(currentRow => {
         const userObj = new User();
@@ -42,15 +41,6 @@ export class UserService {
         return this.registerUser(userObj);
       })
     );
-    // .subscribe(
-    //   data => {
-    //     console.log('User Uploaded');
-    //     dataLoaderCmp.updateProgress(moduleDetails, true);
-    //   },
-    //   error => {
-    //     dataLoaderCmp.updateProgress(moduleDetails, false);
-    //   }
-    // );
   }
 
   uploadUserRoles(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {

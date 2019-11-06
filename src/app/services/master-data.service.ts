@@ -23,7 +23,6 @@ export class MasterDataService {
   }
 
   uploadMasterData(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
-    console.log('Master Data Upload started');
     return from(rows).pipe(
       concatMap(currentRow => {
         const masterDataObj = new MasterData();
@@ -35,14 +34,5 @@ export class MasterDataService {
         return this.createMasterData(masterDataObj);
       })
     );
-    // .subscribe(
-    //   data => {
-    //     console.log('Master Data Uploaded');
-    //     dataLoaderCmp.updateProgress(moduleDetails, true);
-    //   },
-    //   error => {
-    //     dataLoaderCmp.updateProgress(moduleDetails, false);
-    //   }
-    // );
   }
 }

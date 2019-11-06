@@ -43,7 +43,7 @@ export class MasterViewService {
   }
 
   uploadViewConfig(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
-    from(rows).pipe(
+    return from(rows).pipe(
       concatMap(currentRow => {
         const masterViewObj = new MasterView();
         masterViewObj.viewCode = currentRow[0];
@@ -58,13 +58,6 @@ export class MasterViewService {
         masterViewObj.isToolbarAction = currentRow[9];
         return this.createMasterView(masterViewObj);
       })
-    ).subscribe(
-      data => {
-        dataLoaderCmp.updateProgress(moduleDetails, true);
-      },
-      error => {
-        dataLoaderCmp.updateProgress(moduleDetails, false);
-      }
     );
   }
 

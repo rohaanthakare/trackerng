@@ -1,6 +1,7 @@
 <?php
 require_once(ROOT_DIR.'/Module/User/UserDataAccessor.php');
 require_once(ROOT_DIR.'/Module/User/Models/UserRoles.php');
+require_once(ROOT_DIR.'/Module/DataMaster/MasterDataAccessor.php');
 
 Class UserModuleWorkflow {
     public function registerWorkflow($userObj) {
