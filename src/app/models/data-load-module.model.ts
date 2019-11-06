@@ -11,4 +11,5 @@ export class DataLoadModule {
     uploadedPercentage: number;
     failedPercentage: number;
     remainingPercentage: number;
+    records: any[];
 }

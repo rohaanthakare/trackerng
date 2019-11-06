@@ -1,5 +1,12 @@
 <LoadDataFiles>
 	<LoadDataModule>
+		<ModuleName>MasterData</ModuleName>
+		<DataFileName>MasterData.csv</DataFileName>
+		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+		<ActionName>Master Data Upload</ActionName>
+		<Action>uploadMasterData</Action>
+	</LoadDataModule>
+	<LoadDataModule>
 		<ModuleName>User</ModuleName>
 		<DataFileName>Users.csv</DataFileName>
 		<DataFilePath>assets/Data/BaseData/</DataFilePath>
@@ -12,13 +19,6 @@
 		<DataFilePath>assets/Data/BaseData/</DataFilePath>
 		<ActionName>Roles Upload</ActionName>
 		<Action>uploadRoles</Action>
-	</LoadDataModule>
-	<LoadDataModule>
-		<ModuleName>MasterData</ModuleName>
-		<DataFileName>MasterData.csv</DataFileName>
-		<DataFilePath>assets/Data/BaseData/</DataFilePath>
-		<ActionName>Master Data Upload</ActionName>
-		<Action>uploadMasterData</Action>
 	</LoadDataModule>
 	<LoadDataModule>
 		<ModuleName>MasterView</ModuleName>

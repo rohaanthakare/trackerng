@@ -35,6 +35,7 @@ export class DataLoaderComponent implements OnInit {
         const loadDataXML = xmlParser.parseFromString(data, 'text/xml');
         this.totalModules = loadDataXML.getElementsByTagName('LoadDataModule').length;
         for (let index = 0; index < this.totalModules; index++) {
+          console.log('Inside getLoadDataConfig - In for Loop');
           const currentModule = loadDataXML.getElementsByTagName('LoadDataModule')[index];
           const newModule = new DataLoadModule();
           newModule.moduleName = currentModule.getElementsByTagName('ModuleName')[0].textContent;
@@ -61,6 +62,7 @@ export class DataLoaderComponent implements OnInit {
       concatMap(param => this.loadData.getModuleData(param))
     ).subscribe(
       data => {
+        console.log('Reading File Started = ' + data.moduleDetail.dataFileName);
         const moduleDetail = data.moduleDetail;
         const allTextLines = data.content.split(/\r\n|\n/);
         const records = [];
@@ -75,13 +77,42 @@ export class DataLoaderComponent implements OnInit {
         moduleDetail.uploadedPercentage = 0;
         moduleDetail.failedPercentage = 0;
         moduleDetail.remainingPercentage = 100;
+        moduleDetail.records = records;
         this.moduleForLoading.push(moduleDetail);
-        const moduleName = moduleDetail.moduleName + 'Service';
-        const serviceObj = this.injector.get<any>(loadDataModels[moduleName]);
-        serviceObj[moduleDetail.action](records, moduleDetail, this);
+        // const moduleName = moduleDetail.moduleName + 'Service';
+        // const serviceObj = this.injector.get<any>(loadDataModels[moduleName]);
+        // serviceObj[moduleDetail.action](records, moduleDetail, this);
       },
       error => {
         console.log('Inside Error');
+      },
+      () => {
+        console.log('loaded file');
+        this.uploadData();
+      }
+    );
+  }
+
+  uploadData() {
+    console.log('Inside upload data');
+    let tmpIndex = -1;
+    from(this.moduleForLoading).pipe(
+      concatMap(param => {
+        console.log('Inside Upload data Concat Map');
+        tmpIndex++;
+        const moduleName = param.moduleName + 'Service';
+        const serviceObj = this.injector.get<any>(loadDataModels[moduleName]);
+        return serviceObj[param.action](param.records, param, this);
+      })
+    ).subscribe(
+      data => {
+        this.updateProgress(this.moduleForLoading[tmpIndex], true);
+        // tmpIndex++;
+        console.log('Uploaded Complete - ' + tmpIndex);
+      },
+      error => console.log(error),
+      () => {
+        console.log('File Uploaded Full');
       }
     );
   }

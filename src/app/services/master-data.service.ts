@@ -23,7 +23,8 @@ export class MasterDataService {
   }
 
   uploadMasterData(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
-    from(rows).pipe(
+    console.log('Master Data Upload started');
+    return from(rows).pipe(
       concatMap(currentRow => {
         const masterDataObj = new MasterData();
         masterDataObj.configCode = currentRow[0];
@@ -33,13 +34,15 @@ export class MasterDataService {
         masterDataObj.parentConfig = currentRow[4];
         return this.createMasterData(masterDataObj);
       })
-    ).subscribe(
-      data => {
-        dataLoaderCmp.updateProgress(moduleDetails, true);
-      },
-      error => {
-        dataLoaderCmp.updateProgress(moduleDetails, false);
-      }
     );
+    // .subscribe(
+    //   data => {
+    //     console.log('Master Data Uploaded');
+    //     dataLoaderCmp.updateProgress(moduleDetails, true);
+    //   },
+    //   error => {
+    //     dataLoaderCmp.updateProgress(moduleDetails, false);
+    //   }
+    // );
   }
 }

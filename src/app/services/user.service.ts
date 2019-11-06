@@ -31,7 +31,8 @@ export class UserService {
   }
 
   uploadUsers(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
-    from(rows).pipe(
+    console.log('User Upload Started');
+    return from(rows).pipe(
       concatMap(currentRow => {
         const userObj = new User();
         userObj.username = currentRow[0];
@@ -40,14 +41,16 @@ export class UserService {
         userObj.contactNo = currentRow[3];
         return this.registerUser(userObj);
       })
-    ).subscribe(
-      data => {
-        dataLoaderCmp.updateProgress(moduleDetails, true);
-      },
-      error => {
-        dataLoaderCmp.updateProgress(moduleDetails, false);
-      }
     );
+    // .subscribe(
+    //   data => {
+    //     console.log('User Uploaded');
+    //     dataLoaderCmp.updateProgress(moduleDetails, true);
+    //   },
+    //   error => {
+    //     dataLoaderCmp.updateProgress(moduleDetails, false);
+    //   }
+    // );
   }
 
   uploadUserRoles(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
