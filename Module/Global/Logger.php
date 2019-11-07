@@ -25,7 +25,7 @@ Class Logger{
 
 		self::setLogParams();
 		if(self::$APP_MODE == 'DEVELOPMENT'){
-			$currentWorkingDir = $_SERVER['DOCUMENT_ROOT'].self::$PROJECT_NAME;
+			$currentWorkingDir = $_SERVER['DOCUMENT_ROOT'].self::$LOG_FILE_PATH_SEPARATOR.self::$PROJECT_NAME;
 			
 			$logFileName = $currentWorkingDir.self::$LOG_FILE_PATH_SEPARATOR.self::$LOG_FILE_PATH.self::$LOG_FILE_PATH_SEPARATOR.self::$LOG_FILE_NAME;
 			if(!file_exists($logFileName)){

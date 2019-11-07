@@ -1,5 +1,7 @@
 <?php
-require_once(ROOT_DIR.'Module/Global/ExceptionHandler.php');
+require_once(ROOT_DIR.'/Module/Global/Database.php');
+require_once(ROOT_DIR.'/Module/Global/DBUtils.php');
+require_once(ROOT_DIR.'/Module/Global/ExceptionHandler.php');
 /*
 	Name : readAll()
 	Description : To fetch all records from the table and return in Array
@@ -60,7 +62,6 @@ Class DAOUtils{
 				$query = $query.$this->fieldList[$i]." = ?,";
 			}
 			$query = rtrim($query,',');
-
 			if($stmt = $this->conn->prepare($query)){
 				$bindParamArray = array();
 				$bindParamArray = $this->allFieldsGetter();

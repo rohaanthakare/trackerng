@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+// @import './custom_theme1.scss';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~material-design-icons/iconfont/material-icons.css';
+@import '@fortawesome/fontawesome-free/css/all.css';
+
+
+.error-message{
+    background-color: #FF5964;
+    color: #FFFFFF;
+}
+
+.success-message{
+    background-color: #4BBC8E;
+    color: #FFFFFF;
+}
+
+body{margin:0}

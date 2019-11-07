@@ -1,0 +1,30 @@
+<mat-toolbar class="header-elevation" color="primary">
+    <mat-toolbar-row>
+        <button mat-icon-button color="light" (click)="toggleSideNav()">
+            <i class="material-icons">menu</i>
+        </button>
+        <span>
+            <img src="../../assets/Logos/tracker_light.png" style="width: 130px; vertical-align: middle;">
+        </span>
+        <span class="example-spacer"></span>
+        <span class="user-details">
+            <button mat-button color="basic" [matMenuTriggerFor]="menu">
+                {{displayName}} <img alt="Not Found" onerror="this.src='../../assets/Profiles/profile.png'" src="../../assets/Profiles/{{userId}}/profile.png">
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <i class="material-icons">account_circle</i>
+                    <span>Profile</span>
+                </button>
+                <button mat-menu-item>
+                    <i class="material-icons">settings_applications</i>
+                    <span>Settings</span>
+                </button>
+                <button mat-menu-item (click)="logout()">
+                    <i class="material-icons">power_settings_new</i>
+                    <span>Logout</span>
+                </button>
+            </mat-menu>
+        </span>
+    </mat-toolbar-row>
+</mat-toolbar>
