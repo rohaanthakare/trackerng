@@ -1,0 +1,17 @@
+View Code, View Title, View Name, Icon, Route, View Type, Parent View, Dsiplay Order,Is Menu, Is Toolbar
+ADMIN_DASHBOARD,Dashboard,Dashboard,dashboard,home/admin/dashboard,view,,1,1,0
+MASTER_CONFIG,Application,Application,settings_applications,home/master,view,,1,1,0
+VIEW_MASTER,Master View,Master View,view_list,home/views,view,MASTER_CONFIG,1,1,0
+DATA_MASTER,Master Data,Master Data,list,home/master-data,view,MASTER_CONFIG,1,1,0
+BANK_MASTER,Bank Master,Bank Master,account_balance,home/banks,view,MASTER_CONFIG,1,1,0
+BANKS,Banks,Banks,account_balance,home/banks,view,BANK_MASTER,1,1,0
+BANK_BRANCHES,Branches,Branches,business,home/branches,view,BANK_MASTER,1,1,0
+TRACKER_DASHBOARD,Dashboard,Dashboard,dashboard,home/dashboard,view,,1,1,0
+PASSWORD_TRACKER,Password Tracker,Password Tracker,lock,home/dashboard,view,,1,1,0
+PASSWORD_LIST,Passwords,Passwords,list,home/password,view,PASSWORD_TRACKER,1,1,0
+PASSWORD_CREATE,New Password,Create Password,add,home/password/create,create,PASSWORD_LIST,1,0,1
+PASSWORD_EDIT,Edit Password,Edit Password,edit,home/password/edit,edit,PASSWORD_LIST,1,0,1
+PASSWORD_SHOW,View Password,View Password,remove_red_eye,home/password/create,edit,PASSWORD_LIST,1,0,1
+MONEY_TRACKER,Money Tracker,Money Tracker,monetization_on,home/dashboard,view,,1,1,0
+BANK_ACCOUNTS,Accounts,Accounts,account_balance,home/accounts,view,MONEY_TRACKER,1,1,0
+TRANSACTIONS,Transactions,Transactions,view_list,home/transactions,view,MONEY_TRACKER,2,1,0

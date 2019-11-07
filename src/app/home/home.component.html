@@ -1,1 +1,11 @@
-<p>home works!</p>
+<app-header (toggleNavEvent)="sidenav.toggle()"></app-header>
+<mat-sidenav-container class="app-main">
+    <mat-sidenav #sidenav>
+        <app-menu></app-menu>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="mat-elevation-z8 main-container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
