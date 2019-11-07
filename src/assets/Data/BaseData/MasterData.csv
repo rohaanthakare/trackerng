@@ -10,3 +10,7 @@ ACTIVE,Active,Active,1,USER_STATUS
 INVITED,Invited,Invited,2,USER_STATUS
 INACTIVE,Inactive,Inactive,3,USER_STATUS
 NEW,New,New,4,USER_STATUS
+TITLE,Title,Title,1,
+MR,Mr.,Mr.,1,TITLE
+MRS,Mrs.,Mrs.,2,TITLE
+MISS,Ms.,Ms.,3,TITLE

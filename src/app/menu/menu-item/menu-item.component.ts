@@ -12,10 +12,14 @@ export class MenuItemComponent implements OnInit {
   @Input() menuItem: any;
   @Input() depth: number;
   expanded: boolean;
+  isMaterialIcon = true;
   constructor(private router: Router,
               private menuService: MenuService) { }
 
   ngOnInit() {
+    if (this.menuItem.ICON_CLASS.includes('fas')) {
+      this.isMaterialIcon = false;
+    }
     if (!this.depth) {
       this.depth = 0;
     }

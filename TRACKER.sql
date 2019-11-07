@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 06, 2019 at 12:34 PM
+-- Generation Time: Nov 07, 2019 at 01:20 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -21,6 +21,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `TRACKER`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `CONTACT`
+--
+
+DROP TABLE IF EXISTS `CONTACT`;
+CREATE TABLE IF NOT EXISTS `CONTACT` (
+  `SYS_CONTACT_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `SYS_CREATION_DATE` timestamp NOT NULL,
+  `SYS_UPDATE_DATE` timestamp NULL DEFAULT NULL,
+  `SYS_CREATION_USER` int(10) NOT NULL,
+  `SYS_UPDATE_USER` int(10) DEFAULT NULL,
+  `TITLE` int(10) DEFAULT NULL,
+  `FIRST_NAME` varchar(40) NOT NULL,
+  `MIDDLE_NAME` varchar(40) DEFAULT NULL,
+  `LAST_NAME` varchar(50) DEFAULT NULL,
+  `EMAIL` varchar(200) DEFAULT NULL,
+  `CONTACT_NO` int(10) DEFAULT NULL,
+  `SECONDARY_CONTACT_NO` int(10) DEFAULT NULL,
+  `SYS_CONTACT_GROUP_ID` int(10) DEFAULT NULL,
+  `SYS_USER_ID` int(10) NOT NULL,
+  PRIMARY KEY (`SYS_CONTACT_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
