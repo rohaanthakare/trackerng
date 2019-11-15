@@ -4,11 +4,21 @@
 <div class="action-panel">
     <button mat-raised-button color="primary" (click)="toolbarButtonClicked(action)" [disabled]="action.isDisabled"
         *ngFor="let action of toolbarActions;">
-        <i class="material-icons">{{action.ICON_CLASS}}</i>
+        <span *ngIf="isMaterialIcon(action)">
+            <i class="material-icons">{{action.ICON_CLASS}}</i>
+        </span>
+        <span *ngIf="!isMaterialIcon(action)">
+            <i class="{{action.ICON_CLASS}} fas-menu-icons"></i>
+        </span>
+        
         {{action.VIEW_NAME}}
     </button>
 </div>
-<table mat-table [dataSource]="dataSource" matSort style="width: 100%;">
+<ng-container *ngIf="dataSource.length == 0">
+    No Data to Show
+</ng-container>
+<ng-container *ngIf="dataSource.length > 0">
+    <table mat-table [dataSource]="dataSource" matSort style="width: 100%;">
     <ng-container *ngFor="let column of columnDefs" [matColumnDef]="column.name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{column.header}}</th>
         <td mat-cell *matCellDef="let row">
@@ -19,5 +29,6 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
         [ngClass]="{'selected-row': selectedRowIndex == row[idColumn]}"
         (click)="rowSelected(row)">
-</table>
-<mat-paginator  [pageSizeOptions]="[5, 10, 20]" [length]="totalRecords" showFirstLastButtons></mat-paginator>
+    </table>
+    <mat-paginator  [pageSizeOptions]="[5, 10, 20]" [length]="totalRecords" showFirstLastButtons></mat-paginator>
+</ng-container>

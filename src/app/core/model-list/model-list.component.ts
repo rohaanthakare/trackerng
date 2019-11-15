@@ -85,4 +85,11 @@ export class ModelListComponent implements OnInit, AfterViewInit {
       });
     }
   }
+
+  isMaterialIcon(action) {
+    if (action.ICON_CLASS.includes('fas')) {
+      return false;
+    }
+    return true;
+  }
 }

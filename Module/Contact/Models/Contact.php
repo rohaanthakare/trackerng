@@ -5,7 +5,7 @@ Class User extends DAOUtils{
     protected $model = 'CONTACT';
     protected $fieldList = array('SYS_CONTACT_ID', 'SYS_CREATION_DATE', 'SYS_UPDATE_DATE', 'SYS_CREATION_USER', 'SYS_UPDATE_USER',
         'TITLE', 'FIRST_NAME', 'MIDDLE_NAME','LAST_NAME','EMAIL', 'CONTACT_NO', 'SECONDARY_CONTACT_NO', 'SYS_CONTACT_GROUP_ID',
-        'SYS_USER_ID');
+        'NICK_NAME', 'SYS_TRACKER_ID', 'SYS_USER_ID');
     protected $keyField = 'SYS_CONTACT_ID';
     protected $keyFieldValue;
     protected $sysContactId;
@@ -21,6 +21,8 @@ Class User extends DAOUtils{
     protected $contactNo;
     protected $secondaryContactNo;
     protected $sysContactGroupId;
+    protected $nickName;
+    protected $sysTrackerId;
     protected $sysUserId;
     
     public function getSysContactId() {
@@ -167,6 +169,24 @@ Class User extends DAOUtils{
         return $this;
     }
 
+    public function getNickName() {
+        return $this->nickName;
+    }
+
+    public function setNickName($nickName) {
+        $this->nickName = $nickName;
+        return $this;
+    }
+
+    public function getSysTrackerId() {
+        return $this->sysTrackerId;
+    }
+
+    public function setSysTrackerId($sysTrackerId) {
+        $this->sysTrackerId = $sysTrackerId;
+        return $this;
+    }
+
     public function allFieldsSetter($fetchedRow) {
         try{
             $this->setSysContactId($fetchedRow['SYS_CONTACT_ID']);
@@ -182,6 +202,8 @@ Class User extends DAOUtils{
             $this->setContactNo($fetchedRow['CONTACT_NO']);
             $this->setSecondaryContactNo($fetchedRow['SECONDARY_CONTACT_NO']);
             $this->setSysContactGroupId($fetchedRow['SYS_CONTACT_GROUP_ID']);
+            $this->setNickName($fetchedRow['NICK_NAME']);
+            $this->setSysTrackerId($fetchedRow['SYS_TRACKER_ID']);
             $this->setSysUserId($fetchedRow['SYS_USER_ID']);
 
             $this->setKeyFieldValue($fetchedRow['SYS_CONTACT_ID']);
@@ -207,7 +229,9 @@ Class User extends DAOUtils{
             $dataRow[10] = $this->getContactNo();
             $dataRow[11] = $this->getSecondaryContactNo();
             $dataRow[12] = $this->getSysContactGroupId();
-            $dataRow[13] = $this->getSysUserId();
+            $dataRow[13] = $this->getNickName();
+            $dataRow[14] = $this->getSysTrackerId();
+            $dataRow[15] = $this->getSysUserId();
 
             return $dataRow;
         } catch (Exception $e) {

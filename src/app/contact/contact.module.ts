@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { Routes, RouterModule } from '@angular/router';
+import { CoreModule } from '../core/core.module';
 
 const routes: Routes = [{
   path: '',
@@ -22,6 +23,7 @@ const routes: Routes = [{
   declarations: [ContactListComponent, ContactFormComponent],
   imports: [
     CommonModule,
+    CoreModule,
     RouterModule.forChild(routes)
   ]
 })
