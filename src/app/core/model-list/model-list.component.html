@@ -14,10 +14,10 @@
         {{action.VIEW_NAME}}
     </button>
 </div>
-<ng-container *ngIf="dataSource.length == 0">
+<!-- <ng-container *ngIf="dataSource.length == 0">
     No Data to Show
 </ng-container>
-<ng-container *ngIf="dataSource.length > 0">
+<ng-container *ngIf="dataSource.length > 0"> -->
     <table mat-table [dataSource]="dataSource" matSort style="width: 100%;">
     <ng-container *ngFor="let column of columnDefs" [matColumnDef]="column.name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{column.header}}</th>
@@ -31,4 +31,4 @@
         (click)="rowSelected(row)">
     </table>
     <mat-paginator  [pageSizeOptions]="[5, 10, 20]" [length]="totalRecords" showFirstLastButtons></mat-paginator>
-</ng-container>
+<!-- </ng-container> -->
