@@ -11,15 +11,11 @@ import { concatMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
-  module = 'User';
+  module = 'user';
   constructor(private http: HttpClient) { }
 
-  registerUser(userInfo: any) {
-    let formData = new FormData();
-    formData.append('Module', this.module);
-    formData.append('action', 'registerUser');
-    formData = FormUtils.getFormParams(userInfo, formData);
-    return this.http.post<any>(environment.baseUrl, formData);
+  registerUser(user: any) {
+    return this.http.post<any>(`${environment.baseUrl}/api/register_user`, user);
   }
 
   attachRoleToUser(userRoleObj: any) {
