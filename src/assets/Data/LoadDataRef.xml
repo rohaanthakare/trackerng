@@ -7,11 +7,11 @@
 		<Action>uploadMasterData</Action>
 	</LoadDataModule>
 	<LoadDataModule>
-		<ModuleName>User</ModuleName>
-		<DataFileName>Users.csv</DataFileName>
+		<ModuleName>MasterView</ModuleName>
+		<DataFileName>MasterView.csv</DataFileName>
 		<DataFilePath>assets/Data/BaseData/</DataFilePath>
-		<ActionName>Users Upload</ActionName>
-		<Action>uploadUsers</Action>
+		<ActionName>Master View Upload</ActionName>
+		<Action>uploadViewConfig</Action>
 	</LoadDataModule>
 	<LoadDataModule>
 		<ModuleName>Role</ModuleName>
@@ -21,18 +21,18 @@
 		<Action>uploadRoles</Action>
 	</LoadDataModule>
 	<LoadDataModule>
-		<ModuleName>MasterView</ModuleName>
-		<DataFileName>MasterView.csv</DataFileName>
-		<DataFilePath>assets/Data/BaseData/</DataFilePath>
-		<ActionName>Master View Upload</ActionName>
-		<Action>uploadViewConfig</Action>
-	</LoadDataModule>
-	<LoadDataModule>
 		<ModuleName>Role</ModuleName>
 		<DataFileName>RolePermissions.csv</DataFileName>
 		<DataFilePath>assets/Data/BaseData/</DataFilePath>
 		<ActionName>Role Permission Upload</ActionName>
 		<Action>uploadRolePermissions</Action>
+	</LoadDataModule>
+	<LoadDataModule>
+		<ModuleName>User</ModuleName>
+		<DataFileName>Users.csv</DataFileName>
+		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+		<ActionName>Users Upload</ActionName>
+		<Action>uploadUsers</Action>
 	</LoadDataModule>
 	<LoadDataModule>
 		<ModuleName>User</ModuleName>

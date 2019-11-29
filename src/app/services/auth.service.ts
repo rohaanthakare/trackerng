@@ -28,16 +28,17 @@ export class AuthService {
   }
 
   authenticateUser(userInfo) {
-      let formData = new FormData();
-      formData.append('Module', 'User');
-      formData.append('action', 'authenticateUser');
-      formData = FormUtils.getFormParams(userInfo, formData);
-      return this.http.post<any>(environment.baseUrl, formData).pipe(map(res => {
-        if (res.user) {
-          this.setUserDetails(res.user);
-          this.setUserToken(res.token);
-        }
-      }));
+    return this.http.get(`${environment.baseUrl}/api/get_user`);
+      // let formData = new FormData();
+      // formData.append('Module', 'User');
+      // formData.append('action', 'authenticateUser');
+      // formData = FormUtils.getFormParams(userInfo, formData);
+      // return this.http.post<any>(environment.baseUrl, formData).pipe(map(res => {
+      //   if (res.user) {
+      //     this.setUserDetails(res.user);
+      //     this.setUserToken(res.token);
+      //   }
+      // }));
   }
 
   logout() {
