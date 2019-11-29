@@ -11,15 +11,10 @@ import { concatMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MasterDataService {
-  module = 'MasterData';
   constructor(private http: HttpClient) { }
 
   createMasterData(masterDataObj) {
-    let formData = new FormData();
-    formData.append('Module', this.module);
-    formData.append('action', 'createMasterData');
-    formData = FormUtils.getFormParams(masterDataObj, formData);
-    return this.http.post(environment.baseUrl, formData);
+    return this.http.post(`${environment.baseUrl}/api/create_master_data`, masterDataObj);
   }
 
   uploadMasterData(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {

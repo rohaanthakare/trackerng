@@ -14,13 +14,13 @@ export class RegisterComponent implements OnInit {
   passwordCtrl = new FormControl('', [Validators.required, Validators.minLength(6)]);
   confirmPassCtrl = new FormControl('', [Validators.required]);
   emailCtrl = new FormControl('', [Validators.required, Validators.email]);
-  contactNoCtrl = new FormControl('', [Validators.required]);
+  mobileNoCtrl = new FormControl('', [Validators.required]);
   registrationForm = new FormGroup({
     username: this.usernameCtrl,
     password: this.passwordCtrl,
     confirmPassword: this.confirmPassCtrl,
     emailId: this.emailCtrl,
-    contactNo: this.contactNoCtrl
+    mobileNo: this.mobileNoCtrl
   });
   constructor(private userService: UserService,
               private router: Router,

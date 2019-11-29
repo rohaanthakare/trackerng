@@ -33,7 +33,7 @@ export class UserService {
         userObj.username = currentRow[0];
         userObj.password = currentRow[1];
         userObj.emailId = currentRow[2];
-        userObj.contactNo = currentRow[3];
+        userObj.mobileNo = currentRow[3];
         return this.registerUser(userObj);
       })
     );
