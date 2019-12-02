@@ -19,11 +19,7 @@ export class RoleService {
   }
 
   createRolePermissions(rolePerm) {
-    let formData = new FormData();
-    formData.append('Module', this.module);
-    formData.append('action', 'createRolePermissions');
-    formData = FormUtils.getFormParams(rolePerm, formData);
-    return this.http.post(environment.baseUrl, formData);
+    return this.http.post(`${environment.baseUrl}/api/assign_permission`, rolePerm);
   }
 
   uploadRoles(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
