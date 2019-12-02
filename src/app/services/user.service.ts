@@ -18,12 +18,8 @@ export class UserService {
     return this.http.post<any>(`${environment.baseUrl}/api/register_user`, user);
   }
 
-  attachRoleToUser(userRoleObj: any) {
-    let formData = new FormData();
-    formData.append('Module', this.module);
-    formData.append('action', 'attachRoleToUser');
-    formData = FormUtils.getFormParams(userRoleObj, formData);
-    return this.http.post<any>(environment.baseUrl, formData);
+  attachRoleToUser(userRole: any) {
+    return this.http.post<any>(`${environment.baseUrl}/api/attach_role`, userRole);
   }
 
   uploadUsers(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
