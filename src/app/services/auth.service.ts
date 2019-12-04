@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   authenticateUser(userInfo) {
-    return this.http.get(`${environment.baseUrl}/api/get_user`);
+    return this.http.post(`${environment.baseUrl}/api/authenticate_user`, userInfo);
       // let formData = new FormData();
       // formData.append('Module', 'User');
       // formData.append('action', 'authenticateUser');
