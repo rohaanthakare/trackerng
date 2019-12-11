@@ -20,12 +20,7 @@ export class MasterViewService {
   }
 
   getNavigationMenu() {
-    return this.http.get<any>(environment.baseUrl, {
-      params: {
-        Module: this.module,
-        action: 'getNavigationMenu'
-      }
-    });
+    return this.http.get<any>(`${environment.baseUrl}/api/get_navigation_menu`);
   }
 
   getToolbarActions(viewCode) {
