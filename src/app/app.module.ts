@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Angular Material Imports
 import { MatInputModule } from '@angular/material/input';
@@ -46,6 +46,7 @@ import { EducationComponent } from './education/education.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { WorkComponent } from './work/work.component';
 import { ContactMeComponent } from './contact-me/contact-me.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { ContactMeComponent } from './contact-me/contact-me.component';
     CoreModule, AppRoutingModule
   ],
   entryComponents: [ MessageSnackBarComponent],
-  providers: [ AuthService, UserService],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+    AuthService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
