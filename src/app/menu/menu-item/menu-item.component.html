@@ -1,12 +1,12 @@
 <a mat-list-item [ngStyle]="{'padding-left': (depth * 20) + 10 + 'px'}" style="padding-right: 10px;"
     (click)="onMenuClicked(menuItem)" class="tracker-navigation">
     <span *ngIf="isMaterialIcon">
-        <i class="material-icons">{{menuItem.ICON_CLASS}}</i>
+        <i class="material-icons">{{menuItem.iconClass}}</i>
     </span>
     <span *ngIf="!isMaterialIcon">
-        <i class="{{menuItem.ICON_CLASS}} fas-menu-icons"></i>
+        <i class="{{menuItem.iconClass}} fas-menu-icons"></i>
     </span>
-    {{menuItem.VIEW_TITLE}}
+    {{menuItem.viewTitle}}
 </a>
 <div *ngIf="expanded">
     <app-menu-item [depth]="depth+1" [menuItem]="item" *ngFor="let item of menuItem.items"></app-menu-item>
