@@ -40,13 +40,13 @@ export class MasterViewService {
         masterViewObj.viewCode = currentRow[0];
         masterViewObj.viewTitle = currentRow[1];
         // masterViewObj.viewName = currentRow[2];
-        // masterViewObj.icon = currentRow[3];
-        // masterViewObj.route = currentRow[4];
+        masterViewObj.iconClass = currentRow[3];
+        masterViewObj.viewRoute = currentRow[4];
         masterViewObj.viewType = currentRow[5];
         masterViewObj.parentView = currentRow[6];
         masterViewObj.displayOrder = currentRow[7];
-        // masterViewObj.isMenuAction = currentRow[8];
-        // masterViewObj.isToolbarAction = currentRow[9];
+        masterViewObj.isMenu = currentRow[8];
+        masterViewObj.isToolbar = currentRow[9];
         return this.createMasterView(masterViewObj);
       })
     );
