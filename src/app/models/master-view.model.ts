@@ -8,4 +8,5 @@ export class MasterView {
     displayOrder: number;
     isMenu: boolean;
     isToolbar: boolean;
+    items: any;
 }
