@@ -11,23 +11,15 @@ import { concatMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
-  module = 'User';
+  module = 'user';
   constructor(private http: HttpClient) { }
 
-  registerUser(userInfo: any) {
-    let formData = new FormData();
-    formData.append('Module', this.module);
-    formData.append('action', 'registerUser');
-    formData = FormUtils.getFormParams(userInfo, formData);
-    return this.http.post<any>(environment.baseUrl, formData);
+  registerUser(user: any) {
+    return this.http.post<any>(`${environment.baseUrl}/api/register_user`, user);
   }
 
-  attachRoleToUser(userRoleObj: any) {
-    let formData = new FormData();
-    formData.append('Module', this.module);
-    formData.append('action', 'attachRoleToUser');
-    formData = FormUtils.getFormParams(userRoleObj, formData);
-    return this.http.post<any>(environment.baseUrl, formData);
+  attachRoleToUser(userRole: any) {
+    return this.http.post<any>(`${environment.baseUrl}/api/attach_role`, userRole);
   }
 
   uploadUsers(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
@@ -37,7 +29,7 @@ export class UserService {
         userObj.username = currentRow[0];
         userObj.password = currentRow[1];
         userObj.emailId = currentRow[2];
-        userObj.contactNo = currentRow[3];
+        userObj.mobileNo = currentRow[3];
         return this.registerUser(userObj);
       })
     );

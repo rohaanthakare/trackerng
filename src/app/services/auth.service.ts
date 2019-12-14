@@ -19,6 +19,10 @@ export class AuthService {
     localStorage.setItem('Token', token);
   }
 
+  getUserToken() {
+    return localStorage.getItem('Token');
+  }
+
   setUserDetails(userDetails: any) {
     localStorage.setItem('currentUser', JSON.stringify(userDetails));
   }
@@ -28,16 +32,13 @@ export class AuthService {
   }
 
   authenticateUser(userInfo) {
-      let formData = new FormData();
-      formData.append('Module', 'User');
-      formData.append('action', 'authenticateUser');
-      formData = FormUtils.getFormParams(userInfo, formData);
-      return this.http.post<any>(environment.baseUrl, formData).pipe(map(res => {
-        if (res.user) {
-          this.setUserDetails(res.user);
-          this.setUserToken(res.token);
-        }
-      }));
+    return this.http.post(`${environment.baseUrl}/api/authenticate_user`, userInfo).pipe(map((res: any) => {
+      if (res.user) {
+        this.setUserDetails(res.user);
+        this.setUserToken(res.user_token);
+      }
+      return res;
+    }));
   }
 
   logout() {

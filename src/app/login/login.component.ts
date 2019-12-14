@@ -29,8 +29,12 @@ export class LoginComponent implements OnInit {
   authenticateUser() {
     if (this.loginForm.valid) {
       this.authService.authenticateUser(this.loginForm.value).subscribe(
-        data => {
-          this.router.navigate(['home']);
+        (response: any) => {
+          if (response.status) {
+            this.router.navigate(['home']);
+          } else {
+            this.messageService.showErrorMessage(response.message, 'center', 'top');
+          }
         },
         error => {
           const errorMsg = (error.error) ? error.error : error.statusText;

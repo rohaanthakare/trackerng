@@ -40,6 +40,9 @@ const routes: Routes = [{
   }, {
     path: 'password',
     loadChildren: './password/password.module#PasswordModule'
+  }, {
+    path: 'contact',
+    loadChildren: './contact/contact.module#ContactModule'
   }]
 }];
 

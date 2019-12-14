@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.masterViewService.getNavigationMenu().subscribe(
       data => {
-        this.menuItems = data.data;
+        this.menuItems = data.menus;
       },
       error => {
         console.log(error);

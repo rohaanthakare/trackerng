@@ -15,19 +15,11 @@ export class RoleService {
   constructor(private http: HttpClient) { }
 
   createRole(role) {
-    let formData = new FormData();
-    formData.append('Module', this.module);
-    formData.append('action', 'createRole');
-    formData = FormUtils.getFormParams(role, formData);
-    return this.http.post(environment.baseUrl, formData);
+    return this.http.post(`${environment.baseUrl}/api/create_role`, role);
   }
 
   createRolePermissions(rolePerm) {
-    let formData = new FormData();
-    formData.append('Module', this.module);
-    formData.append('action', 'createRolePermissions');
-    formData = FormUtils.getFormParams(rolePerm, formData);
-    return this.http.post(environment.baseUrl, formData);
+    return this.http.post(`${environment.baseUrl}/api/assign_permission`, rolePerm);
   }
 
   uploadRoles(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {

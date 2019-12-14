@@ -1,13 +1,12 @@
 export class MasterView {
-    viewId: number;
     viewCode: string;
     viewTitle: string;
-    viewName: string;
-    icon: string;
-    route: string;
+    iconClass: string;
+    viewRoute: string;
     viewType: string;
     parentView: string;
     displayOrder: number;
-    isMenuAction: boolean;
-    isToolbarAction: boolean;
+    isMenu: boolean;
+    isToolbar: boolean;
+    items: any;
 }

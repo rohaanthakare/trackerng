@@ -16,20 +16,11 @@ export class MasterViewService {
   constructor(private http: HttpClient) { }
 
   createMasterView(masterview) {
-    let formData = new FormData();
-    formData.append('Module', this.module);
-    formData.append('action', 'createMasterViewConfig');
-    formData = FormUtils.getFormParams(masterview, formData);
-    return this.http.post(environment.baseUrl, formData);
+    return this.http.post(`${environment.baseUrl}/api/create_master_view`, masterview);
   }
 
   getNavigationMenu() {
-    return this.http.get<any>(environment.baseUrl, {
-      params: {
-        Module: this.module,
-        action: 'getNavigationMenu'
-      }
-    });
+    return this.http.get<any>(`${environment.baseUrl}/api/get_navigation_menu`);
   }
 
   getToolbarActions(viewCode) {
@@ -48,14 +39,14 @@ export class MasterViewService {
         const masterViewObj = new MasterView();
         masterViewObj.viewCode = currentRow[0];
         masterViewObj.viewTitle = currentRow[1];
-        masterViewObj.viewName = currentRow[2];
-        masterViewObj.icon = currentRow[3];
-        masterViewObj.route = currentRow[4];
+        // masterViewObj.viewName = currentRow[2];
+        masterViewObj.iconClass = currentRow[3];
+        masterViewObj.viewRoute = currentRow[4];
         masterViewObj.viewType = currentRow[5];
         masterViewObj.parentView = currentRow[6];
         masterViewObj.displayOrder = currentRow[7];
-        masterViewObj.isMenuAction = currentRow[8];
-        masterViewObj.isToolbarAction = currentRow[9];
+        masterViewObj.isMenu = currentRow[8];
+        masterViewObj.isToolbar = currentRow[9];
         return this.createMasterView(masterViewObj);
       })
     );
