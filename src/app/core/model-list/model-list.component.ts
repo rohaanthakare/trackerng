@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit, Injector } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, Injector, ViewEncapsulation } from '@angular/core';
 import { MasterView } from 'src/app/models/master-view.model';
 import { MasterViewService } from 'src/app/services/master-view.service';
 import { Router } from '@angular/router';
@@ -13,7 +13,8 @@ const modelServices = {
 @Component({
   selector: 'app-model-list',
   templateUrl: './model-list.component.html',
-  styleUrls: ['./model-list.component.scss']
+  styleUrls: ['./model-list.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ModelListComponent implements OnInit, AfterViewInit {
   toolbarActions: MasterView[] = [];
@@ -36,9 +37,9 @@ export class ModelListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.masterViewService.getToolbarActions(this.viewCode).subscribe(
       (response: any) => {
-        this.toolbarActions = response.data;
+        this.toolbarActions = response.actions;
         this.toolbarActions.forEach((action: any) => {
-          if (action.VIEW_TYPE === 'edit') {
+          if (action.viewType === 'edit') {
             action.isDisabled = true;
           }
         });
@@ -86,8 +87,8 @@ export class ModelListComponent implements OnInit, AfterViewInit {
     }
   }
 
-  isMaterialIcon(action) {
-    if (action.ICON_CLASS.includes('fas')) {
+  isMaterialIcon(action: MasterView) {
+    if (action.iconClass.includes('fas')) {
       return false;
     }
     return true;

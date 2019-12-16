@@ -24,13 +24,7 @@ export class MasterViewService {
   }
 
   getToolbarActions(viewCode) {
-    return this.http.get<any>(environment.baseUrl, {
-      params: {
-        Module: this.module,
-        action: 'getToolbarActions',
-        parentView: viewCode
-      }
-    });
+    return this.http.get<any>(`${environment.baseUrl}/api/get_toolbar_actions/${viewCode}`);
   }
 
   uploadViewConfig(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {

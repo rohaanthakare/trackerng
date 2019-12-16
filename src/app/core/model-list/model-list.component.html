@@ -5,13 +5,13 @@
     <button mat-raised-button color="primary" (click)="toolbarButtonClicked(action)" [disabled]="action.isDisabled"
         *ngFor="let action of toolbarActions;">
         <span *ngIf="isMaterialIcon(action)">
-            <i class="material-icons">{{action.ICON_CLASS}}</i>
+            <i class="material-icons mat-button-icon">{{action.iconClass}}</i>
         </span>
         <span *ngIf="!isMaterialIcon(action)">
-            <i class="{{action.ICON_CLASS}} fas-menu-icons"></i>
+            <i class="{{action.iconClass}} fas-menu-icons"></i>
         </span>
         
-        {{action.VIEW_NAME}}
+        {{action.viewTitle}}
     </button>
 </div>
 <!-- <ng-container *ngIf="dataSource.length == 0">
