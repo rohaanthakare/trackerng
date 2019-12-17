@@ -11,12 +11,7 @@ export class PasswordService {
   constructor(private http: HttpClient) { }
 
   createPassword(password) {
-    let formData = new FormData();
-    formData.append('Module', this.module);
-    formData.append('action', 'createPassword');
-    formData = FormUtils.getFormParams(password, formData);
-
-    return this.http.post(environment.baseUrl, formData);
+    return this.http.post(`${environment.baseUrl}/api/create_password`, password);
   }
 
   public getAllPasswords(filterParams, startIndex, pageSize) {

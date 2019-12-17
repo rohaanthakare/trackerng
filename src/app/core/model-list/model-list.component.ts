@@ -80,7 +80,7 @@ export class ModelListComponent implements OnInit, AfterViewInit {
       this.selectedRowIndex = row[this.idColumn];
       this.selectedRow = row;
       this.toolbarActions.forEach((action: any) => {
-        if (action.VIEW_TYPE === 'edit') {
+        if (action.viewType === 'edit') {
           action.isDisabled = false;
         }
       });
