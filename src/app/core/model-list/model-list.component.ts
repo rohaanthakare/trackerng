@@ -53,11 +53,11 @@ export class ModelListComponent implements OnInit, AfterViewInit {
     ).subscribe();
   }
 
-  toolbarButtonClicked(action) {
-    if (action.VIEW_TYPE === 'edit') {
-      this.router.navigate([action.VIEW_ROUTE + '/' + this.selectedRow[this.idColumn]]);
+  toolbarButtonClicked(action: MasterView) {
+    if (action.viewType === 'edit') {
+      this.router.navigate([action.viewRoute + '/' + this.selectedRow[this.idColumn]]);
     } else {
-      this.router.navigate([action.VIEW_ROUTE]);
+      this.router.navigate([action.viewRoute]);
     }
   }
 

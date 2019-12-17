@@ -20,10 +20,8 @@ export class PasswordService {
   }
 
   public getAllPasswords(filterParams, startIndex, pageSize) {
-    return this.http.get(environment.baseUrl, {
+    return this.http.get(`${environment.baseUrl}/api/get_passwords`, {
       params: {
-        Module: this.module,
-        action: 'getAllPasswords',
         start: startIndex,
         limit: pageSize
       }
