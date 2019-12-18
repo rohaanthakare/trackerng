@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DataLoaderComponent } from './data-loader/data-loader.component';
 import { OuterComponent } from './outer/outer.component';
+import { UserActivationComponent } from './user-activation/user-activation.component';
 
 
 const routes: Routes = [{
@@ -25,6 +26,9 @@ const routes: Routes = [{
 }, {
   path: 'load-data',
   component: DataLoaderComponent
+}, {
+  path: 'activate-user/:id',
+  component: UserActivationComponent
 }, {
   path: 'home',
   component: HomeComponent,

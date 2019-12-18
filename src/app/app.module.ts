@@ -47,6 +47,7 @@ import { ExperienceComponent } from './experience/experience.component';
 import { WorkComponent } from './work/work.component';
 import { ContactMeComponent } from './contact-me/contact-me.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { UserActivationComponent } from './user-activation/user-activation.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     EducationComponent,
     ExperienceComponent,
     WorkComponent,
-    ContactMeComponent
+    ContactMeComponent,
+    UserActivationComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
