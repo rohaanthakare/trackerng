@@ -34,13 +34,7 @@ export class PasswordService {
   }
 
   getPasswordDetail(passwordId) {
-    return this.http.get(environment.baseUrl, {
-      params: {
-        Module: this.module,
-        action: 'getPasswordDetail',
-        id: passwordId
-      }
-    });
+    return this.http.get(`${environment.baseUrl}/api/get_password/${passwordId}`);
   }
 
   updatePassword(id, password) {

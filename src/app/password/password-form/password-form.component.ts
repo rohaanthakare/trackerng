@@ -12,7 +12,7 @@ import { ModelFormComponent } from 'src/app/core/model-form/model-form.component
 })
 export class PasswordFormComponent implements OnInit {
   @ViewChild(ModelFormComponent, {static: false}) modelForm: ModelFormComponent;
-  passwordId: number;
+  passwordId: string;
   name: string;
   actionType: string;
   passwordDetail: any;
@@ -67,8 +67,8 @@ export class PasswordFormComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(
       params => {
-        this.passwordId = parseInt(params.get('id'), 10);
-        if (this.passwordId && !isNaN(this.passwordId)) {
+        this.passwordId = params.get('id');
+        if (this.passwordId) {
           this.actionType = 'edit';
           this.getPasswordDetails();
         }
@@ -79,10 +79,8 @@ export class PasswordFormComponent implements OnInit {
   getPasswordDetails() {
     this.passwordService.getPasswordDetail(this.passwordId).subscribe(
       (response: any) => {
-        console.log('Get Password Details success');
-        console.log(response);
-        this.passwordDetail = response.data;
-        this.name = response.data.name;
+        this.passwordDetail = response.password;
+        this.name = response.password.name;
         this.modelForm.setValues(this.passwordDetail);
       }
     );
