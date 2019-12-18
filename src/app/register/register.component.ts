@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { MessageService } from '../shared/services/message.service';
+import { Roles } from '../models/role.model';
+import { UserStatus } from '../models/user.model';
 
 @Component({
   selector: 'app-register',
@@ -31,6 +33,8 @@ export class RegisterComponent implements OnInit {
 
   registerUser() {
     if (this.registrationForm.valid) {
+      this.registrationForm.value.role = Roles.TRACKER_USER;
+      this.registrationForm.value.userStatus = UserStatus.NEW;
       this.userService.registerUser(this.registrationForm.value).subscribe(
         response => {
           this.msgService.showSuccessMessage(response.message, 'center', 'top');
