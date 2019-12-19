@@ -10,7 +10,8 @@ import { UserService } from '../services/user.service';
 export class UserActivationComponent implements OnInit {
   userId: string;
   activationStarted;
-  constructor(private route: ActivatedRoute, private userService: UserService) { }
+  activationStatus;
+  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.activationStarted = true;
@@ -19,14 +20,19 @@ export class UserActivationComponent implements OnInit {
         this.userId = params.get('id');
         if (this.userId) {
           this.userService.activateUser(this.userId).subscribe(
-            response => {
+            (response: any) => {
               console.log('Success');
               this.activationStarted = false;
+              if (response.status) {
+                this.activationStatus = true;
+              } else {
+                this.activationStatus = false;
+              }
               console.log(response);
             },
             error => {
-              console.log('Error');
-              console.log(error);
+              this.activationStarted = false;
+              this.activationStatus = false;
             }
           );
         }
@@ -34,4 +40,7 @@ export class UserActivationComponent implements OnInit {
     );
   }
 
+  openLogin() {
+    this.router.navigate(['login']);
+  }
 }
