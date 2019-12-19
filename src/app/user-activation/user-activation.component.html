@@ -1,1 +1,23 @@
-<p>user-activation works!</p>
+<mat-toolbar class="header-elevation" color="primary">
+    <mat-toolbar-row>
+        <span>
+            <img src="../../assets/Logos/tracker_light.png" style="width: 130px; vertical-align: middle;">
+        </span>
+        <span class="example-spacer"></span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-grid-list cols="4" rowHeight="200px">
+    <mat-grid-tile colspan="1">
+        <i class="material-icons big-icon-class">done</i>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3">
+        <h2 class="message-class">Please wait, activating user account. It will take some time.</h2>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1">
+        <button mat-raised-button style="margin-bottom: 10px;" color="primary">
+            <i class="material-icons">lock_open</i>
+            Login
+        </button>
+    </mat-grid-tile>
+</mat-grid-list>

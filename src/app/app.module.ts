@@ -19,6 +19,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Application Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -77,7 +78,7 @@ import { UserActivationComponent } from './user-activation/user-activation.compo
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
     MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatToolbarModule,
     MatCardModule, MatMenuModule, MatProgressBarModule, MatGridListModule, MatExpansionModule,
-    MatSidenavModule, MatListModule, MatTabsModule,
+    MatSidenavModule, MatListModule, MatTabsModule, MatProgressSpinnerModule,
     CoreModule, AppRoutingModule
   ],
   entryComponents: [ MessageSnackBarComponent],

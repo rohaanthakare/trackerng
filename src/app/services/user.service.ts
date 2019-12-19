@@ -22,6 +22,12 @@ export class UserService {
     return this.http.post<any>(`${environment.baseUrl}/api/attach_role`, userRole);
   }
 
+  activateUser(userId: any) {
+    return this.http.post<any>(`${environment.baseUrl}/api/activate_user`, {
+      id: userId
+    });
+  }
+
   uploadUsers(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
     return from(rows).pipe(
       concatMap(currentRow => {
