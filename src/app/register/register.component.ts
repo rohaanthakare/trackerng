@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { MessageService } from '../shared/services/message.service';
@@ -31,16 +31,18 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  registerUser() {
+  registerUser(formDirective: FormGroupDirective) {
     if (this.registrationForm.valid) {
       this.registrationForm.value.role = Roles.TRACKER_USER;
       this.registrationForm.value.userStatus = UserStatus.NEW;
       this.userService.registerUser(this.registrationForm.value).subscribe(
         response => {
           this.msgService.showSuccessMessage(response.message, 'center', 'top');
+          this.registrationForm.reset();
+          formDirective.resetForm();
         },
         error => {
-          const errorMsg = error.error ? error.error : error.statusText;
+          const errorMsg = error.error ? error.error.message : error.statusText;
           this.msgService.showErrorMessage(errorMsg, 'center', 'top');
         }
       );

@@ -34,11 +34,4 @@
 		<ActionName>Users Upload</ActionName>
 		<Action>uploadUsers</Action>
 	</LoadDataModule>
-	<LoadDataModule>
-		<ModuleName>User</ModuleName>
-		<DataFileName>UserRoles.csv</DataFileName>
-		<DataFilePath>assets/Data/BaseData/</DataFilePath>
-		<ActionName>User Role Upload</ActionName>
-		<Action>uploadUserRoles</Action>
-	</LoadDataModule>
 </LoadDataFiles>

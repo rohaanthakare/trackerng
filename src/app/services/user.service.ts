@@ -36,26 +36,10 @@ export class UserService {
         userObj.password = currentRow[1];
         userObj.emailId = currentRow[2];
         userObj.mobileNo = currentRow[3];
+        userObj.role = currentRow[4];
+        userObj.userStatus = currentRow[5];
         return this.registerUser(userObj);
       })
-    );
-  }
-
-  uploadUserRoles(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
-    from(rows).pipe(
-      concatMap(currentRow => {
-        const userRoleObj = new UserRoles();
-        userRoleObj.username = currentRow[0];
-        userRoleObj.roleCode = currentRow[1];
-        return this.attachRoleToUser(userRoleObj);
-      })
-    ).subscribe(
-      data => {
-        dataLoaderCmp.updateProgress(moduleDetails, true);
-      },
-      error => {
-        dataLoaderCmp.updateProgress(moduleDetails, false);
-      }
     );
   }
 }
