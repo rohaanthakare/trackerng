@@ -42,4 +42,12 @@ export class UserService {
       })
     );
   }
+
+  sendPasswordResetLink(emailId) {
+    return this.http.post<any>(`${environment.baseUrl}/api/send_reset_pass_link`, emailId);
+  }
+
+  resetPassword(userDetails) {
+    return this.http.put<any>(`${environment.baseUrl}/api/reset_password`, userDetails);
+  }
 }

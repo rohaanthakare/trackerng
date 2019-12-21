@@ -64,4 +64,8 @@ export class LoginComponent implements OnInit {
     }
     return returnMsg;
   }
+
+  forgotPassword() {
+    this.router.navigate(['forgot-pass']);
+  }
 }

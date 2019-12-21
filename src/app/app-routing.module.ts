@@ -9,6 +9,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { DataLoaderComponent } from './data-loader/data-loader.component';
 import { OuterComponent } from './outer/outer.component';
 import { UserActivationComponent } from './user-activation/user-activation.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 const routes: Routes = [{
@@ -23,6 +24,9 @@ const routes: Routes = [{
 }, {
   path: 'forgot-pass',
   component: ForgotPasswordComponent
+}, {
+  path: 'reset-pass/:id',
+  component: ResetPasswordComponent
 }, {
   path: 'load-data',
   component: DataLoaderComponent
