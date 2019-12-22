@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormGroupDirective, FormBuilder } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { MessageService } from '../shared/services/message.service';
 import { Roles } from '../models/role.model';
 import { UserStatus } from '../models/user.model';
+import { HelperService } from '../shared/services/helper.service';
 
 @Component({
   selector: 'app-register',
@@ -17,16 +18,20 @@ export class RegisterComponent implements OnInit {
   confirmPassCtrl = new FormControl('', [Validators.required]);
   emailCtrl = new FormControl('', [Validators.required, Validators.email]);
   mobileNoCtrl = new FormControl('', [Validators.required]);
-  registrationForm = new FormGroup({
+  registrationForm = this.formBuilder.group({
     username: this.usernameCtrl,
     password: this.passwordCtrl,
     confirmPassword: this.confirmPassCtrl,
     emailId: this.emailCtrl,
     mobileNo: this.mobileNoCtrl
+  }, {
+    validator: this.helperService.mustMatchValidator('password', 'confirmPassword')
   });
   constructor(private userService: UserService,
               private router: Router,
-              private msgService: MessageService) { }
+              private msgService: MessageService,
+              private helperService: HelperService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit() {
   }
