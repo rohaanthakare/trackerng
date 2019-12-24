@@ -10,10 +10,8 @@ export class ContactService {
   constructor(private http: HttpClient) { }
 
   getUserContacts(filterParams, startIndex, pageSize) {
-    return this.http.get(environment.baseUrl, {
+    return this.http.get(`${environment.baseUrl}/api/get_user_contacts`, {
       params: {
-        Module: this.module,
-        action: 'getUserContacts',
         start: startIndex,
         limit: pageSize
       }

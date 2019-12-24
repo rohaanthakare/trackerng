@@ -6,8 +6,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { PasswordService } from 'src/app/password/services/password.service';
 import { tap } from 'rxjs/operators';
+import { ContactService } from 'src/app/contact/contact.service';
 const modelServices = {
-  Password: PasswordService
+  Password: PasswordService,
+  Contact: ContactService
 };
 
 @Component({
