@@ -1,1 +1,2 @@
-<p>contact-form works!</p>
+<app-model-form [fieldConfigs]="fieldConfigs" [formGroup]='contactForm' (formSubmit)="createPassword()"
+    [formTitle]="name" [idField]="passwordId" [actionType]="actionType"></app-model-form>

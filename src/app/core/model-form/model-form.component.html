@@ -8,12 +8,26 @@
 </div>
 <form class="form-body" (ngSubmit)="onFormSubmit()" [formGroup]="formGroup">
     <div *ngFor="let fieldConfig of fieldConfigs" [ngSwitch]="fieldConfig.type">
+        <!-- Select Field -->
+        <app-model-select *ngSwitchCase="'select'" [sourceData]="fieldConfig.dataScource">
+            <!-- <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
+                [name]="fieldConfig.name" [type]="showPassword ? 'text' : 'password'" autocomplete="off">
+            <a style="vertical-align: middle;color: #989898" href="javascript:" (click)="showPasswordClicked()" matSuffix>
+                <i class="material-icons">remove_red_eye</i></a>
+            <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error> -->
+        </app-model-select>
         <!-- Password Field -->
         <mat-form-field *ngSwitchCase="'password'">
             <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
                 [name]="fieldConfig.name" [type]="showPassword ? 'text' : 'password'" autocomplete="off">
             <a style="vertical-align: middle;color: #989898" href="javascript:" (click)="showPasswordClicked()" matSuffix>
                 <i class="material-icons">remove_red_eye</i></a>
+            <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
+        </mat-form-field>
+        <!-- Number Field -->
+        <mat-form-field *ngSwitchCase="'number'">
+            <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
+                [name]="fieldConfig.name" type="number" autocomplete="off">
             <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
         </mat-form-field>
         <!-- Default Text Field -->
