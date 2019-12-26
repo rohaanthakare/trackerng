@@ -20,44 +20,7 @@ export class ContactFormComponent implements OnInit {
     mobileNo: this.mobileNoCtrl,
     email: this.emailCtrl
   });
-  fieldConfigs = [{
-    label: 'Title',
-    name: 'title',
-    type: 'select',
-    control: this.defaultCtrl,
-    dataScource: this.titleDataSource,
-    controlName: 'title'
-  }, {
-    label: 'First Name',
-    name: 'firstName',
-    type: 'text',
-    control: this.firstNameCtrl,
-    controlName: 'firstName'
-  }, {
-    label: 'Middle Name',
-    name: 'middleName',
-    type: 'text',
-    control: this.defaultCtrl,
-    controlName: 'middleName'
-  }, {
-    label: 'Last Name',
-    name: 'lastName',
-    type: 'text',
-    control: this.defaultCtrl,
-    controlName: 'lastName'
-  }, {
-    label: 'Mobile No.',
-    name: 'mobileNo',
-    type: 'number',
-    control: this.mobileNoCtrl,
-    controlName: 'mobileNo'
-  }, {
-    label: 'Email',
-    name: 'email',
-    type: 'text',
-    control: this.emailCtrl,
-    controlName: 'email'
-  }];
+  fieldConfigs = [];
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -70,6 +33,50 @@ export class ContactFormComponent implements OnInit {
     }, {
       _id: 'asdans345cv849384938',
       name: 'Mrs.'
+    }];
+    this.setFieldConfigs();
+  }
+
+  setFieldConfigs() {
+    this.fieldConfigs = [{
+      label: 'Title',
+      name: 'title',
+      type: 'select',
+      control: this.defaultCtrl,
+      dataScource: this.titleDataSource,
+      valueField: '_id',
+      displayField: 'name',
+      controlName: 'title'
+    }, {
+      label: 'First Name',
+      name: 'firstName',
+      type: 'text',
+      control: this.firstNameCtrl,
+      controlName: 'firstName'
+    }, {
+      label: 'Middle Name',
+      name: 'middleName',
+      type: 'text',
+      control: this.defaultCtrl,
+      controlName: 'middleName'
+    }, {
+      label: 'Last Name',
+      name: 'lastName',
+      type: 'text',
+      control: this.defaultCtrl,
+      controlName: 'lastName'
+    }, {
+      label: 'Mobile No.',
+      name: 'mobileNo',
+      type: 'number',
+      control: this.mobileNoCtrl,
+      controlName: 'mobileNo'
+    }, {
+      label: 'Email',
+      name: 'email',
+      type: 'text',
+      control: this.emailCtrl,
+      controlName: 'email'
     }];
   }
 
