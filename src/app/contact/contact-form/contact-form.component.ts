@@ -8,15 +8,17 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 })
 export class ContactFormComponent implements OnInit {
   titleDataSource = [];
-  defaultCtrl = new FormControl();
+  titleCtrl = new FormControl();
+  middleNameCtrl = new FormControl();
+  lastNameCtrl = new FormControl();
   firstNameCtrl = new FormControl('', Validators.required);
   mobileNoCtrl = new FormControl('', [Validators.minLength(10), Validators.maxLength(10)]);
   emailCtrl = new FormControl('', Validators.email);
   contactForm = this.formBuilder.group({
-    title: this.defaultCtrl,
+    title: this.titleCtrl,
     firstName: this.firstNameCtrl,
-    middleName: this.defaultCtrl,
-    lastName: this.defaultCtrl,
+    middleName: this.middleNameCtrl,
+    lastName: this.lastNameCtrl,
     mobileNo: this.mobileNoCtrl,
     email: this.emailCtrl
   });
@@ -42,7 +44,7 @@ export class ContactFormComponent implements OnInit {
       label: 'Title',
       name: 'title',
       type: 'select',
-      control: this.defaultCtrl,
+      control: this.titleCtrl,
       dataScource: this.titleDataSource,
       valueField: '_id',
       displayField: 'name',
@@ -57,13 +59,13 @@ export class ContactFormComponent implements OnInit {
       label: 'Middle Name',
       name: 'middleName',
       type: 'text',
-      control: this.defaultCtrl,
+      control: this.middleNameCtrl,
       controlName: 'middleName'
     }, {
       label: 'Last Name',
       name: 'lastName',
       type: 'text',
-      control: this.defaultCtrl,
+      control: this.lastNameCtrl,
       controlName: 'lastName'
     }, {
       label: 'Mobile No.',
@@ -80,4 +82,8 @@ export class ContactFormComponent implements OnInit {
     }];
   }
 
+  createContact() {
+    console.log('Inside create Contact');
+    console.log(this.contactForm.value);
+  }
 }

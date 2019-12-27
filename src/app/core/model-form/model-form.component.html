@@ -9,8 +9,8 @@
 <form class="form-body" (ngSubmit)="onFormSubmit()" [formGroup]="formGroup">
     <div *ngFor="let fieldConfig of fieldConfigs" [ngSwitch]="fieldConfig.type">
         <!-- Select Field -->
-        <app-model-select *ngSwitchCase="'select'" [sourceData]="fieldConfig.dataScource" [displayField]="fieldConfig.displayField"
-            [valueField]="fieldConfig.valueField">
+        <app-model-select *ngSwitchCase="'select'" [fieldLabel]="fieldConfig.label" [sourceData]="fieldConfig.dataScource" [displayField]="fieldConfig.displayField"
+            [valueField]="fieldConfig.valueField" [fieldCtrl]="fieldConfig.control">
             <!-- <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
                 [name]="fieldConfig.name" [type]="showPassword ? 'text' : 'password'" autocomplete="off">
             <a style="vertical-align: middle;color: #989898" href="javascript:" (click)="showPasswordClicked()" matSuffix>
