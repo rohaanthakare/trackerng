@@ -17,6 +17,14 @@ export class MasterDataService {
     return this.http.post(`${environment.baseUrl}/api/create_master_data`, masterDataObj);
   }
 
+  getMasterDataForParent(parentConfigCode) {
+    return this.http.get(`${environment.baseUrl}/api/get_data_for_parent`, {
+      params: {
+        configCode: parentConfigCode
+      }
+    });
+  }
+
   uploadMasterData(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
     return from(rows).pipe(
       concatMap(currentRow => {

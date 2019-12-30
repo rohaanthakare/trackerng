@@ -10,12 +10,8 @@
     <div *ngFor="let fieldConfig of fieldConfigs" [ngSwitch]="fieldConfig.type">
         <!-- Select Field -->
         <app-model-select *ngSwitchCase="'select'" [fieldLabel]="fieldConfig.label" [sourceData]="fieldConfig.dataScource" [displayField]="fieldConfig.displayField"
-            [valueField]="fieldConfig.valueField" [fieldCtrl]="fieldConfig.control">
-            <!-- <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
-                [name]="fieldConfig.name" [type]="showPassword ? 'text' : 'password'" autocomplete="off">
-            <a style="vertical-align: middle;color: #989898" href="javascript:" (click)="showPasswordClicked()" matSuffix>
-                <i class="material-icons">remove_red_eye</i></a>
-            <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error> -->
+            [valueField]="fieldConfig.valueField" [fieldCtrl]="fieldConfig.control">            
+            <!-- <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error> -->
         </app-model-select>
         <!-- Password Field -->
         <mat-form-field *ngSwitchCase="'password'">

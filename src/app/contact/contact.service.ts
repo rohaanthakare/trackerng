@@ -17,4 +17,8 @@ export class ContactService {
       }
     });
   }
+
+  createUserContact(contactDetails) {
+    return this.http.post(`${environment.baseUrl}/api/create_contact`, contactDetails);
+  }
 }

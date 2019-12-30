@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ContactService } from '../contact.service';
+import { MasterDataService } from 'src/app/services/master-data.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -23,20 +25,22 @@ export class ContactFormComponent implements OnInit {
     email: this.emailCtrl
   });
   fieldConfigs = [];
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private contactService: ContactService,
+              private masterDataService: MasterDataService) { }
 
   ngOnInit() {
-    this.titleDataSource = [{
-      _id: 'asdansjnjcv849384938',
-      name: 'Mr.'
-    }, {
-      _id: 'asda34jnjcv849384938',
-      name: 'Miss.'
-    }, {
-      _id: 'asdans345cv849384938',
-      name: 'Mrs.'
-    }];
-    this.setFieldConfigs();
+    this.masterDataService.getMasterDataForParent('TITLE').subscribe(
+      (response: any) => {
+        console.log('Master data success');
+        console.log(response);
+        this.titleDataSource = response.data;
+        this.setFieldConfigs();
+      },
+      error => {
+        console.log('Master data Failure');
+        console.log(error);
+      }
+    );
   }
 
   setFieldConfigs() {
@@ -47,7 +51,7 @@ export class ContactFormComponent implements OnInit {
       control: this.titleCtrl,
       dataScource: this.titleDataSource,
       valueField: '_id',
-      displayField: 'name',
+      displayField: 'configName',
       controlName: 'title'
     }, {
       label: 'First Name',
@@ -85,5 +89,19 @@ export class ContactFormComponent implements OnInit {
   createContact() {
     console.log('Inside create Contact');
     console.log(this.contactForm.value);
+    if (this.contactForm.valid) {
+      this.contactService.createUserContact(this.contactForm.value).subscribe(
+        response => {
+          console.log('Success - ');
+          console.log(response);
+        },
+        error => {
+          console.log('Error - ');
+          console.log(error);
+        }
+      );
+    } else {
+      alert('Error');
+    }
   }
 }
