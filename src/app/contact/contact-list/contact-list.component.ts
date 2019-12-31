@@ -9,7 +9,8 @@ import { HelperService } from 'src/app/shared/services/helper.service';
 export class ContactListComponent implements OnInit {
   viewCode = 'CONTACT_LIST';
   viewTitle = 'Contacts';
-  displayedColumns: string[] = ['name', 'email', 'contact_no'];
+  idColumn = '_id';
+  displayedColumns: string[] = ['name', 'email', 'mobileNo'];
   columnDefs = [{
     name: 'name',
     header: 'Name',
@@ -22,11 +23,11 @@ export class ContactListComponent implements OnInit {
   }, {
     name: 'email',
     header: 'Email',
-    field: 'EMAIL'
+    field: 'email'
   }, {
-    name: 'contact_no',
+    name: 'mobileNo',
     header: 'Contact No.',
-    field: 'CONTACT_NO'
+    field: 'mobileNo'
   }];
   constructor(private helperService: HelperService) { }
 

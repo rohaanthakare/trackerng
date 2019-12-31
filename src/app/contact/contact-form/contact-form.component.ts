@@ -4,6 +4,7 @@ import { ContactService } from '../contact.service';
 import { MasterDataService } from 'src/app/services/master-data.service';
 import { ModelFormComponent } from 'src/app/core/model-form/model-form.component';
 import { ActivatedRoute } from '@angular/router';
+import { HelperService } from 'src/app/shared/services/helper.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -32,7 +33,7 @@ export class ContactFormComponent implements OnInit {
     email: this.emailCtrl
   });
   fieldConfigs = [];
-  constructor(private formBuilder: FormBuilder, private contactService: ContactService,
+  constructor(private formBuilder: FormBuilder, private contactService: ContactService, private helperService: HelperService,
               private masterDataService: MasterDataService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -41,7 +42,7 @@ export class ContactFormComponent implements OnInit {
         this.contactId = params.get('id');
         if (this.contactId) {
           this.actionType = 'edit';
-          this.getContactDetails();
+          this.setFieldConfigs();
         }
       }
     );
@@ -64,8 +65,9 @@ export class ContactFormComponent implements OnInit {
     this.contactService.getContactDetail(this.contactId).subscribe(
       (response: any) => {
         this.contactDetails = response.contact;
-        const formTitle = response.contact.firstName +
-          (response.contact.lastName) ? response.contact.lastName : '';
+        let formTitle = this.helperService.convertToTitleCase(response.contact.firstName);
+        const lastName = (response.contact.lastName) ? this.helperService.convertToTitleCase(response.contact.lastName) : '';
+        formTitle = formTitle + ' ' + lastName;
         this.name = formTitle;
         this.modelForm.setValues(this.contactDetails);
       }
@@ -113,6 +115,8 @@ export class ContactFormComponent implements OnInit {
       control: this.emailCtrl,
       controlName: 'email'
     }];
+
+    this.getContactDetails();
   }
 
   createContact() {
