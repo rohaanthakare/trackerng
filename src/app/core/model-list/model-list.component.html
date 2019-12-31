@@ -24,7 +24,8 @@
     <ng-container *ngFor="let column of columnDefs" [matColumnDef]="column.name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{column.header}}</th>
         <td mat-cell *matCellDef="let row">
-            <ng-container *ngIf="row[column.field] !== 'null'">{{row[column.field]}}</ng-container>
+            <ng-container *ngIf="column.renderer">{{column.renderer(row)}}</ng-container>
+            <ng-container *ngIf="!column.renderer && row[column.field] !== 'null'">{{row[column.field]}}</ng-container>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

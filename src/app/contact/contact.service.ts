@@ -18,6 +18,10 @@ export class ContactService {
     });
   }
 
+  getContactDetail(conatctId) {
+    return this.http.get(`${environment.baseUrl}/api/get_contact_detail/${conatctId}`);
+  }
+
   createUserContact(contactDetails) {
     return this.http.post(`${environment.baseUrl}/api/create_contact`, contactDetails);
   }

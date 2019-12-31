@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ContactService } from '../contact.service';
 import { MasterDataService } from 'src/app/services/master-data.service';
+import { ModelFormComponent } from 'src/app/core/model-form/model-form.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contact-form',
@@ -9,6 +11,11 @@ import { MasterDataService } from 'src/app/services/master-data.service';
   styleUrls: ['./contact-form.component.scss']
 })
 export class ContactFormComponent implements OnInit {
+  @ViewChild(ModelFormComponent, {static: false}) modelForm: ModelFormComponent;
+  contactId: string;
+  actionType: string;
+  contactDetails: any;
+  name: string;
   titleDataSource = [];
   titleCtrl = new FormControl();
   middleNameCtrl = new FormControl();
@@ -26,9 +33,19 @@ export class ContactFormComponent implements OnInit {
   });
   fieldConfigs = [];
   constructor(private formBuilder: FormBuilder, private contactService: ContactService,
-              private masterDataService: MasterDataService) { }
+              private masterDataService: MasterDataService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(
+      params => {
+        this.contactId = params.get('id');
+        if (this.contactId) {
+          this.actionType = 'edit';
+          this.getContactDetails();
+        }
+      }
+    );
+
     this.masterDataService.getMasterDataForParent('TITLE').subscribe(
       (response: any) => {
         console.log('Master data success');
@@ -39,6 +56,18 @@ export class ContactFormComponent implements OnInit {
       error => {
         console.log('Master data Failure');
         console.log(error);
+      }
+    );
+  }
+
+  getContactDetails() {
+    this.contactService.getContactDetail(this.contactId).subscribe(
+      (response: any) => {
+        this.contactDetails = response.contact;
+        const formTitle = response.contact.firstName +
+          (response.contact.lastName) ? response.contact.lastName : '';
+        this.name = formTitle;
+        this.modelForm.setValues(this.contactDetails);
       }
     );
   }
@@ -90,16 +119,19 @@ export class ContactFormComponent implements OnInit {
     console.log('Inside create Contact');
     console.log(this.contactForm.value);
     if (this.contactForm.valid) {
-      this.contactService.createUserContact(this.contactForm.value).subscribe(
-        response => {
-          console.log('Success - ');
-          console.log(response);
-        },
-        error => {
-          console.log('Error - ');
-          console.log(error);
-        }
-      );
+      if (this.contactId) {
+
+      } else {
+        this.contactService.createUserContact(this.contactForm.value).subscribe(
+          response => {
+            this.modelForm.handleSuccess(response, '/home/contact/edit');
+          },
+          error => {
+            console.log('Error - ');
+            console.log(error);
+          }
+        );
+      }
     } else {
       alert('Error');
     }
