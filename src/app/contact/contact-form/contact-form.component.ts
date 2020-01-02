@@ -62,16 +62,18 @@ export class ContactFormComponent implements OnInit {
   }
 
   getContactDetails() {
-    this.contactService.getContactDetail(this.contactId).subscribe(
-      (response: any) => {
-        this.contactDetails = response.contact;
-        let formTitle = this.helperService.convertToTitleCase(response.contact.firstName);
-        const lastName = (response.contact.lastName) ? this.helperService.convertToTitleCase(response.contact.lastName) : '';
-        formTitle = formTitle + ' ' + lastName;
-        this.name = formTitle;
-        this.modelForm.setValues(this.contactDetails);
-      }
-    );
+    if (this.contactId) {
+      this.contactService.getContactDetail(this.contactId).subscribe(
+        (response: any) => {
+          this.contactDetails = response.contact;
+          let formTitle = this.helperService.convertToTitleCase(response.contact.firstName);
+          const lastName = (response.contact.lastName) ? this.helperService.convertToTitleCase(response.contact.lastName) : '';
+          formTitle = formTitle + ' ' + lastName;
+          this.name = formTitle;
+          this.modelForm.setValues(this.contactDetails);
+        }
+      );
+    }
   }
 
   setFieldConfigs() {
