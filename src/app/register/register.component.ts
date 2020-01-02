@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
   registerUser(formDirective: FormGroupDirective) {
     if (this.registrationForm.valid) {
       this.registrationForm.value.role = Roles.TRACKER_USER;
-      this.registrationForm.value.userStatus = UserStatus.NEW;
+      this.registrationForm.value.user_status = UserStatus.NEW;
       this.userService.registerUser(this.registrationForm.value).subscribe(
         response => {
           this.msgService.showSuccessMessage(response.message, 'center', 'top');

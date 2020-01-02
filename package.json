@@ -34,7 +34,7 @@
     "express": "4.17.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.3",
+    "@angular-devkit/build-angular": "^0.803.21",
     "@angular/compiler-cli": "~8.2.4",
     "@angular/language-service": "~8.2.4",
     "@fortawesome/fontawesome-free": "^5.11.2",
