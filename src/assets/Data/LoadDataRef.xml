@@ -14,6 +14,13 @@
 		<Action>uploadViewConfig</Action>
 	</LoadDataModule>
 	<LoadDataModule>
+		<ModuleName>Finance</ModuleName>
+		<DataFileName>Banks.csv</DataFileName>
+		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+		<ActionName>Banks Upload</ActionName>
+		<Action>uploadBanks</Action>
+	</LoadDataModule>
+	<LoadDataModule>
 		<ModuleName>Role</ModuleName>
 		<DataFileName>Roles.csv</DataFileName>
 		<DataFilePath>assets/Data/BaseData/</DataFilePath>
