@@ -10,13 +10,19 @@ export class ContactService {
   constructor(private http: HttpClient) { }
 
   getUserContacts(filterParams, startIndex, pageSize) {
-    return this.http.get(environment.baseUrl, {
+    return this.http.get(`${environment.baseUrl}/api/get_user_contacts`, {
       params: {
-        Module: this.module,
-        action: 'getUserContacts',
         start: startIndex,
         limit: pageSize
       }
     });
+  }
+
+  getContactDetail(conatctId) {
+    return this.http.get(`${environment.baseUrl}/api/get_contact_detail/${conatctId}`);
+  }
+
+  createUserContact(contactDetails) {
+    return this.http.post(`${environment.baseUrl}/api/create_contact`, contactDetails);
   }
 }

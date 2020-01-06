@@ -1,0 +1,36 @@
+<mat-toolbar class="header-elevation" color="primary">
+    <mat-toolbar-row>
+        <span>
+            <img src="../../assets/Logos/tracker_light.png" style="width: 130px; vertical-align: middle;">
+        </span>
+        <span class="example-spacer"></span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="mat-elevation-z8" style="padding: 30px;">
+    <div style="display: flex;">
+        <div style="margin-right: 40px;">
+            <i *ngIf="!activationStarted && activationStatus" class="material-icons big-icon-class">done</i>
+            <i *ngIf="!activationStarted && !activationStatus" class="material-icons big-icon-class">error</i>
+            <mat-spinner *ngIf="activationStarted"></mat-spinner>
+        </div>
+        <div>
+            <h2 style="padding-top: 10px; padding-left: 30px;" *ngIf="!activationStarted && activationStatus" class="message-class">
+                Your account is activated successfully, you can start using Tracker by loggin in.
+            </h2>
+            <h2 style="padding-top: 10px; padding-left: 30px;" *ngIf="!activationStarted && !activationStatus" class="message-class">
+                Something went wrong, please try again after some time.
+            </h2>
+            <h2 style="padding-top: 30px; padding-left: 30px;" *ngIf="activationStarted" class="message-class">
+                Please wait, activating user account. It will take some time.
+            </h2>
+        </div>
+    </div>
+    <div *ngIf="!activationStarted && activationStatus" style="margin-top: 20px;">
+        <button (click)="openLogin()"
+            mat-raised-button style="margin-bottom: 10px;" color="primary">
+            <i class="material-icons">lock_open</i>
+            Login
+        </button>
+    </div>
+</div>

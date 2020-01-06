@@ -14,3 +14,7 @@ TITLE,Title,Title,1,
 MR,Mr.,Mr.,1,TITLE
 MRS,Mrs.,Mrs.,2,TITLE
 MISS,Ms.,Ms.,3,TITLE
+ACCOUNT_TYPE,Account Type, Account Type,1,
+SAVING_ACCOUNT,Saving Account,Saving Account,1,ACCOUNT_TYPE
+CURRENT_ACCOUNT,Current Account,Current Account,2,ACCOUNT_TYPE
+WALLET,Wallet,Wallet,3,ACCOUNT_TYPE

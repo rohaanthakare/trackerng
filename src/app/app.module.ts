@@ -19,6 +19,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Application Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -47,6 +48,8 @@ import { ExperienceComponent } from './experience/experience.component';
 import { WorkComponent } from './work/work.component';
 import { ContactMeComponent } from './contact-me/contact-me.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { UserActivationComponent } from './user-activation/user-activation.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -69,13 +72,15 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     EducationComponent,
     ExperienceComponent,
     WorkComponent,
-    ContactMeComponent
+    ContactMeComponent,
+    UserActivationComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
     MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatToolbarModule,
     MatCardModule, MatMenuModule, MatProgressBarModule, MatGridListModule, MatExpansionModule,
-    MatSidenavModule, MatListModule, MatTabsModule,
+    MatSidenavModule, MatListModule, MatTabsModule, MatProgressSpinnerModule,
     CoreModule, AppRoutingModule
   ],
   entryComponents: [ MessageSnackBarComponent],

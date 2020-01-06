@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HelperService } from 'src/app/shared/services/helper.service';
 
 @Component({
   selector: 'app-contact-list',
@@ -8,21 +9,27 @@ import { Component, OnInit } from '@angular/core';
 export class ContactListComponent implements OnInit {
   viewCode = 'CONTACT_LIST';
   viewTitle = 'Contacts';
-  displayedColumns: string[] = ['name', 'email', 'contact_no'];
+  idColumn = '_id';
+  displayedColumns: string[] = ['name', 'email', 'mobileNo'];
   columnDefs = [{
     name: 'name',
     header: 'Name',
-    field: 'NAME'
+    field: 'NAME',
+    renderer: (row) => {
+      const firstName = this.helperService.convertToTitleCase(row.firstName);
+      const lastName = this.helperService.convertToTitleCase(row.lastName);
+      return firstName + ' ' + lastName;
+    }
   }, {
     name: 'email',
     header: 'Email',
-    field: 'EMAIL'
+    field: 'email'
   }, {
-    name: 'contact_no',
+    name: 'mobileNo',
     header: 'Contact No.',
-    field: 'CONTACT_NO'
+    field: 'mobileNo'
   }];
-  constructor() { }
+  constructor(private helperService: HelperService) { }
 
   ngOnInit() {
   }

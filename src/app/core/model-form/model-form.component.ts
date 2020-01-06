@@ -32,12 +32,12 @@ export class ModelFormComponent implements OnInit {
   }
 
   resetForm() {
-    console.log('Reset form clicked');
+    this.formGroup.reset();
   }
 
   handleSuccess(response, model) {
     this.msgService.showSuccessMessage(response.message, 'center', 'top');
-    this.router.navigate([model + '/' + response.id]);
+    this.router.navigate([model + '/' + response.model._id]);
   }
 
   setValues(modelValue) {

@@ -11,19 +11,12 @@ export class PasswordService {
   constructor(private http: HttpClient) { }
 
   createPassword(password) {
-    let formData = new FormData();
-    formData.append('Module', this.module);
-    formData.append('action', 'createPassword');
-    formData = FormUtils.getFormParams(password, formData);
-
-    return this.http.post(environment.baseUrl, formData);
+    return this.http.post(`${environment.baseUrl}/api/create_password`, password);
   }
 
   public getAllPasswords(filterParams, startIndex, pageSize) {
-    return this.http.get(environment.baseUrl, {
+    return this.http.get(`${environment.baseUrl}/api/get_passwords`, {
       params: {
-        Module: this.module,
-        action: 'getAllPasswords',
         start: startIndex,
         limit: pageSize
       }
@@ -41,13 +34,7 @@ export class PasswordService {
   }
 
   getPasswordDetail(passwordId) {
-    return this.http.get(environment.baseUrl, {
-      params: {
-        Module: this.module,
-        action: 'getPasswordDetail',
-        id: passwordId
-      }
-    });
+    return this.http.get(`${environment.baseUrl}/api/get_password/${passwordId}`);
   }
 
   updatePassword(id, password) {

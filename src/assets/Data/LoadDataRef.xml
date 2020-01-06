@@ -14,6 +14,20 @@
 		<Action>uploadViewConfig</Action>
 	</LoadDataModule>
 	<LoadDataModule>
+		<ModuleName>Finance</ModuleName>
+		<DataFileName>Banks.csv</DataFileName>
+		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+		<ActionName>Banks Upload</ActionName>
+		<Action>uploadBanks</Action>
+	</LoadDataModule>
+	<LoadDataModule>
+		<ModuleName>Finance</ModuleName>
+		<DataFileName>Branches.csv</DataFileName>
+		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+		<ActionName>Branches Upload</ActionName>
+		<Action>uploadBranch</Action>
+	</LoadDataModule>
+	<LoadDataModule>
 		<ModuleName>Role</ModuleName>
 		<DataFileName>Roles.csv</DataFileName>
 		<DataFilePath>assets/Data/BaseData/</DataFilePath>
@@ -33,12 +47,5 @@
 		<DataFilePath>assets/Data/BaseData/</DataFilePath>
 		<ActionName>Users Upload</ActionName>
 		<Action>uploadUsers</Action>
-	</LoadDataModule>
-	<LoadDataModule>
-		<ModuleName>User</ModuleName>
-		<DataFileName>UserRoles.csv</DataFileName>
-		<DataFilePath>assets/Data/BaseData/</DataFilePath>
-		<ActionName>User Role Upload</ActionName>
-		<Action>uploadUserRoles</Action>
 	</LoadDataModule>
 </LoadDataFiles>

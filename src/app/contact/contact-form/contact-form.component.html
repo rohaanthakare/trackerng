@@ -1,1 +1,2 @@
-<p>contact-form works!</p>
+<app-model-form [fieldConfigs]="fieldConfigs" [formGroup]='contactForm' (formSubmit)="createContact()"
+    [formTitle]="name" [idField]="contactId" [actionType]="actionType"></app-model-form>

@@ -22,6 +22,12 @@ export class UserService {
     return this.http.post<any>(`${environment.baseUrl}/api/attach_role`, userRole);
   }
 
+  activateUser(userId: any) {
+    return this.http.post<any>(`${environment.baseUrl}/api/activate_user`, {
+      id: userId
+    });
+  }
+
   uploadUsers(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
     return from(rows).pipe(
       concatMap(currentRow => {
@@ -30,26 +36,18 @@ export class UserService {
         userObj.password = currentRow[1];
         userObj.emailId = currentRow[2];
         userObj.mobileNo = currentRow[3];
+        userObj.role = currentRow[4];
+        userObj.status = currentRow[5];
         return this.registerUser(userObj);
       })
     );
   }
 
-  uploadUserRoles(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
-    from(rows).pipe(
-      concatMap(currentRow => {
-        const userRoleObj = new UserRoles();
-        userRoleObj.username = currentRow[0];
-        userRoleObj.roleCode = currentRow[1];
-        return this.attachRoleToUser(userRoleObj);
-      })
-    ).subscribe(
-      data => {
-        dataLoaderCmp.updateProgress(moduleDetails, true);
-      },
-      error => {
-        dataLoaderCmp.updateProgress(moduleDetails, false);
-      }
-    );
+  sendPasswordResetLink(emailId) {
+    return this.http.post<any>(`${environment.baseUrl}/api/send_reset_pass_link`, emailId);
+  }
+
+  resetPassword(userDetails) {
+    return this.http.put<any>(`${environment.baseUrl}/api/reset_password`, userDetails);
   }
 }

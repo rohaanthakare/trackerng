@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit, Injector } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, Injector, ViewEncapsulation } from '@angular/core';
 import { MasterView } from 'src/app/models/master-view.model';
 import { MasterViewService } from 'src/app/services/master-view.service';
 import { Router } from '@angular/router';
@@ -6,14 +6,17 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { PasswordService } from 'src/app/password/services/password.service';
 import { tap } from 'rxjs/operators';
+import { ContactService } from 'src/app/contact/contact.service';
 const modelServices = {
-  Password: PasswordService
+  Password: PasswordService,
+  Contact: ContactService
 };
 
 @Component({
   selector: 'app-model-list',
   templateUrl: './model-list.component.html',
-  styleUrls: ['./model-list.component.scss']
+  styleUrls: ['./model-list.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ModelListComponent implements OnInit, AfterViewInit {
   toolbarActions: MasterView[] = [];
@@ -36,9 +39,9 @@ export class ModelListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.masterViewService.getToolbarActions(this.viewCode).subscribe(
       (response: any) => {
-        this.toolbarActions = response.data;
+        this.toolbarActions = response.actions;
         this.toolbarActions.forEach((action: any) => {
-          if (action.VIEW_TYPE === 'edit') {
+          if (action.viewType === 'edit') {
             action.isDisabled = true;
           }
         });
@@ -52,11 +55,11 @@ export class ModelListComponent implements OnInit, AfterViewInit {
     ).subscribe();
   }
 
-  toolbarButtonClicked(action) {
-    if (action.VIEW_TYPE === 'edit') {
-      this.router.navigate([action.VIEW_ROUTE + '/' + this.selectedRow[this.idColumn]]);
+  toolbarButtonClicked(action: MasterView) {
+    if (action.viewType === 'edit') {
+      this.router.navigate([action.viewRoute + '/' + this.selectedRow[this.idColumn]]);
     } else {
-      this.router.navigate([action.VIEW_ROUTE]);
+      this.router.navigate([action.viewRoute]);
     }
   }
 
@@ -79,15 +82,15 @@ export class ModelListComponent implements OnInit, AfterViewInit {
       this.selectedRowIndex = row[this.idColumn];
       this.selectedRow = row;
       this.toolbarActions.forEach((action: any) => {
-        if (action.VIEW_TYPE === 'edit') {
+        if (action.viewType === 'edit') {
           action.isDisabled = false;
         }
       });
     }
   }
 
-  isMaterialIcon(action) {
-    if (action.ICON_CLASS.includes('fas')) {
+  isMaterialIcon(action: MasterView) {
+    if (action.iconClass.includes('fas')) {
       return false;
     }
     return true;
