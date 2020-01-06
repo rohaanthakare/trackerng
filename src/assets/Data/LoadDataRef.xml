@@ -21,6 +21,13 @@
 		<Action>uploadBanks</Action>
 	</LoadDataModule>
 	<LoadDataModule>
+		<ModuleName>Finance</ModuleName>
+		<DataFileName>Branches.csv</DataFileName>
+		<DataFilePath>assets/Data/BaseData/</DataFilePath>
+		<ActionName>Branches Upload</ActionName>
+		<Action>uploadBranch</Action>
+	</LoadDataModule>
+	<LoadDataModule>
 		<ModuleName>Role</ModuleName>
 		<DataFileName>Roles.csv</DataFileName>
 		<DataFilePath>assets/Data/BaseData/</DataFilePath>
