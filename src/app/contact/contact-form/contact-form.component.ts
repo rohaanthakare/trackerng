@@ -5,6 +5,7 @@ import { MasterDataService } from 'src/app/services/master-data.service';
 import { ModelFormComponent } from 'src/app/core/model-form/model-form.component';
 import { ActivatedRoute } from '@angular/router';
 import { HelperService } from 'src/app/shared/services/helper.service';
+import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -34,7 +35,7 @@ export class ContactFormComponent implements OnInit {
   });
   fieldConfigs = [];
   constructor(private formBuilder: FormBuilder, private contactService: ContactService, private helperService: HelperService,
-              private masterDataService: MasterDataService, private route: ActivatedRoute) { }
+              private masterDataService: MasterDataService, private route: ActivatedRoute, private msgService: MessageService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(
@@ -91,7 +92,11 @@ export class ContactFormComponent implements OnInit {
       name: 'firstName',
       type: 'text',
       control: this.firstNameCtrl,
-      controlName: 'firstName'
+      controlName: 'firstName',
+      errors: {
+        name: 'required',
+        message: 'First Name is required field'
+      }
     }, {
       label: 'Middle Name',
       name: 'middleName',
@@ -115,7 +120,11 @@ export class ContactFormComponent implements OnInit {
       name: 'email',
       type: 'text',
       control: this.emailCtrl,
-      controlName: 'email'
+      controlName: 'email',
+      errors: {
+        name: 'email',
+        message: 'Please enter valid email address'
+      }
     }];
 
     this.getContactDetails();
@@ -133,13 +142,11 @@ export class ContactFormComponent implements OnInit {
             this.modelForm.handleSuccess(response, '/home/contact/edit');
           },
           error => {
-            console.log('Error - ');
-            console.log(error);
+            const errorMsg = error.error ? error.error.message : error.statusText;
+            this.msgService.showErrorMessage(errorMsg, 'center', 'top');
           }
         );
       }
-    } else {
-      alert('Error');
     }
   }
 }
