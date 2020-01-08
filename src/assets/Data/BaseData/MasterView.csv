@@ -19,6 +19,11 @@ CONTACT_EDIT,Edit Contact,Edit Contact,fas fa-user-edit,home/contact/edit,edit,C
 CONTACT_GROUP_LIST,Groups,Groups,fas fa-users,home/contact-group,view,CONTACT_TRACKER,1,1,0
 CONTACT_GROUP_CREATE,New Group,Create Group,add,home/contact-group/create,create,CONTACT_GROUP_LIST,1,0,1
 CONTACT_GROUP_EDIT,Edit Group,Edit Group,edit,home/contact-group/edit,edit,CONTACT_GROUP_LIST,2,0,1
-MONEY_TRACKER,Money Tracker,Money Tracker,fas fa-rupee-sign,home/dashboard,view,,1,1,0
-BANK_ACCOUNTS,Accounts,Accounts,account_balance,home/accounts,view,MONEY_TRACKER,1,1,0
-TRANSACTIONS,Transactions,Transactions,view_list,home/transactions,view,MONEY_TRACKER,2,1,0
+FINANCE_TRACKER,Finance,Finance,fas fa-rupee-sign,home/dashboard,view,,1,1,0
+BANK_ACCOUNTS,Accounts,Accounts,account_balance,home/finance/accounts,view,FINANCE_TRACKER,1,1,0
+TRANSACTIONS,Transactions,Transactions,view_list,home/finance/transactions,view,FINANCE_TRACKER,2,1,0
+DEPOSIT_MONEY,Deposit,Deposit,account_balance,home/finance/deposit,view,FINANCE_TRACKER,1,1,0
+WITHDRAW_MONEY,Withdraw,Withdraw,account_balance,home/finance/withdraw,view,FINANCE_TRACKER,1,1,0
+TRANSFER_MONEY,Transfer,Transfer,account_balance,home/finance/transfer,view,FINANCE_TRACKER,1,1,0
+ADD_EXPENSE,Expense,Expense,account_balance,home/finance/add-expense,view,FINANCE_TRACKER,1,1,0
+BUDGET_MANAGER,Budget Manager,Budget Manager,account_balance,home/finance/budget_manager,view,FINANCE_TRACKER,1,1,0
