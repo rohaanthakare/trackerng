@@ -7,7 +7,7 @@ BANK_MASTER,Bank Master,Bank Master,account_balance,home/banks,view,MASTER_CONFI
 BANKS,Banks,Banks,account_balance,home/banks,view,BANK_MASTER,1,1,0
 BANK_BRANCHES,Branches,Branches,business,home/branches,view,BANK_MASTER,1,1,0
 TRACKER_DASHBOARD,Dashboard,Dashboard,dashboard,home/dashboard,view,,1,1,0
-PASSWORD_TRACKER,Password Tracker,Password Tracker,lock,home/dashboard,view,,1,1,0
+PASSWORD_TRACKER,Password,Password,lock,home/dashboard,view,,1,1,0
 PASSWORD_LIST,Passwords,Passwords,list,home/password,view,PASSWORD_TRACKER,1,1,0
 PASSWORD_CREATE,New Password,Create Password,add,home/password/create,create,PASSWORD_LIST,1,0,1
 PASSWORD_EDIT,Edit Password,Edit Password,edit,home/password/edit,edit,PASSWORD_LIST,1,0,1
@@ -21,9 +21,11 @@ CONTACT_GROUP_CREATE,New Group,Create Group,add,home/contact-group/create,create
 CONTACT_GROUP_EDIT,Edit Group,Edit Group,edit,home/contact-group/edit,edit,CONTACT_GROUP_LIST,2,0,1
 FINANCE_TRACKER,Finance,Finance,fas fa-rupee-sign,home/dashboard,view,,1,1,0
 BANK_ACCOUNTS,Accounts,Accounts,account_balance,home/finance/accounts,view,FINANCE_TRACKER,1,1,0
-TRANSACTIONS,Transactions,Transactions,view_list,home/finance/transactions,view,FINANCE_TRACKER,2,1,0
-DEPOSIT_MONEY,Deposit,Deposit,account_balance,home/finance/deposit,view,FINANCE_TRACKER,1,1,0
-WITHDRAW_MONEY,Withdraw,Withdraw,account_balance,home/finance/withdraw,view,FINANCE_TRACKER,1,1,0
-TRANSFER_MONEY,Transfer,Transfer,account_balance,home/finance/transfer,view,FINANCE_TRACKER,1,1,0
-ADD_EXPENSE,Expense,Expense,account_balance,home/finance/add-expense,view,FINANCE_TRACKER,1,1,0
-BUDGET_MANAGER,Budget Manager,Budget Manager,account_balance,home/finance/budget_manager,view,FINANCE_TRACKER,1,1,0
+PASSBOOK,Passbook,Passbook,fas fa-list-ul,home/finance/passbook,view,FINANCE_TRACKER,2,1,0
+DEPOSIT_MONEY,Deposit,Deposit,fas fa-sign-in-alt,home/finance/deposit,view,FINANCE_TRACKER,1,1,0
+WITHDRAW_MONEY,Withdraw,Withdraw,fas fa-share-square,home/finance/withdraw,view,FINANCE_TRACKER,1,1,0
+TRANSFER_MONEY,Transfer,Transfer,fas fa-exchange-alt,home/finance/transfer,view,FINANCE_TRACKER,1,1,0
+ADD_EXPENSE,Expense,Expense,fas fa-money-bill-alt,home/finance/add-expense,view,FINANCE_TRACKER,1,1,0
+BUDGET_MANAGER,Budget Manager,Budget Manager,fas fa-money-check,home/finance/budget-manager,view,FINANCE_TRACKER,1,1,0
+FIN_ACCOUNT_CREATE,New Account,Create Account,add,home/finance/create-account,create,BANK_ACCOUNTS,1,0,1
+FIN_ACCOUNT_EDIT,Edit Account,Edit Account,edit,home/finance/edit-account,edit,BANK_ACCOUNTS,1,0,1

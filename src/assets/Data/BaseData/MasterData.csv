@@ -18,3 +18,18 @@ ACCOUNT_TYPE,Account Type, Account Type,1,
 SAVING_ACCOUNT,Saving Account,Saving Account,1,ACCOUNT_TYPE
 CURRENT_ACCOUNT,Current Account,Current Account,2,ACCOUNT_TYPE
 WALLET,Wallet,Wallet,3,ACCOUNT_TYPE
+EXPENSE_TYPE,Expense Type,Expense Type,1,
+DEBT,Debt,Personal Loan / Housing Loan / Credit Card,1,EXPENSE_TYPE
+GROCERY,Grocery,Grocery,2,EXPENSE_TYPE
+MISSING,Missing,Missing,3,EXPENSE_TYPE
+BILLS,Bills,Mobile Bill / Internet Bill / Gas Bill,4,EXPENSE_TYPE
+TRANSPORTATION,Transportation,Petrol / Repairs / Maintenance,5,EXPENSE_TYPE
+TRAVEL,Travel,Travel,6,EXPENSE_TYPE
+INVESTMENT,Investment,FD / RD / Mutual Funds,7,EXPENSE_TYPE
+ENTERTAINMENT,Entertainment,DTH / Amazon Prime / HotStar / Netflix,8,EXPENSE_TYPE
+PERSONAL,Personal,Sports / Salon / Subsciption,9,EXPENSE_TYPE
+MEDICAL,Medical,Medical,10,EXPENSE_TYPE
+SHOPPING,Shopping,Shopping,11,EXPENSE_TYPE
+GIFTS,Gifts / Donations,Gifts / Donations,12,EXPENSE_TYPE
+EDUCATION,Education,Education,13,EXPENSE_TYPE
+HOUSING,Housing,Property Tax / Maintenance,14,EXPENSE_TYPE

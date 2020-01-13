@@ -7,9 +7,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { PasswordService } from 'src/app/password/services/password.service';
 import { tap } from 'rxjs/operators';
 import { ContactService } from 'src/app/contact/contact.service';
+import { FinanceService } from 'src/app/finance/finance.service';
 const modelServices = {
   Password: PasswordService,
-  Contact: ContactService
+  Contact: ContactService,
+  Finance: FinanceService
 };
 
 @Component({

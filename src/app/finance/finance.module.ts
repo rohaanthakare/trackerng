@@ -9,14 +9,45 @@ import { DepositFormComponent } from './deposit-form/deposit-form.component';
 import { WithdrawFormComponent } from './withdraw-form/withdraw-form.component';
 import { BudgetManagerComponent } from './budget-manager/budget-manager.component';
 import { SettlementsListComponent } from './settlements-list/settlements-list.component';
+import { Routes, RouterModule } from '@angular/router';
+import { CoreModule } from '../core/core.module';
 
-
-
+const routes: Routes = [{
+  path: '',
+  children: [{
+    path: '',
+    component: AccountListComponent
+  }, {
+    path: 'accounts',
+    component: AccountListComponent
+  }, {
+    path: 'create-account',
+    component: AccountFormComponent
+  } , {
+    path: 'passbook',
+    component: TransactionListComponent
+  }, {
+    path: 'deposit',
+    component: DepositFormComponent
+  }, {
+    path: 'withdraw',
+    component: WithdrawFormComponent
+  }, {
+    path: 'transfer',
+    component: TransferFormComponent
+  }, {
+    path: 'add-expense',
+    component: ExpenseFormComponent
+  }, {
+    path: 'budget-manager',
+    component: BudgetManagerComponent
+  }]
+}];
 @NgModule({
   declarations: [AccountListComponent, AccountFormComponent, TransactionListComponent, ExpenseFormComponent, TransferFormComponent,
     DepositFormComponent, WithdrawFormComponent, BudgetManagerComponent, SettlementsListComponent],
   imports: [
-    CommonModule
+    CommonModule, RouterModule.forChild(routes), CoreModule
   ]
 })
 export class FinanceModule { }

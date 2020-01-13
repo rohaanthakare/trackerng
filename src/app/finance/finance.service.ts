@@ -49,4 +49,20 @@ export class FinanceService {
       })
     );
   }
+
+  getFinancialAccounts() {
+    return this.http.get(`${environment.baseUrl}/api/get_financial_accounts`);
+  }
+
+  createFinancialAccount(accountDetails) {
+    return this.http.post(`${environment.baseUrl}/api/create_financial_account`, {
+      accountDetails
+    });
+  }
+
+  updateFinancialAccount(accountDetails) {
+    return this.http.put(`${environment.baseUrl}/api/create_financial_account`, {
+      accountDetails
+    });
+  }
 }

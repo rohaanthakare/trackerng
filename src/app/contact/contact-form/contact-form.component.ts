@@ -131,8 +131,6 @@ export class ContactFormComponent implements OnInit {
   }
 
   createContact() {
-    console.log('Inside create Contact');
-    console.log(this.contactForm.value);
     if (this.contactForm.valid) {
       if (this.contactId) {
 
