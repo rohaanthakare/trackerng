@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { startWith, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-model-select',
@@ -11,6 +13,7 @@ export class ModelSelectComponent implements OnInit {
   @Input() fieldLabel: string;
   @Input() fieldCtrl: FormControl;
   @Input() sourceData: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<any[]>;
   @Input() valueField: string;
   @Input() displayField: string;
   @Input() selectedData: any;
@@ -19,6 +22,11 @@ export class ModelSelectComponent implements OnInit {
 
   ngOnInit() {
     this.displayFunction = this.displayFunction.bind(this);
+
+    this.filteredOptions = this.fieldCtrl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
   }
 
   displayFunction(selectedData) {
@@ -26,4 +34,7 @@ export class ModelSelectComponent implements OnInit {
     return selectedData ? selectedData[this.displayField] : undefined;
   }
 
+  _filter(value: string) {
+    return this.sourceData.filter(option => option[this.displayField].toLowerCase().includes(value));
+  }
 }

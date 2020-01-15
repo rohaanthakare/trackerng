@@ -17,8 +17,16 @@ export class FinanceService {
     return this.http.post(`${environment.baseUrl}/api/create_bank`, bankDetails);
   }
 
+  getBanks() {
+    return this.http.get(`${environment.baseUrl}/api/banks`);
+  }
+
   createBranch(branchDetails) {
     return this.http.post(`${environment.baseUrl}/api/create_branch`, branchDetails);
+  }
+
+  getBranches() {
+    return this.http.get(`${environment.baseUrl}/api/branches`);
   }
 
   uploadBanks(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {

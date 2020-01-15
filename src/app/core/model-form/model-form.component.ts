@@ -27,6 +27,10 @@ export class ModelFormComponent implements OnInit {
     this.formSubmit.emit(this.formGroup);
   }
 
+  setFieldConfigs(configs) {
+    this.fieldConfigs = configs;
+  }
+
   getVaidationMessage(name) {
     this.hasError.emit(name);
   }

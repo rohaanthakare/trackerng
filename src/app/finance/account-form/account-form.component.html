@@ -1,1 +1,2 @@
-<p>account-form works!</p>
+<app-model-form [fieldConfigs]="fieldConfigs" [formGroup]="accountForm" (formSubmit)="createAccount()"
+    formTitle="New Account" [idField]="contactId" [actionType]="actionType"></app-model-form>
