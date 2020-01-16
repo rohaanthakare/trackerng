@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MasterDataService } from 'src/app/services/master-data.service';
 import { ModelFormComponent } from 'src/app/core/model-form/model-form.component';
 import { FinanceService } from '../finance.service';
+import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
   selector: 'app-account-form',
@@ -33,7 +34,7 @@ export class AccountFormComponent implements OnInit {
   });
   fieldConfigs = [];
   constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService,
-              private financeService: FinanceService) { }
+              private financeService: FinanceService, private msgService: MessageService) { }
 
   ngOnInit() {
     this.masterDataService.getMasterDataForParent('ACCOUNT_TYPE').subscribe(
@@ -67,6 +68,23 @@ export class AccountFormComponent implements OnInit {
     }
   }
 
+  createAccount() {
+    if (this.accountForm.valid) {
+      this.accountForm.value.balance = 0;
+      this.financeService.createFinancialAccount(this.accountForm.value).subscribe(
+        response => {
+          this.modelForm.handleSuccess(response, '/home/contact/edit');
+        },
+        error => {
+          const errorMsg = error.error ? error.error.message : error.statusText;
+          this.msgService.showErrorMessage(errorMsg, 'center', 'top');
+        }
+      );
+    } else {
+      this.msgService.showErrorMessage('Form contains error, please correct.', 'center', 'top');
+    }
+  }
+
   getFieldConfigs() {
     return [{
       label: 'Name',
@@ -81,12 +99,12 @@ export class AccountFormComponent implements OnInit {
       dataScource: this.accountTypes,
       valueField: '_id',
       displayField: 'configName',
-      control: this.accountNameCtrl,
+      control: this.accountTypeCtrl,
       controlName: 'accountName'
     }, {
       label: 'Account Number',
       name: 'accountNumber',
-      type: 'text',
+      type: 'number',
       control: this.accountNumberCtrl,
       controlName: 'accountNumber'
     }, {
@@ -106,12 +124,15 @@ export class AccountFormComponent implements OnInit {
       valueField: '_id',
       displayField: 'branchName',
       parentControl: this.bankCtrl,
+      parentField: 'bank',
       control: this.branchCtrl,
       controlName: 'branch'
     }, {
       label: 'Balance',
       name: 'balance',
-      type: 'text',
+      type: 'number',
+      value: 0.00,
+      disabled: true,
       control: this.balanceCtrl,
       controlName: 'balance'
     }];

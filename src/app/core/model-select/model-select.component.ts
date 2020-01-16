@@ -12,6 +12,7 @@ export class ModelSelectComponent implements OnInit {
   myControl = new FormControl();
   @Input() fieldLabel: string;
   @Input() fieldCtrl: FormControl;
+  @Input() parentControl: FormControl;
   @Input() sourceData: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<any[]>;
   @Input() valueField: string;
@@ -35,6 +36,11 @@ export class ModelSelectComponent implements OnInit {
   }
 
   _filter(value: string) {
+    if (this.parentControl && this.parentControl.value) {
+      console.log(this.fieldLabel + ' has Parent Control need to filter source data');
+      console.log('Parent Value - ' + this.parentControl.value);
+      // this.sourceData.filter(option => );
+    }
     return this.sourceData.filter(option => option[this.displayField].toLowerCase().includes(value));
   }
 }
