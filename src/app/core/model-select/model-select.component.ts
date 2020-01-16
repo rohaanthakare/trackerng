@@ -11,9 +11,11 @@ import { Observable } from 'rxjs';
 export class ModelSelectComponent implements OnInit {
   myControl = new FormControl();
   @Input() fieldLabel: string;
+  @Input() name: string;
   @Input() fieldCtrl: FormControl;
-  @Input() parentControl: FormControl;
+  @Input() parentModel: string;
   @Input() sourceData: string[] = ['One', 'Two', 'Three'];
+  allData = [];
   filteredOptions: Observable<any[]>;
   @Input() valueField: string;
   @Input() displayField: string;
@@ -23,7 +25,7 @@ export class ModelSelectComponent implements OnInit {
 
   ngOnInit() {
     this.displayFunction = this.displayFunction.bind(this);
-
+    this.allData = this.sourceData;
     this.filteredOptions = this.fieldCtrl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
@@ -36,11 +38,15 @@ export class ModelSelectComponent implements OnInit {
   }
 
   _filter(value: string) {
-    if (this.parentControl && this.parentControl.value) {
-      console.log(this.fieldLabel + ' has Parent Control need to filter source data');
-      console.log('Parent Value - ' + this.parentControl.value);
-      // this.sourceData.filter(option => );
-    }
     return this.sourceData.filter(option => option[this.displayField].toLowerCase().includes(value));
+  }
+
+  onOptionSelected(event) {
+    this.selectedDataChange.emit(this.selectedData);
+  }
+
+  filterByParent(filterValue) {
+    this.sourceData = this.allData.filter(data => data[this.parentModel] === filterValue);
+    this.fieldCtrl.setValue('');
   }
 }

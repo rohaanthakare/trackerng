@@ -15,7 +15,11 @@ export class AccountListComponent implements OnInit {
   }, {
     name: 'balance',
     header: 'Balance',
-    field: 'balance'
+    field: 'balance',
+    renderer: (row) => {
+      const balance = row.balance.toFixed(2);
+      return `<i class='fas fa-rupee-sign mr-1'></i>${balance}`;
+    }
   }];
   constructor() { }
 

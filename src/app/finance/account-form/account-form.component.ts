@@ -112,6 +112,7 @@ export class AccountFormComponent implements OnInit {
       name: 'bank',
       type: 'select',
       dataScource: this.banks,
+      childModel: 'branch',
       valueField: '_id',
       displayField: 'bankName',
       control: this.bankCtrl,
@@ -123,8 +124,7 @@ export class AccountFormComponent implements OnInit {
       dataScource: this.branches,
       valueField: '_id',
       displayField: 'branchName',
-      parentControl: this.bankCtrl,
-      parentField: 'bank',
+      parentModel: 'bank',
       control: this.branchCtrl,
       controlName: 'branch'
     }, {

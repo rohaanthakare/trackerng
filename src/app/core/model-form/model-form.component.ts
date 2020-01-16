@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { Router } from '@angular/router';
+import { ModelSelectComponent } from '../model-select/model-select.component';
 
 @Component({
   selector: 'app-model-form',
@@ -16,6 +17,7 @@ export class ModelFormComponent implements OnInit {
   @Input() idField: number;
   @Input() formTitle: string;
   @Input() actionType: string;
+  @ViewChildren(ModelSelectComponent) modelSelect: QueryList<ModelSelectComponent>;
 
   showPassword = false;
   constructor(private msgService: MessageService, private router: Router) { }
@@ -29,6 +31,10 @@ export class ModelFormComponent implements OnInit {
 
   setFieldConfigs(configs) {
     this.fieldConfigs = configs;
+  }
+
+  getFieldConfigByModelName(fieldName) {
+    return this.fieldConfigs.find(field => field.name === fieldName);
   }
 
   getVaidationMessage(name) {
@@ -56,5 +62,15 @@ export class ModelFormComponent implements OnInit {
 
   showPasswordClicked() {
     this.showPassword = true;
+  }
+
+  optionSelected(value, fieldConfig) {
+    const modelSelectCmps = this.modelSelect.toArray();
+    if (fieldConfig.childModel) {
+      const childCmp = modelSelectCmps.find(cmp => cmp.name === fieldConfig.childModel);
+      if (childCmp) {
+        childCmp.filterByParent(value[fieldConfig.valueField]);
+      }
+    }
   }
 }
