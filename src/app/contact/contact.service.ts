@@ -25,4 +25,8 @@ export class ContactService {
   createUserContact(contactDetails) {
     return this.http.post(`${environment.baseUrl}/api/create_contact`, contactDetails);
   }
+
+  updateUserContact(contactId, contactDetails) {
+    return this.http.put(`${environment.baseUrl}/api/update_contact/${contactId}`, contactDetails);
+  }
 }

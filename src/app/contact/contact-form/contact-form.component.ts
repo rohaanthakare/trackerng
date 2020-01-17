@@ -134,11 +134,19 @@ export class ContactFormComponent implements OnInit {
   createContact() {
     if (this.contactForm.valid) {
       if (this.contactId) {
-
+        this.contactService.updateUserContact(this.contactId, this.contactForm.value).subscribe(
+          response => {
+            this.modelForm.handleSuccess(response, 'contact');
+          },
+          error => {
+            const errorMsg = error.error ? error.error.message : error.statusText;
+            this.msgService.showErrorMessage(errorMsg, 'center', 'top');
+          }
+        );
       } else {
         this.contactService.createUserContact(this.contactForm.value).subscribe(
           response => {
-            this.modelForm.handleSuccess(response, '/home/contact/edit');
+            this.modelForm.handleSuccess(response, 'contact');
           },
           error => {
             const errorMsg = error.error ? error.error.message : error.statusText;
