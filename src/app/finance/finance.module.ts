@@ -23,7 +23,10 @@ const routes: Routes = [{
   }, {
     path: 'create-account',
     component: AccountFormComponent
-  } , {
+  }, {
+    path: 'edit-account/:id',
+    component: AccountFormComponent
+  }, {
     path: 'passbook',
     component: TransactionListComponent
   }, {

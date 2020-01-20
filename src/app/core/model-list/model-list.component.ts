@@ -81,6 +81,9 @@ export class ModelListComponent implements OnInit, AfterViewInit {
 
   rowSelected(row) {
     if (row) {
+      if (!this.idColumn) {
+        this.idColumn = '_id';
+      }
       this.selectedRowIndex = row[this.idColumn];
       this.selectedRow = row;
       this.toolbarActions.forEach((action: any) => {

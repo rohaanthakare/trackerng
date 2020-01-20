@@ -136,7 +136,7 @@ export class ContactFormComponent implements OnInit {
       if (this.contactId) {
         this.contactService.updateUserContact(this.contactId, this.contactForm.value).subscribe(
           response => {
-            this.modelForm.handleSuccess(response, 'contact');
+            this.modelForm.handleSuccess(response, 'contact', 'contact');
           },
           error => {
             const errorMsg = error.error ? error.error.message : error.statusText;
@@ -146,7 +146,7 @@ export class ContactFormComponent implements OnInit {
       } else {
         this.contactService.createUserContact(this.contactForm.value).subscribe(
           response => {
-            this.modelForm.handleSuccess(response, 'contact');
+            this.modelForm.handleSuccess(response, 'contact', 'contact');
           },
           error => {
             const errorMsg = error.error ? error.error.message : error.statusText;

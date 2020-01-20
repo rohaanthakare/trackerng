@@ -11,7 +11,7 @@ PASSWORD_TRACKER,Password,Password,lock,home/dashboard,view,,1,1,0
 PASSWORD_LIST,Passwords,Passwords,list,home/password,view,PASSWORD_TRACKER,1,1,0
 PASSWORD_CREATE,New Password,Create Password,add,home/password/create,create,PASSWORD_LIST,1,0,1
 PASSWORD_EDIT,Edit Password,Edit Password,edit,home/password/edit,edit,PASSWORD_LIST,1,0,1
-PASSWORD_SHOW,View Password,View Password,remove_red_eye,home/password/create,edit,PASSWORD_LIST,1,0,1
+PASSWORD_DELETE,Delete Password,Delete Password,fas fa-trash-alt,home/password,delete,PASSWORD_LIST,1,0,1
 CONTACT_TRACKER,Contact,Contact,fas fa-address-book,home/contact,view,,1,1,0
 CONTACT_LIST,Contacts,Contacts,fas fa-address-book,home/contact,view,CONTACT_TRACKER,1,1,0
 CONTACT_CREATE,New Contact,Create Contact,fas fa-user-plus,home/contact/create,create,CONTACT_LIST,1,0,1

@@ -62,14 +62,18 @@ export class FinanceService {
     return this.http.get(`${environment.baseUrl}/api/get_financial_accounts`);
   }
 
+  getFinancialAccountDetails(id) {
+
+  }
+
   createFinancialAccount(accountDetails) {
     return this.http.post(`${environment.baseUrl}/api/create_financial_account`, {
       accountDetails
     });
   }
 
-  updateFinancialAccount(accountDetails) {
-    return this.http.put(`${environment.baseUrl}/api/create_financial_account`, {
+  updateFinancialAccount(accountId, accountDetails) {
+    return this.http.put(`${environment.baseUrl}/api/create_financial_account/${accountId}`, {
       accountDetails
     });
   }

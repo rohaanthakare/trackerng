@@ -45,9 +45,9 @@ export class ModelFormComponent implements OnInit {
     this.formGroup.reset();
   }
 
-  handleSuccess(response, model) {
+  handleSuccess(response, modelName, moduleName) {
     this.msgService.showSuccessMessage(response.message, 'center', 'top');
-    this.router.navigate(['/home/' + model + '/edit/' + response[model]._id]);
+    this.router.navigate(['/home/' + moduleName + '/edit/' + response[modelName]._id]);
   }
 
   setValues(modelValue) {

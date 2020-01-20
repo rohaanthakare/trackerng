@@ -4,6 +4,7 @@ import { MasterDataService } from 'src/app/services/master-data.service';
 import { ModelFormComponent } from 'src/app/core/model-form/model-form.component';
 import { FinanceService } from '../finance.service';
 import { MessageService } from 'src/app/shared/services/message.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-account-form',
@@ -12,6 +13,8 @@ import { MessageService } from 'src/app/shared/services/message.service';
 })
 export class AccountFormComponent implements OnInit {
   @ViewChild(ModelFormComponent, {static: false}) modelForm: ModelFormComponent;
+  accountId: string;
+  actionType: string;
   accountTypes = [];
   isAccountTypesLoaded = false;
   banks = [];
@@ -33,10 +36,19 @@ export class AccountFormComponent implements OnInit {
     balance: this.balanceCtrl
   });
   fieldConfigs = [];
-  constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService,
+  constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService, private route: ActivatedRoute,
               private financeService: FinanceService, private msgService: MessageService) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(
+      params => {
+        this.accountId = params.get('id');
+        if (this.accountId) {
+          this.actionType = 'edit';
+        }
+      }
+    );
+
     this.masterDataService.getMasterDataForParent('ACCOUNT_TYPE').subscribe(
       (response: any) => {
         this.accountTypes = response.data;
@@ -68,18 +80,35 @@ export class AccountFormComponent implements OnInit {
     }
   }
 
+  getAccountDetails() {
+
+  }
+
   createAccount() {
     if (this.accountForm.valid) {
-      this.accountForm.value.balance = 0;
-      this.financeService.createFinancialAccount(this.accountForm.value).subscribe(
-        response => {
-          this.modelForm.handleSuccess(response, '/home/contact/edit');
-        },
-        error => {
-          const errorMsg = error.error ? error.error.message : error.statusText;
-          this.msgService.showErrorMessage(errorMsg, 'center', 'top');
-        }
-      );
+      if (this.accountId) {
+        this.accountForm.value.balance = 0;
+        this.financeService.updateFinancialAccount(this.accountId, this.accountForm.value).subscribe(
+          response => {
+            this.modelForm.handleSuccess(response, 'account', 'finance');
+          },
+          error => {
+            const errorMsg = error.error ? error.error.message : error.statusText;
+            this.msgService.showErrorMessage(errorMsg, 'center', 'top');
+          }
+        );
+      } else {
+        this.accountForm.value.balance = 0;
+        this.financeService.createFinancialAccount(this.accountForm.value).subscribe(
+          response => {
+            this.modelForm.handleSuccess(response, 'account', 'finance');
+          },
+          error => {
+            const errorMsg = error.error ? error.error.message : error.statusText;
+            this.msgService.showErrorMessage(errorMsg, 'center', 'top');
+          }
+        );
+      }
     } else {
       this.msgService.showErrorMessage('Form contains error, please correct.', 'center', 'top');
     }
