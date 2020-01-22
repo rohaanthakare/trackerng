@@ -33,3 +33,7 @@ SHOPPING,Shopping,Shopping,11,EXPENSE_TYPE
 GIFTS,Gifts / Donations,Gifts / Donations,12,EXPENSE_TYPE
 EDUCATION,Education,Education,13,EXPENSE_TYPE
 HOUSING,Housing,Property Tax / Maintenance,14,EXPENSE_TYPE
+TRANS_CATEGORY,Transaction Category,Transaction Category,1,
+DEPOSIT,Deposit,Deposit,1,TRANS_CATEGORY
+EXPENSE,Expense,Expense,2,TRANS_CATEGORY
+TRANSFER,Transfer,Transfer,3,TRANS_CATEGORY
