@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AccountFormComponent implements OnInit {
   @ViewChild(ModelFormComponent, {static: false}) modelForm: ModelFormComponent;
+  formTitle = 'New Account';
   accountId: string;
   actionType: string;
   accountTypes = [];
@@ -35,6 +36,7 @@ export class AccountFormComponent implements OnInit {
     branch: this.branchCtrl,
     balance: this.balanceCtrl
   });
+  accountDetails: any;
   fieldConfigs = [];
   constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService, private route: ActivatedRoute,
               private financeService: FinanceService, private msgService: MessageService) { }
@@ -77,11 +79,18 @@ export class AccountFormComponent implements OnInit {
   allDataLoaded() {
     if (this.isAccountTypesLoaded && this.isBanksLoaded && this.isBranchesLoaded) {
       this.modelForm.setFieldConfigs(this.getFieldConfigs());
+      this.getAccountDetails();
     }
   }
 
   getAccountDetails() {
-
+    this.financeService.getFinancialAccountDetails(this.accountId).subscribe(
+      (response: any) => {
+        this.accountDetails = response.account;
+        this.formTitle = this.accountDetails.accountName;
+        this.modelForm.setValues(this.accountDetails);
+      }
+    );
   }
 
   createAccount() {
@@ -90,7 +99,7 @@ export class AccountFormComponent implements OnInit {
         this.accountForm.value.balance = 0;
         this.financeService.updateFinancialAccount(this.accountId, this.accountForm.value).subscribe(
           response => {
-            this.modelForm.handleSuccess(response, 'account', 'finance');
+            this.modelForm.handleSuccess(response, 'account', 'finance', 'edit-account');
           },
           error => {
             const errorMsg = error.error ? error.error.message : error.statusText;

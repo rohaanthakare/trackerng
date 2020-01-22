@@ -63,7 +63,7 @@ export class FinanceService {
   }
 
   getFinancialAccountDetails(id) {
-
+    return this.http.get(`${environment.baseUrl}/api/get_financial_account/${id}`);
   }
 
   createFinancialAccount(accountDetails) {
@@ -73,7 +73,7 @@ export class FinanceService {
   }
 
   updateFinancialAccount(accountId, accountDetails) {
-    return this.http.put(`${environment.baseUrl}/api/create_financial_account/${accountId}`, {
+    return this.http.put(`${environment.baseUrl}/api/update_financial_account/${accountId}`, {
       accountDetails
     });
   }

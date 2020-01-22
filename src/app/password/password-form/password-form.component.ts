@@ -91,7 +91,7 @@ export class PasswordFormComponent implements OnInit {
       if (this.passwordId) {
         this.passwordService.updatePassword(this.passwordId, this.passwordForm.value).subscribe(
           (response: any) => {
-            this.modelForm.handleSuccess(response, 'password', 'password');
+            this.modelForm.handleSuccess(response, 'password', 'password', 'edit');
           },
           error => {
             this.msgService.showErrorMessage('Error while updating password, please try again', 'center', 'top');
