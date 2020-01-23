@@ -10,6 +10,7 @@ import { ModelSelectComponent } from '../model-select/model-select.component';
   styleUrls: ['./model-form.component.scss']
 })
 export class ModelFormComponent implements OnInit {
+  @Input() submitActionName: string;
   @Input() fieldConfigs: any;
   @Input() formGroup: FormGroup;
   @Output() formSubmit = new EventEmitter();

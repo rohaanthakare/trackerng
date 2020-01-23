@@ -1,9 +1,9 @@
 <div class="form-title">
-    <ng-container *ngIf="actionType == 'edit'">
+    <ng-container *ngIf="actionType == 'edit' || formTitle">
         {{formTitle}}
     </ng-container>
-    <ng-container *ngIf="actionType != 'edit'">
-        Create
+    <ng-container *ngIf="!formTitle">
+        Title
     </ng-container>
 </div>
 <form class="form-body" (ngSubmit)="onFormSubmit()" [formGroup]="formGroup">
@@ -44,15 +44,20 @@
     </div>
     <div>
         <button mat-raised-button style="margin-bottom: 10px;" type="submit" color="primary">
-            <ng-container *ngIf="actionType == 'edit'">
+            <ng-container *ngIf="submitActionName">
+                <i class="material-icons">edit</i>
+                {{submitActionName}}
+            </ng-container>
+            <ng-container *ngIf="actionType == 'edit' && !submitActionName">
                 <i class="material-icons">edit</i>
                 Update
             </ng-container>
-            <ng-container *ngIf="actionType != 'edit'">
+            <ng-container *ngIf="actionType != 'edit' && !submitActionName">
                 <i class="material-icons">add</i>
                 Create
             </ng-container>
         </button>
+
         <button type="button" mat-raised-button color="warn" (click)="resetForm()">
             <i class="material-icons">settings_backup_restore</i>
             Reset

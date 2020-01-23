@@ -77,4 +77,10 @@ export class FinanceService {
       accountDetails
     });
   }
+
+  depositMoney(transactionDetail) {
+    return this.http.post(`${environment.baseUrl}/api/deposit_money`, {
+      transactionDetail
+    });
+  }
 }

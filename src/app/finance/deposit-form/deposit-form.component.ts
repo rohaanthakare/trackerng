@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MasterDataService } from 'src/app/services/master-data.service';
 import { ModelFormComponent } from 'src/app/core/model-form/model-form.component';
+import { FinanceService } from '../finance.service';
 
 @Component({
   selector: 'app-deposit-form',
@@ -30,7 +31,7 @@ export class DepositFormComponent implements OnInit {
     transactionDate: this.transactionDateCtrl,
     transactionDetail: this.transactionDetailCtrl
   });
-  constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService) { }
+  constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService, private financeService: FinanceService) { }
 
   ngOnInit() {
     this.masterDataService.getMasterDataForParent('DEPOSIT_TYPE').subscribe(
@@ -48,10 +49,18 @@ export class DepositFormComponent implements OnInit {
         this.allDataLoaded();
       }
     );
+
+    this.financeService.getFinancialAccounts().subscribe(
+      (response: any) => {
+        this.accounts = response.data;
+        this.isAccountsLoaded = true;
+        this.allDataLoaded();
+      }
+    );
   }
 
   allDataLoaded() {
-    if (this.isDepositTypeLoaded && this.isTransactionSubCategoriesLoaded) {
+    if (this.isDepositTypeLoaded && this.isTransactionSubCategoriesLoaded && this.isAccountsLoaded) {
       this.modelForm.setFieldConfigs(this.getFieldConfigs());
     }
   }
@@ -66,6 +75,15 @@ export class DepositFormComponent implements OnInit {
       displayField: 'configName',
       control: this.depositTypeCtrl,
       controlName: 'depositType'
+    }, {
+      label: 'Account',
+      name: 'account',
+      type: 'select',
+      dataScource: this.accounts,
+      valueField: '_id',
+      displayField: 'accountName',
+      control: this.accountCtrl,
+      controlName: 'account'
     }, {
       label: 'Amount',
       name: 'amount',
@@ -87,7 +105,27 @@ export class DepositFormComponent implements OnInit {
       displayField: 'configName',
       control: this.depositSubCategoryCtrl,
       controlName: 'transactionSubCategory'
+    }, {
+      label: 'Detail',
+      name: 'transactionDetail',
+      type: 'text',
+      control: this.transactionDetailCtrl,
+      controlName: 'transactionDetail'
     }];
+  }
+
+  depositMoney() {
+    console.log('Inside deposit money');
+    if (this.depositForm.valid) {
+      this.financeService.depositMoney(this.depositForm.value).subscribe(
+        response => {
+          console.log('Money deposite successfully');
+        },
+        error => {
+          console.log('Error while dpeositing money');
+        }
+      );
+    }
   }
 
 }
