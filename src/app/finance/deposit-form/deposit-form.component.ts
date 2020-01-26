@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MasterDataService } from 'src/app/services/master-data.service';
 import { ModelFormComponent } from 'src/app/core/model-form/model-form.component';
 import { FinanceService } from '../finance.service';
+import { HelperService } from 'src/app/shared/services/helper.service';
+import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
   selector: 'app-deposit-form',
@@ -26,12 +28,13 @@ export class DepositFormComponent implements OnInit {
   depositForm: FormGroup = this.formBuilder.group({
     transactionSubCategory: this.depositSubCategoryCtrl,
     account: this.accountCtrl,
-    amount: this.amountCtrl,
+    transactionAmount: this.amountCtrl,
     depositType: this.depositTypeCtrl,
     transactionDate: this.transactionDateCtrl,
     transactionDetail: this.transactionDetailCtrl
   });
-  constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService, private financeService: FinanceService) { }
+  constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService, private financeService: FinanceService,
+              private helperService: HelperService, private msgService: MessageService) { }
 
   ngOnInit() {
     this.masterDataService.getMasterDataForParent('DEPOSIT_TYPE').subscribe(
@@ -86,10 +89,10 @@ export class DepositFormComponent implements OnInit {
       controlName: 'account'
     }, {
       label: 'Amount',
-      name: 'amount',
+      name: 'transactionAmount',
       type: 'number',
       control: this.amountCtrl,
-      controlName: 'amount'
+      controlName: 'transactionAmount'
     }, {
       label: 'Date',
       name: 'transactionDate',
@@ -115,14 +118,15 @@ export class DepositFormComponent implements OnInit {
   }
 
   depositMoney() {
-    console.log('Inside deposit money');
     if (this.depositForm.valid) {
+      this.depositForm.value.transactionDate = this.helperService.getUTCDate(this.depositForm.value.transactionDate);
       this.financeService.depositMoney(this.depositForm.value).subscribe(
-        response => {
-          console.log('Money deposite successfully');
+        (response: any) => {
+          this.msgService.showSuccessMessage(response.message, 'center', 'top');
         },
         error => {
-          console.log('Error while dpeositing money');
+          const errorMsg = error.error ? error.error.message : error.statusText;
+          this.msgService.showErrorMessage(errorMsg, 'center', 'top');
         }
       );
     }

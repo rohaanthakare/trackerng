@@ -35,4 +35,8 @@ export class HelperService {
       }
     };
   }
+
+  getUTCDate(inputDate: Date) {
+    return new Date(inputDate.getTime() - (inputDate.getTimezoneOffset() * 60000));
+  }
 }

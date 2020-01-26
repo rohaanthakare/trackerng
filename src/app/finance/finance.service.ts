@@ -83,4 +83,8 @@ export class FinanceService {
       transactionDetail
     });
   }
+
+  getUserTransactions() {
+    return this.http.get(`${environment.baseUrl}/api/get_passbook`);
+  }
 }

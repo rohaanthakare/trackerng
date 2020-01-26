@@ -50,6 +50,7 @@ import { ContactMeComponent } from './contact-me/contact-me.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { UserActivationComponent } from './user-activation/user-activation.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
   ],
   entryComponents: [ MessageSnackBarComponent],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
-    AuthService, UserService],
+    AuthService, UserService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

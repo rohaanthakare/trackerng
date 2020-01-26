@@ -24,7 +24,7 @@
         </mat-form-field>
         <!-- Date Field -->
         <mat-form-field *ngSwitchCase="'date'">
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date" (focus)="picker.open()">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" (focus)="picker.open()" [formControlName]="fieldConfig.controlName">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
