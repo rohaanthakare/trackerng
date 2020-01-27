@@ -1,2 +1,2 @@
-<app-model-list [columnDefs]="columnDefs" viewTitle="Passbook" [viewCode]="viewCode" [displayedColumns]="displayedColumns"
-     moduleName="Finance" listDataServiceApi="getUserTransactions"></app-model-list>
+<app-model-list [columnDefs]="columnDefs" viewTitle="Passbook" viewCode="PASSBOOK" [displayedColumns]="displayedColumns"
+     moduleName="Finance" listDataServiceApi="getUserTransactions" (customEvent)="customEventHandler($event)"></app-model-list>

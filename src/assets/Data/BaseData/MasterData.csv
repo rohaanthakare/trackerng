@@ -37,6 +37,7 @@ TRANS_CATEGORY,Transaction Category,Transaction Category,1,
 DEPOSIT,Deposit,Deposit,1,TRANS_CATEGORY
 EXPENSE,Expense,Expense,2,TRANS_CATEGORY
 TRANSFER,Transfer,Transfer,3,TRANS_CATEGORY
+REVERT,Revert,Revert,4,TRANS_CATEGORY
 DEPOSIT_TYPE,Deposit Type,Deposit Type,1,
 OWN_DEPOSIT,Own Deposit,Own Deposit,1,DEPOSIT_TYPE
 OTHER_USER_DEPOSIT,Other User Deposit,Other User Deposit,2,DEPOSIT_TYPE
@@ -45,6 +46,5 @@ SALARY,Salary,Salary,1,DEPOSIT_CATEGORY
 TAX_RETURN,Tax Return,Tax Return,2,DEPOSIT_CATEGORY
 SETTLEMENT,Settlement,Settlement,3,DEPOSIT_CATEGORY
 CASHBACK,Cashback and Rewards,Cashback and Rewards,4,DEPOSIT_CATEGORY
-TRANSACTION_REVERT,Revert,Revert,5,DEPOSIT_CATEGORY
 INVESTMENT_RETURN,Investment Return,Investment Return,6,DEPOSIT_CATEGORY
 ADJUSTMENT,Adjustment,Adjustment,7,DEPOSIT_CATEGORY

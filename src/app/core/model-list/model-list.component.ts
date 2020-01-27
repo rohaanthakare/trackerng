@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit, Injector, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, Injector, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { MasterView } from 'src/app/models/master-view.model';
 import { MasterViewService } from 'src/app/services/master-view.service';
 import { Router } from '@angular/router';
@@ -29,6 +29,7 @@ export class ModelListComponent implements OnInit, AfterViewInit {
   @Input() idColumn: string;
   @Input() moduleName: string;
   @Input() listDataServiceApi: string;
+  @Output() customEvent: EventEmitter<any> = new EventEmitter();
 
   @ViewChild(MatPaginator, {static : false}) paginator: MatPaginator;
   totalRecords: number;
@@ -60,6 +61,11 @@ export class ModelListComponent implements OnInit, AfterViewInit {
   toolbarButtonClicked(action: MasterView) {
     if (action.viewType === 'edit') {
       this.router.navigate([action.viewRoute + '/' + this.selectedRow[this.idColumn]]);
+    } else if (action.viewType === 'delete') {
+      this.customEvent.emit({
+        action: action.viewRoute,
+        selectedId: this.selectedRow[this.idColumn]
+      });
     } else {
       this.router.navigate([action.viewRoute]);
     }

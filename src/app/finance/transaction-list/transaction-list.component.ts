@@ -42,4 +42,8 @@ export class TransactionListComponent implements OnInit {
   ngOnInit() {
   }
 
+  customEventHandler(event) {
+
+  }
+
 }
