@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FinanceService } from '../finance.service';
 import { DatePipe } from '@angular/common';
+import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
   selector: 'app-transaction-list',
@@ -9,8 +10,8 @@ import { DatePipe } from '@angular/common';
 })
 export class TransactionListComponent implements OnInit {
 
-  constructor(private financeService: FinanceService, private datePipe: DatePipe) { }
-  displayedColumns: string[] = ['transactionDetail', 'transactionDate', 'transactionAmount'];
+  constructor(private financeService: FinanceService, private datePipe: DatePipe, private msgService: MessageService) { }
+  displayedColumns: string[] = ['transactionDetail', 'account', 'transactionDate', 'transactionAmount'];
   columnDefs = [{
     name: 'transactionDetail',
     header: 'Detail',
@@ -19,11 +20,18 @@ export class TransactionListComponent implements OnInit {
       return row.transactionCategory.configName + ' - ' + row.transactionSubCategory.configName + ' - ' + row.transactionDetail;
     }
   }, {
+    name: 'account',
+    header: 'Account',
+    field: 'account',
+    renderer: (row) => {
+      return (row.accountTransactions.length > 0) ? row.accountTransactions[0].account.accountName : '';
+    }
+  }, {
     name: 'transactionDate',
     header: 'Date',
     field: 'transactionDate',
     renderer: (row) => {
-      return this.datePipe.transform(new Date(row.transactionDate), 'dd-MMM-yyyy');
+      return (row.transactionDate) ? this.datePipe.transform(new Date(row.transactionDate), 'dd-MMM-yyyy') : '';
     }
   }, {
     name: 'transactionAmount',
@@ -43,7 +51,11 @@ export class TransactionListComponent implements OnInit {
   }
 
   customEventHandler(event) {
-
+    this.financeService.revertTransaction(event.selectedId).subscribe(
+      response => {
+        this.msgService.showSuccessMessage('Transation reverted successfully', 'center', 'top');
+      }
+    );
   }
 
 }

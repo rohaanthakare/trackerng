@@ -87,4 +87,8 @@ export class FinanceService {
   getUserTransactions() {
     return this.http.get(`${environment.baseUrl}/api/get_passbook`);
   }
+
+  revertTransaction(transId) {
+    return this.http.put(`${environment.baseUrl}/api/revert_transaction/${transId}`, {});
+  }
 }
