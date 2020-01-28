@@ -110,7 +110,7 @@ export class AccountFormComponent implements OnInit {
         this.accountForm.value.balance = 0;
         this.financeService.createFinancialAccount(this.accountForm.value).subscribe(
           response => {
-            this.modelForm.handleSuccess(response, 'account', 'finance');
+            this.modelForm.handleSuccess(response, 'account', 'finance', 'edit-account');
           },
           error => {
             const errorMsg = error.error ? error.error.message : error.statusText;

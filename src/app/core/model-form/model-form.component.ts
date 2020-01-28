@@ -47,6 +47,7 @@ export class ModelFormComponent implements OnInit {
   }
 
   handleSuccess(response, modelName, moduleName, action?) {
+    action = (action) ? action : 'edit';
     this.msgService.showSuccessMessage(response.message, 'center', 'top');
     this.router.navigate(['/home/' + moduleName + '/' + action + '/' + response[modelName]._id]);
   }

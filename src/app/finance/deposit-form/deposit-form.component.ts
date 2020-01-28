@@ -5,6 +5,7 @@ import { ModelFormComponent } from 'src/app/core/model-form/model-form.component
 import { FinanceService } from '../finance.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { MessageService } from 'src/app/shared/services/message.service';
+import { ContactService } from 'src/app/contact/contact.service';
 
 @Component({
   selector: 'app-deposit-form',
@@ -19,22 +20,26 @@ export class DepositFormComponent implements OnInit {
   isAccountsLoaded = false;
   transactionSubCategories = [];
   isTransactionSubCategoriesLoaded = false;
+  userContacts = [];
+  isContactLoaded = false;
   depositTypeCtrl = new FormControl();
   accountCtrl = new FormControl();
   amountCtrl = new FormControl();
   depositSubCategoryCtrl = new FormControl();
   transactionDateCtrl = new FormControl();
   transactionDetailCtrl = new FormControl();
+  userContactControl = new FormControl();
   depositForm: FormGroup = this.formBuilder.group({
     transactionSubCategory: this.depositSubCategoryCtrl,
     account: this.accountCtrl,
     transactionAmount: this.amountCtrl,
     depositType: this.depositTypeCtrl,
     transactionDate: this.transactionDateCtrl,
-    transactionDetail: this.transactionDetailCtrl
+    transactionDetail: this.transactionDetailCtrl,
+    userContact: this.userContactControl
   });
   constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService, private financeService: FinanceService,
-              private helperService: HelperService, private msgService: MessageService) { }
+              private helperService: HelperService, private msgService: MessageService, private contactService: ContactService) { }
 
   ngOnInit() {
     this.masterDataService.getMasterDataForParent('DEPOSIT_TYPE').subscribe(
@@ -60,10 +65,21 @@ export class DepositFormComponent implements OnInit {
         this.allDataLoaded();
       }
     );
+
+    this.contactService.getUserContacts().subscribe(
+      (response: any) => {
+        console.log('User Contacts -------');
+        console.log(response);
+        this.userContacts = response.data;
+        this.isContactLoaded = true;
+        this.allDataLoaded();
+      }
+    );
   }
 
   allDataLoaded() {
-    if (this.isDepositTypeLoaded && this.isTransactionSubCategoriesLoaded && this.isAccountsLoaded) {
+    if (this.isDepositTypeLoaded && this.isTransactionSubCategoriesLoaded && this.isAccountsLoaded
+      && this.isContactLoaded) {
       this.modelForm.setFieldConfigs(this.getFieldConfigs());
     }
   }
@@ -78,6 +94,20 @@ export class DepositFormComponent implements OnInit {
       displayField: 'configName',
       control: this.depositTypeCtrl,
       controlName: 'depositType'
+    }, {
+      label: 'User',
+      name: 'userContact',
+      type: 'select',
+      dataScource: this.userContacts,
+      valueField: '_id',
+      displayField: 'firstName',
+      control: this.userContactControl,
+      renderer: (data) => {
+        const firstName = this.helperService.convertToTitleCase(data.firstName);
+        const lastName = this.helperService.convertToTitleCase(data.lastName);
+        return firstName + ' ' + lastName;
+      },
+      controlName: 'userContact'
     }, {
       label: 'Account',
       name: 'account',

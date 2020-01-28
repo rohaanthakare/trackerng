@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class ModelSelectComponent implements OnInit {
   myControl = new FormControl();
+  @Input() fieldConfig: any;
   @Input() fieldLabel: string;
   @Input() name: string;
   @Input() fieldCtrl: FormControl;

@@ -2,7 +2,10 @@
     <input type="text" [placeholder]="fieldLabel" aria-label="Number" matInput [formControl]="fieldCtrl" [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFunction" (optionSelected)="onOptionSelected($event)">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option[displayField]}}
+            <ng-container *ngIf="fieldConfig.renderer">
+                <span [innerHTML]="fieldConfig.renderer(option)"></span>
+            </ng-container>
+            <ng-container *ngIf="!fieldConfig.renderer">{{option[displayField]}}</ng-container>
         </mat-option>
     </mat-autocomplete>
 </mat-form-field>

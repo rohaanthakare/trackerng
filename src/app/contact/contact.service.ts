@@ -9,7 +9,7 @@ export class ContactService {
   module = 'Contact';
   constructor(private http: HttpClient) { }
 
-  getUserContacts(filterParams, startIndex, pageSize) {
+  getUserContacts(filterParams?, startIndex?, pageSize?) {
     return this.http.get(`${environment.baseUrl}/api/get_user_contacts`, {
       params: {
         start: startIndex,

@@ -48,3 +48,6 @@ SETTLEMENT,Settlement,Settlement,3,DEPOSIT_CATEGORY
 CASHBACK,Cashback and Rewards,Cashback and Rewards,4,DEPOSIT_CATEGORY
 INVESTMENT_RETURN,Investment Return,Investment Return,6,DEPOSIT_CATEGORY
 ADJUSTMENT,Adjustment,Adjustment,7,DEPOSIT_CATEGORY
+SETTLEMENT_TYPE,Settlement Type,Settlement Type,1,
+MONEY_TO_GIVE,Money to Give,Money to Give,1,SETTLEMENT_TYPE
+MONEY_TO_TAKE,Money to Take,Money to Take,2,SETTLEMENT_TYPE
