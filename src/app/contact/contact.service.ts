@@ -18,6 +18,10 @@ export class ContactService {
     });
   }
 
+  getUserSettlements() {
+    return this.http.get(`${environment.baseUrl}/api/get_user_settlements`);
+  }
+
   getContactDetail(conatctId) {
     return this.http.get(`${environment.baseUrl}/api/get_contact_detail/${conatctId}`);
   }

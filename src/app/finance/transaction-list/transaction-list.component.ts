@@ -58,4 +58,12 @@ export class TransactionListComponent implements OnInit {
     );
   }
 
+  onRowSelected(event) {
+    if (event.selectedRow.transactionCategory.configCode === 'REVERT') {
+      event.toolbarButtons[0].isDisabled = true;
+    } else {
+      event.toolbarButtons[0].isDisabled = false;
+    }
+  }
+
 }

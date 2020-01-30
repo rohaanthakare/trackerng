@@ -30,6 +30,7 @@ export class ModelListComponent implements OnInit, AfterViewInit {
   @Input() moduleName: string;
   @Input() listDataServiceApi: string;
   @Output() customEvent: EventEmitter<any> = new EventEmitter();
+  @Output() rowSelected: EventEmitter<any> = new EventEmitter();
 
   @ViewChild(MatPaginator, {static : false}) paginator: MatPaginator;
   totalRecords: number;
@@ -44,7 +45,7 @@ export class ModelListComponent implements OnInit, AfterViewInit {
       (response: any) => {
         this.toolbarActions = response.actions;
         this.toolbarActions.forEach((action: any) => {
-          if (action.viewType === 'edit') {
+          if (action.viewType !== 'create') {
             action.isDisabled = true;
           }
         });
@@ -85,11 +86,16 @@ export class ModelListComponent implements OnInit, AfterViewInit {
     );
   }
 
-  rowSelected(row) {
+  onRowSelect(row) {
     if (row) {
       if (!this.idColumn) {
         this.idColumn = '_id';
       }
+      const eventParams = {
+        selectedRow: row,
+        toolbarButtons: this.toolbarActions
+      };
+      this.rowSelected.emit(eventParams);
       this.selectedRowIndex = row[this.idColumn];
       this.selectedRow = row;
       this.toolbarActions.forEach((action: any) => {

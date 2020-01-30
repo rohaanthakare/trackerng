@@ -1,2 +1,2 @@
 <app-model-list [columnDefs]="columnDefs" viewTitle="Passbook" viewCode="PASSBOOK" [displayedColumns]="displayedColumns"
-     moduleName="Finance" listDataServiceApi="getUserTransactions" (customEvent)="customEventHandler($event)"></app-model-list>
+     moduleName="Finance" listDataServiceApi="getUserTransactions" (customEvent)="customEventHandler($event)" (rowSelected)="onRowSelected($event)"></app-model-list>

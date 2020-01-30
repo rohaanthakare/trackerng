@@ -44,6 +44,9 @@ const routes: Routes = [{
   }, {
     path: 'budget-manager',
     component: BudgetManagerComponent
+  }, {
+    path: 'settlements',
+    component: SettlementsListComponent
   }]
 }];
 @NgModule({
