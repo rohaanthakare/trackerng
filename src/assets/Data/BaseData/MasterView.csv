@@ -27,6 +27,7 @@ WITHDRAW_MONEY,Withdraw,Withdraw,fas fa-share-square,home/finance/withdraw,view,
 TRANSFER_MONEY,Transfer,Transfer,fas fa-exchange-alt,home/finance/transfer,view,FINANCE_TRACKER,1,1,0
 ADD_EXPENSE,Expense,Expense,fas fa-money-bill-alt,home/finance/add-expense,view,FINANCE_TRACKER,1,1,0
 BUDGET_MANAGER,Budget Manager,Budget Manager,fas fa-money-check,home/finance/budget-manager,view,FINANCE_TRACKER,1,1,0
+CONTACT_SETTLEMENT,Settlements,Settlements,fas fa-handshake,home/finance/settlements,view,FINANCE_TRACKER,1,1,0
 FIN_ACCOUNT_CREATE,New Account,Create Account,add,home/finance/create-account,create,BANK_ACCOUNTS,1,0,1
 FIN_ACCOUNT_EDIT,Edit Account,Edit Account,edit,home/finance/edit-account,edit,BANK_ACCOUNTS,1,0,1
 REVERT_TRANSACTION,Revert Transaction,Revert Transaction,fas fa-redo,home/finance/edit-account,delete,PASSBOOK,1,0,1
