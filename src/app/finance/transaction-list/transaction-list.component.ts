@@ -24,7 +24,8 @@ export class TransactionListComponent implements OnInit {
     header: 'Account',
     field: 'account',
     renderer: (row) => {
-      return (row.accountTransactions.length > 0) ? row.accountTransactions[0].account.accountName : '';
+      return (row.accountTransactions.length > 0 && row.accountTransactions[0])
+        ? row.accountTransactions[0].account.accountName : '';
     }
   }, {
     name: 'transactionDate',

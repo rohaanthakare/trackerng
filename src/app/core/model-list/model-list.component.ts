@@ -29,6 +29,11 @@ export class ModelListComponent implements OnInit, AfterViewInit {
   @Input() idColumn: string;
   @Input() moduleName: string;
   @Input() listDataServiceApi: string;
+  @Input() noPagination: boolean;
+  @Input() grouping: boolean;
+  @Input() groupField: any;
+  @Input() groupHeader: any;
+  @Input() groupSubheader: any;
   @Output() customEvent: EventEmitter<any> = new EventEmitter();
   @Output() rowSelected: EventEmitter<any> = new EventEmitter();
 
@@ -54,9 +59,11 @@ export class ModelListComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit() {
     this.loadTableData();
-    this.paginator.page.pipe(
-      tap(() => this.loadTableData())
-    ).subscribe();
+    if (!this.noPagination) {
+      this.paginator.page.pipe(
+        tap(() => this.loadTableData())
+      ).subscribe();
+    }
   }
 
   toolbarButtonClicked(action: MasterView) {
@@ -74,16 +81,18 @@ export class ModelListComponent implements OnInit, AfterViewInit {
 
   loadTableData() {
     const serviceObj = this.injector.get<any>(modelServices[this.moduleName]);
-    const start = this.paginator.pageIndex * this.paginator.pageSize;
-    serviceObj[this.listDataServiceApi]('', start, this.paginator.pageSize).subscribe(
+    const start = (!this.noPagination) ? this.paginator.pageIndex * this.paginator.pageSize : undefined;
+    const pageSize = (!this.noPagination) ? this.paginator.pageSize : undefined;
+    serviceObj[this.listDataServiceApi]('', start, pageSize).subscribe(
       (response: any) => {
         this.dataSource.data = response.data;
         this.totalRecords = response.count;
-      },
-      error => {
-
       }
     );
+  }
+
+  prepareGroupedData(inputData) {
+
   }
 
   onRowSelect(row) {

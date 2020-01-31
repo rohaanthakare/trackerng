@@ -103,9 +103,11 @@ export class DepositFormComponent implements OnInit {
       displayField: 'firstName',
       control: this.userContactControl,
       renderer: (data) => {
-        const firstName = this.helperService.convertToTitleCase(data.firstName);
-        const lastName = this.helperService.convertToTitleCase(data.lastName);
-        return firstName + ' ' + lastName;
+        if (data) {
+          const firstName = this.helperService.convertToTitleCase(data.firstName);
+          const lastName = this.helperService.convertToTitleCase(data.lastName);
+          return firstName + ' ' + lastName;
+        }
       },
       controlName: 'userContact'
     }, {
