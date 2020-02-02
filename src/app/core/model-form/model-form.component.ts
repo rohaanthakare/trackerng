@@ -11,6 +11,7 @@ import { ModelSelectComponent } from '../model-select/model-select.component';
 })
 export class ModelFormComponent implements OnInit {
   @Input() submitActionName: string;
+  @Input() submitActionIcon: string;
   @Input() fieldConfigs: any;
   @Input() formGroup: FormGroup;
   @Output() formSubmit = new EventEmitter();

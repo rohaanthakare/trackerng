@@ -45,7 +45,7 @@
     <div>
         <button mat-raised-button style="margin-bottom: 10px;" type="submit" color="primary">
             <ng-container *ngIf="submitActionName">
-                <i class="material-icons">edit</i>
+                <i class="{{submitActionIcon}}"></i>
                 {{submitActionName}}
             </ng-container>
             <ng-container *ngIf="actionType == 'edit' && !submitActionName">

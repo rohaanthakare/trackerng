@@ -68,8 +68,6 @@ export class DepositFormComponent implements OnInit {
 
     this.contactService.getUserContacts().subscribe(
       (response: any) => {
-        console.log('User Contacts -------');
-        console.log(response);
         this.userContacts = response.data;
         this.isContactLoaded = true;
         this.allDataLoaded();

@@ -51,3 +51,11 @@ ADJUSTMENT,Adjustment,Adjustment,7,DEPOSIT_CATEGORY
 SETTLEMENT_TYPE,Settlement Type,Settlement Type,1,
 MONEY_TO_GIVE,Money to Give,Money to Give,1,SETTLEMENT_TYPE
 MONEY_TO_TAKE,Money to Take,Money to Take,2,SETTLEMENT_TYPE
+TRANSFER_TYPE,Transfer Type,Deposit Type,1,
+OWN_TRANSFER,Own Account,Own Deposit,1,TRANSFER_TYPE
+OTHER_USER_TRANSFER,Other User Account,Other User Account,2,TRANSFER_TYPE
+TRANSFER_CATEGORY,Transfer Category,Transfer Category,1,
+SETTLEMENT_TR,Settlement,Settlement,1,TRANSFER_CATEGORY
+LEND,Lend,Lend,2,TRANSFER_CATEGORY
+CASH,Cash,Cash,3,TRANSFER_CATEGORY
+ADJUSTMENT_TR,Adjustment,Adjustment,7,TRANSFER_CATEGORY
