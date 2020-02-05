@@ -63,6 +63,8 @@ export class TransferFormComponent implements OnInit {
     this.financeService.getFinancialAccounts().subscribe(
       (response: any) => {
         this.fromAccounts = response.data;
+        this.toAccounts = response.data;
+        this.isToAccountsLoaded = true;
         this.isFromAccountLoaded = true;
         this.allDataLoaded();
       }
@@ -93,7 +95,62 @@ export class TransferFormComponent implements OnInit {
       valueField: '_id',
       displayField: 'configName',
       control: this.transferTypeCtrl,
-      controlName: 'depositType'
+      controlName: 'transferType'
+    }, {
+      label: 'From Account',
+      name: 'fromAccount',
+      type: 'select',
+      dataScource: this.fromAccounts,
+      valueField: '_id',
+      displayField: 'accountName',
+      control: this.fromAccountCtrl,
+      controlName: 'fromAccount'
+    }, {
+      label: 'To Account',
+      name: 'toAccount',
+      type: 'select',
+      dataScource: this.toAccounts,
+      valueField: '_id',
+      displayField: 'accountName',
+      control: this.toAccountCtrl,
+      controlName: 'toAccount'
+    }, {
+      label: 'Amount',
+      name: 'transactionAmount',
+      type: 'number',
+      control: this.amountCtrl,
+      controlName: 'transactionAmount'
+    }, {
+      label: 'Date',
+      name: 'transactionDate',
+      type: 'date',
+      control: this.transactionDateCtrl,
+      controlName: 'transactionDate'
+    }, {
+      label: 'Category',
+      name: 'transactionSubCategory',
+      type: 'select',
+      dataScource: this.transfterSubCategories,
+      valueField: '_id',
+      displayField: 'configName',
+      control: this.transferSubCategoryCtrl,
+      controlName: 'transactionSubCategory'
+    }, {
+      label: 'Detail',
+      name: 'transactionDetail',
+      type: 'text',
+      control: this.transactionDetailCtrl,
+      controlName: 'transactionDetail'
     }];
+  }
+
+  transferMoney() {
+    if (this.transferForm.valid) {
+      this.financeService.transferMoney(this.transferForm.value).subscribe(
+        response => {
+          console.log('Success');
+        }
+      );
+    }
   }
 }

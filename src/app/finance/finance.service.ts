@@ -84,6 +84,10 @@ export class FinanceService {
     });
   }
 
+  transferMoney(transactionDetail) {
+    return this.http.post(`${environment.baseUrl}/api/transfer_money`, transactionDetail);
+  }
+
   getUserTransactions() {
     return this.http.get(`${environment.baseUrl}/api/get_passbook`);
   }
