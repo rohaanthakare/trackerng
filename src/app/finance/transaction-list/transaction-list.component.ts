@@ -11,7 +11,7 @@ import { MessageService } from 'src/app/shared/services/message.service';
 export class TransactionListComponent implements OnInit {
 
   constructor(private financeService: FinanceService, private datePipe: DatePipe, private msgService: MessageService) { }
-  displayedColumns: string[] = ['transactionDetail', 'account', 'transactionDate', 'transactionAmount'];
+  displayedColumns: string[] = ['transactionDetail', 'fromAccount', 'toAccount', 'transactionDate', 'transactionAmount'];
   columnDefs = [{
     name: 'transactionDetail',
     header: 'Detail',
@@ -20,12 +20,20 @@ export class TransactionListComponent implements OnInit {
       return row.transactionCategory.configName + ' - ' + row.transactionSubCategory.configName + ' - ' + row.transactionDetail;
     }
   }, {
-    name: 'account',
-    header: 'Account',
+    name: 'fromAccount',
+    header: 'From Account',
     field: 'account',
     renderer: (row) => {
       return (row.accountTransactions.length > 0 && row.accountTransactions[0])
         ? row.accountTransactions[0].account.accountName : '';
+    }
+  }, {
+    name: 'toAccount',
+    header: 'To Account',
+    field: 'account',
+    renderer: (row) => {
+      return (row.accountTransactions.length > 1 && row.accountTransactions[1])
+        ? row.accountTransactions[1].account.accountName : '';
     }
   }, {
     name: 'transactionDate',
@@ -40,7 +48,8 @@ export class TransactionListComponent implements OnInit {
     field: 'transactionAmount',
     renderer: (row) => {
       const transactionAmount = row.transactionAmount.toFixed(2);
-      if (row.transactionCategory.configCode === 'DEPOSIT') {
+      if ((row.accountTransactions.length > 0 && row.accountTransactions[0].transactionType.configCode === 'CREDIT')
+        || (row.transactionCategory.configCode === 'DEPOSIT')) {
         return `<label class='success-text'><i class='fas fa-rupee-sign mr-1'></i>${transactionAmount}</label>`;
       } else {
         return `<label class='error-text'><i class='fas fa-rupee-sign mr-1'></i>${transactionAmount}</label>`;
@@ -60,7 +69,7 @@ export class TransactionListComponent implements OnInit {
   }
 
   onRowSelected(event) {
-    if (event.selectedRow.transactionCategory.configCode === 'REVERT') {
+    if (event.selectedRow.transactionCategory.configCode === 'REVERT' || event.selectedRow.isReverted) {
       event.toolbarButtons[0].isDisabled = true;
     } else {
       event.toolbarButtons[0].isDisabled = false;
