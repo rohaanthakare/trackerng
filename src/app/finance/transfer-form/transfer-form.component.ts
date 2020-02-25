@@ -4,6 +4,8 @@ import { MasterDataService } from 'src/app/services/master-data.service';
 import { ModelFormComponent } from 'src/app/core/model-form/model-form.component';
 import { FinanceService } from '../finance.service';
 import { ContactService } from 'src/app/contact/contact.service';
+import { HelperService } from 'src/app/shared/services/helper.service';
+import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
   selector: 'app-transfer-form',
@@ -12,6 +14,8 @@ import { ContactService } from 'src/app/contact/contact.service';
 })
 export class TransferFormComponent implements OnInit {
   @ViewChild(ModelFormComponent, {static: false}) modelForm: ModelFormComponent;
+  formFields = [];
+  isOwnTransaction = false;
   transfterSubCategories = [];
   isTransfterSubCategoriesLoaded = false;
   transferSubCategoryCtrl = new FormControl();
@@ -41,7 +45,7 @@ export class TransferFormComponent implements OnInit {
     userContact: this.userContactControl
   });
   constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService, private contactService: ContactService,
-              private financeService: FinanceService) { }
+              private financeService: FinanceService, private helperService: HelperService, private msgService: MessageService) { }
 
   ngOnInit() {
     this.masterDataService.getMasterDataForParent('TRANSFER_TYPE').subscribe(
@@ -87,7 +91,8 @@ export class TransferFormComponent implements OnInit {
   }
 
   getFieldConfigs() {
-    return [{
+    this.formFields = [];
+    this.formFields.push({
       label: 'Type',
       name: 'transferType',
       type: 'select',
@@ -95,8 +100,38 @@ export class TransferFormComponent implements OnInit {
       valueField: '_id',
       displayField: 'configName',
       control: this.transferTypeCtrl,
+      onDataSelected: (data) => {
+        if (data.configCode === 'OWN_TRANSFER') {
+          this.isOwnTransaction = true;
+        } else {
+          this.isOwnTransaction = false;
+        }
+        this.modelForm.setFieldConfigs(this.getFieldConfigs());
+      },
       controlName: 'transferType'
-    }, {
+    });
+
+    if (!this.isOwnTransaction) {
+      this.formFields.push({
+        label: 'User',
+        name: 'userContact',
+        type: 'select',
+        dataScource: this.userContacts,
+        valueField: '_id',
+        displayField: 'firstName',
+        control: this.userContactControl,
+        renderer: (data) => {
+          if (data) {
+            const firstName = this.helperService.convertToTitleCase(data.firstName);
+            const lastName = this.helperService.convertToTitleCase(data.lastName);
+            return firstName + ' ' + lastName;
+          }
+        },
+        controlName: 'userContact'
+      });
+    }
+
+    this.formFields.push({
       label: 'From Account',
       name: 'fromAccount',
       type: 'select',
@@ -105,7 +140,8 @@ export class TransferFormComponent implements OnInit {
       displayField: 'accountName',
       control: this.fromAccountCtrl,
       controlName: 'fromAccount'
-    }, {
+    });
+    this.formFields.push({
       label: 'To Account',
       name: 'toAccount',
       type: 'select',
@@ -114,19 +150,22 @@ export class TransferFormComponent implements OnInit {
       displayField: 'accountName',
       control: this.toAccountCtrl,
       controlName: 'toAccount'
-    }, {
+    });
+    this.formFields.push({
       label: 'Amount',
       name: 'transactionAmount',
       type: 'number',
       control: this.amountCtrl,
       controlName: 'transactionAmount'
-    }, {
+    });
+    this.formFields.push({
       label: 'Date',
       name: 'transactionDate',
       type: 'date',
       control: this.transactionDateCtrl,
       controlName: 'transactionDate'
-    }, {
+    });
+    this.formFields.push({
       label: 'Category',
       name: 'transactionSubCategory',
       type: 'select',
@@ -135,20 +174,26 @@ export class TransferFormComponent implements OnInit {
       displayField: 'configName',
       control: this.transferSubCategoryCtrl,
       controlName: 'transactionSubCategory'
-    }, {
+    });
+    this.formFields.push({
       label: 'Detail',
       name: 'transactionDetail',
       type: 'text',
       control: this.transactionDetailCtrl,
       controlName: 'transactionDetail'
-    }];
+    });
+    return this.formFields;
   }
 
   transferMoney() {
     if (this.transferForm.valid) {
       this.financeService.transferMoney(this.transferForm.value).subscribe(
-        response => {
-          console.log('Success');
+        (response: any) => {
+          this.msgService.showSuccessMessage(response.message, 'center', 'top');
+        },
+        error => {
+          const errorMsg = error.error ? error.error.message : error.statusText;
+          this.msgService.showErrorMessage(errorMsg, 'center', 'top');
         }
       );
     }

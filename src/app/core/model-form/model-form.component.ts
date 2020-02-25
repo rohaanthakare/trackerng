@@ -68,6 +68,9 @@ export class ModelFormComponent implements OnInit {
   }
 
   optionSelected(value, fieldConfig) {
+    if (fieldConfig.onDataSelected) {
+      fieldConfig.onDataSelected(value);
+    }
     const modelSelectCmps = this.modelSelect.toArray();
     if (fieldConfig.childModel) {
       const childCmp = modelSelectCmps.find(cmp => cmp.name === fieldConfig.childModel);
