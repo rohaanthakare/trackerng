@@ -153,6 +153,7 @@ export class DepositFormComponent implements OnInit {
       this.financeService.depositMoney(this.depositForm.value).subscribe(
         (response: any) => {
           this.msgService.showSuccessMessage(response.message, 'center', 'top');
+          this.depositForm.reset();
         },
         error => {
           const errorMsg = error.error ? error.error.message : error.statusText;

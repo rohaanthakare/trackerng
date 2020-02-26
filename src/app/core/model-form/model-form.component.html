@@ -1,65 +1,68 @@
-<div class="form-title">
-    <ng-container *ngIf="actionType == 'edit' || formTitle">
-        {{formTitle}}
-    </ng-container>
-    <ng-container *ngIf="!formTitle">
-        Title
-    </ng-container>
+<div class="mat-elevation-z8">
+    <div class="form-title">
+        <ng-container *ngIf="actionType == 'edit' || formTitle">
+            {{formTitle}}
+        </ng-container>
+        <ng-container *ngIf="!formTitle">
+            Title
+        </ng-container>
+    </div>
+    <form class="form-body" (ngSubmit)="onFormSubmit()" [formGroup]="formGroup">
+        <div *ngFor="let fieldConfig of fieldConfigs" [ngSwitch]="fieldConfig.type">
+            <!-- Select Field -->
+            <app-model-select *ngSwitchCase="'select'" #ModelSelect [fieldLabel]="fieldConfig.label" [sourceData]="fieldConfig.dataScource" 
+                [displayField]="fieldConfig.displayField" [name]="fieldConfig.name" [parentModel]="fieldConfig.parentModel" [valueField]="fieldConfig.valueField" 
+                [fieldCtrl]="fieldConfig.control" [fieldConfig]="fieldConfig" (selectedDataChange)="optionSelected($event, fieldConfig)"> 
+            </app-model-select>
+            <!-- Password Field -->
+            <mat-form-field *ngSwitchCase="'password'">
+                <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
+                    [name]="fieldConfig.name" [type]="showPassword ? 'text' : 'password'" autocomplete="off">
+                <a style="vertical-align: middle;color: #989898" href="javascript:" (click)="showPasswordClicked()" matSuffix>
+                    <i class="material-icons">remove_red_eye</i></a>
+                <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
+            </mat-form-field>
+            <!-- Date Field -->
+            <mat-form-field *ngSwitchCase="'date'">
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date" (focus)="picker.open()" [formControlName]="fieldConfig.controlName">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
+            </mat-form-field>
+            <!-- Number Field -->
+            <mat-form-field *ngSwitchCase="'number'">
+                <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
+                    [name]="fieldConfig.name" type="number" autocomplete="off" [value]="fieldConfig.value" [readonly]="fieldConfig.disabled">
+                <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
+            </mat-form-field>
+            <!-- Default Text Field -->
+            <mat-form-field *ngSwitchDefault>
+                <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
+                    [name]="fieldConfig.name" autocomplete="off">
+                <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <button mat-raised-button style="margin-bottom: 10px;" type="submit" color="primary">
+                <ng-container *ngIf="submitActionName">
+                    <i class="{{submitActionIcon}}"></i>
+                    {{submitActionName}}
+                </ng-container>
+                <ng-container *ngIf="actionType == 'edit' && !submitActionName">
+                    <i class="material-icons">edit</i>
+                    Update
+                </ng-container>
+                <ng-container *ngIf="actionType != 'edit' && !submitActionName">
+                    <i class="material-icons">add</i>
+                    Create
+                </ng-container>
+            </button>
+    
+            <button type="button" mat-raised-button color="warn" (click)="resetForm()">
+                <i class="material-icons">settings_backup_restore</i>
+                Reset
+            </button>
+        </div>
+    </form>
 </div>
-<form class="form-body" (ngSubmit)="onFormSubmit()" [formGroup]="formGroup">
-    <div *ngFor="let fieldConfig of fieldConfigs" [ngSwitch]="fieldConfig.type">
-        <!-- Select Field -->
-        <app-model-select *ngSwitchCase="'select'" #ModelSelect [fieldLabel]="fieldConfig.label" [sourceData]="fieldConfig.dataScource" 
-            [displayField]="fieldConfig.displayField" [name]="fieldConfig.name" [parentModel]="fieldConfig.parentModel" [valueField]="fieldConfig.valueField" 
-            [fieldCtrl]="fieldConfig.control" [fieldConfig]="fieldConfig" (selectedDataChange)="optionSelected($event, fieldConfig)"> 
-        </app-model-select>
-        <!-- Password Field -->
-        <mat-form-field *ngSwitchCase="'password'">
-            <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
-                [name]="fieldConfig.name" [type]="showPassword ? 'text' : 'password'" autocomplete="off">
-            <a style="vertical-align: middle;color: #989898" href="javascript:" (click)="showPasswordClicked()" matSuffix>
-                <i class="material-icons">remove_red_eye</i></a>
-            <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
-        </mat-form-field>
-        <!-- Date Field -->
-        <mat-form-field *ngSwitchCase="'date'">
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date" (focus)="picker.open()" [formControlName]="fieldConfig.controlName">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
-        </mat-form-field>
-        <!-- Number Field -->
-        <mat-form-field *ngSwitchCase="'number'">
-            <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
-                [name]="fieldConfig.name" type="number" autocomplete="off" [value]="fieldConfig.value" [readonly]="fieldConfig.disabled">
-            <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
-        </mat-form-field>
-        <!-- Default Text Field -->
-        <mat-form-field *ngSwitchDefault>
-            <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
-                [name]="fieldConfig.name" autocomplete="off">
-            <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
-        </mat-form-field>
-    </div>
-    <div>
-        <button mat-raised-button style="margin-bottom: 10px;" type="submit" color="primary">
-            <ng-container *ngIf="submitActionName">
-                <i class="{{submitActionIcon}}"></i>
-                {{submitActionName}}
-            </ng-container>
-            <ng-container *ngIf="actionType == 'edit' && !submitActionName">
-                <i class="material-icons">edit</i>
-                Update
-            </ng-container>
-            <ng-container *ngIf="actionType != 'edit' && !submitActionName">
-                <i class="material-icons">add</i>
-                Create
-            </ng-container>
-        </button>
 
-        <button type="button" mat-raised-button color="warn" (click)="resetForm()">
-            <i class="material-icons">settings_backup_restore</i>
-            Reset
-        </button>
-    </div>
-</form>

@@ -201,6 +201,7 @@ export class TransferFormComponent implements OnInit {
       this.financeService.transferMoney(this.transferForm.value).subscribe(
         (response: any) => {
           this.msgService.showSuccessMessage(response.message, 'center', 'top');
+          this.transferForm.reset();
         },
         error => {
           const errorMsg = error.error ? error.error.message : error.statusText;
