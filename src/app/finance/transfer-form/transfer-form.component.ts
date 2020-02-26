@@ -43,6 +43,9 @@ export class TransferFormComponent implements OnInit {
     transactionDate: this.transactionDateCtrl,
     transactionDetail: this.transactionDetailCtrl,
     userContact: this.userContactControl
+  }, {
+    validators: [this.helperService.transAmountValidator('transactionAmount', 'fromAccount'),
+      this.helperService.transAccountValidator('fromAccount', 'toAccount')]
   });
   constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService, private contactService: ContactService,
               private financeService: FinanceService, private helperService: HelperService, private msgService: MessageService) { }
@@ -149,14 +152,22 @@ export class TransferFormComponent implements OnInit {
       valueField: '_id',
       displayField: 'accountName',
       control: this.toAccountCtrl,
-      controlName: 'toAccount'
+      controlName: 'toAccount',
+      errors: {
+        name: 'sameAccount',
+        message: 'From account and to account should not be same'
+      }
     });
     this.formFields.push({
       label: 'Amount',
       name: 'transactionAmount',
       type: 'number',
       control: this.amountCtrl,
-      controlName: 'transactionAmount'
+      controlName: 'transactionAmount',
+      errors: {
+        name: 'insufficientFunds',
+        message: 'Insufficient funds in account, please select other account'
+      }
     });
     this.formFields.push({
       label: 'Date',
@@ -196,6 +207,8 @@ export class TransferFormComponent implements OnInit {
           this.msgService.showErrorMessage(errorMsg, 'center', 'top');
         }
       );
+    } else {
+      this.msgService.showErrorMessage('Form contains error, please remove errors to transfer money', 'center', 'top');
     }
   }
 }
