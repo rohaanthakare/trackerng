@@ -12,7 +12,6 @@
         <app-model-select *ngSwitchCase="'select'" #ModelSelect [fieldLabel]="fieldConfig.label" [sourceData]="fieldConfig.dataScource" 
             [displayField]="fieldConfig.displayField" [name]="fieldConfig.name" [parentModel]="fieldConfig.parentModel" [valueField]="fieldConfig.valueField" 
             [fieldCtrl]="fieldConfig.control" [fieldConfig]="fieldConfig" (selectedDataChange)="optionSelected($event, fieldConfig)"> 
-            <!-- <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error> -->
         </app-model-select>
         <!-- Password Field -->
         <mat-form-field *ngSwitchCase="'password'">
