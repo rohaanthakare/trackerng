@@ -21,6 +21,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 // Application Imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -81,7 +83,7 @@ import { DatePipe } from '@angular/common';
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
     MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatToolbarModule,
     MatCardModule, MatMenuModule, MatProgressBarModule, MatGridListModule, MatExpansionModule,
-    MatSidenavModule, MatListModule, MatTabsModule, MatProgressSpinnerModule,
+    MatSidenavModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, NgxChartsModule,
     CoreModule, AppRoutingModule
   ],
   entryComponents: [ MessageSnackBarComponent],

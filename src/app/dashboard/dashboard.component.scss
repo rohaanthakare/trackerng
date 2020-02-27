@@ -1,0 +1,46 @@
+.dashboard-header-icon{
+    font-size: 20pt;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.balance-widget {
+    background-color: #20BF8F;
+    color:white;
+}
+
+.expense-widget {
+    background-color: #D55C29;
+    color:white;
+}
+
+.take-widget {
+    background-color: #4772CF;
+    color:white;
+}
+
+.give-widget {
+    background-color: #D84B55;
+    color:white;
+}
+
+.task-widget {
+    background-color: #E2C044;
+    color:white;
+}
+
+.dashboard-header-title {
+    font-size: 15pt;
+    color: #575757;
+    font-weight: bold;
+}
+
+.dashboard-header-subtitle {
+    font-size: 10pt;
+    color: #575757;
+    font-weight: bold;
+}
+
+.dashboard-header .mat-card {
+    padding: 0px;
+}

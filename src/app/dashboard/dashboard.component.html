@@ -1,5 +1,96 @@
-<mat-grid-list cols="3" rowHeight="100">
-    <mat-grid-tile>Balance</mat-grid-tile>
-    <mat-grid-tile>Monthly Expense</mat-grid-tile>
-    <mat-grid-tile>Pending Tasks</mat-grid-tile>
+<mat-grid-list cols="5" rowHeight="100" class="dashboard-header">
+    <mat-grid-tile>
+        <mat-card style="width: 90%; height: 70%;">
+            <mat-grid-list cols="3" rowHeight="35">
+                <mat-grid-tile class="dashboard-header-icon balance-widget" colspan="1" rowspan="2">
+                    <i class="fas fa-wallet"></i>
+                </mat-grid-tile>
+                <mat-grid-tile class="dashboard-header-title" colspan="2" rowspan="1">
+                    <i class='fas fa-rupee-sign mr-1'></i>12,000.00
+                </mat-grid-tile>
+                <mat-grid-tile class="dashboard-header-subtitle" colspan="2" rowspan="1">Balance</mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card style="width: 90%; height: 70%;">
+            <mat-grid-list cols="3" rowHeight="35">
+                <mat-grid-tile class="dashboard-header-icon expense-widget" colspan="1" rowspan="2">
+                    <i class='fas fa-money-bill-alt'></i>
+                </mat-grid-tile>
+                <mat-grid-tile class="dashboard-header-title" colspan="2" rowspan="1">
+                    <i class='fas fa-rupee-sign mr-1'></i>35,700.00
+                </mat-grid-tile>
+                <mat-grid-tile class="dashboard-header-subtitle" colspan="2" rowspan="1">Monthly Expense</mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card style="width: 90%; height: 70%;">
+            <mat-grid-list cols="3" rowHeight="35">
+                <mat-grid-tile class="dashboard-header-icon take-widget" colspan="1" rowspan="2">
+                    <i class='fas fa-sign-in-alt'></i>
+                </mat-grid-tile>
+                <mat-grid-tile class="dashboard-header-title" colspan="2" rowspan="1">
+                    <i class='fas fa-rupee-sign mr-1'></i>35,700.00
+                </mat-grid-tile>
+                <mat-grid-tile class="dashboard-header-subtitle" colspan="2" rowspan="1">Money to Take</mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card style="width: 90%; height: 70%;">
+            <mat-grid-list cols="3" rowHeight="35">
+                <mat-grid-tile class="dashboard-header-icon give-widget" colspan="1" rowspan="2">
+                    <i class='fas fa-share-square'></i>
+                </mat-grid-tile>
+                <mat-grid-tile class="dashboard-header-title" colspan="2" rowspan="1">
+                    <i class='fas fa-rupee-sign mr-1'></i>35,700.00
+                </mat-grid-tile>
+                <mat-grid-tile class="dashboard-header-subtitle" colspan="2" rowspan="1">Money to Give</mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card style="width: 90%; height: 70%;">
+            <mat-grid-list cols="3" rowHeight="35">
+                <mat-grid-tile class="dashboard-header-icon task-widget" colspan="1" rowspan="2">
+                    <i class="fas fa-tasks"></i>
+                </mat-grid-tile>
+                <mat-grid-tile class="dashboard-header-title" colspan="2" rowspan="1">
+                    10
+                </mat-grid-tile>
+                <mat-grid-tile class="dashboard-header-subtitle" colspan="2" rowspan="1">Pending Tasks</mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+        <mat-card></mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list cols="6" rowHeight="250">
+    <mat-grid-tile colspan="4">
+        <mat-card style="width:90%; height:80%;">
+            <ngx-charts-advanced-pie-chart
+                [view]="view"
+                [scheme]="colors"
+                [results]="accounts"
+                [gradient]="gradient"
+                (select)="onSelect($event)"
+                (activate)="onActivate($event)"
+                (deactivate)="onDeactivate($event)"
+                >
+            </ngx-charts-advanced-pie-chart>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-card>Monthly Budget Status</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-card>Expense Hisorty Chart</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-card>Expense Split Chart</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-card>Task List</mat-card>
+    </mat-grid-tile>
 </mat-grid-list>
