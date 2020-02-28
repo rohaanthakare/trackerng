@@ -13,6 +13,7 @@ export class ModelFormComponent implements OnInit {
   @Input() submitActionName: string;
   @Input() submitActionIcon: string;
   @Input() fieldConfigs: any;
+  allFieldConfigs: any;
   @Input() formGroup: FormGroup;
   @Output() formSubmit = new EventEmitter();
   @Output() hasError = new EventEmitter();
@@ -32,7 +33,18 @@ export class ModelFormComponent implements OnInit {
   }
 
   setFieldConfigs(configs) {
+    this.allFieldConfigs = configs;
     this.fieldConfigs = configs;
+  }
+
+  addField(fieldName) {
+    const fieldToAdd = this.allFieldConfigs.find((config) => config.name === fieldName);
+    const fieldIndex = this.allFieldConfigs.findIndex((config) => config.name === fieldName);
+    this.fieldConfigs.splice(fieldIndex, 0, fieldToAdd);
+  }
+
+  removeField(fieldName) {
+    this.fieldConfigs = this.fieldConfigs.filter((field) => field.name !== fieldName);
   }
 
   getFieldConfigByModelName(fieldName) {

@@ -1,1 +1,2 @@
-<p>expense-form works!</p>
+<app-model-form [formGroup]="expenseForm" (formSubmit)="createExpense()"
+    formTitle="New Expense" submitActionName="Add Expense" submitActionIcon="fas fa-money-bill-alt"></app-model-form>

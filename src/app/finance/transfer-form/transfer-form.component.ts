@@ -109,30 +109,28 @@ export class TransferFormComponent implements OnInit {
         } else {
           this.isOwnTransaction = false;
         }
-        this.modelForm.setFieldConfigs(this.getFieldConfigs());
+        this.updateFields();
       },
       controlName: 'transferType'
     });
 
-    if (!this.isOwnTransaction) {
-      this.formFields.push({
-        label: 'User',
-        name: 'userContact',
-        type: 'select',
-        dataScource: this.userContacts,
-        valueField: '_id',
-        displayField: 'firstName',
-        control: this.userContactControl,
-        renderer: (data) => {
-          if (data) {
-            const firstName = this.helperService.convertToTitleCase(data.firstName);
-            const lastName = this.helperService.convertToTitleCase(data.lastName);
-            return firstName + ' ' + lastName;
-          }
-        },
-        controlName: 'userContact'
-      });
-    }
+    this.formFields.push({
+      label: 'User',
+      name: 'userContact',
+      type: 'select',
+      dataScource: this.userContacts,
+      valueField: '_id',
+      displayField: 'firstName',
+      control: this.userContactControl,
+      renderer: (data) => {
+        if (data) {
+          const firstName = this.helperService.convertToTitleCase(data.firstName);
+          const lastName = this.helperService.convertToTitleCase(data.lastName);
+          return firstName + ' ' + lastName;
+        }
+      },
+      controlName: 'userContact'
+    });
 
     this.formFields.push({
       label: 'From Account',
@@ -194,6 +192,14 @@ export class TransferFormComponent implements OnInit {
       controlName: 'transactionDetail'
     });
     return this.formFields;
+  }
+
+  updateFields() {
+    if (this.isOwnTransaction) {
+      this.modelForm.removeField('userContact');
+    } else {
+      this.modelForm.addField('userContact');
+    }
   }
 
   transferMoney() {
