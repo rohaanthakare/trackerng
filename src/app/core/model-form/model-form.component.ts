@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { Router } from '@angular/router';
+import { ModelSelectComponent } from '../model-select/model-select.component';
 
 @Component({
   selector: 'app-model-form',
@@ -9,13 +10,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./model-form.component.scss']
 })
 export class ModelFormComponent implements OnInit {
+  @Input() submitActionName: string;
+  @Input() submitActionIcon: string;
   @Input() fieldConfigs: any;
+  allFieldConfigs: any;
   @Input() formGroup: FormGroup;
   @Output() formSubmit = new EventEmitter();
   @Output() hasError = new EventEmitter();
   @Input() idField: number;
   @Input() formTitle: string;
   @Input() actionType: string;
+  @ViewChildren(ModelSelectComponent) modelSelect: QueryList<ModelSelectComponent>;
 
   showPassword = false;
   constructor(private msgService: MessageService, private router: Router) { }
@@ -27,6 +32,25 @@ export class ModelFormComponent implements OnInit {
     this.formSubmit.emit(this.formGroup);
   }
 
+  setFieldConfigs(configs) {
+    this.allFieldConfigs = configs;
+    this.fieldConfigs = configs;
+  }
+
+  addField(fieldName) {
+    const fieldToAdd = this.allFieldConfigs.find((config) => config.name === fieldName);
+    const fieldIndex = this.allFieldConfigs.findIndex((config) => config.name === fieldName);
+    this.fieldConfigs.splice(fieldIndex, 0, fieldToAdd);
+  }
+
+  removeField(fieldName) {
+    this.fieldConfigs = this.fieldConfigs.filter((field) => field.name !== fieldName);
+  }
+
+  getFieldConfigByModelName(fieldName) {
+    return this.fieldConfigs.find(field => field.name === fieldName);
+  }
+
   getVaidationMessage(name) {
     this.hasError.emit(name);
   }
@@ -35,9 +59,10 @@ export class ModelFormComponent implements OnInit {
     this.formGroup.reset();
   }
 
-  handleSuccess(response, model) {
+  handleSuccess(response, modelName, moduleName, action?) {
+    action = (action) ? action : 'edit';
     this.msgService.showSuccessMessage(response.message, 'center', 'top');
-    this.router.navigate([model + '/' + response.model._id]);
+    this.router.navigate(['/home/' + moduleName + '/' + action + '/' + response[modelName]._id]);
   }
 
   setValues(modelValue) {
@@ -52,5 +77,18 @@ export class ModelFormComponent implements OnInit {
 
   showPasswordClicked() {
     this.showPassword = true;
+  }
+
+  optionSelected(value, fieldConfig) {
+    if (fieldConfig.onDataSelected) {
+      fieldConfig.onDataSelected(value);
+    }
+    const modelSelectCmps = this.modelSelect.toArray();
+    if (fieldConfig.childModel) {
+      const childCmp = modelSelectCmps.find(cmp => cmp.name === fieldConfig.childModel);
+      if (childCmp) {
+        childCmp.filterByParent(value[fieldConfig.valueField]);
+      }
+    }
   }
 }

@@ -51,6 +51,9 @@ const routes: Routes = [{
   }, {
     path: 'contact',
     loadChildren: './contact/contact.module#ContactModule'
+  }, {
+    path: 'finance',
+    loadChildren: './finance/finance.module#FinanceModule'
   }]
 }];
 

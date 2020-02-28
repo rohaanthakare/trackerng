@@ -5,6 +5,7 @@ import { MasterDataService } from 'src/app/services/master-data.service';
 import { ModelFormComponent } from 'src/app/core/model-form/model-form.component';
 import { ActivatedRoute } from '@angular/router';
 import { HelperService } from 'src/app/shared/services/helper.service';
+import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -18,6 +19,7 @@ export class ContactFormComponent implements OnInit {
   contactDetails: any;
   name: string;
   titleDataSource = [];
+  isTitleLoaded = false;
   titleCtrl = new FormControl();
   middleNameCtrl = new FormControl();
   lastNameCtrl = new FormControl();
@@ -32,9 +34,10 @@ export class ContactFormComponent implements OnInit {
     mobileNo: this.mobileNoCtrl,
     email: this.emailCtrl
   });
-  fieldConfigs = [];
+  fieldConfigs: any;
+
   constructor(private formBuilder: FormBuilder, private contactService: ContactService, private helperService: HelperService,
-              private masterDataService: MasterDataService, private route: ActivatedRoute) { }
+              private masterDataService: MasterDataService, private route: ActivatedRoute, private msgService: MessageService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(
@@ -42,42 +45,28 @@ export class ContactFormComponent implements OnInit {
         this.contactId = params.get('id');
         if (this.contactId) {
           this.actionType = 'edit';
-          this.setFieldConfigs();
         }
       }
     );
 
     this.masterDataService.getMasterDataForParent('TITLE').subscribe(
       (response: any) => {
-        console.log('Master data success');
-        console.log(response);
         this.titleDataSource = response.data;
-        this.setFieldConfigs();
-      },
-      error => {
-        console.log('Master data Failure');
-        console.log(error);
+        this.isTitleLoaded = true;
+        this.allDataLoaded();
       }
     );
   }
 
-  getContactDetails() {
-    if (this.contactId) {
-      this.contactService.getContactDetail(this.contactId).subscribe(
-        (response: any) => {
-          this.contactDetails = response.contact;
-          let formTitle = this.helperService.convertToTitleCase(response.contact.firstName);
-          const lastName = (response.contact.lastName) ? this.helperService.convertToTitleCase(response.contact.lastName) : '';
-          formTitle = formTitle + ' ' + lastName;
-          this.name = formTitle;
-          this.modelForm.setValues(this.contactDetails);
-        }
-      );
+  allDataLoaded() {
+    if (this.isTitleLoaded) {
+      this.modelForm.setFieldConfigs(this.getFieldConfigs());
+      this.getContactDetails();
     }
   }
 
-  setFieldConfigs() {
-    this.fieldConfigs = [{
+  getFieldConfigs() {
+    return [{
       label: 'Title',
       name: 'title',
       type: 'select',
@@ -91,7 +80,11 @@ export class ContactFormComponent implements OnInit {
       name: 'firstName',
       type: 'text',
       control: this.firstNameCtrl,
-      controlName: 'firstName'
+      controlName: 'firstName',
+      errors: {
+        name: 'required',
+        message: 'First Name is required field'
+      }
     }, {
       label: 'Middle Name',
       name: 'middleName',
@@ -115,31 +108,52 @@ export class ContactFormComponent implements OnInit {
       name: 'email',
       type: 'text',
       control: this.emailCtrl,
-      controlName: 'email'
+      controlName: 'email',
+      errors: {
+        name: 'email',
+        message: 'Please enter valid email address'
+      }
     }];
+  }
 
-    this.getContactDetails();
+  getContactDetails() {
+    if (this.contactId) {
+      this.contactService.getContactDetail(this.contactId).subscribe(
+        (response: any) => {
+          this.contactDetails = response.contact;
+          let formTitle = this.helperService.convertToTitleCase(response.contact.firstName);
+          const lastName = (response.contact.lastName) ? this.helperService.convertToTitleCase(response.contact.lastName) : '';
+          formTitle = formTitle + ' ' + lastName;
+          this.name = formTitle;
+          this.modelForm.setValues(this.contactDetails);
+        }
+      );
+    }
   }
 
   createContact() {
-    console.log('Inside create Contact');
-    console.log(this.contactForm.value);
     if (this.contactForm.valid) {
       if (this.contactId) {
-
+        this.contactService.updateUserContact(this.contactId, this.contactForm.value).subscribe(
+          response => {
+            this.modelForm.handleSuccess(response, 'contact', 'contact', 'edit');
+          },
+          error => {
+            const errorMsg = error.error ? error.error.message : error.statusText;
+            this.msgService.showErrorMessage(errorMsg, 'center', 'top');
+          }
+        );
       } else {
         this.contactService.createUserContact(this.contactForm.value).subscribe(
           response => {
-            this.modelForm.handleSuccess(response, '/home/contact/edit');
+            this.modelForm.handleSuccess(response, 'contact', 'contact');
           },
           error => {
-            console.log('Error - ');
-            console.log(error);
+            const errorMsg = error.error ? error.error.message : error.statusText;
+            this.msgService.showErrorMessage(errorMsg, 'center', 'top');
           }
         );
       }
-    } else {
-      alert('Error');
     }
   }
 }

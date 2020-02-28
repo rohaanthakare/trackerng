@@ -7,11 +7,11 @@ BANK_MASTER,Bank Master,Bank Master,account_balance,home/banks,view,MASTER_CONFI
 BANKS,Banks,Banks,account_balance,home/banks,view,BANK_MASTER,1,1,0
 BANK_BRANCHES,Branches,Branches,business,home/branches,view,BANK_MASTER,1,1,0
 TRACKER_DASHBOARD,Dashboard,Dashboard,dashboard,home/dashboard,view,,1,1,0
-PASSWORD_TRACKER,Password Tracker,Password Tracker,lock,home/dashboard,view,,1,1,0
+PASSWORD_TRACKER,Password,Password,lock,home/dashboard,view,,1,1,0
 PASSWORD_LIST,Passwords,Passwords,list,home/password,view,PASSWORD_TRACKER,1,1,0
 PASSWORD_CREATE,New Password,Create Password,add,home/password/create,create,PASSWORD_LIST,1,0,1
 PASSWORD_EDIT,Edit Password,Edit Password,edit,home/password/edit,edit,PASSWORD_LIST,1,0,1
-PASSWORD_SHOW,View Password,View Password,remove_red_eye,home/password/create,edit,PASSWORD_LIST,1,0,1
+PASSWORD_DELETE,Delete Password,Delete Password,fas fa-trash-alt,home/password,delete,PASSWORD_LIST,1,0,1
 CONTACT_TRACKER,Contact,Contact,fas fa-address-book,home/contact,view,,1,1,0
 CONTACT_LIST,Contacts,Contacts,fas fa-address-book,home/contact,view,CONTACT_TRACKER,1,1,0
 CONTACT_CREATE,New Contact,Create Contact,fas fa-user-plus,home/contact/create,create,CONTACT_LIST,1,0,1
@@ -19,6 +19,15 @@ CONTACT_EDIT,Edit Contact,Edit Contact,fas fa-user-edit,home/contact/edit,edit,C
 CONTACT_GROUP_LIST,Groups,Groups,fas fa-users,home/contact-group,view,CONTACT_TRACKER,1,1,0
 CONTACT_GROUP_CREATE,New Group,Create Group,add,home/contact-group/create,create,CONTACT_GROUP_LIST,1,0,1
 CONTACT_GROUP_EDIT,Edit Group,Edit Group,edit,home/contact-group/edit,edit,CONTACT_GROUP_LIST,2,0,1
-MONEY_TRACKER,Money Tracker,Money Tracker,fas fa-rupee-sign,home/dashboard,view,,1,1,0
-BANK_ACCOUNTS,Accounts,Accounts,account_balance,home/accounts,view,MONEY_TRACKER,1,1,0
-TRANSACTIONS,Transactions,Transactions,view_list,home/transactions,view,MONEY_TRACKER,2,1,0
+FINANCE_TRACKER,Finance,Finance,fas fa-rupee-sign,home/dashboard,view,,1,1,0
+BANK_ACCOUNTS,Accounts,Accounts,account_balance,home/finance/accounts,view,FINANCE_TRACKER,1,1,0
+PASSBOOK,Passbook,Passbook,fas fa-list-ul,home/finance/passbook,view,FINANCE_TRACKER,2,1,0
+DEPOSIT_MONEY,Deposit,Deposit,fas fa-sign-in-alt,home/finance/deposit,view,FINANCE_TRACKER,1,1,0
+WITHDRAW_MONEY,Withdraw,Withdraw,fas fa-share-square,home/finance/withdraw,view,FINANCE_TRACKER,1,1,0
+TRANSFER_MONEY,Transfer,Transfer,fas fa-exchange-alt,home/finance/transfer,view,FINANCE_TRACKER,1,1,0
+ADD_EXPENSE,Expense,Expense,fas fa-money-bill-alt,home/finance/add-expense,view,FINANCE_TRACKER,1,1,0
+BUDGET_MANAGER,Budget Manager,Budget Manager,fas fa-money-check,home/finance/budget-manager,view,FINANCE_TRACKER,1,1,0
+CONTACT_SETTLEMENT,Settlements,Settlements,fas fa-handshake,home/finance/settlements,view,FINANCE_TRACKER,1,1,0
+FIN_ACCOUNT_CREATE,New Account,Create Account,add,home/finance/create-account,create,BANK_ACCOUNTS,1,0,1
+FIN_ACCOUNT_EDIT,Edit Account,Edit Account,edit,home/finance/edit-account,edit,BANK_ACCOUNTS,1,0,1
+REVERT_TRANSACTION,Revert Transaction,Revert Transaction,fas fa-redo,home/finance/edit-account,delete,PASSBOOK,1,0,1

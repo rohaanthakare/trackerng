@@ -21,6 +21,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 // Application Imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,6 +52,7 @@ import { ContactMeComponent } from './contact-me/contact-me.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { UserActivationComponent } from './user-activation/user-activation.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -80,12 +83,12 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
     MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatToolbarModule,
     MatCardModule, MatMenuModule, MatProgressBarModule, MatGridListModule, MatExpansionModule,
-    MatSidenavModule, MatListModule, MatTabsModule, MatProgressSpinnerModule,
+    MatSidenavModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, NgxChartsModule,
     CoreModule, AppRoutingModule
   ],
   entryComponents: [ MessageSnackBarComponent],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
-    AuthService, UserService],
+    AuthService, UserService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

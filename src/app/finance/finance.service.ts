@@ -17,8 +17,16 @@ export class FinanceService {
     return this.http.post(`${environment.baseUrl}/api/create_bank`, bankDetails);
   }
 
+  getBanks() {
+    return this.http.get(`${environment.baseUrl}/api/banks`);
+  }
+
   createBranch(branchDetails) {
     return this.http.post(`${environment.baseUrl}/api/create_branch`, branchDetails);
+  }
+
+  getBranches() {
+    return this.http.get(`${environment.baseUrl}/api/branches`);
   }
 
   uploadBanks(rows, moduleDetails: DataLoadModule, dataLoaderCmp) {
@@ -48,5 +56,43 @@ export class FinanceService {
         return this.createBranch(branchObj);
       })
     );
+  }
+
+  getFinancialAccounts() {
+    return this.http.get(`${environment.baseUrl}/api/get_financial_accounts`);
+  }
+
+  getFinancialAccountDetails(id) {
+    return this.http.get(`${environment.baseUrl}/api/get_financial_account/${id}`);
+  }
+
+  createFinancialAccount(accountDetails) {
+    return this.http.post(`${environment.baseUrl}/api/create_financial_account`, {
+      accountDetails
+    });
+  }
+
+  updateFinancialAccount(accountId, accountDetails) {
+    return this.http.put(`${environment.baseUrl}/api/update_financial_account/${accountId}`, {
+      accountDetails
+    });
+  }
+
+  depositMoney(transactionDetail) {
+    return this.http.post(`${environment.baseUrl}/api/deposit_money`, {
+      transactionDetail
+    });
+  }
+
+  transferMoney(transactionDetail) {
+    return this.http.post(`${environment.baseUrl}/api/transfer_money`, transactionDetail);
+  }
+
+  getUserTransactions() {
+    return this.http.get(`${environment.baseUrl}/api/get_passbook`);
+  }
+
+  revertTransaction(transId) {
+    return this.http.put(`${environment.baseUrl}/api/revert_transaction/${transId}`, {});
   }
 }
