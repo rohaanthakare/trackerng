@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModelFormComponent } from 'src/app/core/model-form/model-form.component';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MasterDataService } from 'src/app/services/master-data.service';
 import { ContactService } from 'src/app/contact/contact.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { FinanceService } from '../finance.service';
+import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
   selector: 'app-expense-form',
@@ -20,26 +21,33 @@ export class ExpenseFormComponent implements OnInit {
   userContacts = [];
   isUserContactsLoaded = false;
   userContactControl = new FormControl();
+  userContactsControl = new FormControl();
+  isOtherUserExpense = false;
+  isMultiUserExpense = false;
   accounts = [];
   isAccountsLoaded = false;
   accountCtrl = new FormControl();
-  amountCtrl = new FormControl();
-  transactionDateCtrl = new FormControl();
-  transactionDetailCtrl = new FormControl();
+  amountCtrl = new FormControl('', [Validators.required]);
+  transactionDateCtrl = new FormControl('', [Validators.required]);
+  transactionDetailCtrl = new FormControl('', [Validators.required]);
   expenseCategory = [];
   isExpenseCategoryLoaded = false;
   expenseCategoryCtrl = new FormControl();
+  usersSelected: any;
   expenseForm: FormGroup = this.formBuilder.group({
     expenseType: this.expenseTypeCtrl,
     userContact: this.userContactControl,
+    userContacts: this.userContactsControl,
     account: this.accountCtrl,
     transactionAmount: this.amountCtrl,
     transactionDate: this.transactionDateCtrl,
     transactionDetail: this.transactionDetailCtrl,
     transactionSubCategory: this.expenseCategoryCtrl
+  }, {
+    validators: [this.helperService.transAmountValidator('transactionAmount', 'account')]
   });
   constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService, private contactService: ContactService,
-              private helperService: HelperService, private financeService: FinanceService) { }
+              private helperService: HelperService, private financeService: FinanceService, private msgService: MessageService) { }
 
   ngOnInit() {
     this.masterDataService.getMasterDataForParent('EXPENSE_TYPE').subscribe(
@@ -78,6 +86,14 @@ export class ExpenseFormComponent implements OnInit {
   allDataLoaded() {
     if (this.isExpenseTypesLoaded) {
       this.modelForm.setFieldConfigs(this.getFormFields());
+      this.updateFormFields();
+    }
+  }
+
+  updateFormFields() {
+    if (!this.isOtherUserExpense && !this.isMultiUserExpense) {
+      this.modelForm.removeField('userContact');
+      this.modelForm.removeField('userContacts');
     }
   }
 
@@ -91,7 +107,26 @@ export class ExpenseFormComponent implements OnInit {
       valueField: '_id',
       displayField: 'configName',
       control: this.expenseTypeCtrl,
-      controlName: 'expenseType'
+      controlName: 'expenseType',
+      onDataSelected: (data) => {
+        if (data.configCode === 'OTHER_USER_EXPENSE') {
+          this.isMultiUserExpense = false;
+          this.isOtherUserExpense = true;
+          this.modelForm.addField('userContact');
+          this.modelForm.removeField('userContacts');
+        } else if (data.configCode === 'MULTI_USER_EXPENSE') {
+          this.isMultiUserExpense = true;
+          this.isOtherUserExpense = false;
+          this.modelForm.removeField('userContact');
+          this.modelForm.addField('userContacts');
+        } else {
+          this.isMultiUserExpense = false;
+          this.isOtherUserExpense = false;
+          this.modelForm.removeField('userContact');
+          this.modelForm.removeField('userContacts');
+        }
+        // this.updateFormFields();
+      }
     });
     this.formFields.push({
       label: 'User',
@@ -111,6 +146,23 @@ export class ExpenseFormComponent implements OnInit {
       controlName: 'userContact'
     });
     this.formFields.push({
+      label: 'Users',
+      name: 'userContacts',
+      type: 'select-list',
+      dataScource: this.userContacts,
+      valueField: '_id',
+      displayField: 'firstName',
+      control: this.userContactsControl,
+      renderer: (data) => {
+        if (data) {
+          const firstName = this.helperService.convertToTitleCase(data.firstName);
+          const lastName = this.helperService.convertToTitleCase(data.lastName);
+          return firstName + ' ' + lastName;
+        }
+      },
+      controlName: 'userContacts'
+    });
+    this.formFields.push({
       label: 'Account',
       name: 'account',
       type: 'select',
@@ -125,7 +177,18 @@ export class ExpenseFormComponent implements OnInit {
       name: 'transactionAmount',
       type: 'number',
       control: this.amountCtrl,
-      controlName: 'transactionAmount'
+      controlName: 'transactionAmount',
+      errors: [{
+        name: 'insufficientFunds',
+        message: 'Insufficient funds in account, please select other account'
+      }]
+    });
+    this.formFields.push({
+      label: 'Date',
+      name: 'transactionDate',
+      type: 'date',
+      control: this.transactionDateCtrl,
+      controlName: 'transactionDate'
     });
     this.formFields.push({
       label: 'Category',
@@ -142,8 +205,53 @@ export class ExpenseFormComponent implements OnInit {
       name: 'transactionDetail',
       type: 'text',
       control: this.transactionDetailCtrl,
-      controlName: 'transactionDetail'
+      controlName: 'transactionDetail',
+      errors: [{
+        name: 'required',
+        message: 'This field is required'
+      }]
     });
     return this.formFields;
+  }
+
+  createExpense() {
+    if (this.expenseForm.valid) {
+      if (this.isMultiUserExpense) {
+        this.expenseForm.value.userContacts = JSON.stringify(this.usersSelected);
+      } else {
+        this.expenseForm.value.userContacts = undefined;
+      }
+      this.financeService.addExpense(this.expenseForm.value).subscribe(
+        (response: any) => {
+          this.expenseForm.reset();
+          this.msgService.showSuccessMessage(response.message);
+        },
+        (error: any) => {
+          const errorMsg = error.error ? error.error.message : error.statusText;
+          this.msgService.showErrorMessage(errorMsg);
+        }
+      );
+    } else {
+      this.msgService.showErrorMessage('Form contains error, please correct errors');
+    }
+  }
+
+  updateMultiUserTransAmount() {
+    if (this.usersSelected && this.usersSelected.length > 0 && this.expenseForm.value.transactionAmount) {
+      let totalHeadCount = 0;
+      this.usersSelected.forEach((user) => {
+        totalHeadCount += user.selectionCount;
+      });
+      const perHeadAmount = this.expenseForm.value.transactionAmount / totalHeadCount;
+
+      this.usersSelected.forEach((user) => {
+        user.transactionAmount = user.selectionCount * perHeadAmount;
+      });
+    }
+  }
+
+  onMultiContactSelect(selectedUsers) {
+    this.usersSelected = selectedUsers;
+    this.updateMultiUserTransAmount();
   }
 }

@@ -17,6 +17,7 @@ export class ModelFormComponent implements OnInit {
   @Input() formGroup: FormGroup;
   @Output() formSubmit = new EventEmitter();
   @Output() hasError = new EventEmitter();
+  @Output() chipDataSelected: EventEmitter<any> = new EventEmitter();
   @Input() idField: number;
   @Input() formTitle: string;
   @Input() actionType: string;
@@ -53,6 +54,18 @@ export class ModelFormComponent implements OnInit {
 
   getVaidationMessage(name) {
     this.hasError.emit(name);
+  }
+
+  getErrorMessage(fieldconfig) {
+    const errorKey = Object.keys(fieldconfig.control.errors)[0];
+    if (fieldconfig.errors) {
+      return fieldconfig.errors.find((err) => err.name === errorKey).message;
+    }
+    return '';
+  }
+
+  onDataSelectionChange(dataSelected) {
+    this.chipDataSelected.emit(dataSelected);
   }
 
   resetForm() {

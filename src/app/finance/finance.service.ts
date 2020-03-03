@@ -88,6 +88,10 @@ export class FinanceService {
     return this.http.post(`${environment.baseUrl}/api/transfer_money`, transactionDetail);
   }
 
+  addExpense(transactionDetail) {
+    return this.http.post(`${environment.baseUrl}/api/add_expense`, transactionDetail);
+  }
+
   getUserTransactions() {
     return this.http.get(`${environment.baseUrl}/api/get_passbook`);
   }

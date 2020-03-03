@@ -1,2 +1,2 @@
-<app-model-form [formGroup]="expenseForm" (formSubmit)="createExpense()"
+<app-model-form [formGroup]="expenseForm" (formSubmit)="createExpense()" (chipDataSelected)="onMultiContactSelect($event)"
     formTitle="New Expense" submitActionName="Add Expense" submitActionIcon="fas fa-money-bill-alt"></app-model-form>
