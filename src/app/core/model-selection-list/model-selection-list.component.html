@@ -1,0 +1,26 @@
+<mat-form-field class="field-full-width">
+    <mat-chip-list #chipList>
+        <mat-chip *ngFor="let data of dataSelected" [removable]="removable" [selectable]="selectable" (removed)="removeData(data)">
+            <ng-container *ngIf="fieldConfig.renderer">
+                <ng-container *ngIf="data.selectionCount && data.selectionCount > 1">
+                    <span [innerHTML]="fieldConfig.renderer(data) + ' x ' + data.selectionCount"></span>
+                </ng-container>
+                <ng-container *ngIf="!data.selectionCount || data.selectionCount === 1">
+                    <span [innerHTML]="fieldConfig.renderer(data)"></span>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="!fieldConfig.renderer">{{data[displayField]}}</ng-container>
+            <i class="material-icons" matChipRemove *ngIf="removable">cancel</i>
+        </mat-chip>
+        <input [placeholder]="fieldLabel" [matAutocomplete]="auto" [matChipInputFor]="chipList" [formControl]="fieldCtrl" [matAutocomplete]="auto">
+    </mat-chip-list>
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFunction" (optionSelected)="onOptionSelected($event)">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            <ng-container *ngIf="fieldConfig.renderer">
+                <span [innerHTML]="fieldConfig.renderer(option)"></span>
+            </ng-container>
+            <ng-container *ngIf="!fieldConfig.renderer">{{option[displayField]}}</ng-container>
+        </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
+</mat-form-field>

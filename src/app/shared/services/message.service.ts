@@ -9,27 +9,31 @@ export class MessageService {
 
   constructor(private snackBar: MatSnackBar) { }
 
-  public showErrorMessage(message: string, horizontal: any, vertical: any) {
+  public showErrorMessage(message: string, horizontal?: any, vertical?: any) {
+    const horizontalPos = (horizontal) ? horizontal : 'center';
+    const verticalPos = (vertical) ? vertical : 'top';
     this.snackBar.openFromComponent(MessageSnackBarComponent, {
       data: {
         msg: message,
         icon: 'error_outline'
       },
-      horizontalPosition: horizontal,
-      verticalPosition: vertical,
+      horizontalPosition: horizontalPos,
+      verticalPosition: verticalPos,
       panelClass: 'error-message',
       duration: 5000
     });
   }
 
-  public showSuccessMessage(message: string, horizontal: any, vertical: any) {
+  public showSuccessMessage(message: string, horizontal?: any, vertical?: any) {
+    const horizontalPos = (horizontal) ? horizontal : 'center';
+    const verticalPos = (vertical) ? vertical : 'top';
     this.snackBar.openFromComponent(MessageSnackBarComponent, {
       data: {
         msg: message,
         icon: 'done'
       },
-      horizontalPosition: horizontal,
-      verticalPosition: vertical,
+      horizontalPosition: horizontalPos,
+      verticalPosition: verticalPos,
       panelClass: 'success-message',
       duration: 5000
     });

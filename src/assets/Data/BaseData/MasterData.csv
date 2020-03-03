@@ -62,3 +62,4 @@ ADJUSTMENT_TR,Adjustment,Adjustment,7,TRANSFER_CATEGORY
 EXPENSE_TYPE,Expense Type,Expense Type,1,
 OWN_EXPENSE,Own Expense,Own Expense,1,EXPENSE_TYPE
 OTHER_USER_EXPENSE,Other User Expense,Other User Expense,1,EXPENSE_TYPE
+MULTI_USER_EXPENSE,Multi User Expense,Multi User Expense,1,EXPENSE_TYPE
