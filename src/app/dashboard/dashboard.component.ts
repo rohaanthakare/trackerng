@@ -8,6 +8,7 @@ import { GlobalConstants } from '../global/global.enum';
 })
 export class DashboardComponent implements OnInit {
   colors = GlobalConstants.COLORS;
+  gradient = true;
   view: any[] = [800, 200];
   accounts = [{
       name: 'ICICI- Savings',
