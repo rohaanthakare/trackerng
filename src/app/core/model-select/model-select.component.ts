@@ -53,4 +53,12 @@ export class ModelSelectComponent implements OnInit {
     this.sourceData = this.allData.filter(data => data[this.parentModel] === filterValue);
     this.fieldCtrl.setValue('');
   }
+
+  getErrorMessage(fieldconfig) {
+    const errorKey = Object.keys(fieldconfig.control.errors)[0];
+    if (fieldconfig.errors) {
+      return fieldconfig.errors.find((err) => err.name === errorKey).message;
+    }
+    return '';
+  }
 }

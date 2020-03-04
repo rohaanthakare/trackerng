@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MasterDataService } from 'src/app/services/master-data.service';
 import { ModelFormComponent } from 'src/app/core/model-form/model-form.component';
 import { FinanceService } from '../finance.service';
@@ -14,6 +14,8 @@ import { ContactService } from 'src/app/contact/contact.service';
 })
 export class DepositFormComponent implements OnInit {
   @ViewChild(ModelFormComponent, {static: false}) modelForm: ModelFormComponent;
+  formFields = [];
+  isOwnTransaction = true;
   depositTypes = [];
   isDepositTypeLoaded = false;
   accounts = [];
@@ -24,11 +26,11 @@ export class DepositFormComponent implements OnInit {
   isContactLoaded = false;
   depositTypeCtrl = new FormControl();
   accountCtrl = new FormControl();
-  amountCtrl = new FormControl();
+  amountCtrl = new FormControl('', [Validators.required]);
   depositSubCategoryCtrl = new FormControl();
-  transactionDateCtrl = new FormControl();
+  transactionDateCtrl = new FormControl('', [Validators.required]);
   transactionDetailCtrl = new FormControl();
-  userContactControl = new FormControl();
+  userContactControl = new FormControl('', [Validators.required]);
   depositForm: FormGroup = this.formBuilder.group({
     transactionSubCategory: this.depositSubCategoryCtrl,
     account: this.accountCtrl,
@@ -79,11 +81,13 @@ export class DepositFormComponent implements OnInit {
     if (this.isDepositTypeLoaded && this.isTransactionSubCategoriesLoaded && this.isAccountsLoaded
       && this.isContactLoaded) {
       this.modelForm.setFieldConfigs(this.getFieldConfigs());
+      this.updateFormFields();
     }
   }
 
   getFieldConfigs() {
-    return [{
+    this.formFields = [];
+    this.formFields.push({
       label: 'Type',
       name: 'depositType',
       type: 'select',
@@ -91,8 +95,18 @@ export class DepositFormComponent implements OnInit {
       valueField: '_id',
       displayField: 'configName',
       control: this.depositTypeCtrl,
+      onDataSelected: (data) => {
+        if (data.configCode === 'OWN_DEPOSIT') {
+          this.isOwnTransaction = true;
+        } else {
+          this.isOwnTransaction = false;
+        }
+        this.updateFormFields();
+      },
       controlName: 'depositType'
-    }, {
+    });
+
+    this.formFields.push({
       label: 'User',
       name: 'userContact',
       type: 'select',
@@ -107,8 +121,14 @@ export class DepositFormComponent implements OnInit {
           return firstName + ' ' + lastName;
         }
       },
-      controlName: 'userContact'
-    }, {
+      controlName: 'userContact',
+      errors: [{
+        name: 'required',
+        message: 'This is required field'
+      }]
+    });
+
+    this.formFields.push({
       label: 'Account',
       name: 'account',
       type: 'select',
@@ -117,19 +137,33 @@ export class DepositFormComponent implements OnInit {
       displayField: 'accountName',
       control: this.accountCtrl,
       controlName: 'account'
-    }, {
+    });
+
+    this.formFields.push({
       label: 'Amount',
       name: 'transactionAmount',
       type: 'number',
       control: this.amountCtrl,
-      controlName: 'transactionAmount'
-    }, {
+      controlName: 'transactionAmount',
+      errors: [{
+        name: 'required',
+        message: 'This is required field'
+      }]
+    });
+
+    this.formFields.push({
       label: 'Date',
       name: 'transactionDate',
       type: 'date',
       control: this.transactionDateCtrl,
-      controlName: 'transactionDate'
-    }, {
+      controlName: 'transactionDate',
+      errors: [{
+        name: 'required',
+        message: 'This is required field'
+      }]
+    });
+
+    this.formFields.push({
       label: 'Category',
       name: 'transactionSubCategory',
       type: 'select',
@@ -138,13 +172,26 @@ export class DepositFormComponent implements OnInit {
       displayField: 'configName',
       control: this.depositSubCategoryCtrl,
       controlName: 'transactionSubCategory'
-    }, {
+    });
+
+    this.formFields.push({
       label: 'Detail',
       name: 'transactionDetail',
       type: 'text',
       control: this.transactionDetailCtrl,
       controlName: 'transactionDetail'
-    }];
+    });
+    return this.formFields;
+  }
+
+  updateFormFields() {
+    if (this.isOwnTransaction) {
+      this.modelForm.removeField('userContact');
+      this.depositForm.removeControl('userContact');
+    } else {
+      this.modelForm.addField('userContact');
+      this.depositForm.addControl('userContact', this.userContactControl);
+    }
   }
 
   depositMoney() {
@@ -153,13 +200,15 @@ export class DepositFormComponent implements OnInit {
       this.financeService.depositMoney(this.depositForm.value).subscribe(
         (response: any) => {
           this.msgService.showSuccessMessage(response.message, 'center', 'top');
-          this.depositForm.reset();
+          this.modelForm.resetForm();
         },
         error => {
           const errorMsg = error.error ? error.error.message : error.statusText;
           this.msgService.showErrorMessage(errorMsg, 'center', 'top');
         }
       );
+    } else {
+      this.msgService.showErrorMessage('Form contains error, please remove errors to transfer money');
     }
   }
 

@@ -52,7 +52,7 @@ import { ContactMeComponent } from './contact-me/contact-me.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { UserActivationComponent } from './user-activation/user-activation.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, CurrencyPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -88,7 +88,7 @@ import { DatePipe } from '@angular/common';
   ],
   entryComponents: [ MessageSnackBarComponent],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
-    AuthService, UserService, DatePipe],
+    AuthService, UserService, DatePipe, CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

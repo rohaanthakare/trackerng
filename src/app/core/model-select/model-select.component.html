@@ -8,5 +8,5 @@
             <ng-container *ngIf="!fieldConfig.renderer">{{option[displayField]}}</ng-container>
         </mat-option>
     </mat-autocomplete>
-    <mat-error *ngIf="fieldConfig.control.hasError(fieldConfig.errors?.name)">{{fieldConfig.errors.message}}</mat-error>
+    <mat-error *ngIf="fieldConfig.control.invalid">{{getErrorMessage(fieldConfig)}}</mat-error>
 </mat-form-field>

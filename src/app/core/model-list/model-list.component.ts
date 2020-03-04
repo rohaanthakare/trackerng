@@ -8,6 +8,7 @@ import { PasswordService } from 'src/app/password/services/password.service';
 import { tap } from 'rxjs/operators';
 import { ContactService } from 'src/app/contact/contact.service';
 import { FinanceService } from 'src/app/finance/finance.service';
+import { CurrencyPipe } from '@angular/common';
 const modelServices = {
   Password: PasswordService,
   Contact: ContactService,
@@ -34,15 +35,15 @@ export class ModelListComponent implements OnInit, AfterViewInit {
   @Input() groupField: any;
   @Input() groupHeader: any;
   @Input() groupSubheader: any;
+  @Input() hasFooterRow: boolean;
   @Output() customEvent: EventEmitter<any> = new EventEmitter();
   @Output() rowSelected: EventEmitter<any> = new EventEmitter();
-
   @ViewChild(MatPaginator, {static : false}) paginator: MatPaginator;
   totalRecords: number;
   dataSource = new MatTableDataSource([]);
   selectedRowIndex = -1;
   selectedRow: any;
-  constructor(private masterViewService: MasterViewService,
+  constructor(private masterViewService: MasterViewService, private cp: CurrencyPipe,
               private router: Router, private injector: Injector) { }
 
   ngOnInit() {
@@ -120,5 +121,12 @@ export class ModelListComponent implements OnInit, AfterViewInit {
       return false;
     }
     return true;
+  }
+
+  getAggregateData(operationType, column) {
+    if (operationType === 'SUM') {
+      const total = this.dataSource.data.map(t => t[column.name]).reduce((acc, value) => acc + value, 0);
+      return this.cp.transform(total, 'INR');
+    }
   }
 }

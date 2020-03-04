@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-account-list',
@@ -11,17 +12,24 @@ export class AccountListComponent implements OnInit {
   columnDefs = [{
     name: 'accountName',
     header: 'Name',
-    field: 'accountName'
+    field: 'accountName',
+    footer: 'Total'
   }, {
     name: 'balance',
     header: 'Balance',
     field: 'balance',
     renderer: (row) => {
-      const balance = row.balance.toFixed(2);
-      return `<i class='fas fa-rupee-sign mr-1'></i>${balance}`;
-    }
+      // const balance = row.balance.toFixed(2);
+      const balance = this.cp.transform(row.balance, 'INR');
+      return `${balance}`;
+    },
+    footerRenderer: (data) => {
+      data = data.toFixed(2);
+      return `<i class='fas fa-rupee-sign mr-1'></i>${data}`;
+    },
+    footer: 'SUM'
   }];
-  constructor() { }
+  constructor(private cp: CurrencyPipe) { }
 
   ngOnInit() {
   }
