@@ -70,6 +70,9 @@ export class ModelFormComponent implements OnInit {
 
   resetForm() {
     this.formGroup.reset();
+    Object.keys(this.formGroup.controls).forEach(key => {
+      this.formGroup.get(key).setErrors(null) ;
+    });
   }
 
   handleSuccess(response, modelName, moduleName, action?) {
