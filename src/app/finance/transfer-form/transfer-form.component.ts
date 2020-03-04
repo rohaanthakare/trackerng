@@ -151,10 +151,10 @@ export class TransferFormComponent implements OnInit {
       displayField: 'accountName',
       control: this.toAccountCtrl,
       controlName: 'toAccount',
-      errors: {
+      errors: [{
         name: 'sameAccount',
         message: 'From account and to account should not be same'
-      }
+      }]
     });
     this.formFields.push({
       label: 'Amount',
@@ -162,10 +162,10 @@ export class TransferFormComponent implements OnInit {
       type: 'number',
       control: this.amountCtrl,
       controlName: 'transactionAmount',
-      errors: {
+      errors: [{
         name: 'insufficientFunds',
         message: 'Insufficient funds in account, please select other account'
-      }
+      }]
     });
     this.formFields.push({
       label: 'Date',

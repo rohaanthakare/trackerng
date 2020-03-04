@@ -81,10 +81,10 @@ export class ContactFormComponent implements OnInit {
       type: 'text',
       control: this.firstNameCtrl,
       controlName: 'firstName',
-      errors: {
+      errors: [{
         name: 'required',
         message: 'First Name is required field'
-      }
+      }]
     }, {
       label: 'Middle Name',
       name: 'middleName',
@@ -109,10 +109,10 @@ export class ContactFormComponent implements OnInit {
       type: 'text',
       control: this.emailCtrl,
       controlName: 'email',
-      errors: {
+      errors: [{
         name: 'email',
         message: 'Please enter valid email address'
-      }
+      }]
     }];
   }
 

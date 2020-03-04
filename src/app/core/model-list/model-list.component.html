@@ -21,7 +21,7 @@
         </div>
     </ng-container>
     <ng-container *ngIf="dataSource.data.length > 0">
-        <table mat-table [dataSource]="dataSource" matSort style="width: 100%;">
+        <table #listTable mat-table [dataSource]="dataSource" matSort style="width: 100%;">
             <ng-container *ngFor="let column of columnDefs" [matColumnDef]="column.name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>{{column.header}}</th>
                 <td mat-cell *matCellDef="let row">
@@ -30,11 +30,24 @@
                     </ng-container>
                     <ng-container *ngIf="!column.renderer && row[column.field] !== 'null'">{{row[column.field]}}</ng-container>
                 </td>
+                <!-- <ng-container *ngIf="hasFooterRow"> -->
+                    <td mat-footer-cell *matFooterCellDef>
+                        <ng-container *ngIf="column.footer == 'SUM'">
+                            <span [innerHTML]="getAggregateData(column.footer, column)"></span>
+                        </ng-container>
+                        <ng-container *ngIf="column.footer !== 'SUM'">
+                            {{column.footer}}
+                        </ng-container>
+                    </td>
+                <!-- </ng-container> -->
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
                 [ngClass]="{'selected-row': selectedRowIndex == row[idColumn]}"
                 (click)="onRowSelect(row)">
+            <!-- <ng-container *ngIf="hasFooterRow"> -->
+            <tr mat-footer-row class="grid-footer-row" *matFooterRowDef="displayedColumns" [hidden]="!hasFooterRow"></tr>
+            <!-- </ng-container> -->
         </table>
     </ng-container>
     <ng-container *ngIf="!noPagination">

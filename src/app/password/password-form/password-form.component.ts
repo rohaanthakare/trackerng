@@ -33,10 +33,10 @@ export class PasswordFormComponent implements OnInit {
     type: 'text',
     control: this.nameCtrl,
     controlName: 'name',
-    errors: {
+    errors: [{
       name: 'required',
       message: 'Name is required field'
-    }
+    }]
   }, {
     label: 'Username',
     name: 'username',
@@ -55,10 +55,10 @@ export class PasswordFormComponent implements OnInit {
     type: 'password',
     control: this.passwordCtrl,
     controlName: 'password',
-    errors: {
+    errors: [{
       name: 'required',
       message: 'Password is required field'
-    }
+    }]
   }];
   constructor(private passwordService: PasswordService,
               private msgService: MessageService,
