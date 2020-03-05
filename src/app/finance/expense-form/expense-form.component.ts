@@ -6,6 +6,7 @@ import { ContactService } from 'src/app/contact/contact.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { FinanceService } from '../finance.service';
 import { MessageService } from 'src/app/shared/services/message.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-expense-form',
@@ -30,6 +31,7 @@ export class ExpenseFormComponent implements OnInit {
   amountCtrl = new FormControl('', [Validators.required]);
   transactionDateCtrl = new FormControl('', [Validators.required]);
   transactionDetailCtrl = new FormControl('', [Validators.required]);
+  accountBalanceCtrl = new FormControl();
   expenseCategory = [];
   isExpenseCategoryLoaded = false;
   expenseCategoryCtrl = new FormControl();
@@ -42,12 +44,14 @@ export class ExpenseFormComponent implements OnInit {
     transactionAmount: this.amountCtrl,
     transactionDate: this.transactionDateCtrl,
     transactionDetail: this.transactionDetailCtrl,
-    transactionSubCategory: this.expenseCategoryCtrl
+    transactionSubCategory: this.expenseCategoryCtrl,
+    accountBalance: this.accountBalanceCtrl
   }, {
     validators: [this.helperService.transAmountValidator('transactionAmount', 'account')]
   });
   constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService, private contactService: ContactService,
-              private helperService: HelperService, private financeService: FinanceService, private msgService: MessageService) { }
+              private helperService: HelperService, private financeService: FinanceService, private msgService: MessageService,
+              private cp: CurrencyPipe) { }
 
   ngOnInit() {
     this.masterDataService.getMasterDataForParent('EXPENSE_TYPE').subscribe(
@@ -170,7 +174,18 @@ export class ExpenseFormComponent implements OnInit {
       valueField: '_id',
       displayField: 'accountName',
       control: this.accountCtrl,
-      controlName: 'account'
+      controlName: 'account',
+      onDataSelected: (data) => {
+        const bal = this.cp.transform(data.balance, 'INR');
+        this.accountBalanceCtrl.setValue(bal);
+      }
+    });
+    this.formFields.push({
+      label: 'Balance',
+      name: 'accountBalance',
+      type: 'display',
+      control: this.accountBalanceCtrl,
+      controlName: 'accountBalance',
     });
     this.formFields.push({
       label: 'Amount',

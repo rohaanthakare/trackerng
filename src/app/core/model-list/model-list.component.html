@@ -51,6 +51,6 @@
         </table>
     </ng-container>
     <ng-container *ngIf="!noPagination">
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="totalRecords" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [length]="totalRecords" showFirstLastButtons></mat-paginator>
     </ng-container>    
 </div>
