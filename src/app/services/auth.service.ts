@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { FormUtils } from '../utils/form-utils';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   isAuthorized = false;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   isUserAuthenticated() {
     return this.isAuthorized;
@@ -44,5 +45,6 @@ export class AuthService {
   logout() {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('Token');
+    this.router.navigate(['/']);
   }
 }

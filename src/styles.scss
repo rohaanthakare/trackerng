@@ -34,3 +34,44 @@ body{margin:0}
 .mr-1 {
     margin-right: 5px;
 } 
+
+.advanced-pie-legend {
+    line-height: 32px;
+    .total-value{
+        font-size: 25pt;
+    }
+    .total-label {
+        font-size: 15pt;
+    }
+    .legend-items {
+        .legend-item {
+            .item-percent {
+                font-size: 15px !important;
+            }
+            .item-label {
+                font-size: 12px !important;
+            }
+            .item-value {
+                font-size: 20px !important;
+            }
+        }
+    }
+    
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #999; 
+}
+
+.mat-progress-bar {
+    height: 10px !important;
+}
