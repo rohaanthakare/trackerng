@@ -213,6 +213,11 @@ export class ExpenseFormComponent implements OnInit {
       valueField: '_id',
       displayField: 'configName',
       control: this.expenseCategoryCtrl,
+      renderer: (data) => {
+        if (data) {
+          return `${data.configName} <label class='select-sub-text'>(${data.configDesc})</label>`;
+        }
+      },
       controlName: 'transactionSubCategory'
     });
     this.formFields.push({

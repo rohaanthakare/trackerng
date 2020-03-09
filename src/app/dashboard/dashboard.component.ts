@@ -12,6 +12,7 @@ import { CurrencyPipe } from '@angular/common';
 export class DashboardComponent implements OnInit {
   // @ViewChild(ModelListComponent, {static: true}) tasksGrid: ModelListComponent;
   colors = GlobalConstants.COLORS;
+  singleColor = GlobalConstants.SINGLE_COLOR;
   gradient = false;
   view: any[];
   view1: any[];
@@ -45,19 +46,7 @@ export class DashboardComponent implements OnInit {
     field: 'NAME'
   }];
 
-  budgetStatus = [{
-    category: 'Grocery',
-    allocated: 3000,
-    spent: 500
-  }, {
-    category: 'Transportation',
-    allocated: 5000,
-    spent: 2500
-  }, {
-    category: 'Housing',
-    allocated: 12000,
-    spent: 2600
-  }];
+  budgetStatus = [];
 
   constructor(private userService: UserService, private cp: CurrencyPipe) {
   }

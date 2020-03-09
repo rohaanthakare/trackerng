@@ -95,13 +95,21 @@
     <mat-grid-tile colspan="2" rowspan="2">
         <mat-card style="width:100%;">
             <mat-card-content>
-                <div *ngFor="let catg of budgetStatus" style="margin-bottom: 5px;">
-                    <h3 style="margin-bottom: 5px; font-size: 11pt;color: #676767;">{{catg.category}}</h3>
-                    <mat-progress-bar
-                        [mode]="determinate"
-                        [value]="(catg.spent / catg.allocated) * 100">
-                    </mat-progress-bar>
-                </div>
+                <ng-container *ngIf="budgetStatus.length > 0">
+                    <div *ngFor="let catg of budgetStatus" style="margin-bottom: 5px;">
+                        <h3 style="margin-bottom: 5px; font-size: 11pt;color: #676767;">{{catg.category}}</h3>
+                        <mat-progress-bar
+                            [mode]="determinate"
+                            [value]="(catg.spent / catg.allocated) * 100">
+                        </mat-progress-bar>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="budgetStatus.length == 0">
+                    <div class="error-text">
+                        <i class="fas fa-frown mr-1" style="font-size: 20pt;"></i>
+                        No Budget set.
+                    </div>
+                </ng-container>
             </mat-card-content>
         </mat-card>
     </mat-grid-tile>
@@ -111,7 +119,7 @@
                 <ng-container *ngIf="expenseHistory.length > 0">
                     <ngx-charts-bar-vertical
                         [view]="view1"
-                        [scheme]="colors"
+                        [scheme]="singleColor"
                         [results]="expenseHistory"
                         [gradient]="gradient"
                         [xAxis]="showXAxis"
