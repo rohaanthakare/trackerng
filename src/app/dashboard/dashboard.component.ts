@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { GlobalConstants } from '../global/global.enum';
 import { ModelListComponent } from '../core/model-list/model-list.component';
+import { UserService } from '../services/user.service';
+import { CurrencyPipe } from '@angular/common';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -18,64 +20,9 @@ export class DashboardComponent implements OnInit {
   showYAxis = true;
   legendPosition = 'below';
   isDoughnut = true;
-  accounts = [{
-    name: 'ICICI- Savings',
-    value: 3130
-  }, {
-    name: 'SBI - Savings',
-    value: 3029
-  }, {
-    name: 'UBI - Saving',
-    value: 324
-  }, {
-    name: 'HDFC - Saving',
-    value: 954
-  }, {
-    name: 'PayTM Wallet',
-    value: 740
-  }, {
-    name: 'Wallet',
-    value: 0
-  }
-];
-
-  expenseHistory = [
-    {
-      name: 'Jan-2020',
-      value: 8940000
-    },
-    {
-      name: 'Feb-2020',
-      value: 5000000
-    },
-    {
-      name: 'Mar-2020',
-      value: 7200000
-    },
-    {
-      name: 'Apr-2020',
-      value: 620000
-    }
-  ];
-
-  expenseSplit = [
-    {
-      name: 'Germany',
-      value: 8940000
-    },
-    {
-      name: 'USA',
-      value: 5000000
-    },
-    {
-      name: 'France',
-      value: 7200000
-    },
-      {
-      name: 'UK',
-      value: 6200000
-    }
-  ];
+  accounts = [];
+  expenseHistory = [];
+  expenseSplit = [];
 
   taskList = [{
     _id: 'asjdkjaskjakjskajskdj343j4k5',
@@ -112,11 +59,50 @@ export class DashboardComponent implements OnInit {
     spent: 2600
   }];
 
-  constructor() {
+  constructor(private userService: UserService, private cp: CurrencyPipe) {
   }
 
   ngOnInit() {
+    this.userService.getDashboardData().subscribe(
+      (response: any) => {
+        this.prepareChartData(response.accounts, 'accountBalance');
+        this.prepareChartData(response.expenseSplit, 'expenseSplit');
+        this.prepareChartData(response.expenseHistory, 'expenseHistory');
+      }
+    );
     // this.tasksGrid.setTableData(this.taskList);
+  }
+
+  prepareChartData(data, chart) {
+    if (chart === 'accountBalance') {
+      this.accounts = [];
+      data.forEach((d) => {
+        this.accounts.push({
+          name: d.accountName,
+          value: d.balance
+        });
+      });
+    }
+
+    if (chart === 'expenseSplit') {
+      this.expenseSplit = [];
+      data.forEach((d) => {
+        this.expenseSplit.push({
+          name: d.expense_tps[0].configName,
+          value: d.total
+        });
+      });
+    }
+
+    if (chart === 'expenseHistory') {
+      this.expenseHistory = [];
+      data.forEach((d) => {
+        this.expenseHistory.push({
+          name: GlobalConstants.MONTHS_MMM[d._id.month - 1] + ' - ' + d._id.year,
+          value: d.total
+        });
+      });
+    }
   }
 
   onSelect(data): void {
