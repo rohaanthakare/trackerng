@@ -84,12 +84,19 @@ export class ModelListComponent implements OnInit, AfterViewInit {
     const serviceObj = this.injector.get<any>(modelServices[this.moduleName]);
     const start = (!this.noPagination) ? this.paginator.pageIndex * this.paginator.pageSize : undefined;
     const pageSize = (!this.noPagination) ? this.paginator.pageSize : undefined;
-    serviceObj[this.listDataServiceApi]('', start, pageSize).subscribe(
-      (response: any) => {
-        this.dataSource.data = response.data;
-        this.totalRecords = response.count;
-      }
-    );
+    if (serviceObj[this.listDataServiceApi]) {
+      serviceObj[this.listDataServiceApi]('', start, pageSize).subscribe(
+        (response: any) => {
+          this.dataSource.data = response.data;
+          this.totalRecords = response.count;
+        }
+      );
+    }
+  }
+
+  setTableData(data, count?) {
+    this.dataSource.data = data;
+    this.totalRecords = count;
   }
 
   prepareGroupedData(inputData) {

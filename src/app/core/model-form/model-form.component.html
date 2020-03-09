@@ -40,6 +40,11 @@
                     [name]="fieldConfig.name" type="number" autocomplete="off" [value]="fieldConfig.value" [readonly]="fieldConfig.disabled">
                 <mat-error *ngIf="fieldConfig.control.invalid">{{getErrorMessage(fieldConfig)}}</mat-error>
             </mat-form-field>
+            <!-- Display Field -->
+            <mat-form-field *ngSwitchCase="'display'">
+                <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
+                    [name]="fieldConfig.name" autocomplete="off" readonly>
+            </mat-form-field>
             <!-- Default Text Field -->
             <mat-form-field *ngSwitchDefault>
                 <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 

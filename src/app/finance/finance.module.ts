@@ -11,6 +11,7 @@ import { BudgetManagerComponent } from './budget-manager/budget-manager.componen
 import { SettlementsListComponent } from './settlements-list/settlements-list.component';
 import { Routes, RouterModule } from '@angular/router';
 import { CoreModule } from '../core/core.module';
+import { ContactTransactionsComponent } from './contact-transactions/contact-transactions.component';
 
 const routes: Routes = [{
   path: '',
@@ -47,11 +48,14 @@ const routes: Routes = [{
   }, {
     path: 'settlements',
     component: SettlementsListComponent
+  }, {
+    path: 'contact-transactions/:contact_id',
+    component: ContactTransactionsComponent
   }]
 }];
 @NgModule({
   declarations: [AccountListComponent, AccountFormComponent, TransactionListComponent, ExpenseFormComponent, TransferFormComponent,
-    DepositFormComponent, WithdrawFormComponent, BudgetManagerComponent, SettlementsListComponent],
+    DepositFormComponent, WithdrawFormComponent, BudgetManagerComponent, SettlementsListComponent, ContactTransactionsComponent],
   imports: [
     CommonModule, RouterModule.forChild(routes), CoreModule
   ]

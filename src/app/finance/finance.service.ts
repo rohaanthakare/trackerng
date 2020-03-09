@@ -92,11 +92,20 @@ export class FinanceService {
     return this.http.post(`${environment.baseUrl}/api/add_expense`, transactionDetail);
   }
 
-  getUserTransactions() {
-    return this.http.get(`${environment.baseUrl}/api/get_passbook`);
+  getUserTransactions(filterParams, startIndex, pageSize) {
+    return this.http.get(`${environment.baseUrl}/api/get_passbook`, {
+      params: {
+        start: startIndex,
+        limit: pageSize
+      }
+    });
   }
 
   revertTransaction(transId) {
     return this.http.put(`${environment.baseUrl}/api/revert_transaction/${transId}`, {});
+  }
+
+  getContactTransactions(contactId) {
+    return this.http.get(`${environment.baseUrl}/api/get_contact_transactions/${contactId}`);
   }
 }

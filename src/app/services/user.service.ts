@@ -50,4 +50,8 @@ export class UserService {
   resetPassword(userDetails) {
     return this.http.put<any>(`${environment.baseUrl}/api/reset_password`, userDetails);
   }
+
+  getDashboardData() {
+    return this.http.get(`${environment.baseUrl}/api/get_dashboard_data`);
+  }
 }

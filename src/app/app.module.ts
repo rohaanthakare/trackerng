@@ -53,6 +53,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { UserActivationComponent } from './user-activation/user-activation.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DatePipe, CurrencyPipe } from '@angular/common';
+import { ErrorInterceptor } from './services/error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { DatePipe, CurrencyPipe } from '@angular/common';
   ],
   entryComponents: [ MessageSnackBarComponent],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     AuthService, UserService, DatePipe, CurrencyPipe],
   bootstrap: [AppComponent]
 })
