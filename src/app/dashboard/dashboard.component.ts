@@ -19,6 +19,11 @@ export class DashboardComponent implements OnInit {
   showLegend = true;
   showXAxis = true;
   showYAxis = true;
+  showXAxisLabel = true;
+  showYAxisLabel = true;
+  xAxisLabel = 'Month';
+  yAxisLabel = 'Expense';
+  showLabels = true;
   legendPosition = 'below';
   isDoughnut = true;
   accounts = [];
