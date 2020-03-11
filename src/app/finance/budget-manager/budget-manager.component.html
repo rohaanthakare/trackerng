@@ -1,1 +1,46 @@
-<p>budget-manager works!</p>
+<div class="mat-elevation-z8">
+    <mat-grid-list cols="5" rowHeight="200">
+        <mat-grid-tile colspan="3">
+            <form class="budget_form" (ngSubmit)="setBudget()" style="width: 80%;">
+                <div>
+                    <mat-form-field style="width: 100%;">
+                        <input matInput type="number" placeholder="Income" formControlName="monthlyIncome" name="monthlyIncome" autocomplete="off"
+                        (change)="incomeChanged($event)">
+                    </mat-form-field>
+                    <mat-progress-bar style="margin-top:5px; margin-bottom:15px;"
+                        mode="determinate"
+                        [value]="financialProfile.monthlyIncome">
+                    </mat-progress-bar>
+                </div>
+                <div>
+                    <button mat-raised-button style="margin-bottom: 10px;" color="primary">
+                        Set Budget
+                    </button>
+                </div>
+            </form>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="4">Budget Charts</mat-grid-tile>
+        <mat-grid-tile colspan="3" rowspan="4">
+            <mat-list role="list" style="width: 80%;">
+                <div *ngFor="let catg of expenseCategory;">
+                    <mat-list-item role="listitem">
+                        <mat-grid-list cols="3" rowHeight="50" style="width: 100%;">
+                            <mat-grid-tile>{{catg.configName}}</mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-slider [max]="financialProfile.monthlyIncome" (MatSliderChange)="onMatSliderChange(slider, value)"
+                                    [value]="financialProfile.budgetConfig[catg.configName]"></mat-slider>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field style="width: 100%;">
+                                    <input matInput type="number" formControlName="monthlyIncome" [name]="catg.configCode" autocomplete="off"
+                                    [value]="financialProfile.budgetConfig[catg.configName]">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
