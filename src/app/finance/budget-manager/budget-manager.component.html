@@ -1,39 +1,50 @@
 <div class="mat-elevation-z8">
-    <mat-grid-list cols="5" rowHeight="200">
+    <mat-grid-list cols="5" rowHeight="230">
         <mat-grid-tile colspan="3">
-            <form class="budget_form" (ngSubmit)="setBudget()" style="width: 80%;">
+            <form class="budget_form" style="width: 80%;">
                 <div>
                     <mat-form-field style="width: 100%;">
                         <input matInput type="number" placeholder="Income" formControlName="monthlyIncome" name="monthlyIncome" autocomplete="off"
-                        (change)="incomeChanged($event)">
+                        (change)="incomeChanged($event)" [value]="financialProfile.monthlyIncome">
+                    </mat-form-field>
+                    <mat-form-field style="width: 100%;">
+                        <input matInput type="number" placeholder="Remaining" formControlName="remainingBalance" name="monthlyIncome" autocomplete="off" 
+                        [value]="remainingBalance" readonly>
                     </mat-form-field>
                     <mat-progress-bar style="margin-top:5px; margin-bottom:15px;"
                         mode="determinate"
-                        [value]="financialProfile.monthlyIncome">
+                        [color]="budgetColor"
+                        [value]="remainingPercent">
                     </mat-progress-bar>
                 </div>
                 <div>
-                    <button mat-raised-button style="margin-bottom: 10px;" color="primary">
+                    <button mat-raised-button (click)="saveBudget()" type="button" style="margin-bottom: 10px;" color="primary">
                         Set Budget
                     </button>
                 </div>
             </form>
         </mat-grid-tile>
-        <mat-grid-tile colspan="2" rowspan="4">Budget Charts</mat-grid-tile>
-        <mat-grid-tile colspan="3" rowspan="4">
+        <mat-grid-tile colspan="2" rowspan="3">
+            <ngx-charts-pie-grid
+                [view]="view"
+                [scheme]="colors"
+                [results]="chartData">
+            </ngx-charts-pie-grid>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3" rowspan="3">
             <mat-list role="list" style="width: 80%;">
                 <div *ngFor="let catg of expenseCategory;">
                     <mat-list-item role="listitem">
                         <mat-grid-list cols="3" rowHeight="50" style="width: 100%;">
                             <mat-grid-tile>{{catg.configName}}</mat-grid-tile>
                             <mat-grid-tile>
-                                <mat-slider [max]="financialProfile.monthlyIncome" (MatSliderChange)="onMatSliderChange(slider, value)"
-                                    [value]="financialProfile.budgetConfig[catg.configName]"></mat-slider>
+                                <mat-slider [max]="financialProfile.monthlyIncome" (input)="onMatSliderChange($event, catg)"
+                                    [value]="financialProfile.budgetConfig[catg.configCode]"></mat-slider>
                             </mat-grid-tile>
                             <mat-grid-tile>
                                 <mat-form-field style="width: 100%;">
                                     <input matInput type="number" formControlName="monthlyIncome" [name]="catg.configCode" autocomplete="off"
-                                    [value]="financialProfile.budgetConfig[catg.configName]">
+                                    [value]="financialProfile.budgetConfig[catg.configCode]" (change)="onMatInputChange($event, catg)">
                                 </mat-form-field>
                             </mat-grid-tile>
                         </mat-grid-list>
