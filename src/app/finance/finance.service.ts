@@ -108,4 +108,16 @@ export class FinanceService {
   getContactTransactions(contactId) {
     return this.http.get(`${environment.baseUrl}/api/get_contact_transactions/${contactId}`);
   }
+
+  getFinancialProfile() {
+    return this.http.get(`${environment.baseUrl}/api/get_financial_profile`);
+  }
+
+  createFinancialProfile(profileData) {
+    return this.http.post(`${environment.baseUrl}/api/create_financial_profile`, profileData);
+  }
+
+  updateFinancialProfile(profileId, profileData) {
+    return this.http.put(`${environment.baseUrl}/api/update_financial_profile/${profileId}`, profileData);
+  }
 }

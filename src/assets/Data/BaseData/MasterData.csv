@@ -20,7 +20,8 @@ CURRENT_ACCOUNT,Current Account,Current Account,2,ACCOUNT_TYPE
 WALLET,Wallet,Wallet,3,ACCOUNT_TYPE
 EXPENSE_CATEGORY,Expense Type,Expense Type,1,
 DEBT,Debt,Personal Loan / Housing Loan / Credit Card,1,EXPENSE_CATEGORY
-GROCERY,Grocery,Grocery,2,EXPENSE_CATEGORY
+GROCERY,Grocery,Grocery / Vegetables / Household Items,2,EXPENSE_CATEGORY
+FOOD,Food,Restaurant / Food Delivery,2,EXPENSE_CATEGORY
 MISSING,Missing,Missing,3,EXPENSE_CATEGORY
 BILLS,Bills,Mobile Bill / Internet Bill / Gas Bill,4,EXPENSE_CATEGORY
 TRANSPORTATION,Transportation,Petrol / Repairs / Maintenance,5,EXPENSE_CATEGORY

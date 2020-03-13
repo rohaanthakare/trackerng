@@ -213,9 +213,11 @@ export class ExpenseFormComponent implements OnInit {
       valueField: '_id',
       displayField: 'configName',
       control: this.expenseCategoryCtrl,
-      renderer: (data) => {
-        if (data) {
+      renderer: (data, isSelected?) => {
+        if (data && !isSelected) {
           return `${data.configName} <label class='select-sub-text'>(${data.configDesc})</label>`;
+        } else {
+          return `${data.configName} (${data.configDesc})`;
         }
       },
       controlName: 'transactionSubCategory'

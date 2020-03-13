@@ -12,6 +12,14 @@ import { SettlementsListComponent } from './settlements-list/settlements-list.co
 import { Routes, RouterModule } from '@angular/router';
 import { CoreModule } from '../core/core.module';
 import { ContactTransactionsComponent } from './contact-transactions/contact-transactions.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatListModule } from '@angular/material/list';
+import { MatSliderModule } from '@angular/material/slider';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const routes: Routes = [{
   path: '',
@@ -57,7 +65,8 @@ const routes: Routes = [{
   declarations: [AccountListComponent, AccountFormComponent, TransactionListComponent, ExpenseFormComponent, TransferFormComponent,
     DepositFormComponent, WithdrawFormComponent, BudgetManagerComponent, SettlementsListComponent, ContactTransactionsComponent],
   imports: [
-    CommonModule, RouterModule.forChild(routes), CoreModule
+    CommonModule, MatInputModule, MatGridListModule, MatButtonModule, MatProgressBarModule, MatListModule,
+    MatDividerModule, MatSliderModule, RouterModule.forChild(routes), CoreModule, NgxChartsModule
   ]
 })
 export class FinanceModule { }
