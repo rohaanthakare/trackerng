@@ -36,7 +36,7 @@ export class ModelSelectComponent implements OnInit {
   displayFunction(selectedData) {
     this.selectedData = selectedData;
     if (this.fieldConfig.renderer) {
-      return this.fieldConfig.renderer(this.selectedData);
+      return this.fieldConfig.renderer(this.selectedData, true);
     }
     return selectedData ? selectedData[this.displayField] : undefined;
   }
