@@ -82,7 +82,7 @@ export class BudgetManagerComponent implements OnInit {
   }
 
   onMatInputChange(event, config) {
-    this.financialProfile.budgetConfig[config.configCode] = event.target.value;
+    this.financialProfile.budgetConfig[config.configCode] = parseInt(event.target.value, null);
     this.updateRemainingBalance();
   }
 
