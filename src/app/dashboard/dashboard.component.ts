@@ -29,6 +29,9 @@ export class DashboardComponent implements OnInit {
   accounts = [];
   expenseHistory = [];
   expenseSplit = [];
+  totalMonthlyExpense: any;
+  moneyToTake: any;
+  moneyToGive: any;
 
   taskList = [{
     _id: 'asjdkjaskjakjskajskdj343j4k5',
@@ -57,11 +60,15 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.moneyToGive = 0;
+    this.moneyToTake = 0;
     this.userService.getDashboardData().subscribe(
       (response: any) => {
         this.prepareChartData(response.accounts, 'accountBalance');
         this.prepareChartData(response.expenseSplit, 'expenseSplit');
         this.prepareChartData(response.expenseHistory, 'expenseHistory');
+        this.moneyToGive = this.cp.transform(response.settlements.MONEY_TO_GIVE, 'INR', '');
+        this.moneyToTake = this.cp.transform(response.settlements.MONEY_TO_TAKE, 'INR', '');
       }
     );
     // this.tasksGrid.setTableData(this.taskList);
@@ -80,12 +87,16 @@ export class DashboardComponent implements OnInit {
 
     if (chart === 'expenseSplit') {
       this.expenseSplit = [];
+      this.totalMonthlyExpense = 0;
       data.forEach((d) => {
+        this.totalMonthlyExpense += d.total;
         this.expenseSplit.push({
           name: d.expense_tps[0].configName,
           value: d.total
         });
       });
+
+      this.totalMonthlyExpense = this.cp.transform(this.totalMonthlyExpense, 'INR', '');
     }
 
     if (chart === 'expenseHistory') {
