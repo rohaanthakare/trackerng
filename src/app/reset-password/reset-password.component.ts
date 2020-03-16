@@ -37,7 +37,7 @@ export class ResetPasswordComponent implements OnInit {
     if (this.resetPasswordForm.valid) {
       this.resetPasswordForm.value.userId = this.userId;
       this.userService.resetPassword(this.resetPasswordForm.value).subscribe(
-        response => {
+        (response: any) => {
           this.msgService.showSuccessMessage(response.message, 'center', 'top');
           this.resetPasswordForm.reset();
           formDirective.resetForm();
