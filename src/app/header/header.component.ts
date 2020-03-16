@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { HelperService } from '../shared/services/helper.service';
 
 @Component({
   selector: 'app-header',
@@ -11,15 +12,15 @@ export class HeaderComponent implements OnInit {
   @Output() toggleNavEvent = new EventEmitter();
   displayName: string;
   userId;
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private helperService: HelperService) { }
 
   ngOnInit() {
     const userObj = JSON.parse(this.authService.getCurrentUser());
-    this.userId = userObj.SYS_USER_ID;
-    if (userObj.FIRST_NAME && userObj.LAST_NAME) {
-      this.displayName = userObj.FIRST_NAME + ' ' + userObj.LAST_NAME;
+    if (userObj.firstName) {
+      this.displayName = this.helperService.convertToTitleCase(userObj.firstName) + ' '
+        + this.helperService.convertToTitleCase(userObj.lastName);
     } else {
-      this.displayName = userObj.USERNAME;
+      this.displayName = this.helperService.convertToTitleCase(userObj.username);
     }
   }
 
