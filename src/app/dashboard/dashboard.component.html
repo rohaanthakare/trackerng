@@ -31,7 +31,7 @@
                     <i class='fas fa-money-bill-alt dashboard-header-icon'></i>
                 </div>
                 <mat-card-title>
-                    <i class='fas fa-rupee-sign mr-1'></i>12,000.00
+                    <i class='fas fa-rupee-sign mr-1'></i>{{totalMonthlyExpense}}
                 </mat-card-title>
                 <mat-card-subtitle>Monthly Expense</mat-card-subtitle>
             </mat-card-header>
@@ -57,7 +57,7 @@
                     <i class='fas fa-sign-in-alt dashboard-header-icon'></i>
                 </div>
                 <mat-card-title>
-                    <i class='fas fa-rupee-sign mr-1'></i>12,000.00
+                    <i class='fas fa-rupee-sign mr-1'></i>{{moneyToTake}}
                 </mat-card-title>
                 <mat-card-subtitle>Money to Take</mat-card-subtitle>
             </mat-card-header>
@@ -70,7 +70,7 @@
                     <i class='fas fa-share-square dashboard-header-icon'></i>
                 </div>
                 <mat-card-title>
-                    <i class='fas fa-rupee-sign mr-1'></i>12,000.00
+                    <i class='fas fa-rupee-sign mr-1'></i>{{moneyToGive}}
                 </mat-card-title>
                 <mat-card-subtitle>Money to Give</mat-card-subtitle>
             </mat-card-header>
@@ -131,15 +131,22 @@
             </div>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile colspan="4">
+    <mat-grid-tile colspan="4" rowspan="4">
         <mat-card style="width:100%;">
             <mat-card-content>
                 <ng-container *ngIf="budgetStatus.length > 0">
                     <div *ngFor="let catg of budgetStatus" style="margin-bottom: 5px;">
-                        <h3 style="margin-bottom: 5px; font-size: 11pt;color: #676767;">{{catg.category}}</h3>
+                        <h3 class="budget-category">
+                            {{catg.category}}
+                            <label class="budget-category-subtitle">
+                                (Spent 
+                                <i class='fas fa-rupee-sign mr-1 ml-1'></i>{{catg.spentAmtString}} of 
+                                <i class='fas fa-rupee-sign mr-1 ml-1'></i>{{catg.allocatedString}})</label>
+                        </h3>
                         <mat-progress-bar
                             mode="determinate"
-                            [value]="(catg.spent / catg.allocated) * 100">
+                            [value]="catg.spentPercentage"
+                            [color]="catg.barColor">
                         </mat-progress-bar>
                     </div>
                 </ng-container>
