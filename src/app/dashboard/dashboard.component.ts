@@ -3,6 +3,7 @@ import { GlobalConstants } from '../global/global.enum';
 import { ModelListComponent } from '../core/model-list/model-list.component';
 import { UserService } from '../services/user.service';
 import { CurrencyPipe } from '@angular/common';
+import { MasterDataService } from '../services/master-data.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -55,23 +56,34 @@ export class DashboardComponent implements OnInit {
   }];
 
   budgetStatus = [];
+  expenseCategory = [];
 
-  constructor(private userService: UserService, private cp: CurrencyPipe) {
+  constructor(private userService: UserService, private cp: CurrencyPipe, private masterDataService: MasterDataService) {
   }
 
   ngOnInit() {
     this.moneyToGive = 0;
     this.moneyToTake = 0;
+    this.masterDataService.getMasterDataForParent('EXPENSE_CATEGORY').subscribe(
+      (response: any) => {
+        this.expenseCategory = response.data;
+        this.getDashboardData();
+      }
+    );
+    // this.tasksGrid.setTableData(this.taskList);
+  }
+
+  getDashboardData() {
     this.userService.getDashboardData().subscribe(
       (response: any) => {
         this.prepareChartData(response.accounts, 'accountBalance');
         this.prepareChartData(response.expenseSplit, 'expenseSplit');
         this.prepareChartData(response.expenseHistory, 'expenseHistory');
+        this.prepareChartData(response.financeProfile.budgetConfig, 'budgetStatus');
         this.moneyToGive = this.cp.transform(response.settlements.MONEY_TO_GIVE, 'INR', '');
         this.moneyToTake = this.cp.transform(response.settlements.MONEY_TO_TAKE, 'INR', '');
       }
     );
-    // this.tasksGrid.setTableData(this.taskList);
   }
 
   prepareChartData(data, chart) {
@@ -107,6 +119,34 @@ export class DashboardComponent implements OnInit {
           value: d.total
         });
       });
+    }
+
+    if (chart === 'budgetStatus') {
+      this.budgetStatus = [];
+      for (const key in data) {
+        if (data[key] > 0) {
+          const catg = this.expenseCategory.find((c) => c.configCode === key);
+          const spentCfg = this.expenseSplit.find((c) => c.name === catg.configName);
+          const spentAmt = (spentCfg) ? spentCfg.value : 0;
+          const spentAmtLbl = this.cp.transform(spentAmt, 'INR', '');
+          const allocatedLbl = this.cp.transform(data[key], 'INR', '');
+          const spentPer = ((data[key] - spentAmt) / data[key]) * 100;
+          let progressColor = 'primary';
+          if (spentPer < 10) {
+            progressColor = 'warn';
+          } else if (spentPer > 10 && spentPer < 40) {
+            progressColor = 'accent';
+          }
+          const catgEle = {
+            category: catg.configName,
+            spentPercentage: spentPer,
+            spentAmtString: spentAmtLbl,
+            allocatedString: allocatedLbl,
+            barColor: progressColor
+          };
+          this.budgetStatus.push(catgEle);
+        }
+      }
     }
   }
 
