@@ -54,6 +54,9 @@ import { UserActivationComponent } from './user-activation/user-activation.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DatePipe, CurrencyPipe } from '@angular/common';
 import { ErrorInterceptor } from './services/error-interceptor.service';
+import { LoaderComponent } from './loader/loader.component';
+import { LoaderInterceptorService } from './services/loader-interceptor.service';
+import { LoaderService } from './services/loader.service';
 
 @NgModule({
   declarations: [
@@ -78,7 +81,8 @@ import { ErrorInterceptor } from './services/error-interceptor.service';
     WorkComponent,
     ContactMeComponent,
     UserActivationComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
@@ -90,6 +94,8 @@ import { ErrorInterceptor } from './services/error-interceptor.service';
   entryComponents: [ MessageSnackBarComponent],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true },
     AuthService, UserService, DatePipe, CurrencyPipe],
   bootstrap: [AppComponent]
 })

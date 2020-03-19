@@ -37,7 +37,12 @@ export class LoginComponent implements OnInit {
           }
         },
         error => {
-          const errorMsg = (error.error) ? error.error.message : error.statusText;
+          let errorMsg;
+          if (typeof error === 'string') {
+            errorMsg = error;
+          } else {
+            errorMsg = (error.error) ? error.error.message : error.statusText;
+          }
           this.messageService.showErrorMessage(errorMsg, 'center', 'top');
         }
       );
