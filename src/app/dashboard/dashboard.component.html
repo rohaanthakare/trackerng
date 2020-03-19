@@ -1,27 +1,33 @@
 <!-- <div> -->
 <mat-grid-list cols="12" rowHeight="100" gutterSize="5px" style="background-color: #EDEDED;">
-    <mat-grid-tile colspan="8" rowspan="2">
+    <mat-grid-tile colspan="8" rowspan="3">
         <mat-card id="balanceChart" style="width:90%; height:80%;">
-            <div style="width:95%; height:95%; display: grid;">
-                <ng-container *ngIf="accounts.length > 0">
-                    <ngx-charts-advanced-pie-chart
-                        [view]="view"
-                        [scheme]="colors"
-                        [results]="accounts"
-                        [gradient]="gradient"
-                        (select)="onSelect($event)"
-                        (activate)="onActivate($event)"
-                        (deactivate)="onDeactivate($event)"
-                        >
-                    </ngx-charts-advanced-pie-chart>
-                </ng-container>
-                <ng-container *ngIf="accounts.length == 0">
-                    <div class="error-text">
-                        <i class="fas fa-frown mr-1" style="font-size: 20pt;"></i>
-                        No Accounts added
-                    </div>
-                </ng-container>
-            </div>
+            <mat-card-header class="text-color-primary widget-header">
+                <div mat-card-avatar><i class="fas fa-wallet widget-title-icon"></i></div>
+                <mat-card-title class="relative-vertical-align-middle">Balance</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div style="width:100%; height:100%; display: grid;">
+                    <ng-container *ngIf="accounts.length > 0">
+                        <ngx-charts-advanced-pie-chart
+                            [view]="view"
+                            [scheme]="colors"
+                            [results]="accounts"
+                            [gradient]="gradient"
+                            (select)="onSelect($event)"
+                            (activate)="onActivate($event)"
+                            (deactivate)="onDeactivate($event)"
+                            >
+                        </ngx-charts-advanced-pie-chart>
+                    </ng-container>
+                    <ng-container *ngIf="accounts.length == 0">
+                        <div class="error-text">
+                            <i class="fas fa-frown mr-1" style="font-size: 20pt;"></i>
+                            No Accounts added
+                        </div>
+                    </ng-container>
+                </div>
+            </mat-card-content>
         </mat-card>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
@@ -76,63 +82,12 @@
             </mat-card-header>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile colspan="4" rowspan="4">
-        <mat-card style="width:90%; height:80%;">
-            <div style="width:96%; height:80%; display: grid;">
-                <ng-container *ngIf="expenseSplit.length > 0">
-                    <ngx-charts-pie-chart
-                        [view]="view"
-                        [scheme]="colors"
-                        [results]="expenseSplit"
-                        [gradient]="gradient"
-                        [legend]="showLegend"
-                        [legendPosition]="legendPosition"
-                        [labels]="showLabels"
-                        [doughnut]="isDoughnut"
-                        (select)="onSelect($event)"
-                        (activate)="onActivate($event)"
-                        (deactivate)="onDeactivate($event)">
-                    </ngx-charts-pie-chart>
-                </ng-container>
-                <ng-container *ngIf="expenseSplit.length == 0">
-                    <div class="success-text">
-                        <i class="fas fa-grin mr-1" style="font-size: 20pt;"></i>
-                        No Expense in this month
-                    </div>
-                </ng-container>
-            </div>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4" rowspan="4">
-        <mat-card style="width:90%; height:80%;">
-            <div style="width:95%; height:90%;">
-                <ng-container *ngIf="expenseHistory.length > 0">
-                    <ngx-charts-bar-vertical
-                        [view]="view1"
-                        [scheme]="singleColor"
-                        [results]="expenseHistory"
-                        [gradient]="gradient"
-                        [xAxis]="showXAxis"
-                        [yAxis]="showYAxis"
-                        [legend]="showLegend"
-                        [showXAxisLabel]="showXAxisLabel"
-                        [showYAxisLabel]="showYAxisLabel"
-                        [xAxisLabel]="xAxisLabel"
-                        [yAxisLabel]="yAxisLabel"
-                        (select)="onSelect($event)">
-                    </ngx-charts-bar-vertical>
-                </ng-container>
-                <ng-container *ngIf="expenseHistory.length == 0">
-                    <div class="success-text">
-                        <i class="fas fa-grin mr-1" style="font-size: 20pt;"></i>
-                        No Expense History
-                    </div>
-                </ng-container>
-            </div>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4" rowspan="4">
-        <mat-card style="width:100%;">
+    <mat-grid-tile colspan="4" rowspan="8">
+        <mat-card style="width:100%; height:90%;">
+            <mat-card-header class="text-color-primary widget-header">
+                <div mat-card-avatar><i class="fas fa-tachometer-alt widget-title-icon"></i></div>
+                <mat-card-title class="relative-vertical-align-middle">Budget Status</mat-card-title>
+            </mat-card-header>
             <mat-card-content>
                 <ng-container *ngIf="budgetStatus.length > 0">
                     <div *ngFor="let catg of budgetStatus" style="margin-bottom: 5px;">
@@ -156,6 +111,73 @@
                         No Budget set.
                     </div>
                 </ng-container>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="4" rowspan="4">
+        <mat-card style="width:90%; height:90%;">
+            <mat-card-header class="text-color-primary widget-header">
+                <div mat-card-avatar><i class="fas fa-chart-pie widget-title-icon"></i></div>
+                <mat-card-title class="relative-vertical-align-middle">Expense Split</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div style="width:100%; height:100%; display: grid;">
+                    <ng-container *ngIf="expenseSplit.length > 0">
+                        <ngx-charts-pie-chart
+                            [view]="view"
+                            [scheme]="colors"
+                            [results]="expenseSplit"
+                            [gradient]="gradient"
+                            [legend]="showLegend"
+                            [legendPosition]="legendPosition"
+                            [labels]="showLabels"
+                            [doughnut]="isDoughnut"
+                            (select)="onSelect($event)"
+                            (activate)="onActivate($event)"
+                            (deactivate)="onDeactivate($event)">
+                        </ngx-charts-pie-chart>
+                    </ng-container>
+                    <ng-container *ngIf="expenseSplit.length == 0">
+                        <div class="success-text">
+                            <i class="fas fa-grin mr-1" style="font-size: 20pt;"></i>
+                            No Expense in this month
+                        </div>
+                    </ng-container>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="4" rowspan="4">
+        <mat-card style="width:90%; height:90%;">
+            <mat-card-header class="text-color-primary widget-header">
+                <div mat-card-avatar><i class="fas fa-chart-line widget-title-icon"></i></div>
+                <mat-card-title class="relative-vertical-align-middle">Expense History</mat-card-title>
+            </mat-card-header>
+            <mat-card-content style="height: 80%;">
+                <div style="width:100%; height:100%; display: grid;">
+                    <ng-container *ngIf="expenseHistory.length > 0">
+                        <ngx-charts-bar-vertical
+                            [view]="view1"
+                            [scheme]="singleColor"
+                            [results]="expenseHistory"
+                            [gradient]="gradient"
+                            [xAxis]="showXAxis"
+                            [yAxis]="showYAxis"
+                            [legend]="showLegend"
+                            [showXAxisLabel]="showXAxisLabel"
+                            [showYAxisLabel]="showYAxisLabel"
+                            [xAxisLabel]="xAxisLabel"
+                            [yAxisLabel]="yAxisLabel"
+                            (select)="onSelect($event)">
+                        </ngx-charts-bar-vertical>
+                    </ng-container>
+                    <ng-container *ngIf="expenseHistory.length == 0">
+                        <div class="success-text">
+                            <i class="fas fa-grin mr-1" style="font-size: 20pt;"></i>
+                            No Expense History
+                        </div>
+                    </ng-container>
+                </div>
             </mat-card-content>
         </mat-card>
     </mat-grid-tile>
