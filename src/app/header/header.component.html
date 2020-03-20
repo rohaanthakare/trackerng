@@ -12,7 +12,7 @@
                 {{displayName}} <img alt="Not Found" onerror="this.src='../../assets/Profiles/profile.png'" src="../../assets/Profiles/{{userId}}/profile.png">
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item>
+                <button mat-menu-item (click)="myProfile()">
                     <i class="material-icons">account_circle</i>
                     <span>Profile</span>
                 </button>
