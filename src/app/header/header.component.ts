@@ -29,6 +29,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+  myProfile() {
+    this.router.navigate(['home/profile']);
+  }
+
   toggleSideNav() {
     this.toggleNavEvent.emit(null);
   }
