@@ -6,9 +6,9 @@ DATA_MASTER,Master Data,Master Data,list,home/master-data,view,MASTER_CONFIG,1,1
 BANK_MASTER,Bank Master,Bank Master,account_balance,home/banks,view,MASTER_CONFIG,1,1,0
 BANKS,Banks,Banks,account_balance,home/banks,view,BANK_MASTER,1,1,0
 BANK_BRANCHES,Branches,Branches,business,home/branches,view,BANK_MASTER,1,1,0
-TRACKER_DASHBOARD,Dashboard,Dashboard,dashboard,home/dashboard,view,,1,1,0
-PASSWORD_TRACKER,Password,Password,lock,home/dashboard,view,,1,1,0
-PASSWORD_LIST,Passwords,Passwords,list,home/password,view,PASSWORD_TRACKER,1,1,0
+TRACKER_DASHBOARD,Dashboard,Dashboard,fas fa-home,home/dashboard,view,,1,1,0
+PASSWORD_TRACKER,Password,Password,fas fa-key,home/dashboard,view,,1,1,0
+PASSWORD_LIST,Passwords,Passwords,fas fa-list-ul,home/password,view,PASSWORD_TRACKER,1,1,0
 PASSWORD_CREATE,New Password,Create Password,add,home/password/create,create,PASSWORD_LIST,1,0,1
 PASSWORD_EDIT,Edit Password,Edit Password,edit,home/password/edit,edit,PASSWORD_LIST,1,0,1
 PASSWORD_DELETE,Delete Password,Delete Password,fas fa-trash-alt,home/password,delete,PASSWORD_LIST,1,0,1
@@ -20,7 +20,7 @@ CONTACT_GROUP_LIST,Groups,Groups,fas fa-users,home/contact-group,view,CONTACT_TR
 CONTACT_GROUP_CREATE,New Group,Create Group,add,home/contact-group/create,create,CONTACT_GROUP_LIST,1,0,1
 CONTACT_GROUP_EDIT,Edit Group,Edit Group,edit,home/contact-group/edit,edit,CONTACT_GROUP_LIST,2,0,1
 FINANCE_TRACKER,Finance,Finance,fas fa-rupee-sign,home/dashboard,view,,1,1,0
-BANK_ACCOUNTS,Accounts,Accounts,account_balance,home/finance/accounts,view,FINANCE_TRACKER,1,1,0
+BANK_ACCOUNTS,Accounts,Accounts,fas fa-wallet,home/finance/accounts,view,FINANCE_TRACKER,1,1,0
 PASSBOOK,Passbook,Passbook,fas fa-list-ul,home/finance/passbook,view,FINANCE_TRACKER,2,1,0
 DEPOSIT_MONEY,Deposit,Deposit,fas fa-sign-in-alt,home/finance/deposit,view,FINANCE_TRACKER,1,1,0
 WITHDRAW_MONEY,Withdraw,Withdraw,fas fa-share-square,home/finance/withdraw,view,FINANCE_TRACKER,1,1,0
