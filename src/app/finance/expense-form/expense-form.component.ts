@@ -243,6 +243,7 @@ export class ExpenseFormComponent implements OnInit {
       } else {
         this.expenseForm.value.userContacts = undefined;
       }
+      this.expenseForm.value.transactionDate = this.helperService.getUTCDate(this.expenseForm.value.transactionDate);
       this.financeService.addExpense(this.expenseForm.value).subscribe(
         (response: any) => {
           this.expenseForm.reset();

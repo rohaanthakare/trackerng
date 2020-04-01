@@ -204,6 +204,7 @@ export class TransferFormComponent implements OnInit {
 
   transferMoney() {
     if (this.transferForm.valid) {
+      this.transferForm.value.transactionDate = this.helperService.getUTCDate(this.transferForm.value.transactionDate);
       this.financeService.transferMoney(this.transferForm.value).subscribe(
         (response: any) => {
           this.msgService.showSuccessMessage(response.message, 'center', 'top');
