@@ -121,8 +121,12 @@ export class ExpenseFormComponent implements OnInit {
         } else if (data.configCode === 'MULTI_USER_EXPENSE') {
           this.isMultiUserExpense = true;
           this.isOtherUserExpense = false;
+          const meContact = this.contactService.getMeContact();
+          const newData = this.userContacts;
+          newData.push(meContact);
           this.modelForm.removeField('userContact');
           this.modelForm.addField('userContacts');
+          this.modelForm.updateSelectFieldDataScource('userContacts', newData);
         } else {
           this.isMultiUserExpense = false;
           this.isOtherUserExpense = false;
@@ -216,7 +220,7 @@ export class ExpenseFormComponent implements OnInit {
       renderer: (data, isSelected?) => {
         if (data && !isSelected) {
           return `${data.configName} <label class='select-sub-text'>(${data.configDesc})</label>`;
-        } else {
+        } else if (data) {
           return `${data.configName} (${data.configDesc})`;
         }
       },
