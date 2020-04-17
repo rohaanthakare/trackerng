@@ -118,6 +118,8 @@ export class ExpenseFormComponent implements OnInit {
           this.isOtherUserExpense = true;
           this.modelForm.addField('userContact');
           this.modelForm.removeField('userContacts');
+          const newData = this.userContacts.filter((c) => !(c.isSelfUser));
+          this.modelForm.updateSelectFieldDataScource('userContact', newData);
         } else if (data.configCode === 'MULTI_USER_EXPENSE') {
           this.isMultiUserExpense = true;
           this.isOtherUserExpense = false;
@@ -133,7 +135,6 @@ export class ExpenseFormComponent implements OnInit {
           this.modelForm.removeField('userContact');
           this.modelForm.removeField('userContacts');
         }
-        // this.updateFormFields();
       }
     });
     this.formFields.push({
