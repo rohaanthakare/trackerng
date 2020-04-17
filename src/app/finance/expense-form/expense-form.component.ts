@@ -138,40 +138,6 @@ export class ExpenseFormComponent implements OnInit {
       }
     });
     this.formFields.push({
-      label: 'User',
-      name: 'userContact',
-      type: 'select',
-      dataScource: this.userContacts,
-      valueField: '_id',
-      displayField: 'firstName',
-      control: this.userContactControl,
-      renderer: (data) => {
-        if (data) {
-          const firstName = this.helperService.convertToTitleCase(data.firstName);
-          const lastName = this.helperService.convertToTitleCase(data.lastName);
-          return firstName + ' ' + lastName;
-        }
-      },
-      controlName: 'userContact'
-    });
-    this.formFields.push({
-      label: 'Users',
-      name: 'userContacts',
-      type: 'select-list',
-      dataScource: this.userContacts,
-      valueField: '_id',
-      displayField: 'firstName',
-      control: this.userContactsControl,
-      renderer: (data) => {
-        if (data) {
-          const firstName = this.helperService.convertToTitleCase(data.firstName);
-          const lastName = this.helperService.convertToTitleCase(data.lastName);
-          return firstName + ' ' + lastName;
-        }
-      },
-      controlName: 'userContacts'
-    });
-    this.formFields.push({
       label: 'Account',
       name: 'account',
       type: 'select',
@@ -209,6 +175,40 @@ export class ExpenseFormComponent implements OnInit {
       type: 'date',
       control: this.transactionDateCtrl,
       controlName: 'transactionDate'
+    });
+    this.formFields.push({
+      label: 'User',
+      name: 'userContact',
+      type: 'select',
+      dataScource: this.userContacts,
+      valueField: '_id',
+      displayField: 'firstName',
+      control: this.userContactControl,
+      renderer: (data) => {
+        if (data) {
+          const firstName = this.helperService.convertToTitleCase(data.firstName);
+          const lastName = this.helperService.convertToTitleCase(data.lastName);
+          return firstName + ' ' + lastName;
+        }
+      },
+      controlName: 'userContact'
+    });
+    this.formFields.push({
+      label: 'Users',
+      name: 'userContacts',
+      type: 'select-list',
+      dataScource: this.userContacts,
+      valueField: '_id',
+      displayField: 'firstName',
+      control: this.userContactsControl,
+      renderer: (data) => {
+        if (data) {
+          const firstName = this.helperService.convertToTitleCase(data.firstName);
+          const lastName = this.helperService.convertToTitleCase(data.lastName);
+          return firstName + ' ' + lastName;
+        }
+      },
+      controlName: 'userContacts'
     });
     this.formFields.push({
       label: 'Category',

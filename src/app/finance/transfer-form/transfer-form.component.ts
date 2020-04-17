@@ -89,7 +89,7 @@ export class TransferFormComponent implements OnInit {
   allDataLoaded() {
     if (this.isTransfterTypesLoaded && this.isTransfterSubCategoriesLoaded && this.isFromAccountLoaded
       && this.isUserContactsLoaded) {
-      this.modelForm.setFieldConfigs(this.getFieldConfigs());
+      this.getFieldConfigs();
     }
   }
 
@@ -191,7 +191,8 @@ export class TransferFormComponent implements OnInit {
       control: this.transactionDetailCtrl,
       controlName: 'transactionDetail'
     });
-    return this.formFields;
+    this.modelForm.setFieldConfigs(this.formFields);
+    this.modelForm.removeField('userContact');
   }
 
   updateFields() {
