@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FinanceService } from '../finance.service';
 import { DatePipe } from '@angular/common';
 import { MessageService } from 'src/app/shared/services/message.service';
+import { ModelListComponent } from 'src/app/core/model-list/model-list.component';
 
 @Component({
   selector: 'app-transaction-list',
@@ -9,7 +10,7 @@ import { MessageService } from 'src/app/shared/services/message.service';
   styleUrls: ['./transaction-list.component.scss']
 })
 export class TransactionListComponent implements OnInit {
-
+  @ViewChild(ModelListComponent, {static: true}) modelList: ModelListComponent;
   constructor(private financeService: FinanceService, private datePipe: DatePipe, private msgService: MessageService) { }
   displayedColumns: string[] = ['transactionDetail', 'fromAccount', 'toAccount', 'transactionDate', 'transactionAmount'];
   columnDefs = [{
@@ -64,6 +65,7 @@ export class TransactionListComponent implements OnInit {
     this.financeService.revertTransaction(event.selectedId).subscribe(
       response => {
         this.msgService.showSuccessMessage('Transation reverted successfully', 'center', 'top');
+        this.modelList.loadTableData();
       }
     );
   }
