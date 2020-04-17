@@ -39,9 +39,9 @@ export class ContactTransactionsComponent implements OnInit {
       if (row.contactTransactions.length > 0) {
         const trans = row.contactTransactions.find((c) => {
           if ((c.trans_user === this.currentUser._id
-            && c.other_contact._id === this.contactId) ||
+            && c.other_contact && c.other_contact._id === this.contactId) ||
             (c.other_user === this.currentUser._id
-              && c.trans_contact._id === this.contactId)) {
+              && c.trans_contact && c.trans_contact._id === this.contactId)) {
             return true;
           } else {
             return false;
