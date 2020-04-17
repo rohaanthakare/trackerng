@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router, private helperService: HelperService) { }
 
   ngOnInit() {
-    const userObj = JSON.parse(this.authService.getCurrentUser());
+    const userObj = this.authService.getCurrentUser();
     if (userObj.firstName) {
       this.displayName = this.helperService.convertToTitleCase(userObj.firstName) + ' '
         + this.helperService.convertToTitleCase(userObj.lastName);

@@ -118,18 +118,23 @@ export class ExpenseFormComponent implements OnInit {
           this.isOtherUserExpense = true;
           this.modelForm.addField('userContact');
           this.modelForm.removeField('userContacts');
+          const newData = this.userContacts.filter((c) => !(c.isSelfUser));
+          this.modelForm.updateSelectFieldDataScource('userContact', newData);
         } else if (data.configCode === 'MULTI_USER_EXPENSE') {
           this.isMultiUserExpense = true;
           this.isOtherUserExpense = false;
+          const meContact = this.contactService.getMeContact();
+          const newData = this.userContacts;
+          newData.push(meContact);
           this.modelForm.removeField('userContact');
           this.modelForm.addField('userContacts');
+          this.modelForm.updateSelectFieldDataScource('userContacts', newData);
         } else {
           this.isMultiUserExpense = false;
           this.isOtherUserExpense = false;
           this.modelForm.removeField('userContact');
           this.modelForm.removeField('userContacts');
         }
-        // this.updateFormFields();
       }
     });
     this.formFields.push({
@@ -216,7 +221,7 @@ export class ExpenseFormComponent implements OnInit {
       renderer: (data, isSelected?) => {
         if (data && !isSelected) {
           return `${data.configName} <label class='select-sub-text'>(${data.configDesc})</label>`;
-        } else {
+        } else if (data) {
           return `${data.configName} (${data.configDesc})`;
         }
       },

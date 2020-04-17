@@ -44,6 +44,12 @@ export class ModelFormComponent implements OnInit {
     this.fieldConfigs.splice(fieldIndex, 0, fieldToAdd);
   }
 
+  updateSelectFieldDataScource(fieldName, newData) {
+    const field = this.fieldConfigs.find((c) => c.name === fieldName);
+    field.dataScource = [];
+    field.dataScource = newData;
+  }
+
   removeField(fieldName) {
     this.fieldConfigs = this.fieldConfigs.filter((field) => field.name !== fieldName);
   }
