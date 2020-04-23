@@ -92,6 +92,10 @@ export class FinanceService {
     return this.http.post(`${environment.baseUrl}/api/add_expense`, transactionDetail);
   }
 
+  addInvestment(transactionDetail) {
+    return this.http.post(`${environment.baseUrl}/api/add_investment`, transactionDetail);
+  }
+
   getUserTransactions(filterParams, startIndex, pageSize) {
     return this.http.get(`${environment.baseUrl}/api/get_passbook`, {
       params: {

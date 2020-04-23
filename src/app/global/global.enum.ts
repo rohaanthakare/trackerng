@@ -9,4 +9,15 @@ export class GlobalConstants {
         domain: ['#3F51B5']
     };
     public static MONTHS_MMM = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    public static ADMIN_VIEWS = [{
+        viewCode: 'LOAD_MASTER_DATA',
+        viewTitle: 'Load Master Data',
+        viewType: 'view',
+        isMenu: true,
+        isToolbar: false,
+        iconClass: 'fas fa-upload',
+        displayOrder: 1,
+        viewRoute: 'home/load-data'
+    }];
 }
