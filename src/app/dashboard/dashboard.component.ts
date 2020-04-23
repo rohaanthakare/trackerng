@@ -79,7 +79,9 @@ export class DashboardComponent implements OnInit {
         this.prepareChartData(response.accounts, 'accountBalance');
         this.prepareChartData(response.expenseSplit, 'expenseSplit');
         this.prepareChartData(response.expenseHistory, 'expenseHistory');
-        this.prepareChartData(response.financeProfile.budgetConfig, 'budgetStatus');
+        if (response.financeProfile) {
+          this.prepareChartData(response.financeProfile.budgetConfig, 'budgetStatus');
+        }
         this.moneyToGive = this.cp.transform(response.settlements.MONEY_TO_GIVE, 'INR', '');
         this.moneyToTake = this.cp.transform(response.settlements.MONEY_TO_TAKE, 'INR', '');
       }

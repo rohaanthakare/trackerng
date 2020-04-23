@@ -54,6 +54,9 @@ const routes: Routes = [{
   }, {
     path: 'finance',
     loadChildren: './finance/finance.module#FinanceModule'
+  }, {
+    path: 'load-data',
+    component: DataLoaderComponent
   }]
 }];
 

@@ -21,6 +21,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSliderModule } from '@angular/material/slider';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatCardModule } from '@angular/material/card';
+import { AddInvestmentComponent } from './add-investment/add-investment.component';
 
 const routes: Routes = [{
   path: '',
@@ -60,11 +61,15 @@ const routes: Routes = [{
   }, {
     path: 'contact-transactions/:contact_id',
     component: ContactTransactionsComponent
+  }, {
+    path: 'investment',
+    component: AddInvestmentComponent
   }]
 }];
 @NgModule({
   declarations: [AccountListComponent, AccountFormComponent, TransactionListComponent, ExpenseFormComponent, TransferFormComponent,
-    DepositFormComponent, WithdrawFormComponent, BudgetManagerComponent, SettlementsListComponent, ContactTransactionsComponent],
+    DepositFormComponent, WithdrawFormComponent, BudgetManagerComponent, SettlementsListComponent, ContactTransactionsComponent,
+    AddInvestmentComponent],
   imports: [
     CommonModule, MatInputModule, MatGridListModule, MatButtonModule, MatProgressBarModule, MatListModule,
     MatDividerModule, MatSliderModule, MatCardModule, RouterModule.forChild(routes), CoreModule, NgxChartsModule

@@ -84,13 +84,15 @@ export class AccountFormComponent implements OnInit {
   }
 
   getAccountDetails() {
-    this.financeService.getFinancialAccountDetails(this.accountId).subscribe(
-      (response: any) => {
-        this.accountDetails = response.account;
-        this.formTitle = this.accountDetails.accountName;
-        this.modelForm.setValues(this.accountDetails);
-      }
-    );
+    if (this.accountId) {
+      this.financeService.getFinancialAccountDetails(this.accountId).subscribe(
+        (response: any) => {
+          this.accountDetails = response.account;
+          this.formTitle = this.accountDetails.accountName;
+          this.modelForm.setValues(this.accountDetails);
+        }
+      );
+    }
   }
 
   createAccount() {

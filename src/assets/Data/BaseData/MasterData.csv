@@ -26,7 +26,6 @@ MISSING,Missing,Missing,3,EXPENSE_CATEGORY
 BILLS,Bills,Mobile Bill / Internet Bill / Gas Bill,4,EXPENSE_CATEGORY
 TRANSPORTATION,Transportation,Petrol / Repairs / Maintenance,5,EXPENSE_CATEGORY
 TRAVEL,Travel,Travel,6,EXPENSE_CATEGORY
-INVESTMENT,Investment,FD / RD / Mutual Funds,7,EXPENSE_CATEGORY
 ENTERTAINMENT,Entertainment,DTH / Amazon Prime / HotStar / Netflix,8,EXPENSE_CATEGORY
 PERSONAL,Personal,Sports / Salon / Subsciption,9,EXPENSE_CATEGORY
 MEDICAL,Medical,Medical,10,EXPENSE_CATEGORY
@@ -39,6 +38,7 @@ DEPOSIT,Deposit,Deposit,1,TRANS_CATEGORY
 EXPENSE,Expense,Expense,2,TRANS_CATEGORY
 TRANSFER,Transfer,Transfer,3,TRANS_CATEGORY
 REVERT,Revert,Revert,4,TRANS_CATEGORY
+INVESTMENT,Investment,Investment,5,TRANS_CATEGORY
 DEPOSIT_TYPE,Deposit Type,Deposit Type,1,
 OWN_DEPOSIT,Own Deposit,Own Deposit,1,DEPOSIT_TYPE
 OTHER_USER_DEPOSIT,Other User Deposit,Other User Deposit,2,DEPOSIT_TYPE
@@ -64,3 +64,8 @@ EXPENSE_TYPE,Expense Type,Expense Type,1,
 OWN_EXPENSE,Own Expense,Own Expense,1,EXPENSE_TYPE
 OTHER_USER_EXPENSE,Other User Expense,Other User Expense,1,EXPENSE_TYPE
 MULTI_USER_EXPENSE,Multi User Expense,Multi User Expense,1,EXPENSE_TYPE
+INVESTMENT_CATEGORY,Investment Category,Investment Category,1,
+RECURRING_DEPOSIT,Recurring Deposit (RD),Recurring Deposit (RD),1,INVESTMENT_CATEGORY
+FIXED_DEPOSIT,Fixed Deposit (FD),Fixed Deposit (FD),1,INVESTMENT_CATEGORY
+MUTUAL_FUNDS,Mutual Funds,Mutual Funds,1,INVESTMENT_CATEGORY
+SHARE_MARKET,Share Market,Share Market,1,INVESTMENT_CATEGORY

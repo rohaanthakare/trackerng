@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   constructor(private menuService: MenuService, private titleService: Title) { }
 
   ngOnInit() {
-    this.titleService.setTitle('Trakcer');
+    this.titleService.setTitle('Tracker');
   }
 
   ngAfterViewInit() {

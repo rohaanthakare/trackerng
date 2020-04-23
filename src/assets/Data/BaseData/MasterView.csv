@@ -26,6 +26,7 @@ DEPOSIT_MONEY,Deposit,Deposit,fas fa-sign-in-alt,home/finance/deposit,view,FINAN
 WITHDRAW_MONEY,Withdraw,Withdraw,fas fa-share-square,home/finance/withdraw,view,FINANCE_TRACKER,1,1,0
 TRANSFER_MONEY,Transfer,Transfer,fas fa-exchange-alt,home/finance/transfer,view,FINANCE_TRACKER,1,1,0
 ADD_EXPENSE,Expense,Expense,fas fa-money-bill-alt,home/finance/add-expense,view,FINANCE_TRACKER,1,1,0
+ADD_INVESTMENT,Investment,Investment,fas fa-donate,home/finance/investment,view,FINANCE_TRACKER,1,1,0
 BUDGET_MANAGER,Budget Manager,Budget Manager,fas fa-money-check,home/finance/budget-manager,view,FINANCE_TRACKER,1,1,0
 CONTACT_SETTLEMENT,Settlements,Settlements,fas fa-handshake,home/finance/settlements,view,FINANCE_TRACKER,1,1,0
 CONTACT_TRANSACTIONS,Transactions,Transactions,fas fa-list-ul,home/finance/contact-transactions,edit,CONTACT_SETTLEMENT,1,0,1
