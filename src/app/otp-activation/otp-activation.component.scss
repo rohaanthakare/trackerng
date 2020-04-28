@@ -1,5 +1,5 @@
 .login_form{
-    width: 300px;
+    width: 350px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -11,7 +11,8 @@
 }
 
 .login_form mat-form-field{
-    width: 100%;
+    width: 30px;
+    text-align: center;
 }
 
 .login_form button{
@@ -33,4 +34,14 @@
     margin-left: 10px;
     color: #999999;
     font-family: sans-serif;
+}
+
+.login_form a {
+    color: #3F51B5;
+    text-decoration: none;
+}
+
+.login_form a:hover{
+    color: #3F51B5;
+    text-decoration: underline;
 }

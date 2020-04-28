@@ -54,4 +54,11 @@ export class UserService {
   getDashboardData() {
     return this.http.get(`${environment.baseUrl}/api/get_dashboard_data`);
   }
+
+  activateUserByOtp(userId: any, otp: any) {
+    return this.http.post<any>(`${environment.baseUrl}/api/activate_by_otp`, {
+      id: userId,
+      user_otp: otp
+    });
+  }
 }

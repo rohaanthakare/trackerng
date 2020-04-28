@@ -1,64 +1,71 @@
-<div>
-    <mat-grid-list cols="5" rowHeight="230" style="background-color: #EDEDED;">
-        <mat-grid-tile colspan="3">
-            <mat-card style="width: 90%; height: 85%;" class="mat-elevation-z8">
-                <form class="budget_form" style="width: 80%;">
-                    <div>
+<div class="row" style="background-color: #EDEDED;">
+    <div class="col-12">
+        <mat-card class="mat-elevation-z8">
+            <form class="budget_form">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                         <mat-form-field style="width: 100%;">
                             <input matInput type="number" placeholder="Income" formControlName="monthlyIncome" name="monthlyIncome" autocomplete="off"
                             (change)="incomeChanged($event)" [value]="financialProfile.monthlyIncome">
                         </mat-form-field>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                         <mat-form-field style="width: 100%;">
                             <input matInput type="number" placeholder="Remaining" formControlName="remainingBalance" name="monthlyIncome" autocomplete="off" 
                             [value]="remainingBalance" readonly>
                         </mat-form-field>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                        <button mat-raised-button (click)="saveBudget()" type="button" style="margin-bottom: 10px;" color="primary">
+                            Set Budget
+                        </button>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <mat-progress-bar style="margin-top:5px; margin-bottom:15px;"
                             mode="determinate"
                             [color]="budgetColor"
                             [value]="remainingPercent">
                         </mat-progress-bar>
                     </div>
-                    <div>
-                        <button mat-raised-button (click)="saveBudget()" type="button" style="margin-bottom: 10px;" color="primary">
-                            Set Budget
-                        </button>
-                    </div>
-                </form>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="2" rowspan="3">
-            <mat-card style="width: 85%; height:80%;" class="mat-elevation-z8">
-                <div style="width: 100%; height:100%; display: grid;">
-                    <ngx-charts-pie-grid
-                        [scheme]="colors"
-                        [results]="chartData">
-                    </ngx-charts-pie-grid>
                 </div>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="3" rowspan="4">
-            <mat-card style="width: 90%; height: 80%;" class="mat-elevation-z8">
-                <mat-list role="list" style="width: 80%;">
-                    <div *ngFor="let catg of expenseCategory;">
-                        <mat-list-item role="listitem">
-                            <mat-grid-list cols="3" rowHeight="50" style="width: 100%;">
-                                <mat-grid-tile>{{catg.configName}}</mat-grid-tile>
-                                <mat-grid-tile>
-                                    <mat-slider [max]="financialProfile.monthlyIncome" (input)="onMatSliderChange($event, catg)"
-                                        [value]="financialProfile.budgetConfig[catg.configCode]"></mat-slider>
-                                </mat-grid-tile>
-                                <mat-grid-tile>
-                                    <mat-form-field style="width: 100%;">
-                                        <input matInput type="number" formControlName="monthlyIncome" [name]="catg.configCode" autocomplete="off"
-                                        [value]="financialProfile.budgetConfig[catg.configCode]" (change)="onMatInputChange($event, catg)">
-                                    </mat-form-field>
-                                </mat-grid-tile>
-                            </mat-grid-list>
-                        </mat-list-item>
-                        <mat-divider></mat-divider>
-                    </div>
-                </mat-list>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
+            </form>
+        </mat-card>
+    </div>
+</div>
+<div class="row" style="background-color: #EDEDED;">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <mat-card class="mat-elevation-z8">
+            <mat-list role="list">
+                <div *ngFor="let catg of expenseCategory;">
+                    <mat-list-item role="listitem">
+                        <mat-grid-list cols="3" rowHeight="50" style="width: 100%;">
+                            <mat-grid-tile>{{catg.configName}}</mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-slider [max]="financialProfile.monthlyIncome" (input)="onMatSliderChange($event, catg)"
+                                    [value]="financialProfile.budgetConfig[catg.configCode]"></mat-slider>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field style="width: 100%;">
+                                    <input matInput type="number" formControlName="monthlyIncome" [name]="catg.configCode" autocomplete="off"
+                                    [value]="financialProfile.budgetConfig[catg.configCode]" (change)="onMatInputChange($event, catg)">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list>
+        </mat-card>
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <mat-card class="mat-elevation-z8">
+            <div #gridDiv style="display: grid;">
+                <ngx-charts-pie-grid
+                    [view]="gridView"
+                    [scheme]="colors"
+                    [results]="chartData">
+                </ngx-charts-pie-grid>
+            </div>
+        </mat-card>
+    </div>
 </div>

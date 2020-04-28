@@ -1,5 +1,5 @@
 .dashboard-header-icon{
-    font-size: 25pt;
+    font-size: 30pt;
 }
 
 .balance-widget {
@@ -63,4 +63,16 @@
     border-bottom: 1px solid;
     padding-bottom: 10px;
     margin-bottom: 10px;
+}
+
+.widget-table-class td{
+    padding: 0px 15px 0px 10px;
+}
+
+.title-class{
+    font-size: 18pt;
+}
+
+.sub-title-class{
+    font-size: 11pt;
 }

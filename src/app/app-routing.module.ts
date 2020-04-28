@@ -10,6 +10,7 @@ import { DataLoaderComponent } from './data-loader/data-loader.component';
 import { OuterComponent } from './outer/outer.component';
 import { UserActivationComponent } from './user-activation/user-activation.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { OtpActivationComponent } from './otp-activation/otp-activation.component';
 
 
 const routes: Routes = [{
@@ -33,6 +34,9 @@ const routes: Routes = [{
 }, {
   path: 'activate-user/:id',
   component: UserActivationComponent
+}, {
+  path: 'activate-by-otp/:id',
+  component: OtpActivationComponent
 }, {
   path: 'home',
   component: HomeComponent,

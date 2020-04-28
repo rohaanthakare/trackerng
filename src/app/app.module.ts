@@ -57,6 +57,7 @@ import { ErrorInterceptor } from './services/error-interceptor.service';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptorService } from './services/loader-interceptor.service';
 import { LoaderService } from './services/loader.service';
+import { OtpActivationComponent } from './otp-activation/otp-activation.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { LoaderService } from './services/loader.service';
     ContactMeComponent,
     UserActivationComponent,
     ResetPasswordComponent,
-    LoaderComponent
+    LoaderComponent,
+    OtpActivationComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
