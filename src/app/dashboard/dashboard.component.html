@@ -152,7 +152,7 @@
                         <mat-card-title class="relative-vertical-align-middle">Expense History</mat-card-title>
                     </mat-card-header>
                     <mat-card-content>
-                        <div #historyDiv style="display: grid;" (load)="testFunction($event)">
+                        <div #historyDiv style="display: grid;">
                             <ng-container *ngIf="expenseHistory.length > 0">
                                 <ngx-charts-bar-vertical
                                     [view]="testView"
