@@ -23,12 +23,11 @@ FINANCE_TRACKER,Finance,Finance,fas fa-rupee-sign,home/dashboard,view,,1,1,0
 BANK_ACCOUNTS,Accounts,Accounts,fas fa-wallet,home/finance/accounts,view,FINANCE_TRACKER,1,1,0
 PASSBOOK,Passbook,Passbook,fas fa-list-ul,home/finance/passbook,view,FINANCE_TRACKER,2,1,0
 DEPOSIT_MONEY,Deposit,Deposit,fas fa-sign-in-alt,home/finance/deposit,view,FINANCE_TRACKER,1,1,0
-WITHDRAW_MONEY,Withdraw,Withdraw,fas fa-share-square,home/finance/withdraw,view,FINANCE_TRACKER,1,1,0
 TRANSFER_MONEY,Transfer,Transfer,fas fa-exchange-alt,home/finance/transfer,view,FINANCE_TRACKER,1,1,0
 ADD_EXPENSE,Expense,Expense,fas fa-money-bill-alt,home/finance/add-expense,view,FINANCE_TRACKER,1,1,0
 ADD_INVESTMENT,Investment,Investment,fas fa-donate,home/finance/investment,view,FINANCE_TRACKER,1,1,0
-BUDGET_MANAGER,Budget Manager,Budget Manager,fas fa-money-check,home/finance/budget-manager,view,FINANCE_TRACKER,1,1,0
 CONTACT_SETTLEMENT,Settlements,Settlements,fas fa-handshake,home/finance/settlements,view,FINANCE_TRACKER,1,1,0
+BUDGET_MANAGER,Budget Manager,Budget Manager,fas fa-money-check,home/finance/budget-manager,view,FINANCE_TRACKER,1,1,0
 CONTACT_TRANSACTIONS,Transactions,Transactions,fas fa-list-ul,home/finance/contact-transactions,edit,CONTACT_SETTLEMENT,1,0,1
 FIN_ACCOUNT_CREATE,New Account,Create Account,add,home/finance/create-account,create,BANK_ACCOUNTS,1,0,1
 FIN_ACCOUNT_EDIT,Edit Account,Edit Account,edit,home/finance/edit-account,edit,BANK_ACCOUNTS,1,0,1

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MasterDataService } from 'src/app/services/master-data.service';
 import { GlobalConstants } from 'src/app/global/global.enum';
@@ -11,10 +11,11 @@ import { MessageService } from 'src/app/shared/services/message.service';
   styleUrls: ['./budget-manager.component.scss']
 })
 export class BudgetManagerComponent implements OnInit {
+  @ViewChild('gridDiv', {static: true}) gridDiv: ElementRef;
   colors = GlobalConstants.COLORS;
   profileId: any;
   budgetColor = 'primary';
-  view = [];
+  gridView = [];
   budgetForm: FormGroup = this.formBuilder.group({});
   testing: any;
   expenseCategory = [];
@@ -27,6 +28,7 @@ export class BudgetManagerComponent implements OnInit {
               private msgService: MessageService) { }
 
   ngOnInit() {
+    this.gridView = [this.gridDiv.nativeElement.offsetWidth, 600];
     this.masterDataService.getMasterDataForParent('EXPENSE_CATEGORY').subscribe(
       (response: any) => {
         this.expenseCategory = response.data;

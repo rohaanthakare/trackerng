@@ -1,0 +1,42 @@
+<form class="login_form" (ngSubmit)="activateUserByOtp()" [formGroup]="activationForm">
+    <div class="app_logo">
+        <img src="../../assets/Logos/tracker_primary.png" style="width: 70%;">
+    </div>
+    <div class="row">
+        <mat-form-field>
+            <input matInput formControlName="key1" #key1 name="key1" autocomplete="off" (keyup)="moveFocus(key2)">
+        </mat-form-field>
+        <i class="fas fa-minus mr-2 ml-2"></i>
+        <mat-form-field>
+            <input matInput formControlName="key2" #key2 name="key2" autocomplete="off" (keyup)="moveFocus(key3)">
+        </mat-form-field>
+        <i class="fas fa-minus mr-2 ml-2"></i>
+        <mat-form-field>
+            <input matInput formControlName="key3" #key3 name="key3" autocomplete="off" (keyup)="moveFocus(key4)">
+        </mat-form-field>
+        <i class="fas fa-minus mr-2 ml-2"></i>
+        <mat-form-field>
+            <input matInput formControlName="key4" #key4 name="key4" autocomplete="off" (keyup)="moveFocus(key5)">
+        </mat-form-field>
+        <i class="fas fa-minus mr-2 ml-2"></i>
+        <mat-form-field>
+            <input matInput formControlName="key5" #key5 name="key5" autocomplete="off" (keyup)="moveFocus(key6)">
+        </mat-form-field>
+        <i class="fas fa-minus mr-2 ml-2"></i>
+        <mat-form-field>
+            <input matInput formControlName="key6" #key6 name="key6" autocomplete="off">
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-raised-button style="margin-bottom: 10px;" color="primary">
+            <i class="fas fa-user-shield mr-1"></i>
+            Activate
+        </button>
+        <!-- <p>Forgot password? <a href="javascript:" (click)="forgotPassword()">click here</a></p>
+        <p>Not a member? <a href="javascript:" (click)="registerUser()">Sign-up</a></p> -->
+        <!-- <button mat-raised-button color="primary" (click)="registerUser()">
+            <i class="material-icons">person_add</i>
+            New User
+        </button> -->
+    </div>
+</form>

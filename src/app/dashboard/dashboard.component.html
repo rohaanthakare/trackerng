@@ -1,89 +1,188 @@
 <!-- <div> -->
-<mat-grid-list cols="12" rowHeight="100" gutterSize="5px" style="background-color: #EDEDED;">
-    <mat-grid-tile colspan="8" rowspan="3">
-        <mat-card id="balanceChart" style="width:90%; height:80%;">
-            <mat-card-header class="text-color-primary widget-header">
-                <div mat-card-avatar><i class="fas fa-wallet widget-title-icon"></i></div>
-                <mat-card-title class="relative-vertical-align-middle">Balance</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <div style="width:100%; height:100%; display: grid;">
-                    <ng-container *ngIf="accounts.length > 0">
-                        <ngx-charts-advanced-pie-chart
-                            [view]="view"
-                            [scheme]="colors"
-                            [results]="accounts"
-                            [gradient]="gradient"
-                            (select)="onSelect($event)"
-                            (activate)="onActivate($event)"
-                            (deactivate)="onDeactivate($event)"
-                            >
-                        </ngx-charts-advanced-pie-chart>
-                    </ng-container>
-                    <ng-container *ngIf="accounts.length == 0">
-                        <div class="error-text">
-                            <i class="fas fa-frown mr-1" style="font-size: 20pt;"></i>
-                            No Accounts added
+<div class="row" style="background-color: #EDEDED;">
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+        <mat-card>
+            <table class="widget-table-class">
+                <tr>
+                    <td rowspan="2" class="expense-widget">
+                        <i class='fas fa-money-bill-alt dashboard-header-icon'></i>
+                    </td>
+                    <td class="title-class">
+                        <i class='fas fa-rupee-sign mr-1'></i>{{totalMonthlyExpense}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sub-title-class">
+                        Monthly Expense
+                    </td>
+                </tr>
+            </table>
+        </mat-card>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+        <mat-card>
+            <table class="widget-table-class">
+                <tr>
+                    <td rowspan="2" class="task-widget">
+                        <i class="fas fa-tasks dashboard-header-icon"></i>
+                    </td>
+                    <td class="title-class">
+                        12
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sub-title-class">
+                        Pending Tasks
+                    </td>
+                </tr>
+            </table>
+        </mat-card>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+        <mat-card>
+            <table class="widget-table-class">
+                <tr>
+                    <td rowspan="2" class="balance-widget">
+                        <i class='fas fa-sign-in-alt dashboard-header-icon'></i>
+                    </td>
+                    <td class="title-class">
+                        <i class='fas fa-rupee-sign mr-1'></i>{{moneyToTake}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sub-title-class">
+                        Money to Take
+                    </td>
+                </tr>
+            </table>
+        </mat-card>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+        <mat-card>
+            <table class="widget-table-class">
+                <tr>
+                    <td rowspan="2" class="give-widget">
+                        <i class='fas fa-share-square dashboard-header-icon'></i>    
+                    </td>
+                    <td class="title-class">
+                        <i class='fas fa-rupee-sign mr-1'></i>{{moneyToGive}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sub-title-class">
+                        Money to Give
+                    </td>
+                </tr>
+            </table>
+        </mat-card>
+    </div>
+</div>
+<div class="row" style="background-color: #EDEDED;">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="padding: 0px;">
+                <mat-card id="balanceChart">
+                    <mat-card-header class="text-color-primary widget-header">
+                        <div mat-card-avatar><i class="fas fa-wallet widget-title-icon"></i></div>
+                        <mat-card-title class="relative-vertical-align-middle">Balance</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div style="display: grid;">
+                            <ng-container *ngIf="accounts.length > 0">
+                                <ngx-charts-advanced-pie-chart
+                                    [view]="view"
+                                    [scheme]="colors"
+                                    [results]="accounts"
+                                    [gradient]="gradient"
+                                    (select)="onSelect($event)"
+                                    (activate)="onActivate($event)"
+                                    (deactivate)="onDeactivate($event)"
+                                    >
+                                </ngx-charts-advanced-pie-chart>
+                            </ng-container>
+                            <ng-container *ngIf="accounts.length == 0">
+                                <div class="error-text">
+                                    <i class="fas fa-frown mr-1" style="font-size: 20pt;"></i>
+                                    No Accounts added
+                                </div>
+                            </ng-container>
                         </div>
-                    </ng-container>
-                </div>
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <mat-card>
+                    <mat-card-header class="text-color-primary widget-header">
+                        <div mat-card-avatar><i class="fas fa-chart-pie widget-title-icon"></i></div>
+                        <mat-card-title class="relative-vertical-align-middle">Expense Split</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div style="display: grid;">
+                            <ng-container *ngIf="expenseSplit.length > 0">
+                                <ngx-charts-pie-chart
+                                    [view]="view"
+                                    [scheme]="colors"
+                                    [results]="expenseSplit"
+                                    [gradient]="gradient"
+                                    [legend]="showLegend"
+                                    [legendPosition]="legendPosition"
+                                    [labels]="showLabels"
+                                    [doughnut]="isDoughnut"
+                                    (select)="onSelect($event)"
+                                    (activate)="onActivate($event)"
+                                    (deactivate)="onDeactivate($event)">
+                                </ngx-charts-pie-chart>
+                            </ng-container>
+                            <ng-container *ngIf="expenseSplit.length == 0">
+                                <div class="success-text">
+                                    <i class="fas fa-grin mr-1" style="font-size: 20pt;"></i>
+                                    No Expense in this month
+                                </div>
+                            </ng-container>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <mat-card>
+                    <mat-card-header class="text-color-primary widget-header">
+                        <div mat-card-avatar><i class="fas fa-chart-line widget-title-icon"></i></div>
+                        <mat-card-title class="relative-vertical-align-middle">Expense History</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div #historyDiv style="display: grid;" (load)="testFunction($event)">
+                            <ng-container *ngIf="expenseHistory.length > 0">
+                                <ngx-charts-bar-vertical
+                                    [view]="testView"
+                                    [scheme]="singleColor"
+                                    [results]="expenseHistory"
+                                    [gradient]="gradient"
+                                    [xAxis]="showXAxis"
+                                    [yAxis]="showYAxis"
+                                    [legend]="showLegend"
+                                    [showXAxisLabel]="showXAxisLabel"
+                                    [showYAxisLabel]="showYAxisLabel"
+                                    [xAxisLabel]="xAxisLabel"
+                                    [yAxisLabel]="yAxisLabel"
+                                    (select)="onSelect($event)">
+                                </ngx-charts-bar-vertical>
+                            </ng-container>
+                            <ng-container *ngIf="expenseHistory.length == 0">
+                                <div class="success-text">
+                                    <i class="fas fa-grin mr-1" style="font-size: 20pt;"></i>
+                                    No Expense History
+                                </div>
+                            </ng-container>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
         <mat-card>
-            <mat-card-header class="dashboard-widget">
-                <div mat-card-avatar class="expense-widget">
-                    <i class='fas fa-money-bill-alt dashboard-header-icon'></i>
-                </div>
-                <mat-card-title>
-                    <i class='fas fa-rupee-sign mr-1'></i>{{totalMonthlyExpense}}
-                </mat-card-title>
-                <mat-card-subtitle>Monthly Expense</mat-card-subtitle>
-            </mat-card-header>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <mat-card>
-            <mat-card-header class="dashboard-widget">
-                <div mat-card-avatar class="task-widget">
-                    <i class="fas fa-tasks dashboard-header-icon"></i>
-                </div>
-                <mat-card-title>
-                    12
-                </mat-card-title>
-                <mat-card-subtitle>Pending Tasks</mat-card-subtitle>
-            </mat-card-header>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <mat-card>
-            <mat-card-header class="dashboard-widget">
-                <div mat-card-avatar class="balance-widget">
-                    <i class='fas fa-sign-in-alt dashboard-header-icon'></i>
-                </div>
-                <mat-card-title>
-                    <i class='fas fa-rupee-sign mr-1'></i>{{moneyToTake}}
-                </mat-card-title>
-                <mat-card-subtitle>Money to Take</mat-card-subtitle>
-            </mat-card-header>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <mat-card>
-            <mat-card-header class="dashboard-widget">
-                <div mat-card-avatar class="give-widget">
-                    <i class='fas fa-share-square dashboard-header-icon'></i>
-                </div>
-                <mat-card-title>
-                    <i class='fas fa-rupee-sign mr-1'></i>{{moneyToGive}}
-                </mat-card-title>
-                <mat-card-subtitle>Money to Give</mat-card-subtitle>
-            </mat-card-header>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4" rowspan="8">
-        <mat-card style="width:100%; height:90%;">
             <mat-card-header class="text-color-primary widget-header">
                 <div mat-card-avatar><i class="fas fa-tachometer-alt widget-title-icon"></i></div>
                 <mat-card-title class="relative-vertical-align-middle">Budget Status</mat-card-title>
@@ -113,72 +212,5 @@
                 </ng-container>
             </mat-card-content>
         </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4" rowspan="4">
-        <mat-card style="width:90%; height:90%;">
-            <mat-card-header class="text-color-primary widget-header">
-                <div mat-card-avatar><i class="fas fa-chart-pie widget-title-icon"></i></div>
-                <mat-card-title class="relative-vertical-align-middle">Expense Split</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <div style="width:100%; height:100%; display: grid;">
-                    <ng-container *ngIf="expenseSplit.length > 0">
-                        <ngx-charts-pie-chart
-                            [view]="view"
-                            [scheme]="colors"
-                            [results]="expenseSplit"
-                            [gradient]="gradient"
-                            [legend]="showLegend"
-                            [legendPosition]="legendPosition"
-                            [labels]="showLabels"
-                            [doughnut]="isDoughnut"
-                            (select)="onSelect($event)"
-                            (activate)="onActivate($event)"
-                            (deactivate)="onDeactivate($event)">
-                        </ngx-charts-pie-chart>
-                    </ng-container>
-                    <ng-container *ngIf="expenseSplit.length == 0">
-                        <div class="success-text">
-                            <i class="fas fa-grin mr-1" style="font-size: 20pt;"></i>
-                            No Expense in this month
-                        </div>
-                    </ng-container>
-                </div>
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4" rowspan="4">
-        <mat-card style="width:90%; height:90%;">
-            <mat-card-header class="text-color-primary widget-header">
-                <div mat-card-avatar><i class="fas fa-chart-line widget-title-icon"></i></div>
-                <mat-card-title class="relative-vertical-align-middle">Expense History</mat-card-title>
-            </mat-card-header>
-            <mat-card-content style="height: 80%;">
-                <div style="width:100%; height:100%; display: grid;">
-                    <ng-container *ngIf="expenseHistory.length > 0">
-                        <ngx-charts-bar-vertical
-                            [view]="view1"
-                            [scheme]="singleColor"
-                            [results]="expenseHistory"
-                            [gradient]="gradient"
-                            [xAxis]="showXAxis"
-                            [yAxis]="showYAxis"
-                            [legend]="showLegend"
-                            [showXAxisLabel]="showXAxisLabel"
-                            [showYAxisLabel]="showYAxisLabel"
-                            [xAxisLabel]="xAxisLabel"
-                            [yAxisLabel]="yAxisLabel"
-                            (select)="onSelect($event)">
-                        </ngx-charts-bar-vertical>
-                    </ng-container>
-                    <ng-container *ngIf="expenseHistory.length == 0">
-                        <div class="success-text">
-                            <i class="fas fa-grin mr-1" style="font-size: 20pt;"></i>
-                            No Expense History
-                        </div>
-                    </ng-container>
-                </div>
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>
+    </div>
+</div>

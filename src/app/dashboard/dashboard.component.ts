@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { GlobalConstants } from '../global/global.enum';
 import { ModelListComponent } from '../core/model-list/model-list.component';
 import { UserService } from '../services/user.service';
@@ -12,11 +12,13 @@ import { MasterDataService } from '../services/master-data.service';
 })
 export class DashboardComponent implements OnInit {
   // @ViewChild(ModelListComponent, {static: true}) tasksGrid: ModelListComponent;
+  @ViewChild('historyDiv', {static: true}) historyDiv: ElementRef;
   colors = GlobalConstants.COLORS;
   singleColor = GlobalConstants.SINGLE_COLOR;
   gradient = false;
   view: any[];
   view1: any[];
+  testView: any[];
   showLegend = true;
   showXAxis = true;
   showYAxis = true;
@@ -64,6 +66,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.moneyToGive = 0;
     this.moneyToTake = 0;
+    this.testView = [this.historyDiv.nativeElement.offsetWidth, 450];
     this.masterDataService.getMasterDataForParent('EXPENSE_CATEGORY').subscribe(
       (response: any) => {
         this.expenseCategory = response.data;

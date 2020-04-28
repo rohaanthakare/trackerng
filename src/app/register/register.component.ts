@@ -45,6 +45,7 @@ export class RegisterComponent implements OnInit {
           this.msgService.showSuccessMessage(response.message, 'center', 'top');
           this.registrationForm.reset();
           formDirective.resetForm();
+          this.router.navigate([`activate-by-otp/${response.user.user._id}`]);
         },
         error => {
           const errorMsg = error.error ? error.error.message : error.statusText;
