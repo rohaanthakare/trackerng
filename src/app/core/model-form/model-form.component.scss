@@ -9,10 +9,15 @@
     padding: 20px;
 }
 
-.form-body mat-form-field{
+.full-width {
     width:100%;
 }
 
 .form-body button{
     margin-right: 20px;
+}
+
+.field-disabled .mat-form-field-flex {
+    background-color: #EFEFEF;
+    font-weight: bold;
 }

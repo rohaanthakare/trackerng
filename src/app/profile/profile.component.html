@@ -1,1 +1,35 @@
-<p>profile works!</p>
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header color="primary">
+            Personal Details
+        </mat-expansion-panel-header>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-4 col-lg-2 col-xl-2">
+                <div>
+                    <img style="width: 80%; margin-left: 10%;" src="../../assets/Profiles/profile.png">
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" mat-raised-button color="accent" (click)="resetForm()">
+                        <i class="fas fa-upload"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-8 col-lg-10 col-xl-10">
+                <app-model-form #personalDetails [formGroup]="profileForm" (formSubmit)="updateProfile()"
+                    [formTitle]="formTitle" submitActionName="Save" submitActionIcon="fas fa-save" noElevation="true"></app-model-form>
+            </div>
+        </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            Education
+        </mat-expansion-panel-header>
+        This will have educational details.
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            Experiance
+        </mat-expansion-panel-header>
+        This will have professional experiance
+    </mat-expansion-panel>
+</mat-accordion>

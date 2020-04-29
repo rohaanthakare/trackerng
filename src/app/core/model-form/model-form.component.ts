@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { Router } from '@angular/router';
@@ -7,12 +7,14 @@ import { ModelSelectComponent } from '../model-select/model-select.component';
 @Component({
   selector: 'app-model-form',
   templateUrl: './model-form.component.html',
-  styleUrls: ['./model-form.component.scss']
+  styleUrls: ['./model-form.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ModelFormComponent implements OnInit {
   @Input() submitActionName: string;
   @Input() submitActionIcon: string;
   @Input() fieldConfigs: any;
+  @Input() noElevation: any;
   allFieldConfigs: any;
   @Input() formGroup: FormGroup;
   @Output() formSubmit = new EventEmitter();
