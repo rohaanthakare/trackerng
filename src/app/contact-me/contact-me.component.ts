@@ -12,4 +12,7 @@ export class ContactMeComponent implements OnInit {
   ngOnInit() {
   }
 
+  openInNewTab(url) {
+    window.open(url);
+  }
 }

@@ -164,7 +164,8 @@ export class ProfileComponent implements OnInit {
 
   updateProfile() {
     if (this.profileForm.valid) {
-      this.profileForm.value.dateOfBirth = this.helperService.getUTCDate(this.profileForm.value.dateOfBirth);
+      this.profileForm.value.dateOfBirth = this.helperService.getUTCDate(new Date(this.profileForm.value.dateOfBirth));
+      this.profileForm.value.gender = this.profileForm.value.gender._id;
       this.userService.updateUserProfile(this.userId, this.profileForm.value).subscribe(
         (response: any) => {
           this.notification.showSuccessMessage(response.message);
