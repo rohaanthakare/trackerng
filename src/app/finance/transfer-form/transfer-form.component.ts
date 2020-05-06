@@ -129,7 +129,14 @@ export class TransferFormComponent implements OnInit {
           return firstName + ' ' + lastName;
         }
       },
-      controlName: 'userContact'
+      controlName: 'userContact',
+      onDataSelected: (data) => {
+        this.financeService.getFinancialAccountsForUser(data.contact_user).subscribe(
+          (response: any) => {
+            this.modelForm.updateSelectFieldDataScource('toAccount', response.data);
+          }
+        );
+      }
     });
 
     this.formFields.push({

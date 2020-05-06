@@ -20,6 +20,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
@@ -91,7 +92,7 @@ import { OtpActivationComponent } from './otp-activation/otp-activation.componen
     MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatToolbarModule,
     MatCardModule, MatMenuModule, MatProgressBarModule, MatGridListModule, MatExpansionModule,
     MatSidenavModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, NgxChartsModule,
-    CoreModule, AppRoutingModule
+    CoreModule, AppRoutingModule, MatSlideToggleModule
   ],
   entryComponents: [ MessageSnackBarComponent],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
