@@ -46,6 +46,14 @@
                     <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 
                         [name]="fieldConfig.name" autocomplete="off" readonly>
                 </mat-form-field>
+                <!-- Slide Toggle -->
+                <mat-slide-toggle *ngSwitchCase="'slide-toggle'"
+                        class="example-margin"
+                        color="accent"
+                        [formControlName]="fieldConfig.controlName"
+                        [name]="fieldConfig.name">
+                        {{fieldConfig.label}}
+                </mat-slide-toggle>
                 <!-- Default Text Field -->
                 <mat-form-field *ngSwitchDefault [class]="fieldConfig.styleClass">
                     <input matInput [placeholder]="fieldConfig.label" [formControlName]="fieldConfig.controlName" 

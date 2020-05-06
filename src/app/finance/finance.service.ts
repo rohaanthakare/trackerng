@@ -62,6 +62,10 @@ export class FinanceService {
     return this.http.get(`${environment.baseUrl}/api/get_financial_accounts`);
   }
 
+  getFinancialAccountsForUser(userId) {
+    return this.http.get(`${environment.baseUrl}/api/get_financial_accounts/${userId}`);
+  }
+
   getFinancialAccountDetails(id) {
     return this.http.get(`${environment.baseUrl}/api/get_financial_account/${id}`);
   }

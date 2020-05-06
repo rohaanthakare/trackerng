@@ -33,6 +33,12 @@ export class ModelSelectComponent implements OnInit {
     );
   }
 
+  updateSourceData(newData) {
+    this.sourceData = newData;
+    this.allData = newData;
+    this.fieldCtrl.setValue('');
+  }
+
   displayFunction(selectedData) {
     this.selectedData = selectedData;
     if (this.fieldConfig.renderer) {

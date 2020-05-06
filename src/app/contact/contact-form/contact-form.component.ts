@@ -26,13 +26,15 @@ export class ContactFormComponent implements OnInit {
   firstNameCtrl = new FormControl('', Validators.required);
   mobileNoCtrl = new FormControl('', [Validators.minLength(10), Validators.maxLength(10)]);
   emailCtrl = new FormControl('', Validators.email);
+  isJointUserCtrl = new FormControl(false);
   contactForm = this.formBuilder.group({
     title: this.titleCtrl,
     firstName: this.firstNameCtrl,
     middleName: this.middleNameCtrl,
     lastName: this.lastNameCtrl,
     mobileNo: this.mobileNoCtrl,
-    email: this.emailCtrl
+    email: this.emailCtrl,
+    isJointUser: this.isJointUserCtrl
   });
   fieldConfigs: any;
 
@@ -113,6 +115,12 @@ export class ContactFormComponent implements OnInit {
         name: 'email',
         message: 'Please enter valid email address'
       }]
+    }, {
+      label: 'Joint Contact?',
+      name: 'isJointUser',
+      type: 'slide-toggle',
+      control: this.isJointUserCtrl,
+      controlName: 'isJointUser'
     }];
   }
 

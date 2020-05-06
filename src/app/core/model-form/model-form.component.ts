@@ -47,9 +47,9 @@ export class ModelFormComponent implements OnInit {
   }
 
   updateSelectFieldDataScource(fieldName, newData) {
-    const field = this.fieldConfigs.find((c) => c.name === fieldName);
-    field.dataScource = [];
-    field.dataScource = newData;
+    const modelSelectCmps = this.modelSelect.toArray();
+    const fieldCmp = modelSelectCmps.find(cmp => cmp.name === fieldName);
+    fieldCmp.updateSourceData(newData);
   }
 
   removeField(fieldName) {
