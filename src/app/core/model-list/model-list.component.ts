@@ -51,7 +51,7 @@ export class ModelListComponent implements OnInit, AfterViewInit {
       (response: any) => {
         this.toolbarActions = response.actions;
         this.toolbarActions.forEach((action: any) => {
-          if (action.viewType !== 'create') {
+          if (action.viewType !== 'create' && action.viewType !== 'custom') {
             action.isDisabled = true;
           }
         });
@@ -59,7 +59,9 @@ export class ModelListComponent implements OnInit, AfterViewInit {
     );
   }
   ngAfterViewInit() {
-    this.loadTableData();
+    if (this.listDataServiceApi) {
+      this.loadTableData();
+    }
     if (!this.noPagination) {
       this.paginator.page.pipe(
         tap(() => this.loadTableData())
@@ -74,6 +76,10 @@ export class ModelListComponent implements OnInit, AfterViewInit {
       this.customEvent.emit({
         action: action.viewRoute,
         selectedId: this.selectedRow[this.idColumn]
+      });
+    } else if (action.viewType === 'custom') {
+      this.customEvent.emit({
+        action: action.viewCode
       });
     } else {
       this.router.navigate([action.viewRoute]);

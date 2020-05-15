@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoaderService } from '../services/loader.service';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-loader',
@@ -12,7 +13,11 @@ export class LoaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loaderService.isLoading.subscribe((v) => {
+    this.loaderService.isLoading
+    .pipe(
+      delay(0)
+    )
+    .subscribe((v) => {
       this.loading = v;
     });
   }
