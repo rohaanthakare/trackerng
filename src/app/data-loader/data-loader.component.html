@@ -1,68 +1,57 @@
 <div class="row mat-elevation-z8">
     <div class="col-12">
-        <mat-vertical-stepper [linear]="isLinear" #stepper>
-            <mat-step>
-                <ng-template matStepLabel>Load Data Config File</ng-template>
-                <button type="button" mat-raised-button color="accent" (click)="loadConfigFile()">
-                    Load Data Config
-                </button>
-                <div class="row">
-                    <div class="col-3" *ngFor="let file of filesToLoad">
-                        <mat-card>
-                            <mat-card-content>
-                                <mat-checkbox (change)="moduleSelected(file)">{{file.moduleName}}</mat-checkbox>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                </div>
-            </mat-step>
-            <mat-step>
-                <ng-template matStepLabel>Read All Files to be loaded</ng-template>
-                <button style="margin-right: 10px;" type="button" mat-raised-button color="accent" (click)="readDataFile()">
-                    Read Data Files
-                </button>
-                <button type="button" mat-raised-button color="accent" (click)="uploadData()">
-                    Load Data
-                </button>
-                <div class="row">
-                    <div class="col-6" *ngFor="let module of moduleForLoading">
-                        <mat-card>
-                            <mat-card-content>
-                                <h4>Module - {{module.moduleName}}</h4>
-                                <h4>Operation - {{module.actionName}}</h4>
-                                <section>
-                                    <p>Remaining - {{module.remainingRecords}} of {{module.recordsToLoad}}</p>
-                                        <mat-progress-bar 
-                                            color="primary" 
-                                            mode="determinate"
-                                            [value]="module.remainingPercentage">
-                                        </mat-progress-bar>
-                                    <p>Uploaded - {{module.recordsLoaded}} of {{module.recordsToLoad}}</p>
-                                    <mat-progress-bar 
-                                        color="primary" 
-                                        mode="determinate"
-                                        [value]="module.uploadedPercentage">
-                                    </mat-progress-bar>
-                                    <p>Failed - {{module.recordsFailed}} of {{module.recordsToLoad}}</p>
-                                    <mat-progress-bar 
-                                        color="warn" 
-                                        mode="determinate"
-                                        [value]="module.failedPercentage">
-                                    </mat-progress-bar>
-                                </section>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                </div>
-            </mat-step>
-            <mat-step>
-              <ng-template matStepLabel>Done</ng-template>
-              <p>You are now done.</p>
-              <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
-              </div>
-            </mat-step>
-          </mat-vertical-stepper>
+        <button style="margin-right: 10px;" type="button" mat-raised-button color="accent" (click)="loadConfigFile()"
+            [disabled]="isConfigFileLoaded">
+            Load Data Config
+        </button>
+        <button style="margin-right: 10px;" type="button" mat-raised-button color="accent" (click)="readDataFile()"
+            [disabled]="isDataFileReadComplete || !isConfigFileLoaded">
+            Read Data Files
+        </button>
+        <button type="button" mat-raised-button color="accent" (click)="uploadData()"
+            [disabled]="isDataLoadComplete || !isDataFileReadComplete || !isConfigFileLoaded">
+            Load Data
+        </button>
+    </div>
+    <div class="col-12">
+        <div class="row">
+            <div class="col-3" *ngFor="let file of filesToLoad">
+                <mat-card>
+                    <mat-card-content>
+                        <mat-checkbox (change)="moduleSelected(file)">{{file.moduleName}} - {{file.actionName}}</mat-checkbox>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6" *ngFor="let module of moduleForLoading">
+                <mat-card>
+                    <mat-card-content>
+                        <h4>Module - {{module.moduleName}}</h4>
+                        <h4>Operation - {{module.actionName}}</h4>
+                        <section>
+                            <p>Remaining - {{module.remainingRecords}} of {{module.recordsToLoad}}</p>
+                                <mat-progress-bar 
+                                    color="primary" 
+                                    mode="determinate"
+                                    [value]="module.remainingPercentage">
+                                </mat-progress-bar>
+                            <p>Uploaded - {{module.recordsLoaded}} of {{module.recordsToLoad}}</p>
+                            <mat-progress-bar 
+                                color="primary" 
+                                mode="determinate"
+                                [value]="module.uploadedPercentage">
+                            </mat-progress-bar>
+                            <p>Failed - {{module.recordsFailed}} of {{module.recordsToLoad}}</p>
+                            <mat-progress-bar 
+                                color="warn" 
+                                mode="determinate"
+                                [value]="module.failedPercentage">
+                            </mat-progress-bar>
+                        </section>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
     </div>
 </div>

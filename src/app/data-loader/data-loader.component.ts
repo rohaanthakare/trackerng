@@ -57,6 +57,7 @@ export class DataLoaderComponent implements OnInit {
       },
       () => {
         console.log('XML File loaded');
+        this.isConfigFileLoaded = true;
         // this.readDataFile();
       }
     );
@@ -89,6 +90,7 @@ export class DataLoaderComponent implements OnInit {
       },
       () => {
         // this.uploadData();
+        this.isDataFileReadComplete = true;
       }
     );
   }
