@@ -23,12 +23,19 @@ const loadDataModels = {
   encapsulation: ViewEncapsulation.None
 })
 export class DataLoaderComponent implements OnInit {
+  isConfigFileLoaded = false;
+  isDataFileReadComplete = false;
+  isDataLoadComplete = false;
   totalModules: number;
   moduleForLoading: DataLoadModule[] = [];
   filesToLoad = [];
+  selectedModules = [];
   constructor(private loadData: LoadDataService, private injector: Injector) { }
 
   ngOnInit() {
+  }
+
+  loadConfigFile() {
     this.loadData.getLoadDataConfig().subscribe(
       data => {
         const xmlParser = new DOMParser();
@@ -42,7 +49,6 @@ export class DataLoaderComponent implements OnInit {
           newModule.dataFilePath = currentModule.getElementsByTagName('DataFilePath')[0].textContent;
           newModule.actionName = currentModule.getElementsByTagName('ActionName')[0].textContent;
           newModule.action = currentModule.getElementsByTagName('Action')[0].textContent;
-          // this.readDataFile(newModule);
           this.filesToLoad.push(newModule);
         }
       },
@@ -51,13 +57,14 @@ export class DataLoaderComponent implements OnInit {
       },
       () => {
         console.log('XML File loaded');
-        this.readDataFile();
+        this.isConfigFileLoaded = true;
+        // this.readDataFile();
       }
     );
   }
 
   readDataFile() {
-    from(this.filesToLoad).pipe(
+    from(this.selectedModules).pipe(
       concatMap(param => this.loadData.getModuleData(param))
     ).subscribe(
       data => {
@@ -82,7 +89,8 @@ export class DataLoaderComponent implements OnInit {
         console.log('Inside Error');
       },
       () => {
-        this.uploadData();
+        // this.uploadData();
+        this.isDataFileReadComplete = true;
       }
     );
   }
@@ -119,6 +127,16 @@ export class DataLoaderComponent implements OnInit {
 
     moduleDetail.remainingRecords = moduleDetail.remainingRecords - 1;
     moduleDetail.remainingPercentage = (moduleDetail.remainingRecords / moduleDetail.recordsToLoad) * 100;
+  }
+
+  moduleSelected(moduleDetails) {
+    const moduleIndex = this.selectedModules.findIndex((m) => (m.moduleName === moduleDetails.moduleName
+      && m.action === moduleDetails.action));
+    if (moduleIndex === -1) {
+      this.selectedModules.push(moduleDetails);
+    } else {
+      this.selectedModules.splice(moduleIndex, 1);
+    }
   }
 
 }

@@ -32,3 +32,9 @@ CONTACT_TRANSACTIONS,Transactions,Transactions,fas fa-list-ul,home/finance/conta
 FIN_ACCOUNT_CREATE,New Account,Create Account,add,home/finance/create-account,create,BANK_ACCOUNTS,1,0,1
 FIN_ACCOUNT_EDIT,Edit Account,Edit Account,edit,home/finance/edit-account,edit,BANK_ACCOUNTS,1,0,1
 REVERT_TRANSACTION,Revert Transaction,Revert Transaction,fas fa-redo,home/finance/edit-account,delete,PASSBOOK,1,0,1
+GROCERY_TRACKER,Groceries,Groceries,fas fa-shopping-basket,home/grocery-list,view,,1,1,0
+GROCERY_ITEM_CREATE,Add Grocery Item,Add Grocery Item,add,home/grocery-list/create,create,GROCERY_TRACKER,1,0,1
+GROCERY_ITEM_EDIT,Edit Grocery Item,Edit Grocery Item,add,home/grocery-list/edit,edit,GROCERY_TRACKER,1,0,1
+GROCERY_ADD_TO_STOCK,Add to Stock,Add to Stock,fas fa-plus-square,home/grocery-list/edit,custom,GROCERY_TRACKER,1,0,1
+GROCERY_GET_MY_LIST,Get My List,Get My List,fas fa-list-ul,home/grocery-list/edit,custom,GROCERY_TRACKER,1,0,1
+GROCERY_REMOVE_FROM_STOCK,Remove from Stock,Remove from Stock,fas fa-minus-square,home/grocery-list/edit,custom,GROCERY_TRACKER,1,0,1

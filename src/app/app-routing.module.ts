@@ -59,6 +59,9 @@ const routes: Routes = [{
     path: 'finance',
     loadChildren: './finance/finance.module#FinanceModule'
   }, {
+    path: 'grocery-list',
+    loadChildren: './grocery/grocery.module#GroceryModule'
+  }, {
     path: 'load-data',
     component: DataLoaderComponent
   }]

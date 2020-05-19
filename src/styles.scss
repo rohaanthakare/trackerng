@@ -148,11 +148,16 @@ body{
 body{margin:0}
 
 .mr-1 {
-    margin-right: 5px;
+    margin-right: 5px !important;
 } 
 .ml-1 {
-    margin-left: 5px;
+    margin-left: 5px !important;
 }
+
+.mt-1 {
+    margin-top: 5px !important;
+}
+
 .mr-2 {
     margin-right: 10px;
 } 

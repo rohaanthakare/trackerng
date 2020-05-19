@@ -9,6 +9,7 @@ import { tap } from 'rxjs/operators';
 import { ContactService } from 'src/app/contact/contact.service';
 import { FinanceService } from 'src/app/finance/finance.service';
 import { CurrencyPipe } from '@angular/common';
+import { SelectionModel } from '@angular/cdk/collections';
 const modelServices = {
   Password: PasswordService,
   Contact: ContactService,
@@ -32,21 +33,41 @@ export class ModelListComponent implements OnInit, AfterViewInit {
   @Input() listDataServiceApi: string;
   @Input() noPagination: boolean;
   @Input() grouping: boolean;
+  @Input() multiSelect: boolean;
   @Input() groupField: any;
   @Input() groupHeader: any;
   @Input() groupSubheader: any;
   @Input() hasFooterRow: boolean;
   @Output() customEvent: EventEmitter<any> = new EventEmitter();
   @Output() rowSelected: EventEmitter<any> = new EventEmitter();
+  @Output() selectionChanged: EventEmitter<any> = new EventEmitter();
+  @Output() dataLoaded: EventEmitter<any> = new EventEmitter();
+  @Output() toolbarButtonsAdded: EventEmitter<any> = new EventEmitter();
   @ViewChild(MatPaginator, {static : false}) paginator: MatPaginator;
   totalRecords: number;
   dataSource = new MatTableDataSource([]);
+  selection = new SelectionModel(true, []);
   selectedRowIndex = -1;
   selectedRow: any;
   constructor(private masterViewService: MasterViewService, private cp: CurrencyPipe,
               private router: Router, private injector: Injector) { }
 
   ngOnInit() {
+    // If we have checkbox selection in Table
+    if (this.multiSelect) {
+      this.selection.changed.subscribe(
+        response => {
+          this.selectionChanged.emit(response.source.selected);
+        }
+      );
+      this.displayedColumns.unshift('select');
+      this.columnDefs.unshift({
+        headerSelect: true,
+        checkbox: true,
+        id: 'select',
+        name: 'select'
+      });
+    }
     this.masterViewService.getToolbarActions(this.viewCode).subscribe(
       (response: any) => {
         this.toolbarActions = response.actions;
@@ -55,11 +76,27 @@ export class ModelListComponent implements OnInit, AfterViewInit {
             action.isDisabled = true;
           }
         });
+        this.toolbarButtonsAdded.emit(this.toolbarActions);
       }
     );
   }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
   ngAfterViewInit() {
-    this.loadTableData();
+    if (this.listDataServiceApi) {
+      this.loadTableData();
+    }
     if (!this.noPagination) {
       this.paginator.page.pipe(
         tap(() => this.loadTableData())
@@ -74,6 +111,10 @@ export class ModelListComponent implements OnInit, AfterViewInit {
       this.customEvent.emit({
         action: action.viewRoute,
         selectedId: this.selectedRow[this.idColumn]
+      });
+    } else if (action.viewType === 'custom') {
+      this.customEvent.emit({
+        action: action.viewCode
       });
     } else {
       this.router.navigate([action.viewRoute]);
@@ -97,6 +138,8 @@ export class ModelListComponent implements OnInit, AfterViewInit {
   setTableData(data, count?) {
     this.dataSource.data = data;
     this.totalRecords = count;
+    this.selection.clear();
+    this.dataLoaded.emit();
   }
 
   prepareGroupedData(inputData) {
