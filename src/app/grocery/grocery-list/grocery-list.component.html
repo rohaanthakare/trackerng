@@ -1,2 +1,3 @@
 <app-model-list [columnDefs]="columnDefs" viewTitle="Grocery Items" [displayedColumns]="displayedColumns"
-    (customEvent)="customEventHandler($event)" viewCode="GROCERY_TRACKER"></app-model-list>
+    (customEvent)="customEventHandler($event)" viewCode="GROCERY_TRACKER" multiSelect="true" 
+    (selectionChanged)="onSelectionChanged($event)" (toolbarButtonsAdded)="onToolbarButtonsAdded($event)"></app-model-list>

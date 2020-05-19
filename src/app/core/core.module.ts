@@ -9,6 +9,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { ModelListComponent } from './model-list/model-list.component';
 import { ModelFormComponent } from './model-form/model-form.component';
@@ -28,7 +29,7 @@ import { ModelSelectionListComponent } from './model-selection-list/model-select
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
     MatButtonModule, MatTableModule, MatPaginatorModule, MatInputModule, MatAutocompleteModule, MatDatepickerModule,
-    MatNativeDateModule, MatChipsModule, MatSlideToggleModule
+    MatNativeDateModule, MatChipsModule, MatSlideToggleModule, MatCheckboxModule
   ],
   exports: [ModelListComponent, ModelFormComponent, MessageSnackBarComponent]
 })

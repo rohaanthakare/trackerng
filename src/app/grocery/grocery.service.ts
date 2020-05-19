@@ -40,4 +40,8 @@ export class GroceryService {
   refillGrocery(items) {
     return this.http.put(`${environment.baseUrl}/api/refill_grocery`, items);
   }
+
+  consumeGrocery(items) {
+    return this.http.put(`${environment.baseUrl}/api/consume_grocery`, items);
+  }
 }
