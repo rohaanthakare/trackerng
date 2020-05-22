@@ -114,7 +114,7 @@ export class GroceryListComponent implements OnInit {
   onToolbarButtonsAdded(buttons) {
     this.buttons = buttons;
     buttons.forEach((b) => {
-      if (b.viewCode === 'GROCERY_GET_MY_LIST') {
+      if (b.viewCode === 'GROCERY_GET_MY_LIST' || b.viewCode === 'GROCERY_SHARE_LIST') {
         b.isDisabled = false;
       }
     });

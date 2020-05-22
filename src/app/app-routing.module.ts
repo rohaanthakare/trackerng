@@ -42,10 +42,10 @@ const routes: Routes = [{
   component: HomeComponent,
   children: [{
     path: '',
-    component: DashboardComponent
+    loadChildren: './dashboard/dashboard.module#DashboardModule'
   }, {
     path: 'dashboard',
-    component: DashboardComponent
+    loadChildren: './dashboard/dashboard.module#DashboardModule'
   }, {
     path: 'profile',
     component: ProfileComponent

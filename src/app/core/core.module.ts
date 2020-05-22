@@ -19,13 +19,15 @@ import { MatInputModule } from '@angular/material/input';
 import { ModelSelectComponent } from './model-select/model-select.component';
 import { ModelEditorGridComponent } from './model-editor-grid/model-editor-grid.component';
 import { ModelSelectionListComponent } from './model-selection-list/model-selection-list.component';
+import { ListFilterComponent } from './list-filter/list-filter.component';
 
 @NgModule({
   entryComponents: [MessageSnackBarComponent],
   declarations: [ModelListComponent, ModelFormComponent, MessageSnackBarComponent,
     ModelSelectComponent,
     ModelEditorGridComponent,
-    ModelSelectionListComponent],
+    ModelSelectionListComponent,
+    ListFilterComponent],
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
     MatButtonModule, MatTableModule, MatPaginatorModule, MatInputModule, MatAutocompleteModule, MatDatepickerModule,

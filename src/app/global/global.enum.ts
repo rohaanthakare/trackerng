@@ -21,3 +21,8 @@ export class GlobalConstants {
         viewRoute: 'home/load-data'
     }];
 }
+
+export enum Role {
+    ADMIN = 'ADMIN',
+    TRACKER_USER = 'TRACKER_USER'
+}
