@@ -9,4 +9,5 @@ export class MasterView {
     isMenu: boolean;
     isToolbar: boolean;
     items: any;
+    mobileIconClass: string;
 }

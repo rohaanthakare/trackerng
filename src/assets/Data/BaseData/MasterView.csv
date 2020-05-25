@@ -1,41 +1,41 @@
-View Code, View Title, View Name, Icon, Route, View Type, Parent View, Dsiplay Order,Is Menu, Is Toolbar
-ADMIN_DASHBOARD,Dashboard,Dashboard,dashboard,home/admin/dashboard,view,,1,1,0
-MASTER_CONFIG,Application,Application,settings_applications,home/master,view,,1,1,0
-VIEW_MASTER,Master View,Master View,view_list,home/views,view,MASTER_CONFIG,1,1,0
-DATA_MASTER,Master Data,Master Data,list,home/master-data,view,MASTER_CONFIG,1,1,0
-BANK_MASTER,Bank Master,Bank Master,account_balance,home/banks,view,MASTER_CONFIG,1,1,0
-BANKS,Banks,Banks,account_balance,home/banks,view,BANK_MASTER,1,1,0
-BANK_BRANCHES,Branches,Branches,business,home/branches,view,BANK_MASTER,1,1,0
-TRACKER_DASHBOARD,Dashboard,Dashboard,fas fa-home,home/dashboard,view,,1,1,0
-PASSWORD_TRACKER,Password,Password,fas fa-key,home/dashboard,view,,1,1,0
-PASSWORD_LIST,Passwords,Passwords,fas fa-list-ul,home/password,view,PASSWORD_TRACKER,1,1,0
-PASSWORD_CREATE,New Password,Create Password,add,home/password/create,create,PASSWORD_LIST,1,0,1
-PASSWORD_EDIT,Edit Password,Edit Password,edit,home/password/edit,edit,PASSWORD_LIST,1,0,1
-PASSWORD_DELETE,Delete Password,Delete Password,fas fa-trash-alt,home/password,delete,PASSWORD_LIST,1,0,1
-CONTACT_TRACKER,Contact,Contact,fas fa-address-book,home/contact,view,,1,1,0
-CONTACT_LIST,Contacts,Contacts,fas fa-address-book,home/contact,view,CONTACT_TRACKER,1,1,0
-CONTACT_CREATE,New Contact,Create Contact,fas fa-user-plus,home/contact/create,create,CONTACT_LIST,1,0,1
-CONTACT_EDIT,Edit Contact,Edit Contact,fas fa-user-edit,home/contact/edit,edit,CONTACT_LIST,2,0,1
-CONTACT_GROUP_LIST,Groups,Groups,fas fa-users,home/contact-group,view,CONTACT_TRACKER,1,1,0
-CONTACT_GROUP_CREATE,New Group,Create Group,add,home/contact-group/create,create,CONTACT_GROUP_LIST,1,0,1
-CONTACT_GROUP_EDIT,Edit Group,Edit Group,edit,home/contact-group/edit,edit,CONTACT_GROUP_LIST,2,0,1
-FINANCE_TRACKER,Finance,Finance,fas fa-rupee-sign,home/dashboard,view,,1,1,0
-BANK_ACCOUNTS,Accounts,Accounts,fas fa-wallet,home/finance/accounts,view,FINANCE_TRACKER,1,1,0
-PASSBOOK,Passbook,Passbook,fas fa-list-ul,home/finance/passbook,view,FINANCE_TRACKER,2,1,0
-DEPOSIT_MONEY,Deposit,Deposit,fas fa-sign-in-alt,home/finance/deposit,view,FINANCE_TRACKER,1,1,0
-TRANSFER_MONEY,Transfer,Transfer,fas fa-exchange-alt,home/finance/transfer,view,FINANCE_TRACKER,1,1,0
-ADD_EXPENSE,Expense,Expense,fas fa-money-bill-alt,home/finance/add-expense,view,FINANCE_TRACKER,1,1,0
-ADD_INVESTMENT,Investment,Investment,fas fa-donate,home/finance/investment,view,FINANCE_TRACKER,1,1,0
-CONTACT_SETTLEMENT,Settlements,Settlements,fas fa-handshake,home/finance/settlements,view,FINANCE_TRACKER,1,1,0
-BUDGET_MANAGER,Budget Manager,Budget Manager,fas fa-money-check,home/finance/budget-manager,view,FINANCE_TRACKER,1,1,0
-CONTACT_TRANSACTIONS,Transactions,Transactions,fas fa-list-ul,home/finance/contact-transactions,edit,CONTACT_SETTLEMENT,1,0,1
-FIN_ACCOUNT_CREATE,New Account,Create Account,add,home/finance/create-account,create,BANK_ACCOUNTS,1,0,1
-FIN_ACCOUNT_EDIT,Edit Account,Edit Account,edit,home/finance/edit-account,edit,BANK_ACCOUNTS,1,0,1
-REVERT_TRANSACTION,Revert Transaction,Revert Transaction,fas fa-redo,home/finance/edit-account,delete,PASSBOOK,1,0,1
-GROCERY_TRACKER,Groceries,Groceries,fas fa-shopping-basket,home/grocery-list,view,,1,1,0
-GROCERY_ITEM_CREATE,Add Grocery Item,Add Grocery Item,add,home/grocery-list/create,create,GROCERY_TRACKER,1,0,1
-GROCERY_ITEM_EDIT,Edit Grocery Item,Edit Grocery Item,add,home/grocery-list/edit,edit,GROCERY_TRACKER,1,0,1
-GROCERY_ADD_TO_STOCK,Add to Stock,Add to Stock,fas fa-plus-square,home/grocery-list/edit,custom,GROCERY_TRACKER,1,0,1
-GROCERY_GET_MY_LIST,Get My List,Get My List,fas fa-list-ul,home/grocery-list/edit,custom,GROCERY_TRACKER,1,0,1
-GROCERY_REMOVE_FROM_STOCK,Remove from Stock,Remove from Stock,fas fa-minus-square,home/grocery-list/edit,custom,GROCERY_TRACKER,1,0,1
-GROCERY_SHARE_LIST,Share My List,Share My List,fas fa-share-alt,home/grocery-list/edit,custom,GROCERY_TRACKER,1,0,1
+View Code, View Title, View Name, Icon, Route, View Type, Parent View, Dsiplay Order,Is Menu, Is Toolbar, Mobile Icon
+ADMIN_DASHBOARD,Dashboard,Dashboard,dashboard,home/admin/dashboard,view,,1,1,0,bar-chart
+MASTER_CONFIG,Application,Application,settings_applications,home/master,view,,1,1,0,bar-chart
+VIEW_MASTER,Master View,Master View,view_list,home/views,view,MASTER_CONFIG,1,1,0,bar-chart
+DATA_MASTER,Master Data,Master Data,list,home/master-data,view,MASTER_CONFIG,1,1,0,bar-chart
+BANK_MASTER,Bank Master,Bank Master,account_balance,home/banks,view,MASTER_CONFIG,1,1,0,bar-chart
+BANKS,Banks,Banks,account_balance,home/banks,view,BANK_MASTER,1,1,0,bar-chart
+BANK_BRANCHES,Branches,Branches,business,home/branches,view,BANK_MASTER,1,1,0,bar-chart
+TRACKER_DASHBOARD,Dashboard,Dashboard,fas fa-home,home/dashboard,view,,1,1,0,bar-chart
+PASSWORD_TRACKER,Password,Password,fas fa-key,home/dashboard,view,,1,1,0,key
+PASSWORD_LIST,Passwords,Passwords,fas fa-list-ul,home/password,view,PASSWORD_TRACKER,1,1,0,list
+PASSWORD_CREATE,New Password,Create Password,add,home/password/create,create,PASSWORD_LIST,1,0,1,add
+PASSWORD_EDIT,Edit Password,Edit Password,edit,home/password/edit,edit,PASSWORD_LIST,1,0,1,create
+PASSWORD_DELETE,Delete Password,Delete Password,fas fa-trash-alt,home/password,delete,PASSWORD_LIST,1,0,1,trash
+CONTACT_TRACKER,Contact,Contact,fas fa-address-book,home/contact,view,,1,1,0,person
+CONTACT_LIST,Contacts,Contacts,fas fa-address-book,home/contact,view,CONTACT_TRACKER,1,1,0,list
+CONTACT_CREATE,New Contact,Create Contact,fas fa-user-plus,home/contact/create,create,CONTACT_LIST,1,0,1,person-add
+CONTACT_EDIT,Edit Contact,Edit Contact,fas fa-user-edit,home/contact/edit,edit,CONTACT_LIST,2,0,1,create
+CONTACT_GROUP_LIST,Groups,Groups,fas fa-users,home/contact-group,view,CONTACT_TRACKER,1,1,0,people
+CONTACT_GROUP_CREATE,New Group,Create Group,add,home/contact-group/create,create,CONTACT_GROUP_LIST,1,0,1,add
+CONTACT_GROUP_EDIT,Edit Group,Edit Group,edit,home/contact-group/edit,edit,CONTACT_GROUP_LIST,2,0,1,create
+FINANCE_TRACKER,Finance,Finance,fas fa-rupee-sign,home/dashboard,view,,1,1,0,cash
+BANK_ACCOUNTS,Accounts,Accounts,fas fa-wallet,home/finance/accounts,view,FINANCE_TRACKER,1,1,0,wallet
+PASSBOOK,Passbook,Passbook,fas fa-list-ul,home/finance/passbook,view,FINANCE_TRACKER,2,1,0,list
+DEPOSIT_MONEY,Deposit,Deposit,fas fa-sign-in-alt,home/finance/deposit,view,FINANCE_TRACKER,1,1,0,log-in
+TRANSFER_MONEY,Transfer,Transfer,fas fa-exchange-alt,home/finance/transfer,view,FINANCE_TRACKER,1,1,0,swap-horizontal
+ADD_EXPENSE,Expense,Expense,fas fa-money-bill-alt,home/finance/add-expense,view,FINANCE_TRACKER,1,1,0,log-out
+ADD_INVESTMENT,Investment,Investment,fas fa-donate,home/finance/investment,view,FINANCE_TRACKER,1,1,0,archive
+CONTACT_SETTLEMENT,Settlements,Settlements,fas fa-handshake,home/finance/settlements,view,FINANCE_TRACKER,1,1,0,shuffle
+BUDGET_MANAGER,Budget Manager,Budget Manager,fas fa-money-check,home/finance/budget-manager,view,FINANCE_TRACKER,1,1,0,options
+CONTACT_TRANSACTIONS,Transactions,Transactions,fas fa-list-ul,home/finance/contact-transactions,edit,CONTACT_SETTLEMENT,1,0,1,list
+FIN_ACCOUNT_CREATE,New Account,Create Account,add,home/finance/create-account,create,BANK_ACCOUNTS,1,0,1,add
+FIN_ACCOUNT_EDIT,Edit Account,Edit Account,edit,home/finance/edit-account,edit,BANK_ACCOUNTS,1,0,1,create
+REVERT_TRANSACTION,Revert Transaction,Revert Transaction,fas fa-redo,home/finance/edit-account,delete,PASSBOOK,1,0,1,trash-bin
+GROCERY_TRACKER,Groceries,Groceries,fas fa-shopping-basket,home/grocery-list,view,,1,1,0,basket
+GROCERY_ITEM_CREATE,Add Grocery Item,Add Grocery Item,add,home/grocery-list/create,create,GROCERY_TRACKER,1,0,1,add
+GROCERY_ITEM_EDIT,Edit Grocery Item,Edit Grocery Item,add,home/grocery-list/edit,edit,GROCERY_TRACKER,1,0,1,create
+GROCERY_ADD_TO_STOCK,Add to Stock,Add to Stock,fas fa-plus-square,home/grocery-list/edit,custom,GROCERY_TRACKER,1,0,1,add-circle
+GROCERY_REMOVE_FROM_STOCK,Remove from Stock,Remove from Stock,fas fa-minus-square,home/grocery-list/edit,custom,GROCERY_TRACKER,1,0,1,remove-circle
+GROCERY_GET_MY_LIST,Get My List,Get My List,fas fa-list-ul,home/grocery-list/edit,custom,GROCERY_TRACKER,1,0,1,send
+GROCERY_SHARE_LIST,Share My List,Share My List,fas fa-share-alt,home/grocery-list/edit,custom,GROCERY_TRACKER,1,0,1,share-social
