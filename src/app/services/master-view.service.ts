@@ -41,6 +41,7 @@ export class MasterViewService {
         masterViewObj.displayOrder = currentRow[7];
         masterViewObj.isMenu = currentRow[8];
         masterViewObj.isToolbar = currentRow[9];
+        masterViewObj.mobileIconClass = currentRow[10];
         return this.createMasterView(masterViewObj);
       })
     );
