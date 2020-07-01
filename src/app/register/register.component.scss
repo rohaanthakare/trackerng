@@ -1,9 +1,22 @@
 .login_form{
-    width: 300px;
+    width: 400px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate( -50%, -50%);
+    padding: 50px;
+    background-color: #1C2541;
+    // background-color: rgba(255,255,255,0.05);
+    border-radius: 25px;
+}
+.login_form .mat-form-field-appearance-legacy .mat-form-field-label {
+    color: rgba(255, 255, 255, 0.54);
+}
+.login_form .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: rgba(255, 255, 255, 0.42);
+}
+.login_form .mat-input-element{
+    color: white;
 }
 
 .login_form div{
@@ -34,4 +47,18 @@
     margin-left: 10px;
     color: #999999;
     font-family: sans-serif;
+}
+
+.login_form a {
+    color: #6fffe9;
+    text-decoration: none;
+}
+
+.login_form a:hover{
+    color: #6fffe9;
+    text-decoration: underline;
+}
+
+.login_form .mat-form-field-prefix, .mat-form-field-suffix {
+    color: white;
 }

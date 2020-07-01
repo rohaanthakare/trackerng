@@ -11,6 +11,7 @@ import { OuterComponent } from './outer/outer.component';
 import { UserActivationComponent } from './user-activation/user-activation.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { OtpActivationComponent } from './otp-activation/otp-activation.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 const routes: Routes = [{
@@ -40,6 +41,7 @@ const routes: Routes = [{
 }, {
   path: 'home',
   component: HomeComponent,
+  canActivate: [AuthGuardService],
   children: [{
     path: '',
     loadChildren: './dashboard/dashboard.module#DashboardModule'

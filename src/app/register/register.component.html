@@ -1,6 +1,6 @@
 <form class="login_form" #formDirective="ngForm" [formGroup]="registrationForm" (ngSubmit)="registerUser(formDirective)">
     <div class="app_logo">
-        <img src="../../assets/Logos/tracker_primary.png" style="width: 80%;">
+        <img src="../../assets/Logos/tracker_light.png" style="width: 80%;">
     </div>
     <div>
         <mat-form-field>
@@ -55,14 +55,10 @@
         </mat-form-field>
     </div>
     <div>
-        <button mat-raised-button style="margin-bottom: 10px" type="submit" color="primary">
+        <button mat-raised-button style="margin-bottom: 10px" type="submit" color="accent">
             <i class="material-icons">person_add</i>
             Create User
         </button>
-        <p>Already a member?</p>
-        <button mat-raised-button type="button" color="primary" (click)="loginUser()">
-            <i class="material-icons">lock_open</i>
-            Login
-        </button>
+        <p>Already a member? <a href="javascript:" (click)="loginUser()">Click here</a></p>
     </div>
 </form>
