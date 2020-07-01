@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { MessageService } from '../shared/services/message.service';
@@ -6,7 +6,8 @@ import { MessageService } from '../shared/services/message.service';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.scss']
+  styleUrls: ['./forgot-password.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ForgotPasswordComponent implements OnInit {
   emailCtrl = new FormControl('', [Validators.required, Validators.email]);

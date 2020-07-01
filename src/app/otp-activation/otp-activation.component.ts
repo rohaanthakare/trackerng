@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,7 +7,8 @@ import { MessageService } from '../shared/services/message.service';
 @Component({
   selector: 'app-otp-activation',
   templateUrl: './otp-activation.component.html',
-  styleUrls: ['./otp-activation.component.scss']
+  styleUrls: ['./otp-activation.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class OtpActivationComponent implements OnInit {
   activationForm: FormGroup = this.formBuilder.group({
