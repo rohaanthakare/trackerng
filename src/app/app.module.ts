@@ -23,6 +23,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 // Application Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -58,6 +59,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptorService } from './services/loader-interceptor.service';
 import { LoaderService } from './services/loader.service';
 import { OtpActivationComponent } from './otp-activation/otp-activation.component';
+import { MailTesterComponent } from './mail-tester/mail-tester.component';
 
 @NgModule({
   declarations: [
@@ -83,13 +85,14 @@ import { OtpActivationComponent } from './otp-activation/otp-activation.componen
     UserActivationComponent,
     ResetPasswordComponent,
     LoaderComponent,
-    OtpActivationComponent
+    OtpActivationComponent,
+    MailTesterComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
     MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatToolbarModule,
     MatCardModule, MatMenuModule, MatProgressBarModule, MatGridListModule, MatExpansionModule,
-    MatSidenavModule, MatListModule, MatTabsModule, MatProgressSpinnerModule,
+    MatSidenavModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, MatRadioModule,
     CoreModule, AppRoutingModule, MatSlideToggleModule, MatStepperModule, MatCheckboxModule
   ],
   entryComponents: [ MessageSnackBarComponent],

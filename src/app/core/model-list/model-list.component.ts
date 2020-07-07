@@ -68,17 +68,20 @@ export class ModelListComponent implements OnInit, AfterViewInit {
         name: 'select'
       });
     }
-    this.masterViewService.getToolbarActions(this.viewCode).subscribe(
-      (response: any) => {
-        this.toolbarActions = response.actions;
-        this.toolbarActions.forEach((action: any) => {
-          if (action.viewType !== 'create') {
-            action.isDisabled = true;
-          }
-        });
-        this.toolbarButtonsAdded.emit(this.toolbarActions);
-      }
-    );
+
+    if (this.viewCode) {
+      this.masterViewService.getToolbarActions(this.viewCode).subscribe(
+        (response: any) => {
+          this.toolbarActions = response.actions;
+          this.toolbarActions.forEach((action: any) => {
+            if (action.viewType !== 'create') {
+              action.isDisabled = true;
+            }
+          });
+          this.toolbarButtonsAdded.emit(this.toolbarActions);
+        }
+      );
+    }
   }
 
   isAllSelected() {
