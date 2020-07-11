@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
@@ -8,7 +8,8 @@ import { HelperService } from '../shared/services/helper.service';
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.scss']
+  styleUrls: ['./reset-password.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ResetPasswordComponent implements OnInit {
   passwordCtrl = new FormControl('', [Validators.required, Validators.minLength(6)]);
