@@ -69,4 +69,10 @@ export class UserService {
   updateUserProfile(userId, user) {
     return this.http.put(`${environment.baseUrl}/api/user_profile/${userId}`, user);
   }
+
+  testMailTemplate(mailTemplate) {
+    return this.http.post(`${environment.baseUrl}/api/test_mail_template`, {
+      name: mailTemplate
+    });
+  }
 }

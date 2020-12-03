@@ -12,6 +12,7 @@ import { UserActivationComponent } from './user-activation/user-activation.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { OtpActivationComponent } from './otp-activation/otp-activation.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { MailTesterComponent } from './mail-tester/mail-tester.component';
 
 
 const routes: Routes = [{
@@ -66,6 +67,9 @@ const routes: Routes = [{
   }, {
     path: 'load-data',
     component: DataLoaderComponent
+  }, {
+    path: 'test-mail-template',
+    component: MailTesterComponent
   }]
 }];
 

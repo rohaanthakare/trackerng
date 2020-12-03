@@ -1,4 +1,4 @@
-.login_form{
+.otp_form{
     width: 400px;
     position: absolute;
     top: 50%;
@@ -10,28 +10,28 @@
     border-radius: 25px;
 }
 
-.login_form .mat-form-field-appearance-legacy .mat-form-field-label {
+.otp_form .mat-form-field-appearance-legacy .mat-form-field-label {
     color: rgba(255, 255, 255, 0.54);
 }
 
-.login_form .mat-form-field-appearance-legacy .mat-form-field-underline {
+.otp_form .mat-form-field-appearance-legacy .mat-form-field-underline {
     background-color: rgba(255, 255, 255, 0.42);
 }
 
-.login_form .mat-input-element{
+.otp_form .mat-input-element{
     color: white;
 }
 
-.login_form div{
+.otp_form div{
     width: 100%;
 }
 
-.login_form mat-form-field{
+.otp_form mat-form-field{
     width: 30px;
     text-align: center;
 }
 
-.login_form button{
+.otp_form button{
     width: 100%;
 }
 
@@ -43,7 +43,7 @@
     color: #3F51B5;
 }
 
-.login_form p {
+.otp_form p {
     margin-top: 5px;
     font-size: 10pt;
     margin-bottom: 5px;
@@ -52,12 +52,12 @@
     font-family: sans-serif;
 }
 
-.login_form a {
+.otp_form a {
     color: #3F51B5;
     text-decoration: none;
 }
 
-.login_form a:hover{
+.otp_form a:hover{
     color: #3F51B5;
     text-decoration: underline;
 }

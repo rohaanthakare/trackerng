@@ -2,7 +2,7 @@
     <div class="view-title">
         {{viewTitle}}
     </div>
-    <div class="action-panel">
+    <div class="action-panel" *ngIf="toolbarActions.length > 0">
         <button mat-raised-button color="accent" (click)="toolbarButtonClicked(action)" [disabled]="action.isDisabled"
             *ngFor="let action of toolbarActions;">
             <span *ngIf="isMaterialIcon(action)">

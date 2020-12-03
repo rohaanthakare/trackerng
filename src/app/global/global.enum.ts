@@ -19,6 +19,15 @@ export class GlobalConstants {
         iconClass: 'fas fa-upload',
         displayOrder: 1,
         viewRoute: 'home/load-data'
+    }, {
+        viewCode: 'TEST_MAIL_TEMPLATE',
+        viewTitle: 'Test Mail Templates',
+        viewType: 'view',
+        isMenu: true,
+        isToolbar: false,
+        iconClass: 'fas fa-upload',
+        displayOrder: 1,
+        viewRoute: 'home/test-mail-template'
     }];
 }
 
