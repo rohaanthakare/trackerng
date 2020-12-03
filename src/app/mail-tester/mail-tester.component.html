@@ -1,0 +1,21 @@
+<mat-card>
+    <mat-card-content>
+        <div class="row">
+            <div class="col-12">
+                <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="mailTemplate">
+                    <mat-radio-button class="example-radio-button" *ngFor="let mail of mailTemplates" [value]="mail.code">
+                        {{mail.name}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="col-12">
+                <button type="button" mat-raised-button color="accent" (click)="sendMail()">
+                    Send Mail
+                </button>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

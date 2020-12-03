@@ -28,8 +28,8 @@ export class ForgotPasswordComponent implements OnInit {
           formDirective.resetForm();
         },
         error => {
-          const errorMsg = error.error ? error.error.message : error.statusText;
-          this.msgService.showErrorMessage(errorMsg, 'center', 'top');
+          // const errorMsg = error.error ? error.error.message : error.statusText;
+          this.msgService.showErrorMessage(error, 'center', 'top');
         }
       );
     }
