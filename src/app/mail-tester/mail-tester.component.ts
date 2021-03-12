@@ -25,6 +25,9 @@ export class MailTesterComponent implements OnInit {
   }, {
     code: 'DAILY_STATUS_MAIL',
     name: 'Daily Status Mail',
+  }, {
+    code: 'GROCERY_LIST_MAIL',
+    name: 'Grocery List Mail',
   }];
   mailTemplate: string;
   constructor(private userService: UserService) { }
