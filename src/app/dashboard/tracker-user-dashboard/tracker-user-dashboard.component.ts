@@ -31,6 +31,7 @@ export class TrackerUserDashboardComponent implements OnInit {
   expenseHistory = [];
   expenseSplit = [];
   totalMonthlyExpense: any;
+  totalInvestment: any;
   moneyToTake: any;
   moneyToGive: any;
 
@@ -85,6 +86,7 @@ export class TrackerUserDashboardComponent implements OnInit {
         }
         this.moneyToGive = this.cp.transform(response.settlements.MONEY_TO_GIVE, 'INR', '');
         this.moneyToTake = this.cp.transform(response.settlements.MONEY_TO_TAKE, 'INR', '');
+        this.totalInvestment = this.cp.transform(response.totalInvestment, 'INR', '');
       }
     );
   }

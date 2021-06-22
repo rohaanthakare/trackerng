@@ -24,7 +24,6 @@ import { MatCardModule } from '@angular/material/card';
 import { AddInvestmentComponent } from './add-investment/add-investment.component';
 import { InvestmentsListComponent } from './investments-list/investments-list.component';
 import { InvestMoneyComponent } from './invest-money/invest-money.component';
-import { CloseInvestmentComponent } from './close-investment/close-investment.component';
 import { InvestmentTransactionComponent } from './investment-transaction/investment-transaction.component';
 
 const routes: Routes = [{
@@ -80,7 +79,7 @@ const routes: Routes = [{
   entryComponents: [InvestMoneyComponent],
   declarations: [AccountListComponent, AccountFormComponent, TransactionListComponent, ExpenseFormComponent, TransferFormComponent,
     DepositFormComponent, WithdrawFormComponent, BudgetManagerComponent, SettlementsListComponent, ContactTransactionsComponent,
-    AddInvestmentComponent, InvestmentsListComponent, InvestMoneyComponent, CloseInvestmentComponent, InvestmentTransactionComponent],
+    AddInvestmentComponent, InvestmentsListComponent, InvestMoneyComponent, InvestmentTransactionComponent],
   imports: [
     CommonModule, MatInputModule, MatGridListModule, MatButtonModule, MatProgressBarModule, MatListModule,
     MatDividerModule, MatSliderModule, MatCardModule, RouterModule.forChild(routes), CoreModule, NgxChartsModule
