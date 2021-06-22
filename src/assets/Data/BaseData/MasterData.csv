@@ -23,7 +23,7 @@ DEBT,Debt,Personal Loan / Housing Loan / Credit Card,1,EXPENSE_CATEGORY
 GROCERY,Grocery,Grocery / Vegetables / Household Items,2,EXPENSE_CATEGORY
 FOOD,Food,Restaurant / Food Delivery,2,EXPENSE_CATEGORY
 MISSING,Missing,Missing,3,EXPENSE_CATEGORY
-BILLS,Bills,Mobile Bill / Internet Bill / Gas Bill,4,EXPENSE_CATEGORY
+BILLS,Bills,Mobile Bill / Internet Bill / Gas Bill / Milk / Maids,4,EXPENSE_CATEGORY
 TRANSPORTATION,Transportation,Petrol / Repairs / Maintenance,5,EXPENSE_CATEGORY
 TRAVEL,Travel,Travel,6,EXPENSE_CATEGORY
 ENTERTAINMENT,Entertainment,DTH / Amazon Prime / HotStar / Netflix,8,EXPENSE_CATEGORY
@@ -33,6 +33,9 @@ SHOPPING,Shopping,Shopping,11,EXPENSE_CATEGORY
 GIFTS,Gifts / Donations,Gifts / Donations,12,EXPENSE_CATEGORY
 EDUCATION,Education,Education,13,EXPENSE_CATEGORY
 HOUSING,Housing,Property Tax / Maintenance,14,EXPENSE_CATEGORY
+BANK_CHARGES,Bank Charges,SMS Service / Debit Card,15,EXPENSE_CATEGORY
+TAXES,Taxes,Income Tax / GST,16,EXPENSE_CATEGORY
+OTHER_EXPENSES,Other,General,16,EXPENSE_CATEGORY
 TRANS_CATEGORY,Transaction Category,Transaction Category,1,
 DEPOSIT,Deposit,Deposit,1,TRANS_CATEGORY
 EXPENSE,Expense,Expense,2,TRANS_CATEGORY
@@ -49,6 +52,7 @@ SETTLEMENT,Settlement,Settlement,3,DEPOSIT_CATEGORY
 CASHBACK,Cashback and Rewards,Cashback and Rewards,4,DEPOSIT_CATEGORY
 INVESTMENT_RETURN,Investment Return,Investment Return,6,DEPOSIT_CATEGORY
 ADJUSTMENT,Adjustment,Adjustment,7,DEPOSIT_CATEGORY
+TRANS_RETURN,Transaction Reutrn,Transaction Reutrn,8,DEPOSIT_CATEGORY
 SETTLEMENT_TYPE,Settlement Type,Settlement Type,1,
 MONEY_TO_GIVE,Money to Give,Money to Give,1,SETTLEMENT_TYPE
 MONEY_TO_TAKE,Money to Take,Money to Take,2,SETTLEMENT_TYPE
@@ -69,6 +73,7 @@ RECURRING_DEPOSIT,Recurring Deposit (RD),Recurring Deposit (RD),1,INVESTMENT_CAT
 FIXED_DEPOSIT,Fixed Deposit (FD),Fixed Deposit (FD),1,INVESTMENT_CATEGORY
 MUTUAL_FUNDS,Mutual Funds,Mutual Funds,1,INVESTMENT_CATEGORY
 SHARE_MARKET,Share Market,Share Market,1,INVESTMENT_CATEGORY
+PPF,Public Provident Fund (PPF),Public Provident Fund (PPF),1,INVESTMENT_CATEGORY
 GROCERY_CATEGORY,Grocery Category,Grocery Category,1,
 FRUITS_VEGETABLES,Fruits & Vegetables,Fruits & Vegetables,1,GROCERY_CATEGORY
 FOODGRAINS_OIL,Foodgrains / Oil / Masala,Foodgrains / Oil / Masala,1,GROCERY_CATEGORY
@@ -81,3 +86,6 @@ KITCHEN_GARDEN_PETS,Kitchen / Garden / Pets,Kitchen / Garden / Pets,1,GROCERY_CA
 EGGS_MEAT_FISH,Eggs / Meat / Fish,Eggs / Meat / Fish,1,GROCERY_CATEGORY
 GOURMET_WORLD_FOOD,Gourmet & World Food,Gourmet & World Food,1,GROCERY_CATEGORY
 BABY_CARE,Baby Care,Baby Care,1,GROCERY_CATEGORY
+INV_TRANS_TYPE,Investment Transaction Type,Investment Transaction Type,1,
+INVEST_MONEY,Invest Money,Invest Money,1,INV_TRANS_TYPE
+CLOSE_INVESTMENT,Close Investment,Close Investment,1,INV_TRANS_TYPE

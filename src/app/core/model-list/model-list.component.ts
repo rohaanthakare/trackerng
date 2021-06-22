@@ -117,7 +117,8 @@ export class ModelListComponent implements OnInit, AfterViewInit {
       });
     } else if (action.viewType === 'custom') {
       this.customEvent.emit({
-        action: action.viewCode
+        action: action.viewCode,
+        selectedRecord: this.selectedRow
       });
     } else {
       this.router.navigate([action.viewRoute]);

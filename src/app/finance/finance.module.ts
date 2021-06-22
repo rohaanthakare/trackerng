@@ -22,6 +22,10 @@ import { MatSliderModule } from '@angular/material/slider';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatCardModule } from '@angular/material/card';
 import { AddInvestmentComponent } from './add-investment/add-investment.component';
+import { InvestmentsListComponent } from './investments-list/investments-list.component';
+import { InvestMoneyComponent } from './invest-money/invest-money.component';
+import { CloseInvestmentComponent } from './close-investment/close-investment.component';
+import { InvestmentTransactionComponent } from './investment-transaction/investment-transaction.component';
 
 const routes: Routes = [{
   path: '',
@@ -62,14 +66,21 @@ const routes: Routes = [{
     path: 'contact-transactions/:contact_id',
     component: ContactTransactionsComponent
   }, {
-    path: 'investment',
+    path: 'investments',
+    component: InvestmentsListComponent
+  }, {
+    path: 'add_investment',
     component: AddInvestmentComponent
+  }, {
+    path: 'investment_transactions/:id',
+    component: InvestmentTransactionComponent
   }]
 }];
 @NgModule({
+  entryComponents: [InvestMoneyComponent],
   declarations: [AccountListComponent, AccountFormComponent, TransactionListComponent, ExpenseFormComponent, TransferFormComponent,
     DepositFormComponent, WithdrawFormComponent, BudgetManagerComponent, SettlementsListComponent, ContactTransactionsComponent,
-    AddInvestmentComponent],
+    AddInvestmentComponent, InvestmentsListComponent, InvestMoneyComponent, CloseInvestmentComponent, InvestmentTransactionComponent],
   imports: [
     CommonModule, MatInputModule, MatGridListModule, MatButtonModule, MatProgressBarModule, MatListModule,
     MatDividerModule, MatSliderModule, MatCardModule, RouterModule.forChild(routes), CoreModule, NgxChartsModule

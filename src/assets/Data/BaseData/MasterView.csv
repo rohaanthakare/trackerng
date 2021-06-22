@@ -25,7 +25,11 @@ PASSBOOK,Passbook,Passbook,fas fa-list-ul,home/finance/passbook,view,FINANCE_TRA
 DEPOSIT_MONEY,Deposit,Deposit,fas fa-sign-in-alt,home/finance/deposit,view,FINANCE_TRACKER,1,1,0,log-in
 TRANSFER_MONEY,Transfer,Transfer,fas fa-exchange-alt,home/finance/transfer,view,FINANCE_TRACKER,1,1,0,repeat
 ADD_EXPENSE,Expense,Expense,fas fa-money-bill-alt,home/finance/add-expense,view,FINANCE_TRACKER,1,1,0,log-out
-ADD_INVESTMENT,Investment,Investment,fas fa-donate,home/finance/investment,view,FINANCE_TRACKER,1,1,0,archive
+INVESTMENTS,Investments,Investments,fas fa-donate,home/finance/investments,view,FINANCE_TRACKER,1,1,0,archive
+ADD_INVESTMENT,Start New Investment,Start New Investment,fas fa-donate,home/finance/add_investment,create,INVESTMENTS,1,1,0,archive
+INVEST_MONEY,Invest Money,Invest Money,fas fa-donate,home/finance/invest_money,custom,INVESTMENTS,1,1,0,archive
+CLOSE_INVESTMENT,Close Investment,Close Investment,fas fa-donate,home/finance/close_investment,custom,INVESTMENTS,1,1,0,archive
+INVESTMENT_TRANSACTION,Ivestment Transaction,Ivestment Transaction,fas fa-list-ul,home/finance/investment_transactions,custom,INVESTMENTS,1,1,0,archive
 CONTACT_SETTLEMENT,Settlements,Settlements,fas fa-handshake,home/finance/settlements,view,FINANCE_TRACKER,1,1,0,shuffle
 BUDGET_MANAGER,Budget Manager,Budget Manager,fas fa-money-check,home/finance/budget-manager,view,FINANCE_TRACKER,1,1,0,options
 CONTACT_TRANSACTIONS,Transactions,Transactions,fas fa-list-ul,home/finance/contact-transactions,edit,CONTACT_SETTLEMENT,1,0,1,list
