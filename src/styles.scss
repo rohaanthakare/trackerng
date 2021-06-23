@@ -304,3 +304,9 @@ body{margin:0}
 .sub-title-class{
     font-size: 11pt;
 }
+
+.zero-padding-cls{
+    mat-dialog-container {
+        padding: 0;
+    }
+}

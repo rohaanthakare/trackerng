@@ -128,4 +128,24 @@ export class FinanceService {
   updateFinancialProfile(profileId, profileData) {
     return this.http.put(`${environment.baseUrl}/api/update_financial_profile/${profileId}`, profileData);
   }
+
+  startNewInvestment(investmentDetails) {
+    return this.http.post(`${environment.baseUrl}/api/start_new_investment`, investmentDetails);
+  }
+
+  getUserInvestments() {
+    return this.http.get(`${environment.baseUrl}/api/get_user_investments`, {});
+  }
+
+  investMoney(transactionDetails) {
+    return this.http.post(`${environment.baseUrl}/api/invest_money`, transactionDetails);
+  }
+
+  closeInvestment(transactionDetails) {
+    return this.http.post(`${environment.baseUrl}/api/close_investment`, transactionDetails);
+  }
+
+  getInvestmentTransaction(investmentId) {
+    return this.http.get(`${environment.baseUrl}/api/get_investment_transaction/${investmentId}`);
+  }
 }

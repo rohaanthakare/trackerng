@@ -13,6 +13,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { OtpActivationComponent } from './otp-activation/otp-activation.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { MailTesterComponent } from './mail-tester/mail-tester.component';
+import { UnderConstructionComponent } from './under-construction/under-construction.component';
 
 
 const routes: Routes = [{
@@ -70,6 +71,9 @@ const routes: Routes = [{
   }, {
     path: 'test-mail-template',
     component: MailTesterComponent
+  }, {
+    path: '**',
+    component: UnderConstructionComponent
   }]
 }];
 

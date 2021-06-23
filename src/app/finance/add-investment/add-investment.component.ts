@@ -16,27 +16,17 @@ import { CurrencyPipe } from '@angular/common';
 export class AddInvestmentComponent implements OnInit {
   @ViewChild(ModelFormComponent, {static: false}) modelForm: ModelFormComponent;
   formFields = [];
-  accounts = [];
-  isAccountsLoaded = false;
-  accountCtrl = new FormControl();
-  amountCtrl = new FormControl('', [Validators.required]);
-  transactionDateCtrl = new FormControl('', [Validators.required]);
-  transactionDetailCtrl = new FormControl('', [Validators.required]);
-  accountBalanceCtrl = new FormControl();
+  nameCtrl = new FormControl('', [Validators.required]);
+  investmentStartDateCtrl = new FormControl();
   investmentCategory = [];
   isInvestmentCategoryLoaded = false;
   investmentCategoryCtrl = new FormControl();
   investmentForm: FormGroup = this.formBuilder.group({
-    account: this.accountCtrl,
-    transactionAmount: this.amountCtrl,
-    transactionDate: this.transactionDateCtrl,
-    transactionDetail: this.transactionDetailCtrl,
-    transactionSubCategory: this.investmentCategoryCtrl,
-    accountBalance: this.accountBalanceCtrl
-  }, {
-    validators: [this.helperService.transAmountValidator('transactionAmount', 'account')]
+    name: this.nameCtrl,
+    startedOn: this.investmentStartDateCtrl,
+    investmentType: this.investmentCategoryCtrl
   });
-  constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService, private contactService: ContactService,
+  constructor(private formBuilder: FormBuilder, private masterDataService: MasterDataService,
               private helperService: HelperService, private financeService: FinanceService, private msgService: MessageService,
               private cp: CurrencyPipe) { }
 
@@ -48,18 +38,10 @@ export class AddInvestmentComponent implements OnInit {
         this.allDataLoaded();
       }
     );
-
-    this.financeService.getFinancialAccounts().subscribe(
-      (response: any) => {
-        this.accounts = response.data;
-        this.isAccountsLoaded = true;
-        this.allDataLoaded();
-      }
-    );
   }
 
   allDataLoaded() {
-    if (this.isInvestmentCategoryLoaded && this.isAccountsLoaded) {
+    if (this.isInvestmentCategoryLoaded) {
       this.modelForm.setFieldConfigs(this.getFormFields());
     }
   }
@@ -67,72 +49,40 @@ export class AddInvestmentComponent implements OnInit {
   getFormFields() {
     this.formFields = [];
     this.formFields.push({
-      label: 'Account',
-      name: 'account',
-      type: 'select',
-      dataScource: this.accounts,
-      valueField: '_id',
-      displayField: 'accountName',
-      control: this.accountCtrl,
-      controlName: 'account',
-      onDataSelected: (data) => {
-        const bal = this.cp.transform(data.balance, 'INR');
-        this.accountBalanceCtrl.setValue(bal);
-      }
-    });
-    this.formFields.push({
-      label: 'Balance',
-      name: 'accountBalance',
-      type: 'display',
-      control: this.accountBalanceCtrl,
-      controlName: 'accountBalance',
-    });
-    this.formFields.push({
-      label: 'Amount',
-      name: 'transactionAmount',
-      type: 'number',
-      control: this.amountCtrl,
-      controlName: 'transactionAmount',
+      label: 'Name',
+      name: 'name',
+      type: 'text',
+      control: this.nameCtrl,
+      controlName: 'name',
       errors: [{
-        name: 'insufficientFunds',
-        message: 'Insufficient funds in account, please select other account'
+        name: 'required',
+        message: 'This field is required'
       }]
     });
     this.formFields.push({
-      label: 'Date',
-      name: 'transactionDate',
+      label: 'Start Date',
+      name: 'startedOn',
       type: 'date',
-      control: this.transactionDateCtrl,
-      controlName: 'transactionDate'
+      control: this.investmentStartDateCtrl,
+      controlName: 'startedOn'
     });
     this.formFields.push({
-      label: 'Category',
-      name: 'transactionSubCategory',
+      label: 'Type',
+      name: 'investmentType',
       type: 'select',
       dataScource: this.investmentCategory,
       valueField: '_id',
       displayField: 'configName',
       control: this.investmentCategoryCtrl,
-      controlName: 'transactionSubCategory'
-    });
-    this.formFields.push({
-      label: 'Detail',
-      name: 'transactionDetail',
-      type: 'text',
-      control: this.transactionDetailCtrl,
-      controlName: 'transactionDetail',
-      errors: [{
-        name: 'required',
-        message: 'This field is required'
-      }]
+      controlName: 'investmentType'
     });
     return this.formFields;
   }
 
   createInvestment() {
     if (this.investmentForm.valid) {
-      this.investmentForm.value.transactionDate = this.helperService.getUTCDate(this.investmentForm.value.transactionDate);
-      this.financeService.addInvestment(this.investmentForm.value).subscribe(
+      this.investmentForm.value.startedOn = this.helperService.getUTCDate(this.investmentForm.value.startedOn);
+      this.financeService.startNewInvestment(this.investmentForm.value).subscribe(
         (response: any) => {
           this.investmentForm.reset();
           this.msgService.showSuccessMessage(response.message);

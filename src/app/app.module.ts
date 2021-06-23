@@ -60,6 +60,7 @@ import { LoaderInterceptorService } from './services/loader-interceptor.service'
 import { LoaderService } from './services/loader.service';
 import { OtpActivationComponent } from './otp-activation/otp-activation.component';
 import { MailTesterComponent } from './mail-tester/mail-tester.component';
+import { UnderConstructionComponent } from './under-construction/under-construction.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { MailTesterComponent } from './mail-tester/mail-tester.component';
     ResetPasswordComponent,
     LoaderComponent,
     OtpActivationComponent,
-    MailTesterComponent
+    MailTesterComponent,
+    UnderConstructionComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule,
