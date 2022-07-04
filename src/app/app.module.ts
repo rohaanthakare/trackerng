@@ -25,6 +25,9 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 
+// PrimeNG Imports
+import { TabViewModule } from "primeng/tabview";
+
 // Application Imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -95,7 +98,8 @@ import { UnderConstructionComponent } from './under-construction/under-construct
     MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatToolbarModule,
     MatCardModule, MatMenuModule, MatProgressBarModule, MatGridListModule, MatExpansionModule,
     MatSidenavModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, MatRadioModule,
-    CoreModule, AppRoutingModule, MatSlideToggleModule, MatStepperModule, MatCheckboxModule
+    CoreModule, AppRoutingModule, MatSlideToggleModule, MatStepperModule, MatCheckboxModule,
+    TabViewModule
   ],
   entryComponents: [ MessageSnackBarComponent],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},

@@ -1,76 +1,58 @@
-<!-- <mat-grid-list cols="6" rowHeight="fit">
-    <mat-grid-tile colspan="6"> -->
-        <mat-tab-group (selectedTabChange)="tabChanged($event)">
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <mat-icon class="example-tab-icon">assignment_ind</mat-icon>
-                    ROHAN THAKARE
-                </ng-template>
-                <app-outer-home></app-outer-home>
-            </mat-tab>
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <mat-icon class="example-tab-icon">info</mat-icon>
-                    ABOUT
-                </ng-template>
-                <div class="outer-tab-container mat-elevation-z8">
-                    <app-about></app-about>
-                </div>
-            </mat-tab>
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <mat-icon class="example-tab-icon">pan_tool</mat-icon>
-                    SKILL
-                </ng-template>
-                <div class="">
-                    <app-skill></app-skill>
-                </div>
-            </mat-tab>
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <mat-icon class="example-tab-icon">work</mat-icon>
-                    EXPERIENCE
-                </ng-template>
-                <div class="outer-tab-container mat-elevation-z8">
-                    <app-experience></app-experience>
-                </div>
-            </mat-tab>
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <mat-icon class="example-tab-icon">library_books</mat-icon>
-                    EDUCATION
-                </ng-template>
-                <div>
-                    <app-education></app-education>
-                </div>
-            </mat-tab>
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <mat-icon class="example-tab-icon">computer</mat-icon>
-                    WORK
-                </ng-template>
-                <div>
-                    <app-work></app-work>
-                </div>
-            </mat-tab>
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <mat-icon class="example-tab-icon">local_phone</mat-icon>
-                    CONTACT
-                </ng-template>
-                <div>
-                    <app-contact-me></app-contact-me>
-                </div>
-            </mat-tab>
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <mat-icon class="example-tab-icon">lock_open</mat-icon>
-                    SIGN-IN
-                </ng-template>
-                <div class="outer-tab-container mat-elevation-z8">
-                    <app-login></app-login>
-                </div>
-            </mat-tab>
-        </mat-tab-group>
-    <!-- </mat-grid-tile>
-</mat-grid-list> -->
+<p-tabView>
+    <p-tabPanel>
+        <ng-template pTemplate = "header">
+            <i class="fas fa-house-user mr-2"></i>
+            <span>ROHAN</span>
+        </ng-template>
+        <app-outer-home></app-outer-home>
+    </p-tabPanel>
+    <!-- <p-tabPanel>
+        <ng-template pTemplate = "header">
+            <i class="pi pi-calendar"></i>
+            <span>ABOUT</span>
+        </ng-template>
+        <app-about></app-about>
+    </p-tabPanel> -->
+    <p-tabPanel>
+        <ng-template pTemplate = "header">
+            <i class="fas fa-toolbox mr-2"></i>
+            <span>SKILLS</span>
+        </ng-template>
+        <app-skill></app-skill>
+    </p-tabPanel>
+    <p-tabPanel>
+        <ng-template pTemplate = "header">
+            <i class="fas fa-briefcase mr-2"></i>
+            <span>EXPERIENCE</span>
+        </ng-template>
+        <app-experience></app-experience>
+    </p-tabPanel>
+    <p-tabPanel>
+        <ng-template pTemplate = "header">
+            <i class="fas fa-user-graduate mr-2"></i>
+            <span>EDUCATION</span>
+        </ng-template>
+        <app-education></app-education>
+    </p-tabPanel>
+    <p-tabPanel>
+        <ng-template pTemplate = "header">
+            <i class="fas fa-laptop-code mr-2"></i>
+            <span>WORK</span>
+        </ng-template>
+        <app-work></app-work>
+    </p-tabPanel>
+    <p-tabPanel>
+        <ng-template pTemplate = "header">
+            <i class="fas fa-envelope mr-2"></i>
+            <span>CONTACT</span>
+        </ng-template>
+        <app-contact-me></app-contact-me>
+    </p-tabPanel>
+    <p-tabPanel>
+        <ng-template pTemplate = "header">
+            <i class="fas fa-sign-in-alt mr-2"></i>
+            <span>SIGN-IN</span>
+        </ng-template>
+        <app-login></app-login>
+    </p-tabPanel>
+</p-tabView>

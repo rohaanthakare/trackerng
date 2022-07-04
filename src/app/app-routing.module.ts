@@ -46,25 +46,25 @@ const routes: Routes = [{
   canActivate: [AuthGuardService],
   children: [{
     path: '',
-    loadChildren: './dashboard/dashboard.module#DashboardModule'
+    loadChildren: () => import("./dashboard/dashboard.module").then(m => m.DashboardModule)
   }, {
     path: 'dashboard',
-    loadChildren: './dashboard/dashboard.module#DashboardModule'
+    loadChildren: () => import("./dashboard/dashboard.module").then(m => m.DashboardModule)
   }, {
     path: 'profile',
     component: ProfileComponent
   }, {
     path: 'password',
-    loadChildren: './password/password.module#PasswordModule'
+    loadChildren: () => import("./password/password.module").then(m => m.PasswordModule)
   }, {
     path: 'contact',
-    loadChildren: './contact/contact.module#ContactModule'
+    loadChildren: () => import("./contact/contact.module").then(m => m.ContactModule)
   }, {
     path: 'finance',
-    loadChildren: './finance/finance.module#FinanceModule'
+    loadChildren: () => import("./finance/finance.module").then(m => m.FinanceModule)
   }, {
     path: 'grocery-list',
-    loadChildren: './grocery/grocery.module#GroceryModule'
+    loadChildren: () => import("./grocery/grocery.module").then(m => m.GroceryModule)
   }, {
     path: 'load-data',
     component: DataLoaderComponent
